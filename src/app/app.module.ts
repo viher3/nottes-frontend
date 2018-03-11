@@ -1,12 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { RouterModule, Routes, RouterLink } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
 
+const appRoutes: Routes = [
+  { path: 'login', component: LoginComponent },
+  { path: 'user',  component: UserComponent },
+// { path: '**', component: PageNotFoundComponent }
+];
 
 @NgModule({
   declarations: [
@@ -16,7 +21,11 @@ import { UserComponent } from './user/user.component';
   ],
   imports: [
     BrowserModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    RouterModule.forRoot(
+      appRoutes,
+      { enableTracing: true } // <-- debugging purposes only
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]
