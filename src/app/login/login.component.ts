@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { AppConfig } from 'app/app.config';
 
 @Component({
   selector: 'app-login',
@@ -8,10 +9,13 @@ import { RouterModule } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+	private loginUrl = AppConfig.settings.api.login_url;
 
-  ngOnInit() {
+	ngOnInit() {}
 
-  }
+	login()
+	{
+		
+	}
 
 }
