@@ -4,7 +4,7 @@ import { environment } from '../environments/environment';
 @Injectable()
 export class AppConfig {
 
-    private settings;
+    static settings;
 
     static load() 
     {
