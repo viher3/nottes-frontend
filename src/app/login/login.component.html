@@ -7,6 +7,8 @@
       <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 
+      <div class="alert alert-danger" [hidden]="!errorMssg">{{ errorMssg }}</div>
+
       <input type="email" id="inputEmail" class="form-control" placeholder="Username or email address" [(ngModel)]="login.username" name="username" required autofocus #username="ngModel" />
 
       <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" [(ngModel)]="login.password" required #password="ngModel" />

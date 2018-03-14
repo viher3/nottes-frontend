@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
+import { AuthService } from 'app/user/auth.service';
+import * as moment from "moment";
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -32,7 +34,10 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    { provide: 'moment', useValue: moment },
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { AppConfig } from 'app/app.config';
-import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from 'app/user/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,48 +11,39 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginComponent implements OnInit {
 
-	private loginUrl = AppConfig.settings.api.login_url;
-
-	loginForm: FormGroup;
-
-	constructor(private http: HttpClient)
-	{
-		this.loginForm = new FormGroup({
-			_username: new FormControl(),
-			_password: new FormControl()
-		});
-	}
+	constructor(private authService: AuthService, private router: Router){ }
 
 	ngOnInit()
 	{
 		this.submited = false;
 	}
 
-	private checkLogin(email: string, password: string)
-	{
-		let result = this.http.post<User>(this.loginUrl, {
-			"_username" : email, 
-			"_password" : password
-		})
-		.subscribe(
-	        res => {
-
-	          	console.log(res);
-	        	let jwtToken = res.token;
-
-	        },
-	        err => {
-
-	          	console.log(err);
-	        	alert(err.error.message);
-	        }
-	    );
-	}
-
+	/** 
+	 * Handles form submit
+	 */
 	login()
 	{
 		this.submited = true;
-		//this.checkLogin(this.login.username, this.login.password);
+		this.checkLogin(this.login.username, this.login.password);
+	}
+	
+	/** 
+	 * Check login credentials
+	 * @param 	string 		email
+	 * @param 	string 		password
+	 */
+	private checkLogin(email: string, password: string)
+	{
+		this.authService.login(email, password)
+		.then(
+			res => {
+				this.router.navigateByUrl('user');
+			},
+			err => {
+				this.submited = false;
+				this.errorMssg = err.error.message;
+			}
+		);
 	}
 
 }
