@@ -1,3 +1,10 @@
 @import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "../node_modules/font-awesome/css/font-awesome.min.css";
 
 @import "app/login/login.component.css";
+
+.input-error{
+	color: #dc3545 !important;
+	margin: 5px 0;
+	text-align: left;
+}
