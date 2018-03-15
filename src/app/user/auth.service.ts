@@ -9,7 +9,8 @@ export class AuthService
 {
   	constructor(private http: HttpClient) { }
       
-  	private loginUrl = AppConfig.settings.api.login_url;
+  	private loginUrl 	= AppConfig.settings.api.login_url;
+  	private expiresIn 	= AppConfig.settings.users.session.expirationInHours;
 
   	/** 
 	 * Check login credentials
@@ -47,7 +48,7 @@ export class AuthService
 	 */
 	private setSession(authResult) 
 	{
-        const expiresAt = moment().add(authResult.expiresIn,'second');
+        const expiresAt = moment().add(this.expiresIn, 'hour');
 
         localStorage.setItem('id_token', authResult.token);
         localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
