@@ -3,6 +3,7 @@ import { AppConfig } from 'app/app.config';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'app/user/auth.service';
 import { Router } from '@angular/router';
+import { AuthHttp, AuthConfig } from 'angular2-jwt';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,9 @@ export class LoginComponent implements OnInit {
 
 	ngOnInit()
 	{
+		// check if user is already signed in
+		if( this.authService.isLoggedIn() ) this.router.navigateByUrl('dashboard');
+
 		this.submited = false;
 	}
 
@@ -41,7 +45,7 @@ export class LoginComponent implements OnInit {
 		this.authService.login(email, password)
 		.then(
 			res => {
-				this.router.navigateByUrl('user');
+				this.router.navigateByUrl('dashboard');
 			},
 			err => {
 				this.submited = false;
