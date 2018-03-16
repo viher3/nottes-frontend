@@ -22,7 +22,7 @@ export class AuthService
     {
     	return new Promise( (resolve, reject) => {
 
-    		this.http.post<User>(this.loginUrl, {
+    		this.http.post(this.loginUrl, {
 				"_username" : email, 
 				"_password" : password
 			})

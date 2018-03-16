@@ -3,7 +3,6 @@ import { AppConfig } from 'app/app.config';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'app/user/auth.service';
 import { Router } from '@angular/router';
-import { AuthHttp, AuthConfig } from 'angular2-jwt';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +16,7 @@ export class LoginComponent implements OnInit {
 	submited: boolean;
 	username: string;
 	password: string;
+	errorMssg: string;
 
 	ngOnInit()
 	{
@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
 	login()
 	{
 		this.submited = true;
-		this.checkLogin(this.login.username, this.login.password);
+		this.checkLogin(this.username, this.password);
 	}
 	
 	/** 

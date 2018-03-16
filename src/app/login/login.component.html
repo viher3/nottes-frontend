@@ -7,9 +7,9 @@
 
       <div class="alert alert-danger" [hidden]="!errorMssg">{{ errorMssg }}</div>
 
-      <input type="email" id="inputEmail" class="form-control" placeholder="Username or email address" [(ngModel)]="login.username" name="username" required autofocus />
+      <input type="email" id="inputEmail" class="form-control" placeholder="Username or email address" [(ngModel)]="username" name="username" required autofocus />
 
-      <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" [(ngModel)]="login.password" required />
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="password" [(ngModel)]="password" required />
       
       <button class="btn btn-lg btn-primary btn-block" type="submit" [disabled]="!loginForm.valid || submited">
         <i [hidden]="!submited" class="fa fa-refresh fa-spin"></i>
