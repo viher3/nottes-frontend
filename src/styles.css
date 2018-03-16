@@ -3,6 +3,19 @@
 
 @import "app/login/login.component.css";
 
+body, 
+app-root
+{
+	width: 100%;
+	min-height: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+layout-sidebar{
+	width: 15%;
+}
+
 .input-error{
 	color: #dc3545 !important;
 	margin: 5px 0;

@@ -11,20 +11,34 @@ import { UserComponent } from './user/user.component';
 import { AuthService } from 'app/user/auth.service';
 import * as moment from "moment";
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SidebarComponent, HeaderComponent } from './shared';
+import { HomeComponent } from './home/home.component'; 
 
 const appRoutes: Routes = [
+  { 
+    path: '', 
+    children: [
+      { path: '', component: HomeComponent },
+      { path: 'dashboard',  component: DashboardComponent },
+      { path: 'user',  component: UserComponent }
+    ]
+    component: HomeComponent 
+  },
   { path: 'login', component: LoginComponent },
-  { path: 'dashboard',  component: DashboardComponent },
-  { path: 'user',  component: UserComponent },
 // { path: '**', component: PageNotFoundComponent }
 ];
+
+const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: true });
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     UserComponent,
-    DashboardComponent
+    DashboardComponent,
+    SidebarComponent,
+    HeaderComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +49,8 @@ const appRoutes: Routes = [
     ),
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    rootRouting
   ],
   providers: [
     { provide: 'moment', useValue: moment },
