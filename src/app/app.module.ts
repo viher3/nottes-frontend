@@ -28,8 +28,6 @@ const appRoutes: Routes = [
 // { path: '**', component: PageNotFoundComponent }
 ];
 
-const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: true });
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,8 +47,7 @@ const rootRouting: ModuleWithProviders = RouterModule.forRoot([], { useHash: tru
     ),
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule,
-    rootRouting
+    HttpClientModule
   ],
   providers: [
     { provide: 'moment', useValue: moment },
