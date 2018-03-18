@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AppConfig } from 'app/app.config';
 import { HttpClient } from '@angular/common/http';
+import { JwtHelper } from 'angular2-jwt';
 
 import * as moment from "moment";
 
@@ -9,8 +10,9 @@ export class AuthService
 {
   	constructor(private http: HttpClient) { }
       
-  	private loginUrl 	= AppConfig.settings.api.login_url;
-  	private expiresIn 	= AppConfig.settings.users.session.expirationInHours;
+  	private loginUrl: 	string 	= AppConfig.settings.api.login_url;
+  	private expiresIn: 	string 	= AppConfig.settings.users.session.expirationInHours;
+  	private tokenKey: 	string 	= "id_token";
 
   	/** 
 	 * Check login credentials
@@ -50,7 +52,7 @@ export class AuthService
 	{
         const expiresAt = moment().add(this.expiresIn, 'hour');
 
-        localStorage.setItem('id_token', authResult.token);
+        localStorage.setItem(this.tokenKey, authResult.token);
         localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
     }          
 
@@ -66,7 +68,7 @@ export class AuthService
     /** 
 	 * Check if user is logged in
 	 */
-    public isLoggedIn() 
+    isLoggedIn() 
     {
         return moment().isBefore(this.getExpiration());
     }
@@ -88,5 +90,23 @@ export class AuthService
         const expiresAt = JSON.parse(expiration);
         return moment(expiresAt);
 	} 
+
+	/**
+	 * Get user info from token.
+	 * @return JSON
+	 */
+	getUser()
+	{
+		let authToken = localStorage.getItem(this.tokenKey);
+
+		if( authToken.length )
+		{
+			let jwtHelper: JwtHelper = new JwtHelper();
+    		
+    		return jwtHelper.decodeToken(authToken);
+		}
+
+		return {};
+	}	
 
 }

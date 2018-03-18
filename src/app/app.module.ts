@@ -13,6 +13,7 @@ import * as moment from "moment";
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SidebarComponent, HeaderComponent } from './shared';
 import { HomeComponent } from './home/home.component'; 
+import { JwtHelper } from 'angular2-jwt';
 
 const appRoutes: Routes = [
   { 
@@ -51,7 +52,8 @@ const appRoutes: Routes = [
   ],
   providers: [
     { provide: 'moment', useValue: moment },
-    AuthService
+    AuthService,
+    JwtHelper
   ],
   bootstrap: [AppComponent]
 })
