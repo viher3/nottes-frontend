@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import "app/login/login.component.scss";
+
+body, 
+app-root
+{
+	width:100%;
+}
+
+.wrapper {
+    display: flex;
+    align-items: stretch;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+#sidebar {
+    background: #323232;
+    color: #fff;
+    min-width: 220px;
+    max-width: 220px;
+    min-height: 100vh;
+}
+
+#sidebar a.navbar-brand {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    color: #FFF;
+    font-size: 32px;
+    padding-top: 30px;
+}
+
+#sidebar ul {
+    padding: 20px 0;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li{
+    width: 90%;
+    margin: 0 0 0 10px;
+}
+#sidebar ul li.separator{
+    margin-top: 20px;
+}
+#sidebar ul li a {
+    font-size: 14px;
+    display: block;
+    color: #dbdbdb;
+    padding: 6px 12px;
+    border-radius: 10px;
+}
+#sidebar ul li a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#sidebar ul li.active > a, 
+a[aria-expanded="true"] {
+    color: #fff;
+    background: #494949;
+}
