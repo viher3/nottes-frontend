@@ -1,5 +1,10 @@
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
+
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -8,19 +13,31 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   
-  	constructor(private router: Router){}
+  	constructor(
+  		private route: ActivatedRoute, 
+  		private router: Router, 
+  		private title: Title
+  	)
+  	{ }
 
   	ngOnInit()
   	{
-	  	if(localStorage.getItem("token") == null)
+  		// load <title> value using the provided route data
+  		this.router.events
+	      .filter((event) => event instanceof NavigationEnd)
+	      .map(() => this.route)
+	      .map((route) => {
+	        while (route.firstChild) route = route.firstChild;
+	        return route;
+	      })
+	      .filter((route) => route.outlet === 'primary')
+	      .mergeMap((route) => route.data)
+	      .subscribe((event) => this.title.setTitle("Nottes - " + event['title']));
+
+	  	// redirect to login page
+	  	if(localStorage.getItem("id_token") == null)
 	  	{
-	  		// redirect to login page
 	  		this.router.navigate(["/login"]);
-	  	}
-	  	else
-	  	{
-	  		// go to dashboard
-	  		console.log("go to dashboard");
 	  	}
   	}
 

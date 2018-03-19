@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, RouterLink } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -19,11 +19,11 @@ const appRoutes: Routes = [
   { 
     path: '', 
     children: [
-      { path: '', component: HomeComponent },
-      { path: 'dashboard',  component: DashboardComponent },
+      { path: '', component: HomeComponent,
+      { path: 'dashboard',  component: DashboardComponent, data: { title: 'Escritorio' } },
       { path: 'user',  component: UserComponent }
     ],
-    component: HomeComponent 
+    component: HomeComponent
   },
   { path: 'login', component: LoginComponent },
 // { path: '**', component: PageNotFoundComponent }
@@ -53,7 +53,8 @@ const appRoutes: Routes = [
   providers: [
     { provide: 'moment', useValue: moment },
     AuthService,
-    JwtHelper
+    JwtHelper,
+    Title
   ],
   bootstrap: [AppComponent]
 })
