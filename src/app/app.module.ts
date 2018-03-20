@@ -19,11 +19,11 @@ const appRoutes: Routes = [
   { 
     path: '', 
     children: [
-      { path: '', component: HomeComponent,
-      { path: 'dashboard',  component: DashboardComponent, data: { title: 'Escritorio' } },
+      { path: '', component: HomeComponent },
+      { path: 'dashboard', component: DashboardComponent, data: { title: 'Escritorio' } },
       { path: 'user',  component: UserComponent }
     ],
-    component: HomeComponent
+    component: HomeComponent,
   },
   { path: 'login', component: LoginComponent },
 // { path: '**', component: PageNotFoundComponent }
