@@ -13,7 +13,7 @@ import { UserComponent } from './user/user.component';
 import { AuthService } from 'app/user/auth.service';
 import * as moment from "moment";
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { SidebarComponent, HeaderComponent } from './shared';
+import { SidebarComponent } from './shared';
 import { HomeComponent } from './home/home.component'; 
 import { JwtHelper } from 'angular2-jwt';
 import { ToastrModule } from 'ngx-toastr';
@@ -39,7 +39,6 @@ const appRoutes: Routes = [
     UserComponent,
     DashboardComponent,
     SidebarComponent,
-    HeaderComponent,
     HomeComponent
   ],
   imports: [

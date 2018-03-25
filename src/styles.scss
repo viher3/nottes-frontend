@@ -11,16 +11,9 @@ app-root
     display: flex;
     align-items: stretch;
 }
-
-#sidebar.active {
-    margin-left: -250px;
-}
-
 #sidebar {
     background: #323232;
     color: #fff;
-    min-width: 220px;
-    max-width: 220px;
     min-height: 100vh;
 }
 
