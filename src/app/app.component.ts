@@ -32,7 +32,11 @@ export class AppComponent {
 	      })
 	      .filter((route) => route.outlet === 'primary')
 	      .mergeMap((route) => route.data)
-	      .subscribe((event) => this.title.setTitle("Nottes - " + event['title']));
+	      .subscribe((event) => 
+	      	{
+	      		let title = (typeof event['title'] !== 'undefined') ? " - " + event['title'] : "";
+	      		this.title.setTitle("Nottes" + title)
+	      	});
 
 	  	// redirect to login page
 	  	if(localStorage.getItem("id_token") == null)
