@@ -1,4 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { BrowserModule, Title } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, RouterLink } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -14,6 +16,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SidebarComponent, HeaderComponent } from './shared';
 import { HomeComponent } from './home/home.component'; 
 import { JwtHelper } from 'angular2-jwt';
+import { ToastrModule } from 'ngx-toastr';
 
 const appRoutes: Routes = [
   { 
@@ -48,7 +51,15 @@ const appRoutes: Routes = [
     ),
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot({
+      timeOut: 6000,
+      positionClass: 'toast-top-right',
+      preventDuplicates: true,
+      closeButton: true
+    })
   ],
   providers: [
     { provide: 'moment', useValue: moment },
