@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from 'app/user/auth.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './sidebar.component.html'
 })
 
-export class SidebarComponent implements OnInit
+export class SidebarComponent
 {
 	constructor( 
 		private router: Router, 
