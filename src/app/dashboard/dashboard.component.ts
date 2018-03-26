@@ -17,6 +17,7 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   private apiUrl: string = AppConfig.settings.api.api_url;
+  public  nottes: Array;
 
   ngOnInit()
   {
@@ -25,12 +26,14 @@ export class DashboardComponent implements OnInit {
 
   loadEntities()
   {
-	this.authHttp.get(this.apiUrl + "/notte")
+	 this.authHttp.get(this.apiUrl + "/notte")
       .subscribe(
         data => {
-        	console.log(data);
+          this.nottes = data.json(); 
         },
-        err => console.log(err),
+        err => {
+          console.log(err)
+        },
         () => console.log('Request Complete')
     );
 

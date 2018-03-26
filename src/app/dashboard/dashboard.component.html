@@ -1,3 +1,31 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
     <h1 class="h2">Dashboard</h1>
 </div>
+
+<div class="col-md-12">
+	
+	<table class="table table-dashed table-bordered">
+
+		<tr>
+			<th width="8">
+				<input type="checkbox" />
+			</th>
+			<th>Name</th>
+			<th>Tags</th>
+			<th>Created by</th>
+			<th>Created at</th>
+		</tr>
+
+		<tr *ngFor="let item of nottes">
+			<td>
+				<input type="checkbox" />
+			</td>
+			<td>{{ item.name }}</td>
+			<td>{{ item.tags }}</td>
+			<td>{{ item.creator_user.username }}</td>
+			<td>{{ item.created_at | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+		</tr>
+
+	</table>
+
+</div>
