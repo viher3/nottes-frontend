@@ -2,11 +2,13 @@
     "env": "DEV",
     "api": {
         "base_url" 	: "http://127.0.0.1:8000",
-        "login_url"	: "http://127.0.0.1:8000/api/login_check"
+        "login_url" : "http://127.0.0.1:8000/api/login_check",
+        "api_url"	: "http://127.0.0.1:8000/api"
     },
     "users" : {
     	"session" : {
-    		"expirationInHours" : 1
+    		"expirationInHours" : 1,
+            "tokenKey" : "id_token"
     	}
     }
 }

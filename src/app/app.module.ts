@@ -4,7 +4,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, RouterLink } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthHttp, JwtHelper, AuthConfig, AUTH_PROVIDERS, provideAuth } from 'angular2-jwt';
+import { AuthModule } from 'app/auth.module'
 
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -15,7 +18,6 @@ import * as moment from "moment";
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SidebarComponent } from './shared';
 import { HomeComponent } from './home/home.component'; 
-import { JwtHelper } from 'angular2-jwt';
 import { ToastrModule } from 'ngx-toastr';
 
 const appRoutes: Routes = [
@@ -50,6 +52,7 @@ const appRoutes: Routes = [
     ),
     FormsModule,
     ReactiveFormsModule,
+    HttpModule,
     HttpClientModule,
     CommonModule,
     BrowserAnimationsModule, // required animations module
@@ -58,13 +61,25 @@ const appRoutes: Routes = [
       positionClass: 'toast-top-right',
       preventDuplicates: true,
       closeButton: true
-    })
+    }),
+    AuthModule
   ],
   providers: [
     { provide: 'moment', useValue: moment },
     AuthService,
     JwtHelper,
-    Title
+    Title,
+    /*
+    AuthHttp,
+      provideAuth({
+          headerName: 'Authorization',
+          headerPrefix: 'bearer',
+          tokenName: 'token',
+          tokenGetter: (() => localStorage.getItem('id_token')),
+          globalHeaders: [{ 'Content-Type': 'application/json' }],
+          noJwtError: true
+    })
+    */
   ],
   bootstrap: [AppComponent]
 })

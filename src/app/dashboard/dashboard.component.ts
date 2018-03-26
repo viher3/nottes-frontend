@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AppConfig } from 'app/app.config';
+import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
+import { AuthHttp } from 'angular2-jwt';
 
 @Component({
   selector: 'app-dashboard',
@@ -7,9 +11,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+  	private toastr: ToastrService,
+  	private authHttp: AuthHttp
+  ) { }
 
-  ngOnInit() {
+  private apiUrl: string = AppConfig.settings.api.api_url;
+
+  ngOnInit()
+  {
+  	this.loadEntities();
+  }
+
+  loadEntities()
+  {
+	this.authHttp.get(this.apiUrl + "/notte")
+      .subscribe(
+        data => {
+        	console.log(data);
+        },
+        err => console.log(err),
+        () => console.log('Request Complete')
+    );
+
   }
 
 }

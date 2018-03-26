@@ -12,7 +12,7 @@ export class AuthService
       
   	private loginUrl: 	string 	= AppConfig.settings.api.login_url;
   	private expiresIn: 	string 	= AppConfig.settings.users.session.expirationInHours;
-  	private tokenKey: 	string 	= "id_token";
+  	private tokenKey: 	string 	= AppConfig.settings.users.session.tokenKey;
 
   	/** 
 	 * Check login credentials
