@@ -17,10 +17,16 @@
         },
     	"dashboard": {
     		"panel_title" : "Dashboard",
+            "latest_nottes" : "Latest nottes",
     		"name" : "Name",
     		"tags" : "Tags",
     		"created_by" : "Created by",
     		"updated_at" : "Updated at"
-    	}
+    	},
+        "nottes": {
+            "detail" : {
+                "last_update" : "Last update"
+            }
+        }
     }
 }

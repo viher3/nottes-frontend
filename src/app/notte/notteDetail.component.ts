@@ -3,6 +3,7 @@ import { AppConfig } from 'app/app.config';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { AuthHttp } from 'angular2-jwt';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'notte-detail',
@@ -13,20 +14,36 @@ export class NotteDetailComponent implements OnInit {
 
   constructor(
   	private toastr: ToastrService,
-  	private authHttp: AuthHttp
+  	private authHttp: AuthHttp,
+    private route: ActivatedRoute
   ) { }
 
   private apiUrl: string = AppConfig.settings.api.api_url;
   public  notte: JSON;
+  private id: number;
 
   ngOnInit()
   {
+    this.route.params.subscribe(params => 
+    {
+      this.id = +params["id"];
+    });
+
   	this.loadEntity();
   }
 
   loadEntity()
   {
-    
+    this.authHttp.get(this.apiUrl + "/notte/" + this.id).subscribe(
+
+      data => {
+        this.notte = data.json(); 
+      },
+      err => {
+        console.log(err);
+      }
+
+    );
   }
 
 }

@@ -26,17 +26,16 @@ export class DashboardComponent implements OnInit {
 
   loadEntities()
   {
-	 this.authHttp.get(this.apiUrl + "/notte")
-      .subscribe(
-        data => {
-          this.nottes = data.json(); 
-        },
-        err => {
-          console.log(err)
-        },
-        () => console.log('Request Complete')
-    );
+	  this.authHttp.get(this.apiUrl + "/notte").subscribe(
 
+      data => {
+        this.nottes = data.json(); 
+      },
+      err => {
+        console.log(err);
+      }
+        
+    );
   }
 
 }

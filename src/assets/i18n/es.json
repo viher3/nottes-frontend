@@ -17,10 +17,16 @@
         },
     	"dashboard": {
             "panel_title" : "Escritorio",
+            "latest_nottes" : "Últimas notas",
     		"name" : "Nombre",
     		"tags" : "Etiquetas",
     		"created_by" : "Creado por",
     		"updated_at" : "Última actualización"
-    	}
+    	},
+        "nottes": {
+            "detail" : {
+                "last_update" : "Última actualización"
+            }
+        }
     }
 }

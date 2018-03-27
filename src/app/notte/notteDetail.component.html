@@ -1,18 +1,33 @@
 <div class="card">
 
-  <div class="card-body">
-    
-	<h5 class="card-title">
-		Card title
-		<a class="btn btn-sm btn-outline-dark pull-right" onClick="javascript:history.go(-1);">
-		    <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;{{ 'common.go_back' | translate }}
-		</a>
-	</h5>
+	<div class="card-body">
+	    
+		<h5 class="card-title">
+			<span class="notte-name">{{ notte?.name }}</span>
+			<a class="btn btn-sm btn-outline-dark pull-right" onClick="javascript:history.go(-1);">
+			    <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;{{ 'common.go_back' | translate }}
+			</a>
+		</h5>
 
-	<hr />
-	
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+		<hr />
+		
+		<div class="notte-content">{{ notte?.content }}</div>
 
-  </div>
+		<div>
+			<small>{{ notte?.tags }}</small>
+		</div>
+
+	</div>
+
+	<div class="card-footer text-muted">
+	    <div class="row">
+		    <div class="col-md-6">
+		    	{{ notte?.creator_user.username }}
+		    </div>
+		    <div class="col-md-6 text-right">
+		    	{{ 'components.nottes.detail.last_update' | translate }} {{ notte?.updated_at | date:'dd/MM/yyyy HH:mm:ss' }}
+		    </div>
+	    </div>
+	</div>
 
 </div>
