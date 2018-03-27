@@ -1,33 +1,44 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-    <h1 class="h2">Dashboard</h1>
+    <h1 class="h2">{{ 'components.dashboard.panel_title' | translate }}</h1>
 </div>
 
-<div class="col-md-12">
+<div class="col-md-12 padding0">
 
-	<table class="table table-dashed table-bordered">
+	<div class="card">
 
-		<tr>
-			<th width="8">
-				<input type="checkbox" />
-			</th>
-			<th>{{ 'components.dashboard.name' | translate }}</th>
-			<th>{{ 'components.dashboard.tags' | translate }}</th>
-			<th>{{ 'components.dashboard.created_by' | translate }}</th>
-			<th>{{ 'components.dashboard.updated_at' | translate }}</th>
-		</tr>
+  		<div class="card-body">
 
-		<tr *ngFor="let item of nottes">
-			<td>
-				<input type="checkbox" />
-			</td>
-			<td>
-            	<a [routerLink]="['/notte/' + item.id ]">{{ item.name }}</a>
-			</td>
-			<td>{{ item.tags }}</td>
-			<td>{{ item.creator_user.username }}</td>
-			<td>{{ item.created_at | date:'dd/MM/yyyy HH:mm:ss' }}</td>
-		</tr>
+  			<h5 class="card-title">Últimas notas</h5>
+  			<br />
 
-	</table>
+			<table class="table table-dashed">
+
+				<tr>
+					<th width="8">
+						<input type="checkbox" />
+					</th>
+					<th>{{ 'components.dashboard.name' | translate }}</th>
+					<th>{{ 'components.dashboard.tags' | translate }}</th>
+					<th>{{ 'components.dashboard.created_by' | translate }}</th>
+					<th>{{ 'components.dashboard.updated_at' | translate }}</th>
+				</tr>
+
+				<tr *ngFor="let item of nottes">
+					<td>
+						<input type="checkbox" />
+					</td>
+					<td>
+		            	<a [routerLink]="['/notte/' + item.id ]">{{ item.name }}</a>
+					</td>
+					<td>{{ item.tags }}</td>
+					<td>{{ item.creator_user.username }}</td>
+					<td>{{ item.created_at | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+				</tr>
+
+			</table>
+
+		</div>
+
+	</div>
 
 </div>

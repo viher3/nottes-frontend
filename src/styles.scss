@@ -11,6 +11,9 @@ app-root
     display: flex;
     align-items: stretch;
 }
+.padding0{
+    padding: 0;
+}
 #sidebar {
     background: #323232;
     color: #fff;
@@ -69,4 +72,7 @@ div#sidebar-wrapper{
 }
 .h2{
     font-size: 2rem;
+}
+.btn-outline-dark:hover{
+    color: #FFF !important;
 }
