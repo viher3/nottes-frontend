@@ -3,8 +3,20 @@
     	"home": "Inicio",
     	"logout": "Cerrar sesión"
     },
+    "common": {
+        "go_back" : "Volver atrás"
+    },
     "components": {
+        "login" : {
+            "title" : "Acceso usuarios",
+            "placeholders" : {
+                "input_username" : "Usuario o email",
+                "input_password" : "Contraseña"
+            },
+            "submit_btn" : "Acceder"
+        },
     	"dashboard": {
+            "panel_title" : "Escritorio",
     		"name" : "Nombre",
     		"tags" : "Etiquetas",
     		"created_by" : "Creado por",

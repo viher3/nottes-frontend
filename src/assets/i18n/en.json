@@ -3,8 +3,20 @@
     	"home": "Home",
     	"logout": "Logout"
     },
+    "common": {
+    	"go_back" : "Go back"
+    },
     "components": {
+    	"login" : {
+            "title" : "Please sign in",
+            "placeholders" : {
+                "input_username" : "Username or email address",
+                "input_password" : "Password"
+            },
+            "submit_btn" : "Sign in"
+        },
     	"dashboard": {
+    		"panel_title" : "Dashboard",
     		"name" : "Name",
     		"tags" : "Tags",
     		"created_by" : "Created by",
