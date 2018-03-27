@@ -1,14 +1,13 @@
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
 import { RouterModule, Routes, RouterLink } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AuthHttp, JwtHelper, AuthConfig, AUTH_PROVIDERS, provideAuth } from 'angular2-jwt';
 import { AuthModule } from 'app/auth.module'
-
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
@@ -19,6 +18,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SidebarComponent } from './shared';
 import { HomeComponent } from './home/home.component'; 
 import { ToastrModule } from 'ngx-toastr';
+
+import {TranslateModule, TranslateLoader} from "@ngx-translate/core";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 
 const appRoutes: Routes = [
   { 
@@ -33,6 +35,11 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
 // { path: '**', component: PageNotFoundComponent }
 ];
+
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(httpClient: HttpClient) {
+    return new TranslateHttpLoader(httpClient, "./assets/i18n/", ".json");
+}
 
 @NgModule({
   declarations: [
@@ -62,24 +69,23 @@ const appRoutes: Routes = [
       preventDuplicates: true,
       closeButton: true
     }),
-    AuthModule
+    AuthModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [
-    { provide: 'moment', useValue: moment },
+    { 
+      provide: 'moment', 
+      useValue: moment 
+    },
     AuthService,
     JwtHelper,
-    Title,
-    /*
-    AuthHttp,
-      provideAuth({
-          headerName: 'Authorization',
-          headerPrefix: 'bearer',
-          tokenName: 'token',
-          tokenGetter: (() => localStorage.getItem('id_token')),
-          globalHeaders: [{ 'Content-Type': 'application/json' }],
-          noJwtError: true
-    })
-    */
+    Title
   ],
   bootstrap: [AppComponent]
 })

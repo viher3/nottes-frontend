@@ -5,6 +5,7 @@ import 'rxjs/add/operator/mergeMap';
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -16,9 +17,19 @@ export class AppComponent {
   	constructor(
   		private route: ActivatedRoute, 
   		private router: Router, 
-  		private title: Title
+  		private title: Title,
+  		private translate: TranslateService
   	)
-  	{ }
+  	{ 
+  		translate.addLangs(["en", "es"]);
+
+  		// this language will be used as a fallback when a translation isn't found in the current language
+        translate.setDefaultLang('en');
+
+        // set lang by browser
+        let browserLang = translate.getBrowserLang();
+        translate.use(browserLang.match(/en|es/) ? browserLang : 'en');
+  	}
 
   	ngOnInit()
   	{

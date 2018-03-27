@@ -17,7 +17,7 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   private apiUrl: string = AppConfig.settings.api.api_url;
-  public  nottes: Array;
+  public  nottes: JSON;
 
   ngOnInit()
   {

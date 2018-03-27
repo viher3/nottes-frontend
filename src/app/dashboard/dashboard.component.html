@@ -3,17 +3,17 @@
 </div>
 
 <div class="col-md-12">
-	
+
 	<table class="table table-dashed table-bordered">
 
 		<tr>
 			<th width="8">
 				<input type="checkbox" />
 			</th>
-			<th>Name</th>
-			<th>Tags</th>
-			<th>Created by</th>
-			<th>Created at</th>
+			<th>{{ 'components.dashboard.name' | translate }}</th>
+			<th>{{ 'components.dashboard.tags' | translate }}</th>
+			<th>{{ 'components.dashboard.created_by' | translate }}</th>
+			<th>{{ 'components.dashboard.updated_at' | translate }}</th>
 		</tr>
 
 		<tr *ngFor="let item of nottes">

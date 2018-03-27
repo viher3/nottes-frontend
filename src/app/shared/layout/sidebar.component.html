@@ -8,13 +8,13 @@
     <ul class="list-unstyled">
         <li class="active">
             <a [routerLink]="['/dashboard']">
-                <i class="fa fa-home"></i>&nbsp;&nbsp;Home
+                <i class="fa fa-home"></i>&nbsp;&nbsp;{{ 'sidebar.home' | translate }}
             </a>
         </li>
 
         <li class="separator">
             <a class="pointer" (click)="logout()">
-                <i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Logout
+                <i class="fa fa-sign-out"></i>&nbsp;&nbsp;{{ 'sidebar.logout' | translate }}
             </a>
         </li>
     </ul>

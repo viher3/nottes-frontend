@@ -1,0 +1,14 @@
+{
+    "sidebar": {
+    	"home": "Inicio",
+    	"logout": "Cerrar sesión"
+    },
+    "components": {
+    	"dashboard": {
+    		"name" : "Nombre",
+    		"tags" : "Etiquetas",
+    		"created_by" : "Creado por",
+    		"updated_at" : "Última actualización"
+    	}
+    }
+}
