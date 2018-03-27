@@ -13,28 +13,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
 import { AuthService } from 'app/user/auth.service';
-import * as moment from "moment";
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SidebarComponent } from './shared';
 import { HomeComponent } from './home/home.component'; 
 import { ToastrModule } from 'ngx-toastr';
-
 import {TranslateModule, TranslateLoader} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+import { ROUTING } from './app.routing';
+import * as moment from "moment";
 
-const appRoutes: Routes = [
-  { 
-    path: '', 
-    children: [
-      { path: '', component: HomeComponent },
-      { path: 'dashboard', component: DashboardComponent, data: { title: 'Escritorio' } },
-      { path: 'user',  component: UserComponent }
-    ],
-    component: HomeComponent,
-  },
-  { path: 'login', component: LoginComponent },
-// { path: '**', component: PageNotFoundComponent }
-];
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -53,10 +40,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   imports: [
     BrowserModule,
     NgbModule.forRoot(),
-    RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
-    ),
+    ROUTING,
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
