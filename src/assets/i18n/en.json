@@ -4,7 +4,9 @@
     	"logout": "Logout"
     },
     "common": {
-    	"go_back" : "Go back"
+        "go_back" : "Go back",
+        "edit_btn" : "Edit",
+    	"delete_btn" : "Delete"
     },
     "components": {
     	"login" : {

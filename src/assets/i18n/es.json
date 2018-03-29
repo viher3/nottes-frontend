@@ -4,7 +4,9 @@
     	"logout": "Cerrar sesión"
     },
     "common": {
-        "go_back" : "Volver atrás"
+        "go_back" : "Volver atrás",
+        "edit_btn" : "Editar",
+        "delete_btn" : "Eliminar"
     },
     "components": {
         "login" : {
