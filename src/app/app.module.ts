@@ -13,6 +13,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
 import { NotteDetailComponent } from './notte/notteDetail.component';
+import { NotteCreateComponent } from './notte/notteCreate.component';
 import { AuthService } from 'app/user/auth.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SidebarComponent } from './shared';
@@ -37,7 +38,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     DashboardComponent,
     SidebarComponent,
     HomeComponent,
-    NotteDetailComponent
+    NotteDetailComponent,
+    NotteCreateComponent
   ],
   imports: [
     BrowserModule,

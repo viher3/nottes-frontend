@@ -6,6 +6,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
 import { LoginComponent } from './login/login.component';
 import { NotteDetailComponent } from './notte/notteDetail.component';
+import { NotteCreateComponent } from './notte/notteCreate.component';
 
 export const AppRoutes: Routes = [
   { 
@@ -14,7 +15,8 @@ export const AppRoutes: Routes = [
       { path: '', component: HomeComponent },
       { path: 'dashboard', component: DashboardComponent, data: { title: 'Escritorio' } },
       { path: 'user',  component: UserComponent },
-      { path: 'notte/:id', component: NotteDetailComponent }
+      { path: 'notte/:id', component: NotteDetailComponent },
+      { path: 'notte/create', component: NotteCreateComponent }
     ],
     component: HomeComponent,
   },
