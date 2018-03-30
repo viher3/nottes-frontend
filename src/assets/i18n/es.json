@@ -23,7 +23,8 @@
     		"name" : "Nombre",
     		"tags" : "Etiquetas",
     		"created_by" : "Creado por",
-    		"updated_at" : "Última actualización"
+    		"updated_at" : "Última actualización",
+            "create_notte_btn": "Crear nota"
     	},
         "nottes": {
             "detail" : {

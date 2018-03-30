@@ -23,7 +23,8 @@
     		"name" : "Name",
     		"tags" : "Tags",
     		"created_by" : "Created by",
-    		"updated_at" : "Updated at"
+    		"updated_at" : "Updated at",
+            "create_notte_btn": "Create notte"
     	},
         "nottes": {
             "detail" : {
