@@ -15,8 +15,8 @@ export const AppRoutes: Routes = [
       { path: '', component: HomeComponent },
       { path: 'dashboard', component: DashboardComponent, data: { title: 'Escritorio' } },
       { path: 'user',  component: UserComponent },
-      { path: 'notte/:id', component: NotteDetailComponent },
-      { path: 'notte/create', component: NotteCreateComponent }
+      { path: 'notte/create', component: NotteCreateComponent },
+      { path: 'notte/:id', component: NotteDetailComponent }
     ],
     component: HomeComponent,
   },
