@@ -23,7 +23,7 @@ export class NotteCreateComponent implements OnInit {
 
   ngOnInit()
   {
-
+    
   }
 
 }

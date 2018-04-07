@@ -29,6 +29,9 @@
         "nottes": {
             "detail" : {
                 "last_update" : "Last update"
+            },
+            "create" : {
+                "save" : "Crear nota"
             }
         }
     }
