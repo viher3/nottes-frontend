@@ -24,14 +24,24 @@
     		"tags" : "Tags",
     		"created_by" : "Created by",
     		"updated_at" : "Updated at",
-            "create_notte_btn": "Create notte"
+            "create_notte_btn": "Create note"
     	},
         "nottes": {
             "detail" : {
                 "last_update" : "Last update"
             },
             "create" : {
-                "save" : "Crear nota"
+                "title" : "Create a new note",
+                "input_title" : "Title",
+                "input_tags" : "Tags",
+                "input_is_encrypted" : "Encrypt note?",
+                "input_encryption_pwd" : "Encryption password",
+                "input_repeat_encryption_pwd" : "Repeat password",
+                "save" : "Create note",
+                "placeholders": {
+                    "input_title" : "Enter a title",
+                    "input_tags" : "Enter tags separated by comma ..."
+                }
             }
         }
     }

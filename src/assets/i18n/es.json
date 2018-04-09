@@ -28,7 +28,20 @@
     	},
         "nottes": {
             "detail" : {
-                "last_update" : "Última actualización"
+                "last_update" : "Last update"
+            },
+            "create" : {
+                "title" : "Crear una nueva nota",
+                "input_title" : "Título",
+                "input_tags" : "Etiquetas",
+                "input_is_encrypted" : "¿Encriptar nota?",
+                "input_encryption_pwd" : "Contraseña para la encriptación",
+                "input_repeat_encryption_pwd" : "Repite la contraseña",
+                "save" : "Crear nota",
+                "placeholders": {
+                    "input_title" : "Introduce un título",
+                    "input_tags" : "Introduce las etiquetas separadas por coma ..."
+                }
             }
         }
     }

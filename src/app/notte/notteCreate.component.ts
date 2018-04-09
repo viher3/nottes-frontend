@@ -4,11 +4,13 @@ import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { AuthHttp } from 'angular2-jwt';
 import { ActivatedRoute } from '@angular/router';
+// import $ from "jquery";
+import { NottesEditor } from 'nottes-editor.min.js';
 
 @Component({
   selector: 'notte-create',
   templateUrl: './notteCreate.component.html',
-  styleUrls: []
+  styleUrls: ['./notteCreate.component.scss']
 })
 export class NotteCreateComponent implements OnInit {
 
@@ -20,10 +22,15 @@ export class NotteCreateComponent implements OnInit {
 
   private apiUrl: string = AppConfig.settings.api.api_url;
   public  notte: JSON;
+  public  editor: any;
 
   ngOnInit()
   {
-    
+    this.editor = new NottesEditor("div#nottes-editor", 
+    {
+      "language"      : "en",
+      "image_upload_url"  : "http://localhost:8000/upload/image"
+    });
   }
 
 }

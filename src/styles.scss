@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 @import "app/login/login.component.scss";
+@import "app/notte/notteCreate.component.scss";
+@import "app/app.component.scss";
 
 body, 
 app-root
@@ -96,4 +98,10 @@ span.notte-name{
 }
 .btn-outline-danger:hover{
     color: #fff !important;
+}
+div.form-group label{
+    font-weight: bold;
+}
+div#nottes-editor{
+    margin-bottom: 20px;
 }
