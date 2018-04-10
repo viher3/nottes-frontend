@@ -18,6 +18,8 @@ export class DashboardComponent implements OnInit {
 
   private apiUrl: string = AppConfig.settings.api.api_url;
   public  nottes: JSON;
+  public  selectedItems: number[] = [];
+  public  selectedAll: boolean = false;
 
   ngOnInit()
   {
@@ -36,6 +38,39 @@ export class DashboardComponent implements OnInit {
       }
         
     );
+  }
+
+  selectFromList(item)
+  {
+    if( this.selectedItems.indexOf(item) > -1 ) 
+    {
+      // remove item
+      var index = this.selectedItems.indexOf(item);
+      this.selectedItems.splice(index, 1);
+    }
+    else
+    {
+      // add item
+      this.selectedItems.push(item);
+    }
+  }
+
+  selectAll(event)
+  {
+    this.selectedItems = [];
+    if( ! event.target.checked ) return;
+
+    // add all items
+    for(var i in this.nottes) 
+    {
+      this.selectedItems.push(this.nottes[i]);
+    }
+  }
+
+  isSelected(item)
+  {
+    if( this.selectedItems.indexOf(item) > -1 ) return true;
+    return false;
   }
 
 }

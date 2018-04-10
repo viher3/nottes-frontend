@@ -21,7 +21,7 @@
 
 				<tr>
 					<th width="8">
-						<input type="checkbox" />
+						<input type="checkbox" (change)="selectAll($event)" />
 					</th>
 					<th>{{ 'components.dashboard.name' | translate }}</th>
 					<th>{{ 'components.dashboard.tags' | translate }}</th>
@@ -31,7 +31,7 @@
 
 				<tr *ngFor="let item of nottes">
 					<td>
-						<input type="checkbox" />
+						<input type="checkbox" [checked]="isSelected(item)" (click)="selectFromList(item)" />
 					</td>
 					<td>
 		            	<a [routerLink]="['/notte/' + item.id ]">{{ item.name }}</a>
