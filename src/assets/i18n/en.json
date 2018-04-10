@@ -8,6 +8,9 @@
         "edit_btn" : "Edit",
     	"delete_btn" : "Delete"
     },
+    "forms" : {
+        "required_field" : "Field is required."
+    },
     "components": {
     	"login" : {
             "title" : "Please sign in",

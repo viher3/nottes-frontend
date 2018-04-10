@@ -8,6 +8,9 @@
         "edit_btn" : "Editar",
         "delete_btn" : "Eliminar"
     },
+    "forms" : {
+        "required_field" : "El campo es obligatorio."
+    },
     "components": {
         "login" : {
             "title" : "Acceso usuarios",
