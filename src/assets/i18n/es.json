@@ -19,7 +19,8 @@
                 "input_username" : "Usuario o email",
                 "input_password" : "Contraseña"
             },
-            "submit_btn" : "Acceder"
+            "submit_btn" : "Acceder",
+            "logged_out_mssg" : "Te has desconectado correctamente."
         },
     	"dashboard": {
             "panel_title" : "Escritorio",
@@ -46,7 +47,8 @@
                 "placeholders": {
                     "input_title" : "Introduce un título",
                     "input_tags" : "Introduce las etiquetas separadas por coma ..."
-                }
+                },
+                "success_mss" : "El documento se ha creado correctamente."
             },
             "errors": {
                 "password_doesnt_match" : "La contraseña no coincide",

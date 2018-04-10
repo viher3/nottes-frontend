@@ -6,6 +6,7 @@ import { AuthHttp } from 'angular2-jwt';
 import { Router, ActivatedRoute } from '@angular/router';
 import $ from "jquery";
 import { NottesEditor } from 'nottes-editor.min.js';
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: 'notte-create',
@@ -18,7 +19,8 @@ export class NotteCreateComponent implements OnInit {
   	private toastr: ToastrService,
   	private authHttp: AuthHttp,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private translator: TranslateService
   ) {
       this.submitedForm = false;
       this.isSaving     = false;
@@ -57,9 +59,13 @@ export class NotteCreateComponent implements OnInit {
       .subscribe(
 
         data => {
+          
           var result = data.json();
 
-          console.log(result.id);
+          // show success alert
+          this.toastr.success(this.translator.get('components.docs.create.success_mss').value);
+
+          // redirect to detail view
           this.router.navigateByUrl('notte/' + result.id);
 
         },
