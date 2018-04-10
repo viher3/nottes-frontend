@@ -37,6 +37,7 @@
                 "title" : "Create a new note",
                 "input_title" : "Title",
                 "input_tags" : "Tags",
+                "input_note" : "Note",
                 "input_is_encrypted" : "Encrypt note?",
                 "input_encryption_pwd" : "Encryption password",
                 "input_repeat_encryption_pwd" : "Repeat password",
@@ -45,6 +46,9 @@
                     "input_title" : "Enter a title",
                     "input_tags" : "Enter tags separated by comma ..."
                 }
+            },
+            "errors": {
+                "password_doesnt_match" : "Password doesn't match"
             }
         }
     }

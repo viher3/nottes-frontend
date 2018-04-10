@@ -37,6 +37,7 @@
                 "title" : "Crear una nueva nota",
                 "input_title" : "Título",
                 "input_tags" : "Etiquetas",
+                "input_note" : "Nota",
                 "input_is_encrypted" : "¿Encriptar nota?",
                 "input_encryption_pwd" : "Contraseña para la encriptación",
                 "input_repeat_encryption_pwd" : "Repite la contraseña",
@@ -45,6 +46,9 @@
                     "input_title" : "Introduce un título",
                     "input_tags" : "Introduce las etiquetas separadas por coma ..."
                 }
+            },
+            "errors": {
+                "password_doesnt_match" : "La contraseña no coincide"
             }
         }
     }

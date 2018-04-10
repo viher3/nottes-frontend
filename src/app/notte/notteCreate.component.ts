@@ -42,10 +42,16 @@ export class NotteCreateComponent implements OnInit {
   {
     this.submitedForm = true;
 
+    console.log(this.title);
+
     if(form.valid) 
     {
       // TODO      
     }
-  }  
+  }
 
+  checkEncryptionPasswords(form)
+  {
+    
+  }
 }
