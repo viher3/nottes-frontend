@@ -22,26 +22,26 @@
         },
     	"dashboard": {
     		"panel_title" : "Dashboard",
-            "latest_nottes" : "Latest nottes",
+            "latest_docs" : "Latest documents",
     		"name" : "Name",
     		"tags" : "Tags",
     		"created_by" : "Created by",
     		"updated_at" : "Updated at",
-            "create_notte_btn": "Create note"
+            "create_doc_btn": "Create document"
     	},
-        "nottes": {
+        "docs": {
             "detail" : {
                 "last_update" : "Last update"
             },
             "create" : {
-                "title" : "Create a new note",
+                "title" : "Create new document",
                 "input_title" : "Title",
                 "input_tags" : "Tags",
-                "input_note" : "Note",
-                "input_is_encrypted" : "Encrypt note?",
+                "input_content" : "Content",
+                "input_is_encrypted" : "Encrypt?",
                 "input_encryption_pwd" : "Encryption password",
                 "input_repeat_encryption_pwd" : "Repeat password",
-                "save" : "Create note",
+                "save" : "Create document",
                 "placeholders": {
                     "input_title" : "Enter a title",
                     "input_tags" : "Enter tags separated by comma ..."

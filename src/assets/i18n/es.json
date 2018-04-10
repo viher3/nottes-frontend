@@ -22,26 +22,26 @@
         },
     	"dashboard": {
             "panel_title" : "Escritorio",
-            "latest_nottes" : "Últimas notas",
+            "latest_docs" : "Últimos documentos",
     		"name" : "Nombre",
     		"tags" : "Etiquetas",
     		"created_by" : "Creado por",
     		"updated_at" : "Última actualización",
-            "create_notte_btn": "Crear nota"
+            "create_doc_btn": "Crear nota"
     	},
-        "nottes": {
+        "docs": {
             "detail" : {
                 "last_update" : "Last update"
             },
             "create" : {
-                "title" : "Crear una nueva nota",
+                "title" : "Crear documento",
                 "input_title" : "Título",
                 "input_tags" : "Etiquetas",
-                "input_note" : "Nota",
-                "input_is_encrypted" : "¿Encriptar nota?",
+                "input_content" : "Contenido",
+                "input_is_encrypted" : "¿Encriptar documento?",
                 "input_encryption_pwd" : "Contraseña para la encriptación",
                 "input_repeat_encryption_pwd" : "Repite la contraseña",
-                "save" : "Crear nota",
+                "save" : "Crear documento",
                 "placeholders": {
                     "input_title" : "Introduce un título",
                     "input_tags" : "Introduce las etiquetas separadas por coma ..."

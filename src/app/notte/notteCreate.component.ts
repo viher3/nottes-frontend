@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { AuthHttp } from 'angular2-jwt';
 import { ActivatedRoute } from '@angular/router';
-// import $ from "jquery";
+import $ from "jquery";
 import { NottesEditor } from 'nottes-editor.min.js';
 
 @Component({
@@ -38,20 +38,19 @@ export class NotteCreateComponent implements OnInit {
     });
   }
 
-  onSubmit(form)
+  onSubmit(formObj)
   {
     this.submitedForm = true;
 
-    console.log(this.title);
+    // add editor content to form object
+    formObj.form.value.content = this.editor.getContent();
 
-    if(form.valid) 
+    console.log(formObj);
+
+    if(formObj.valid) 
     {
       // TODO      
     }
   }
 
-  checkEncryptionPasswords(form)
-  {
-    
-  }
 }
