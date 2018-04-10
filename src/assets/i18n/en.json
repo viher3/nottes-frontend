@@ -48,7 +48,8 @@
                 }
             },
             "errors": {
-                "password_doesnt_match" : "Password doesn't match"
+                "password_doesnt_match" : "Password doesn't match",
+                "password_min_length" : "Enter at least 6 characters"
             }
         }
     }

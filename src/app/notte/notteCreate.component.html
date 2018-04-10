@@ -63,7 +63,14 @@
 					
 					<div class="form-group col-md-4">
 						<label for="encryption-password">{{ 'components.nottes.create.input_encryption_pwd' | translate }}</label>
-						<input ngModel type="password" class="form-control" id="encryptionpwd" name="encryptionpwd" minlength="6" />
+						<input [ngClass]="{ 'is-invalid': f.controls.encryptionpwd?.errors?.minlength && f.controls.encryptionpwd.dirty && f.value.encryptionpwd.length }" ngModel type="password" class="form-control" id="encryptionpwd" name="encryptionpwd" minlength="6" />
+
+						<!-- check password length -->
+						<div class="invalid-feedback" *ngIf="f.controls.encryptionpwd?.errors?.minlength && f.controls.encryptionpwd.dirty && f.value.encryptionpwd.length">
+							{{ 'components.nottes.errors.password_min_length' | translate }}
+						</div>
+						<!-- end check password length -->
+
 					</div>
 					
 					<div class="form-group col-md-4">

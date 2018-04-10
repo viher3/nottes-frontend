@@ -48,7 +48,8 @@
                 }
             },
             "errors": {
-                "password_doesnt_match" : "La contraseña no coincide"
+                "password_doesnt_match" : "La contraseña no coincide",
+                "password_min_length" : "Introduce como mínimo 6 caracteres"
             }
         }
     }
