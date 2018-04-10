@@ -59,11 +59,13 @@ export class NotteCreateComponent implements OnInit {
       .subscribe(
 
         data => {
-          
+
           var result = data.json();
 
           // show success alert
-          this.toastr.success(this.translator.get('components.docs.create.success_mss').value);
+          this.translator.get('components.docs.create.success_mss').subscribe( (translation: string) => {
+            this.toastr.success(translation);
+          });
 
           // redirect to detail view
           this.router.navigateByUrl('notte/' + result.id);

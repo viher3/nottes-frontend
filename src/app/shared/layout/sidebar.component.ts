@@ -21,7 +21,10 @@ export class SidebarComponent
 	logout()
 	{
 		this.auth.logout();
-		this.toastr.success( this.translator.get('components.login.logged_out_mssg').value );
+
+		this.translator.get('components.login.logged_out_mssg').subscribe( (translation: string) => {
+            this.toastr.success(translation);
+        });
 		this.router.navigate(["/login"]);
 	}
 }
