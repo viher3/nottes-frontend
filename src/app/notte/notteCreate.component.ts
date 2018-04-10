@@ -20,11 +20,13 @@ export class NotteCreateComponent implements OnInit {
     private route: ActivatedRoute
   ) {
       this.submitedForm = false;
+      this.isSaving     = false;
     }
 
   private apiUrl: string = AppConfig.settings.api.api_url;
   public  notte: JSON;
   public  submitedForm: boolean;
+  public  isSaving: boolean;
   public  editor: any;
 
   ngOnInit()
@@ -40,7 +42,10 @@ export class NotteCreateComponent implements OnInit {
   {
     this.submitedForm = true;
 
-    // console.log(form.value);
+    if(form.valid) 
+    {
+      // TODO      
+    }
   }  
 
 }

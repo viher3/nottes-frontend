@@ -27,9 +27,9 @@
 				<div class="form-group">
 
 					<label for="notte-title">{{ 'components.nottes.create.input_title' | translate }}</label>
-					<input id="notte-title" name="title" type="text" class="form-control" placeholder="{{ 'components.nottes.create.placeholders.input_title' | translate }}" ngModel required [ngClass]="{ 'is-invalid': f.controls.title?.errors.required && submitedForm }" />
+					<input id="notte-title" name="title" type="text" class="form-control" placeholder="{{ 'components.nottes.create.placeholders.input_title' | translate }}" ngModel required [ngClass]="{ 'is-invalid': f.controls.title?.errors?.required && submitedForm }" />
 
-					<div *ngIf="f.controls.title?.errors.required && submitedForm" class="invalid-feedback">
+					<div *ngIf="f.controls.title?.errors?.required && submitedForm" class="invalid-feedback">
 						{{ 'forms.required_field' | translate }}
 					</div>
 
