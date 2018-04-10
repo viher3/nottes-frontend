@@ -10,8 +10,8 @@
 			<a class="btn btn-sm btn-outline-primary pull-right marginLeftActionBtn" onClick="javascript:history.go(-1);">
 			    <i class="fa fa-edit"></i>&nbsp;&nbsp;{{ 'common.edit_btn' | translate }}
 			</a>
-			<a class="btn btn-sm btn-outline-dark pull-right" onClick="javascript:history.go(-1);">
-			    <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;{{ 'common.go_back' | translate }}
+			<a class="btn btn-sm btn-outline-dark pull-right" [routerLink]="['/']">
+			    <i class="fa fa-list"></i>&nbsp;&nbsp;{{ 'common.go_back_list' | translate }}
 			</a>
 		</h5>
 

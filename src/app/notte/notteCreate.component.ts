@@ -3,7 +3,7 @@ import { AppConfig } from 'app/app.config';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { AuthHttp } from 'angular2-jwt';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import $ from "jquery";
 import { NottesEditor } from 'nottes-editor.min.js';
 
@@ -17,7 +17,8 @@ export class NotteCreateComponent implements OnInit {
   constructor(
   	private toastr: ToastrService,
   	private authHttp: AuthHttp,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {
       this.submitedForm = false;
       this.isSaving     = false;
@@ -40,16 +41,33 @@ export class NotteCreateComponent implements OnInit {
 
   onSubmit(formObj)
   {
+    // TODO: create loading component directive ...
     this.submitedForm = true;
 
     // add editor content to form object
     formObj.form.value.content = this.editor.getContent();
 
-    console.log(formObj);
-
     if(formObj.valid) 
     {
-      // TODO      
+      // save
+      this.authHttp.post(
+        this.apiUrl + "/notte", 
+        formObj.form.value
+      )
+      .subscribe(
+
+        data => {
+          var result = data.json();
+
+          console.log(result.id);
+          this.router.navigateByUrl('notte/' + result.id);
+
+        },
+        err => {
+          // TODO: create handle server errors method (toastr)
+          console.log(err);
+        }
+      );   
     }
   }
 

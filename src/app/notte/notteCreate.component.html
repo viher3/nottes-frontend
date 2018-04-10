@@ -22,20 +22,18 @@
 			
 			<form novalidate #f="ngForm">
 
-				{{ f.value | json }}
-
-				<!-- title -->
+				<!-- name -->
 				<div class="form-group">
 
-					<label for="notte-title">{{ 'components.docs.create.input_title' | translate }}</label>
-					<input id="notte-title" name="title" type="text" class="form-control" placeholder="{{ 'components.docs.create.placeholders.input_title' | translate }}" ngModel required [ngClass]="{ 'is-invalid': f.controls.title?.errors?.required && submitedForm }" />
+					<label for="notte-name">{{ 'components.docs.create.input_title' | translate }}</label>
+					<input id="notte-name" name="name" type="text" class="form-control" placeholder="{{ 'components.docs.create.placeholders.input_title' | translate }}" ngModel required [ngClass]="{ 'is-invalid': f.controls.name?.errors?.required && submitedForm }" />
 
-					<div *ngIf="f.controls.title?.errors?.required && submitedForm" class="invalid-feedback">
+					<div *ngIf="f.controls.name?.errors?.required && submitedForm" class="invalid-feedback">
 						{{ 'forms.required_field' | translate }}
 					</div>
 
 				</div>
-				<!-- end title -->
+				<!-- end name -->
 
 				<!-- content -->
 				<div class="form-group">

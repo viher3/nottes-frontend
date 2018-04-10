@@ -5,6 +5,7 @@
     },
     "common": {
         "go_back" : "Volver atrás",
+        "go_back_list" : "Volver al listado",
         "edit_btn" : "Editar",
         "delete_btn" : "Eliminar"
     },
