@@ -6,7 +6,7 @@
 
 			<i class="fa fa-file-text-o"></i>&nbsp;
 			{{ 'components.nottes.create.title' | translate }}
-			<a class="btn btn-sm btn-outline-primary pull-right marginLeftActionBtn">
+			<a (click)="onSubmit(f)" class="btn btn-sm btn-outline-primary pull-right marginLeftActionBtn">
 			    <i class="fa fa-save"></i>&nbsp;&nbsp;{{ 'components.nottes.create.save' | translate }}
 			</a>
 			<a class="btn btn-sm btn-outline-dark pull-right" onClick="javascript:history.go(-1);">
@@ -20,38 +20,50 @@
 		
 		<div class="notte-content">
 			
-			<div class="form-group">
-				<label for="notte-title">{{ 'components.nottes.create.input_title' | translate }}</label>
-				<input id="notte-title" type="text" class="form-control" placeholder="{{ 'components.nottes.create.placeholders.input_title' | translate }}" />
-			</div>
+			<form novalidate #f="ngForm">
 
-			<div id="nottes-editor"></div>
+				{{ f.value | json }}
 
-			<div class="form-group">
-				<label for="notte-tags">{{ 'components.nottes.create.input_tags' | translate }}</label>
-				<input id="notte-tags" type="text" class="form-control" placeholder="{{ 'components.nottes.create.placeholders.input_tags' | translate }}" />
-			</div>
+				<div class="form-group">
 
-			<div class="form-group is-encrypted-switch">
-			  <span class="switch">
-			    <input ngModel #isEncrypted="ngModel" type="checkbox" class="switch" id="notte-is-encrypted" />
-			    <label for="notte-is-encrypted">{{ 'components.nottes.create.input_is_encrypted' | translate }}</label>
-			  </span>
-			</div>
+					<label for="notte-title">{{ 'components.nottes.create.input_title' | translate }}</label>
+					<input id="notte-title" name="title" type="text" class="form-control" placeholder="{{ 'components.nottes.create.placeholders.input_title' | translate }}" ngModel required minlength="10" />
 
-			<div class="row" [hidden]="!isEncrypted.value">
-				
-				<div class="form-group col-md-3">
-					<label for="encryption-password">{{ 'components.nottes.create.input_encryption_pwd' | translate }}</label>
-					<input type="password" class="form-control" id="encryption-password" />
-				</div>
-				
-				<div class="form-group col-md-3">
-					<label for="encryption-password2">{{ 'components.nottes.create.input_repeat_encryption_pwd' | translate }}</label>
-					<input type="password" class="form-control" id="encryption-password2" />
+					<p>invalid: title.invalid</p>
+					<p>dirty: title.dirty</p>
+					<p>touched: title.touched</p>
+
 				</div>
 
-			</div>
+				<div id="nottes-editor"></div>
+
+				<div class="form-group">
+					<label for="notte-tags">{{ 'components.nottes.create.input_tags' | translate }}</label>
+					<input id="notte-tags" name="tags" type="text" class="form-control" placeholder="{{ 'components.nottes.create.placeholders.input_tags' | translate }}" ngModel />
+				</div>
+
+				<div class="form-group is-encrypted-switch">
+				  <span class="switch">
+				    <input type="checkbox" class="switch" id="notte-is-encrypted" name="isEncrypted" ngModel />
+				    <label for="notte-is-encrypted">{{ 'components.nottes.create.input_is_encrypted' | translate }}</label>
+				  </span>
+				</div>
+
+				<div class="row" [hidden]="!f.value.isEncrypted">
+					
+					<div class="form-group col-md-4">
+						<label for="encryption-password">{{ 'components.nottes.create.input_encryption_pwd' | translate }}</label>
+						<input ngModel type="password" class="form-control" id="encryptionpwd" name="encryptionpwd" />
+					</div>
+					
+					<div class="form-group col-md-4">
+						<label for="encryption-password2">{{ 'components.nottes.create.input_repeat_encryption_pwd' | translate }}</label>
+						<input ngModel type="password" class="form-control" id="encryptionpwd2" name="encryptionpwd2" />
+					</div>
+
+				</div>
+
+			</form>
 
 		</div>
 
@@ -60,7 +72,7 @@
 	<div class="card-footer">
 	    <div class="row">
 		    <div class="col-md-12 text-right">
-		    	<a class="btn btn-sm btn-outline-primary pull-right marginLeftActionBtn">
+		    	<a (click)="onSubmit(f)" class="btn btn-sm btn-outline-primary pull-right marginLeftActionBtn">
 				    <i class="fa fa-save"></i>&nbsp;&nbsp;{{ 'components.nottes.create.save' | translate }}
 				</a>
 				<a class="btn btn-sm btn-outline-dark pull-right" onClick="javascript:history.go(-1);">

@@ -18,7 +18,9 @@ export class NotteCreateComponent implements OnInit {
   	private toastr: ToastrService,
   	private authHttp: AuthHttp,
     private route: ActivatedRoute
-  ) { }
+  ) {
+    
+    }
 
   private apiUrl: string = AppConfig.settings.api.api_url;
   public  notte: JSON;
@@ -32,5 +34,10 @@ export class NotteCreateComponent implements OnInit {
       "image_upload_url"  : "http://localhost:8000/upload/image"
     });
   }
+
+  onSubmit(form)
+  {
+    console.log(form.value);
+  }  
 
 }
