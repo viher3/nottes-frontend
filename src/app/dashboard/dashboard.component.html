@@ -11,9 +11,14 @@
   			<h5 class="card-title">
   				{{ 'components.dashboard.latest_docs' | translate }}
 
-				<a [routerLink]="['/notte/create']" class="btn btn-sm btn-outline-primary pull-right">
+				<a [routerLink]="['/notte/create']" class="btn btn-sm btn-outline-primary pull-right marginLeftActionBtn">
 				    <i class="fa fa-plus"></i>&nbsp;&nbsp;{{ 'components.dashboard.create_doc_btn' | translate }}
 				</a>
+
+				<a *ngIf="selectedItems.length" (click)="removeSelectedItems()" class="btn btn-outline-danger btn-sm pull-right">
+					<i class="fa fa-trash"></i>&nbsp;&nbsp;{{ 'common.delete_btn' | translate }}
+				</a>
+
   			</h5>
   			<br />
 
@@ -29,7 +34,7 @@
 					<th>{{ 'components.dashboard.updated_at' | translate }}</th>
 				</tr>
 
-				<tr *ngFor="let item of nottes">
+				<tr *ngFor="let item of listElements">
 					<td>
 						<input type="checkbox" [checked]="isSelected(item)" (click)="selectFromList(item)" />
 					</td>
