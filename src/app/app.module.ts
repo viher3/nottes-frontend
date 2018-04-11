@@ -16,7 +16,7 @@ import { NotteDetailComponent } from './notte/notteDetail.component';
 import { NotteCreateComponent } from './notte/notteCreate.component';
 import { AuthService } from 'app/user/auth.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { SidebarComponent, PageNotFoundComponent } from './shared';
+import { SidebarComponent, PageNotFoundComponent, ListComponent } from './shared';
 import { HomeComponent } from './home/home.component'; 
 import { ToastrModule } from 'ngx-toastr';
 import {TranslateModule, TranslateLoader} from "@ngx-translate/core";
@@ -38,6 +38,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     DashboardComponent,
     SidebarComponent,
     PageNotFoundComponent,
+    ListComponent,
     HomeComponent,
     NotteDetailComponent,
     NotteCreateComponent
