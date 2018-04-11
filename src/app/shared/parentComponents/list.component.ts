@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: 'list-component',
@@ -7,7 +8,9 @@ import { Component } from '@angular/core';
 
 export class ListComponent
 {
-	constructor(){ }
+	constructor(
+		protected translator: TranslateService
+	){ }
 
 	public  selectedItems: number[] = [];
   	public  selectedAll: boolean = false;
@@ -44,5 +47,16 @@ export class ListComponent
 	{
 	    if( this.selectedItems.indexOf(item) > -1 ) return true;
 	    return false;
+	}
+
+	removeSelectedItems()
+	{
+		this.translator.get('common.remove_items').subscribe( (translation: string) => {
+        	
+			if( confirm(translation) ) 
+			{
+				
+			}
+      	});
 	}
 }

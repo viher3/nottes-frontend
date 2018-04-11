@@ -7,7 +7,8 @@
         "go_back" : "Volver atrás",
         "go_back_list" : "Volver al listado",
         "edit_btn" : "Editar",
-        "delete_btn" : "Eliminar"
+        "delete_btn" : "Eliminar",
+        "remove_items" : "¿Estas seguro que deseas eliminar los elementos seleccionados?"
     },
     "forms" : {
         "required_field" : "El campo es obligatorio."
