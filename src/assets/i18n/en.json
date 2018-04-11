@@ -55,5 +55,12 @@
                 "password_min_length" : "Enter at least 6 characters"
             }
         }
+    },
+    "page_errors" : {
+        "404_not_found" : {
+            "title" : "404 Not Found",
+            "message" : "Sorry, an error has occured, requested page not found!",
+            "action_btn" : "Take Me Home"
+        }
     }
 }

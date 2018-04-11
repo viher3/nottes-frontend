@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserComponent } from './user/user.component';
 import { LoginComponent } from './login/login.component';
+import { PageNotFoundComponent } from './shared/errors/pageNotFound.component';
 import { NotteDetailComponent } from './notte/notteDetail.component';
 import { NotteCreateComponent } from './notte/notteCreate.component';
 
@@ -21,7 +22,7 @@ export const AppRoutes: Routes = [
     component: HomeComponent,
   },
   { path: 'login', component: LoginComponent },
-// { path: '**', component: PageNotFoundComponent }
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 export const ROUTING: ModuleWithProviders = RouterModule.forRoot(AppRoutes);

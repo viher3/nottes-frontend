@@ -55,5 +55,12 @@
                 "password_min_length" : "Introduce como mínimo 6 caracteres"
             }
         }
+    },
+    "page_errors" : {
+        "404_not_found" : {
+            "title" : "Error 404",
+            "message" : "La página que buscas no existe.",
+            "action_btn" : "Volver al inicio"
+        }
     }
 }
