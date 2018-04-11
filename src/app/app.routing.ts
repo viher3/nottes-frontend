@@ -9,6 +9,7 @@ import { PageNotFoundComponent } from './shared/errors/pageNotFound.component';
 import { NotteDetailComponent } from './notte/notteDetail.component';
 import { NotteCreateComponent } from './notte/notteCreate.component';
 
+// TODO: translate route data.title values
 export const AppRoutes: Routes = [
   { 
     path: '', 
@@ -22,7 +23,8 @@ export const AppRoutes: Routes = [
     component: HomeComponent,
   },
   { path: 'login', component: LoginComponent },
-  { path: '**', component: PageNotFoundComponent }
+  { path: '404', component: PageNotFoundComponent, data: { title: 'Error 404' } },
+  { path: '**', redirectTo: '/404' }
 ];
 
 export const ROUTING: ModuleWithProviders = RouterModule.forRoot(AppRoutes);
