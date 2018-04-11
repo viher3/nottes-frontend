@@ -30,6 +30,7 @@ export class NotteCreateComponent implements OnInit {
   public  notte: JSON;
   public  submitedForm: boolean;
   public  isSaving: boolean;
+  public  isEncrypted: boolean;
   public  editor: any;
 
   ngOnInit()
@@ -39,6 +40,8 @@ export class NotteCreateComponent implements OnInit {
       "language"      : "en",
       "image_upload_url"  : "http://localhost:8000/upload/image"
     });
+
+    this.isEncrypted = false;
   }
 
   onSubmit(formObj)

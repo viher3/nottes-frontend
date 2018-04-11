@@ -52,7 +52,7 @@
 				<!-- encrypted -->
 				<div class="form-group is-encrypted-switch">
 				  <span class="switch">
-				    <input type="checkbox" class="switch" id="notte-is-encrypted" name="isEncrypted" ngModel />
+				    <input type="checkbox" class="switch" id="notte-is-encrypted" name="isEncrypted" [(ngModel)]="isEncrypted" />
 				    <label for="notte-is-encrypted">{{ 'components.docs.create.input_is_encrypted' | translate }}</label>
 				  </span>
 				</div>
