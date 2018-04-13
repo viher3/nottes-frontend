@@ -9,6 +9,7 @@
         "edit_btn" : "Editar",
         "delete_btn" : "Eliminar",
         "remove_items" : "¿Estas seguro que deseas eliminar los elementos seleccionados?",
+        "remove_item" : "¿Estas seguro que deseas eliminar el elemento seleccionado?",
         "no_results_found" : "No se han encontrado resultados.",
         "decrypt_btn" : "Desencriptar"
     },

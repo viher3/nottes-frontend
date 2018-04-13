@@ -33,6 +33,7 @@ export class NotteCreateComponent implements OnInit {
   public  isEncrypted: boolean;
   public  editor: any;
   public  loading: boolean = false;
+  public  editorIsEmpty: boolean = true;
 
   ngOnInit()
   {
@@ -43,17 +44,21 @@ export class NotteCreateComponent implements OnInit {
     });
 
     this.isEncrypted = false;
+    
   }
 
   onSubmit(formObj)
   {
-    // TODO: create loading component directive ...
     this.submitedForm = true;
 
     // add editor content to form object
     formObj.form.value.content = this.editor.getContent();
 
-    if(formObj.valid) 
+    // check editor is empty
+    this.editorIsEmpty = ( ! formObj.form.value.content.length) ? true : false;
+
+    // form validation
+    if(formObj.valid && ! this.editorIsEmpty) 
     {
       this.loading = true;
 

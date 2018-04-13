@@ -38,9 +38,14 @@
 				<!-- end name -->
 
 				<!-- content -->
-				<div class="form-group">
+				<div id="nottes-editor-wrapper" class="form-group" [ngClass]="{ 'is-invalid': editorIsEmpty && submitedForm }">
 					<label>{{ 'components.docs.create.input_content' | translate }}</label>
 					<div id="nottes-editor"></div>
+
+					<div *ngIf="editorIsEmpty && submitedForm" class="form-error">
+						{{ 'forms.required_field' | translate }}
+					</div>
+
 				</div>
 				<!-- end content -->
 
