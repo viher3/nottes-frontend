@@ -37,6 +37,9 @@ export class AuthService
 				},
 				err => 
 				{
+					console.log("error auth.service.ts");
+					console.log(err);
+					console.log("- end - error auth.service.ts");
 					reject(err);
 				}
 			);

@@ -29,6 +29,7 @@ export class NotteDetailComponent extends CrudComponent implements OnInit {
   private apiUrl: string = AppConfig.settings.api.api_url;
   public  notte: JSON;
   private id: number;
+  private contentIsVisible: boolean = false;
 
   ngOnInit()
   {
@@ -46,7 +47,14 @@ export class NotteDetailComponent extends CrudComponent implements OnInit {
     this.authHttp.get(this.apiUrl + "/notte/" + this.id).subscribe(
 
       data => {
+
         this.notte = data.json(); 
+
+        if( ! data.json().is_encrypted ) 
+        {
+          this.contentIsVisible = true;
+        }
+
         this.loading = false;
       },
       err => {

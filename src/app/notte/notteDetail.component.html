@@ -19,16 +19,45 @@
 
 		<hr />
 		
-		<div class="notte-content">{{ notte?.content }}</div>
+		<div class="notte-content">
 
-		<div>
+			<div class="row justify-content-md-center" *ngIf="notte?.is_encrypted">
+
+				<form class="decryptionPassword col-md-8 ">
+
+					<div class="col-md-12 alert alert-info">
+						<i class="fa fa-info-circle"></i>&nbsp;
+						{{ 'components.docs.detail.encryption_alert_info' | translate }}
+					</div>
+
+				  	<div class="form-group">
+				    	<input type="password" class="form-control text-center" id="encryptionPassword" placeholder="{{ 'components.docs.detail.encryption_password_input_placeholder' | translate }}" />
+				    	<small id="encryptionPasswordHelp" class="form-text text-muted">{{ 'components.docs.detail.encryption_password_help' | translate }}</small>
+				  	</div>
+
+				  	<div class="text-center">
+					  	<button class="btn btn-outline-primary">
+						  	<i class="fa fa-shield"></i>&nbsp;
+					  		{{ 'common.decrypt_btn' | translate }}
+					  	</button>
+					</div>
+
+				</form>
+
+			</div>
+
+			<div [hidden]="!contentIsVisible">{{ notte?.content }}</div>
+
+		</div>
+
+		<div [hidden]="!contentIsVisible">
 			<small>{{ notte?.tags }}</small>
 		</div>
 
 	</div>
 
 	<div class="card-footer text-muted" *ngIf="!loading">
-	    <div class="row">
+	    <div class="row" [hidden]="!contentIsVisible">
 		    <div class="col-md-6">
 		    	{{ notte?.creator_user.username }}
 		    </div>

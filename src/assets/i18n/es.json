@@ -9,7 +9,8 @@
         "edit_btn" : "Editar",
         "delete_btn" : "Eliminar",
         "remove_items" : "¿Estas seguro que deseas eliminar los elementos seleccionados?",
-        "no_results_found" : "No se han encontrado resultados."
+        "no_results_found" : "No se han encontrado resultados.",
+        "decrypt_btn" : "Desencriptar"
     },
     "forms" : {
         "required_field" : "El campo es obligatorio."
@@ -35,7 +36,10 @@
     	},
         "docs": {
             "detail" : {
-                "last_update" : "Last update"
+                "last_update" : "Last update",
+                "encryption_alert_info" : "El documento está encriptado, introduce la contraseña para desencriptarlo.",
+                "encryption_password_help" : "Si la contraseña es incorrecta, el documento será ilegible hasta que introduzcas la contraseña correcta.",
+                "encryption_password_input_placeholder" : "Introduce la contraseña del documento ..."
             },
             "create" : {
                 "title" : "Crear documento",
