@@ -42,7 +42,7 @@ export class NotteDetailComponent implements OnInit {
       },
       err => {
 
-        if(err.status == 404)
+        if(err.status == 404 || err.status == 401)
         {
           this.router.navigateByUrl('404');
         }
