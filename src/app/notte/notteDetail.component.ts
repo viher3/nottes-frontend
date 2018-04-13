@@ -4,20 +4,26 @@ import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { AuthHttp } from 'angular2-jwt';
 import { Router, ActivatedRoute } from '@angular/router';
+import { CrudComponent } from 'app/shared';
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: 'notte-detail',
   templateUrl: './notteDetail.component.html',
   styleUrls: ['./notteDetail.component.scss']
 })
-export class NotteDetailComponent implements OnInit {
+export class NotteDetailComponent extends CrudComponent implements OnInit {
 
   constructor(
-  	private toastr: ToastrService,
-  	private authHttp: AuthHttp,
+    protected translator: TranslateService,
+  	protected toastr: ToastrService,
+  	protected authHttp: AuthHttp,
     private route: ActivatedRoute,
     private router: Router
-  ) { }
+  ) 
+  {
+    super(translator, authHttp, toastr, "notte", "name");
+  }
 
   private apiUrl: string = AppConfig.settings.api.api_url;
   public  notte: JSON;
