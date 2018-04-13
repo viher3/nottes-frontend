@@ -19,10 +19,10 @@ export class NotteDetailComponent extends CrudComponent implements OnInit {
   	protected toastr: ToastrService,
   	protected authHttp: AuthHttp,
     private route: ActivatedRoute,
-    private router: Router
+    protected router: Router
   ) 
   {
-    super(translator, authHttp, toastr, "notte", "name");
+    super(translator, authHttp, toastr, "notte", "name", "/dashboard", router);
   }
   
   public  loading: boolean = false;
