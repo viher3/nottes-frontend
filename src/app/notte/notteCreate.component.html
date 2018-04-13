@@ -1,6 +1,8 @@
 <div class="card">
 
-	<div class="card-body">
+	<spinner [show]="loading"></spinner>
+
+	<div class="card-body" [hidden]="loading">
 	    
 		<h5 class="card-title">
 
@@ -93,7 +95,7 @@
 
 	</div>
 
-	<div class="card-footer">
+	<div class="card-footer text-muted" [hidden]="loading">
 	    <div class="row">
 		    <div class="col-md-12 text-right">
 		    	<button (click)="onSubmit(f)" class="btn btn-sm btn-outline-primary pull-right marginLeftActionBtn">

@@ -32,6 +32,7 @@ export class NotteCreateComponent implements OnInit {
   public  isSaving: boolean;
   public  isEncrypted: boolean;
   public  editor: any;
+  public  loading: boolean = false;
 
   ngOnInit()
   {
@@ -54,6 +55,8 @@ export class NotteCreateComponent implements OnInit {
 
     if(formObj.valid) 
     {
+      this.loading = true;
+
       // save
       this.authHttp.post(
         this.apiUrl + "/notte", 
@@ -77,6 +80,7 @@ export class NotteCreateComponent implements OnInit {
         err => {
           // TODO: create handle server errors method (toastr)
           console.log(err);
+          this.loading = false;
         }
       );   
     }
