@@ -24,7 +24,8 @@ export class NotteDetailComponent extends CrudComponent implements OnInit {
   {
     super(translator, authHttp, toastr, "notte", "name");
   }
-
+  
+  public  loading: boolean = false;
   private apiUrl: string = AppConfig.settings.api.api_url;
   public  notte: JSON;
   private id: number;
@@ -36,6 +37,7 @@ export class NotteDetailComponent extends CrudComponent implements OnInit {
       this.id = +params["id"];
     });
 
+    this.loading = true;
   	this.loadEntity();
   }
 
@@ -45,6 +47,7 @@ export class NotteDetailComponent extends CrudComponent implements OnInit {
 
       data => {
         this.notte = data.json(); 
+        this.loading = false;
       },
       err => {
 
@@ -53,6 +56,7 @@ export class NotteDetailComponent extends CrudComponent implements OnInit {
           this.router.navigateByUrl('404');
         }
         
+        this.loading = false;
         console.log(err);
       }
 

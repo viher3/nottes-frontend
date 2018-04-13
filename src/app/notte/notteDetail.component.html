@@ -1,6 +1,8 @@
 <div class="card">
 
-	<div class="card-body">
+	<spinner [show]="loading"></spinner>
+
+	<div class="card-body" *ngIf="!loading">
 	    
 		<h5 class="card-title">
 			<span class="notte-name">{{ notte?.name }}</span>
@@ -25,7 +27,7 @@
 
 	</div>
 
-	<div class="card-footer text-muted">
+	<div class="card-footer text-muted" *ngIf="!loading">
 	    <div class="row">
 		    <div class="col-md-6">
 		    	{{ notte?.creator_user.username }}
