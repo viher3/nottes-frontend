@@ -8,7 +8,8 @@
         "go_back_list" : "Volver al listado",
         "edit_btn" : "Editar",
         "delete_btn" : "Eliminar",
-        "remove_items" : "¿Estas seguro que deseas eliminar los elementos seleccionados?"
+        "remove_items" : "¿Estas seguro que deseas eliminar los elementos seleccionados?",
+        "no_results_found" : "No se han encontrado resultados."
     },
     "forms" : {
         "required_field" : "El campo es obligatorio."

@@ -45,6 +45,10 @@
 					<td>{{ item.updated_at | date:'dd/MM/yyyy HH:mm:ss' }}</td>
 				</tr>
 
+				<tr *ngIf="!listElements?.length">
+					<td class="no-results-padding" align="center" colspan="5">{{ 'common.no_results_found' | translate }}</td>
+				</tr>
+
 			</table>
 
 		</div>
