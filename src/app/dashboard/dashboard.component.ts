@@ -14,33 +14,17 @@ import { TranslateService } from "@ngx-translate/core";
 export class DashboardComponent extends ListComponent implements OnInit {
 
   constructor(
-  	private toastr: ToastrService,
-    private authHttp: AuthHttp,
+  	protected toastr: ToastrService,
+    protected authHttp: AuthHttp,
     protected translator: TranslateService
   ) 
   {
-    super(translator);
+    super(translator, authHttp, toastr, "notte");
   }
-
-  private apiUrl: string = AppConfig.settings.api.api_url;
 
   ngOnInit()
   {
   	this.loadEntities();
-  }
-
-  loadEntities()
-  {
-	  this.authHttp.get(this.apiUrl + "/notte").subscribe(
-
-      data => {
-        this.listElements = data.json(); 
-      },
-      err => {
-        console.log(err);
-      }
-
-    );
   }
 
 }

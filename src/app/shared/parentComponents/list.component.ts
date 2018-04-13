@@ -1,5 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { TranslateService } from "@ngx-translate/core";
+import { AppConfig } from 'app/app.config';
+import { HttpClient } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
+import { AuthHttp } from 'angular2-jwt';
 
 @Component({
   selector: 'list-component',
@@ -9,12 +13,18 @@ import { TranslateService } from "@ngx-translate/core";
 export class ListComponent
 {
 	constructor(
-		protected translator: TranslateService
-	){ }
+		protected translator: TranslateService,
+		protected authHttp: AuthHttp,
+		protected toastr: ToastrService,
+		protected entityName: String
+	){
 
-	public  selectedItems: number[] = [];
+	}
+
+	public  selectedItems: any[] = [];
   	public  selectedAll: boolean = false;
   	public  listElements: JSON;
+  	private entityApiUrl: string = AppConfig.settings.api.api_url + "/" + this.entityName;
 
 	selectFromList(item)
 	{
@@ -55,8 +65,56 @@ export class ListComponent
         	
 			if( confirm(translation) ) 
 			{
-				
+				for(let item of this.selectedItems)
+				{
+					this.deleteItem(item.id, item.name);
+				}
+
+				this.loadEntities();
 			}
       	});
+	}
+
+	loadEntities()
+	{
+		this.authHttp.get(this.entityApiUrl).subscribe(
+
+	    	data => {
+	        	this.listElements = data.json(); 
+	      	},
+	      	err => {
+		        console.log(err);
+	      	}
+
+	    );
+	}
+
+	private deleteItem(id, itemName)
+	{
+		this.authHttp.delete(
+	        this.entityApiUrl + "/" + id
+      	)
+      	.subscribe(
+
+	        data => {
+
+	          	var result = data.json();
+
+	          	// show success alert
+	          	this.translator.get('components.list.delete.success_mssg', { itemName: itemName }).subscribe( (translation: string) => {
+	            	this.toastr.success(translation, null, { enableHtml: true });
+	          	});
+
+	        },
+	        err => {
+
+	        	this.translator.get('components.list.delete.error_mssg', { itemName: itemName }).subscribe( (translation: string) => {
+	            	this.toastr.error(translation, null, { enableHtml: true });
+	          	});
+
+	          	// TODO: create handle server errors method (toastr)
+	          	console.log(err);
+        	}
+      	);
 	}
 }

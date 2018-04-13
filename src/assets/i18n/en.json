@@ -55,6 +55,12 @@
                 "password_doesnt_match" : "Password doesn't match",
                 "password_min_length" : "Enter at least 6 characters"
             }
+        },
+        "list" : {
+            "delete": {
+                "success_mssg" : "<strong>{{itemName}}</strong> has been removed correctly.",
+                "error_mssg" : "Error removing <strong>{{itemName}}</strong>."
+            }
         }
     },
     "page_errors" : {
