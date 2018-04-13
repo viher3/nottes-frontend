@@ -22,6 +22,7 @@ export class ListComponent
 
 	}
 
+	public  loading: boolean = false;
 	public  selectedItems: any[] = [];
   	public  selectedAll: boolean = false;
   	public  listElements: JSON;
@@ -82,9 +83,11 @@ export class ListComponent
 
 	    	data => {
 	        	this.listElements = data.json(); 
+	        	this.loading = false;
 	      	},
 	      	err => {
 		        console.log(err);
+		        this.loading = false;
 	      	}
 
 	    );
@@ -110,12 +113,16 @@ export class ListComponent
 	          	var index = this.selectedItems.indexOf(item);
 	      		this.selectedItems.splice(index, 1);
 
+	      		this.loading = false;
+
 	        },
 	        err => {
 
 	        	this.translator.get('components.list.delete.error_mssg', { itemName: item[nameField] }).subscribe( (translation: string) => {
 	            	this.toastr.error(translation, null, { enableHtml: true });
 	          	});
+
+	          	this.loading = false;
 
 	          	// TODO: create handle server errors method (toastr)
 	          	console.log(err);

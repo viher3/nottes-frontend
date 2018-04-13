@@ -6,7 +6,9 @@
 
 	<div class="card">
 
-  		<div class="card-body">
+		<spinner [show]="loading"></spinner>
+
+  		<div class="card-body" *ngIf="!loading" >
 
   			<h5 class="card-title">
   				{{ 'components.dashboard.latest_docs' | translate }}
