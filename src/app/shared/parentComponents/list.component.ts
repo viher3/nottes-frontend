@@ -16,7 +16,8 @@ export class ListComponent
 		protected translator: TranslateService,
 		protected authHttp: AuthHttp,
 		protected toastr: ToastrService,
-		protected entityName: String
+		protected entityName: String,
+		protected entityNameField: String
 	){
 
 	}
@@ -67,7 +68,7 @@ export class ListComponent
 			{
 				for(let item of this.selectedItems)
 				{
-					this.deleteItem(item.id, item.name);
+					this.deleteItem(item, this.entityNameField);
 				}
 
 				this.loadEntities();
@@ -89,10 +90,10 @@ export class ListComponent
 	    );
 	}
 
-	private deleteItem(id, itemName)
+	private deleteItem(item, nameField)
 	{
 		this.authHttp.delete(
-	        this.entityApiUrl + "/" + id
+	        this.entityApiUrl + "/" + item.id
       	)
       	.subscribe(
 
@@ -101,14 +102,18 @@ export class ListComponent
 	          	var result = data.json();
 
 	          	// show success alert
-	          	this.translator.get('components.list.delete.success_mssg', { itemName: itemName }).subscribe( (translation: string) => {
+	          	this.translator.get('components.list.delete.success_mssg', { itemName: item[nameField] }).subscribe( (translation: string) => {
 	            	this.toastr.success(translation, null, { enableHtml: true });
 	          	});
+
+	          	// remove form selected item list
+	          	var index = this.selectedItems.indexOf(item);
+	      		this.selectedItems.splice(index, 1);
 
 	        },
 	        err => {
 
-	        	this.translator.get('components.list.delete.error_mssg', { itemName: itemName }).subscribe( (translation: string) => {
+	        	this.translator.get('components.list.delete.error_mssg', { itemName: item[nameField] }).subscribe( (translation: string) => {
 	            	this.toastr.error(translation, null, { enableHtml: true });
 	          	});
 
