@@ -4,6 +4,7 @@ import { AppConfig } from 'app/app.config';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { AuthHttp } from 'angular2-jwt';
+import { listElements, paginationTransParams } from 'app/shared/parentComponents/list.interface'
 
 @Component({
   selector: 'list-component',
@@ -25,7 +26,8 @@ export class ListComponent
 	public  loading: boolean = false;
 	public  selectedItems: any[] = [];
   	public  selectedAll: boolean = false;
-  	public  listElements: JSON;
+  	public  listElements: listElements;
+  	public 	paginationTransParams: paginationTransParams;
   	private entityApiUrl: string = AppConfig.settings.api.api_url + "/" + this.entityName;
 
 	selectFromList(item)
@@ -82,7 +84,11 @@ export class ListComponent
 		this.authHttp.get(this.entityApiUrl).subscribe(
 
 	    	data => {
+
 	        	this.listElements = data.json(); 
+
+	    		// set translation params
+	    		this.setPaginationTranslations();
 	        	this.loading = false;
 	      	},
 	      	err => {
@@ -128,5 +134,15 @@ export class ListComponent
 	          	console.log(err);
         	}
       	);
+	}
+
+	private setPaginationTranslations() : void
+	{
+		let current = ( (this.listElements).current_page_number * (this.listElements).num_items_per_page );
+
+		this.paginationTransParams = {
+			"current" : current,
+			"total" : (this.listElements).total_count
+		}
 	}
 }

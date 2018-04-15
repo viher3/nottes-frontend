@@ -17,6 +17,9 @@
         "required_field" : "Field is required."
     },
     "components": {
+        "pagination" : {
+            "listing_x_of_y" : "Listing {{ current }} of {{ total }}"
+        },
     	"login" : {
             "title" : "Please sign in",
             "placeholders" : {

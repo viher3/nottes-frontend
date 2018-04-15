@@ -25,31 +25,48 @@
 
 			<table class="table table-dashed">
 
-				<tr>
-					<th width="8">
-						<input type="checkbox" (change)="selectAll($event)" />
-					</th>
-					<th>{{ 'components.dashboard.name' | translate }}</th>
-					<th>{{ 'components.dashboard.tags' | translate }}</th>
-					<th>{{ 'components.dashboard.created_by' | translate }}</th>
-					<th>{{ 'components.dashboard.updated_at' | translate }}</th>
-				</tr>
+				<thead>
 
-				<tr *ngFor="let item of listElements">
-					<td>
-						<input type="checkbox" [checked]="isSelected(item)" (click)="selectFromList(item)" />
-					</td>
-					<td>
-		            	<a [routerLink]="['/notte/' + item.id ]">{{ item.name }}</a>
-					</td>
-					<td>{{ item.tags }}</td>
-					<td>{{ item.creator_user.username }}</td>
-					<td>{{ item.updated_at | date:'dd/MM/yyyy HH:mm:ss' }}</td>
-				</tr>
+					<tr>
+						<th width="8">
+							<input type="checkbox" (change)="selectAll($event)" />
+						</th>
+						<th>{{ 'components.dashboard.name' | translate }}</th>
+						<th>{{ 'components.dashboard.tags' | translate }}</th>
+						<th>{{ 'components.dashboard.created_by' | translate }}</th>
+						<th>{{ 'components.dashboard.updated_at' | translate }}</th>
+					</tr>
 
-				<tr *ngIf="!listElements?.length">
+				</thead>
+
+				<tbody>
+
+					<tr *ngFor="let item of listElements.items">
+						<td>
+							<input type="checkbox" [checked]="isSelected(item)" (click)="selectFromList(item)" />
+						</td>
+						<td>
+			            	<a [routerLink]="['/notte/' + item.id ]">{{ item.name }}</a>
+						</td>
+						<td>{{ item.tags }}</td>
+						<td>{{ item.creator_user.username }}</td>
+						<td>{{ item.updated_at | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+					</tr>
+
+				</tbody>
+
+				<tr *ngIf="!listElements.items?.length">
 					<td class="no-results-padding" align="center" colspan="5">{{ 'common.no_results_found' | translate }}</td>
 				</tr>
+
+				<tfoot *ngIf="listElements.items?.length">
+
+					<td colspan="2">Pagination</td>
+					<td colspan="3" class="text-right">
+						{{ 'components.pagination.listing_x_of_y' | translate:paginationTransParams }}
+					</td>
+
+				</tfoot>
 
 			</table>
 

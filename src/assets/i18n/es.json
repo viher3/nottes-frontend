@@ -17,6 +17,9 @@
         "required_field" : "El campo es obligatorio."
     },
     "components": {
+        "pagination" : {
+            "listing_x_of_y" : "Listing {{ current }} of {{ total }}"
+        },
         "login" : {
             "title" : "Acceso usuarios",
             "placeholders" : {
