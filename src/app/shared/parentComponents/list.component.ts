@@ -28,6 +28,7 @@ export class ListComponent
   	public  selectedAll: boolean = false;
   	public  listElements: listElements;
   	public 	paginationTransParams: paginationTransParams;
+  	public 	currentPaginationPosition: number = 0;
   	private entityApiUrl: string = AppConfig.settings.api.api_url + "/" + this.entityName;
 
 	selectFromList(item)
@@ -79,13 +80,31 @@ export class ListComponent
       	});
 	}
 
-	loadEntities()
+	loadEntities(page: number = 1, append: boolean = false)
 	{
-		this.authHttp.get(this.entityApiUrl).subscribe(
+		let currItems = [];
+		let entityUrl = this.entityApiUrl + "?page=" + page;
+
+		if( append && typeof this.listElements !== "undefined" )
+		{
+			currItems = this.listElements.items;
+		}
+
+		this.authHttp.get(entityUrl).subscribe(
 
 	    	data => {
 
-	        	this.listElements = data.json(); 
+	        	this.listElements = data.json();
+
+	        	if(append)
+	        	{
+	        		let newItems = this.listElements.items;
+
+	        		this.listElements.items = [];
+
+	        		for(let item of currItems) 	this.listElements.items.push(item);
+	        		for(let item of newItems) 	this.listElements.items.push(item);
+	        	}
 
 	    		// set translation params
 	    		this.setPaginationTranslations();
@@ -97,6 +116,12 @@ export class ListComponent
 	      	}
 
 	    );
+	}
+
+	loadMore()
+	{
+		let nextPage = parseInt(this.listElements.current_page_number) + 1;
+		this.loadEntities(nextPage, true);
 	}
 
 	private deleteItem(item, nameField)
@@ -138,11 +163,11 @@ export class ListComponent
 
 	private setPaginationTranslations() : void
 	{
-		let current = ( (this.listElements).current_page_number * (this.listElements).num_items_per_page );
+		this.currentPaginationPosition = ( (this.listElements).current_page_number * (this.listElements).num_items_per_page );
 
 		this.paginationTransParams = {
-			"current" : current,
-			"total" : (this.listElements).total_count
+			"current" : this.currentPaginationPosition,
+			"total" : this.listElements.total_count
 		}
 	}
 }
