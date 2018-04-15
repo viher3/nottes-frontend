@@ -9,7 +9,10 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private authService: AuthService, private router: Router){ }
+  constructor(
+    private authService: AuthService, 
+    private router: Router
+  ){ }
 
   ngOnInit() 
   {
@@ -17,6 +20,11 @@ export class HomeComponent implements OnInit {
 	  if( ! this.authService.isLoggedIn() ) 
     {
 		  this.router.navigateByUrl('login');
+    }
+
+    if(this.router.url == "/")
+    {
+      this.router.navigateByUrl('dashboard');
     }
   }
 
