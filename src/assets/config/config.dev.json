@@ -3,7 +3,8 @@
     "api": {
         "base_url" 	: "http://127.0.0.1:8000",
         "login_url" : "http://127.0.0.1:8000/api/login_check",
-        "api_url"	: "http://127.0.0.1:8000/api"
+        "api_url"	: "http://127.0.0.1:8000/api",
+        "api_image_upload" : "http://127.0.0.1:8000/upload/image"
     },
     "users" : {
     	"session" : {
