@@ -42,15 +42,22 @@ export class NotteDetailComponent extends CrudComponent implements OnInit {
   	this.loadEntity();
   }
 
-  loadEntity()
+  loadEntity(encryptionPassword: string = "")
   {
-    this.authHttp.get(this.apiUrl + "/notte/" + this.id).subscribe(
+    let entityEndpoint = this.apiUrl + "/notte/" + this.id;
+
+    if(encryptionPassword.length) 
+    {
+      entityEndpoint += "?pwd=" + encodeURI( btoa(encryptionPassword) );
+    }
+
+    this.authHttp.get(entityEndpoint).subscribe(
 
       data => {
 
         this.notte = data.json(); 
 
-        if( ! data.json().is_encrypted ) 
+        if( ! data.json().is_encrypted || data.json().is_decrypted ) 
         {
           this.contentIsVisible = true;
         }
@@ -59,16 +66,30 @@ export class NotteDetailComponent extends CrudComponent implements OnInit {
       },
       err => {
 
+        let errorBody = JSON.parse(err._body);
+
         if(err.status == 404 || err.status == 401)
         {
           this.router.navigateByUrl('404');
         }
+        else if(err.status == 500 && errorBody.error == "wrong_encryption_password")
+        {
+          // wrong encryption password
+          this.translator.get('components.docs.detail.wrong_encryption_password').subscribe( (translation: string) => {
+            this.toastr.error(translation);
+          });
+        }
         
         this.loading = false;
-        console.log(err);
       }
 
     );
+  }
+
+  descryptDoc(formObj)
+  {
+    let encryptionPassword = formObj.form.value.encryptionPassword;
+    this.loadEntity(encryptionPassword);
   }
 
 }

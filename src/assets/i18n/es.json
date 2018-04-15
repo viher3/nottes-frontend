@@ -40,8 +40,8 @@
             "detail" : {
                 "last_update" : "Last update",
                 "encryption_alert_info" : "El documento está encriptado, introduce la contraseña para desencriptarlo.",
-                "encryption_password_help" : "Si la contraseña es incorrecta, el documento será ilegible hasta que introduzcas la contraseña correcta.",
-                "encryption_password_input_placeholder" : "Introduce la contraseña del documento ..."
+                "encryption_password_input_placeholder" : "Introduce la contraseña del documento ...",
+                "wrong_encryption_password" : "La contraseña de encriptación es incorrecta."
             },
             "create" : {
                 "title" : "Crear documento",

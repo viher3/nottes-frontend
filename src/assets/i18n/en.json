@@ -40,8 +40,8 @@
             "detail" : {
                 "last_update" : "Last update",
                 "encryption_alert_info" : "Document is encrypted, enter the password to decrypt it.",
-                "encryption_password_help" : "If the password is wrong, the document will be unreadable until you enter the right password.",
-                "encryption_password_input_placeholder" : "Enter document password ..."
+                "encryption_password_input_placeholder" : "Enter document password ...",
+                "wrong_encryption_password" : "Wrong encryption password."
             },
             "create" : {
                 "title" : "Create new document",

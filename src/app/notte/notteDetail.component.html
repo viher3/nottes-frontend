@@ -21,9 +21,9 @@
 		
 		<div class="notte-content">
 
-			<div class="row justify-content-md-center" *ngIf="notte?.is_encrypted">
+			<div class="row justify-content-md-center" *ngIf="notte?.is_encrypted && ! notte?.is_decrypted">
 
-				<form class="decryptionPassword col-md-8 ">
+				<form class="decryptionPassword col-md-8 " #f="ngForm">
 
 					<div class="col-md-12 alert alert-info">
 						<i class="fa fa-info-circle"></i>&nbsp;
@@ -31,12 +31,11 @@
 					</div>
 
 				  	<div class="form-group">
-				    	<input type="password" class="form-control text-center" id="encryptionPassword" placeholder="{{ 'components.docs.detail.encryption_password_input_placeholder' | translate }}" />
-				    	<small id="encryptionPasswordHelp" class="form-text text-muted">{{ 'components.docs.detail.encryption_password_help' | translate }}</small>
+				    	<input type="password" name="encryptionPassword" ngModel class="form-control text-center" id="encryptionPassword" placeholder="{{ 'components.docs.detail.encryption_password_input_placeholder' | translate }}" />
 				  	</div>
 
 				  	<div class="text-center">
-					  	<button class="btn btn-outline-primary">
+					  	<button (click)="descryptDoc(f)" class="btn btn-outline-primary">
 						  	<i class="fa fa-shield"></i>&nbsp;
 					  		{{ 'common.decrypt_btn' | translate }}
 					  	</button>
