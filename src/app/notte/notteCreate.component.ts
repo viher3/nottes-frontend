@@ -3,7 +3,7 @@ import { AppConfig } from 'app/app.config';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { AuthHttp } from 'angular2-jwt';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import $ from "jquery";
 import { NottesEditor } from 'nottes-editor.min.js';
 import { TranslateService } from "@ngx-translate/core";
@@ -18,7 +18,6 @@ export class NotteCreateComponent implements OnInit {
   constructor(
   	private toastr: ToastrService,
   	private authHttp: AuthHttp,
-    private route: ActivatedRoute,
     private router: Router,
     private translator: TranslateService
   ) {
