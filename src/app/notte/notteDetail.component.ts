@@ -30,6 +30,7 @@ export class NotteDetailComponent extends CrudComponent implements OnInit {
   public  notte: JSON;
   private id: number;
   private contentIsVisible: boolean = false;
+  private submitedForm: boolean = false;
 
   ngOnInit()
   {
@@ -89,7 +90,12 @@ export class NotteDetailComponent extends CrudComponent implements OnInit {
   descryptDoc(formObj)
   {
     let encryptionPassword = formObj.form.value.encryptionPassword;
-    this.loadEntity(encryptionPassword);
+    this.submitedForm = true;
+
+    if(formObj.valid)
+    {
+      this.loadEntity(encryptionPassword);
+    }
   }
 
 }

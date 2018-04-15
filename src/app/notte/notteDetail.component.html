@@ -31,7 +31,13 @@
 					</div>
 
 				  	<div class="form-group">
-				    	<input type="password" name="encryptionPassword" ngModel class="form-control text-center" id="encryptionPassword" placeholder="{{ 'components.docs.detail.encryption_password_input_placeholder' | translate }}" />
+
+				    	<input type="password" name="encryptionPassword" ngModel class="form-control text-center" id="encryptionPassword" placeholder="{{ 'components.docs.detail.encryption_password_input_placeholder' | translate }}" required="required" [ngClass]="{ 'is-invalid': f.controls.encryptionPassword?.errors?.required && submitedForm }" />
+
+				    	<div *ngIf="f.controls.encryptionPassword?.errors?.required && submitedForm" class="invalid-feedback">
+							{{ 'forms.required_field' | translate }}
+						</div>
+
 				  	</div>
 
 				  	<div class="text-center">
