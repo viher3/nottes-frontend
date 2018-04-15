@@ -39,7 +39,7 @@ export class NotteCreateComponent implements OnInit {
     this.editor = new NottesEditor("div#nottes-editor", 
     {
       "language"      : "en",
-      "image_upload_url"  : "http://localhost:8000/upload/image"
+      "image_upload_url"  : AppConfig.settings.api.api_image_upload
     });
 
     this.isEncrypted = false;
