@@ -24,7 +24,8 @@
                 "input_password" : "Contraseña"
             },
             "submit_btn" : "Acceder",
-            "logged_out_mssg" : "Te has desconectado correctamente."
+            "logged_out_mssg" : "Te has desconectado correctamente.",
+            "session_expired" : "Your session has expired."
         },
     	"dashboard": {
             "panel_title" : "Escritorio",

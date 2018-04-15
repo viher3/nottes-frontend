@@ -2,13 +2,19 @@ import { Injectable } from '@angular/core';
 import { AppConfig } from 'app/app.config';
 import { HttpClient } from '@angular/common/http';
 import { JwtHelper } from 'angular2-jwt';
+import { ToastrService } from 'ngx-toastr';
+import { TranslateService } from "@ngx-translate/core";
 
 import * as moment from "moment";
 
 @Injectable()
 export class AuthService 
 {
-  	constructor(private http: HttpClient) { }
+  	constructor(
+  		private http: HttpClient,
+  		private toastr: ToastrService,
+  		private translator: TranslateService
+  	) { }
       
   	private loginUrl: 	string 	= AppConfig.settings.api.login_url;
   	private expiresIn: 	string 	= AppConfig.settings.users.session.expirationInHours;
@@ -73,7 +79,17 @@ export class AuthService
 	 */
     isLoggedIn() 
     {
-        return moment().isBefore(this.getExpiration());
+    	let isLoggedIn = moment().isBefore( this.getExpiration() );
+
+    	if( ! isLoggedIn )
+    	{
+    		// show alert
+    		this.translator.get('components.login.session_expired').subscribe( (translation: string) => {
+	            this.toastr.warning(translation);
+	        });
+    	}
+
+        return isLoggedIn;
     }
 
     /** 

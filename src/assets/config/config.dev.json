@@ -7,7 +7,7 @@
     },
     "users" : {
     	"session" : {
-    		"expirationInHours" : 1,
+    		"expirationInHours" : 8,
             "tokenKey" : "id_token"
     	}
     }

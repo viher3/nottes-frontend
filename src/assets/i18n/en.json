@@ -24,7 +24,8 @@
                 "input_password" : "Password"
             },
             "submit_btn" : "Sign in",
-            "logged_out_mssg" : "You have been logged out correctly."
+            "logged_out_mssg" : "You have been logged out correctly.",
+            "session_expired" : "Your session has expired."
         },
     	"dashboard": {
     		"panel_title" : "Dashboard",
