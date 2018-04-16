@@ -81,7 +81,7 @@ export class AuthService
     {
     	let isLoggedIn = moment().isBefore( this.getExpiration() );
 
-    	if( ! isLoggedIn )
+    	if( ! isLoggedIn && localStorage.getItem("expires_at") )
     	{
     		// show alert
     		this.translator.get('components.login.session_expired').subscribe( (translation: string) => {
