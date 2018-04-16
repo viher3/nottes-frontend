@@ -3,6 +3,7 @@ import { AppConfig } from 'app/app.config';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'app/user/auth.service';
 import { Router } from '@angular/router';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-login',
@@ -24,6 +25,10 @@ export class LoginComponent implements OnInit {
 		if( this.authService.isLoggedIn() ) this.router.navigateByUrl('dashboard');
 
 		this.submited = false;
+		
+		$(document).ready(function(){
+			$("body").addClass("login-body");
+		});
 	}
 
 	/** 

@@ -23,7 +23,7 @@ import {TranslateModule, TranslateLoader} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import { ROUTING } from './app.routing';
 import * as moment from "moment";
-
+import * as $ from 'jquery';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
