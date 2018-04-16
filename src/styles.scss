@@ -24,7 +24,8 @@ app-root
 #sidebar {
     background: #323232;
     color: #fff;
-    min-height: 100vh;
+    min-height: 100%;
+    position: relative;
 }
 
 #sidebar a.navbar-brand {
@@ -120,4 +121,7 @@ small.listing_x_of_y{
 }
 button.loadMoreBtn{
     margin-top: 10px;
+}
+.noMarginRight{
+    margin-right: 0;
 }
