@@ -24,6 +24,8 @@ export class DashboardComponent extends ListComponent implements OnInit {
 
   ngOnInit()
   {
+    $("body").removeClass("login-body");
+
     this.loading = true;
   	this.loadEntities();
   }

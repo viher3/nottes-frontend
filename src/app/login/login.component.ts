@@ -26,9 +26,7 @@ export class LoginComponent implements OnInit {
 
 		this.submited = false;
 		
-		$(document).ready(function(){
-			$("body").addClass("login-body");
-		});
+		$("body").addClass("login-body");
 	}
 
 	/** 

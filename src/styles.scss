@@ -3,9 +3,14 @@
 @import "app/notte/notteCreate.component.scss";
 @import "app/app.component.scss";
 
+body{
+    background-color: #f5f5f5;
+}
+
 body, 
 app-root
 {
+    display:block;
 	width:100%;
 }
 

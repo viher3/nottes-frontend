@@ -120,7 +120,7 @@ export class ListComponent
 
 	loadMore()
 	{
-		let nextPage = parseInt(this.listElements.current_page_number) + 1;
+		let nextPage = Number(this.listElements.current_page_number) + 1;
 		this.loadEntities(nextPage, true);
 	}
 
