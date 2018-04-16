@@ -12,12 +12,12 @@ export class CommonEventsService
     this.init();
   }
 
-  init()
+  init() : void
   {
     this._setLoginBodyClass();
   }
 
-  _setLoginBodyClass()
+  _setLoginBodyClass() : void
   {
     if(this.router.url == "/login")
     {
