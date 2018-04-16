@@ -24,6 +24,7 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import { ROUTING } from './app.routing';
 import * as moment from "moment";
 import * as $ from 'jquery';
+import { CommonEventsService } from 'app/services/shared/common-events.service'
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -77,7 +78,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     },
     AuthService,
     JwtHelper,
-    Title
+    Title,
+    CommonEventsService
   ],
   bootstrap: [AppComponent]
 })

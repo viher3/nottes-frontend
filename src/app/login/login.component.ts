@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'app/user/auth.service';
 import { Router } from '@angular/router';
 import * as $ from 'jquery';
+import { CommonEventsService } from 'app/services/shared/common-events.service'
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,12 @@ import * as $ from 'jquery';
 })
 export class LoginComponent implements OnInit {
 
-	constructor(private authService: AuthService, private router: Router){ }
+	constructor(
+		private authService: AuthService, 
+		private router: Router,
+		private common: CommonEventsService
+	)
+	{ }
 
 	submited: boolean;
 	username: string;
@@ -25,8 +31,6 @@ export class LoginComponent implements OnInit {
 		if( this.authService.isLoggedIn() ) this.router.navigateByUrl('dashboard');
 
 		this.submited = false;
-		
-		$("body").addClass("login-body");
 	}
 
 	/** 
