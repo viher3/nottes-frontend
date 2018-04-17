@@ -87,6 +87,8 @@ export class AuthService
     		this.translator.get('components.login.session_expired').subscribe( (translation: string) => {
 	            this.toastr.warning(translation);
 	        });
+
+	        this.logout();
     	}
 
         return isLoggedIn;
