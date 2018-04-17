@@ -24,6 +24,7 @@ export class ListComponent
 	}
 
 	public  loading: boolean = false;
+	public  loadingMore: boolean = false;
 	public  selectedItems: any[] = [];
   	public  selectedAll: boolean = false;
   	public  listElements: listElements;
@@ -85,6 +86,8 @@ export class ListComponent
 		let currItems = [];
 		let entityUrl = this.entityApiUrl + "?page=" + page;
 
+		this.loadingMore = true;
+
 		if( append && typeof this.listElements !== "undefined" )
 		{
 			currItems = this.listElements.items;
@@ -109,10 +112,12 @@ export class ListComponent
 	    		// set translation params
 	    		this.setPaginationTranslations();
 	        	this.loading = false;
+	        	this.loadingMore = false;
 	      	},
 	      	err => {
 		        console.log(err);
 		        this.loading = false;
+		        this.loadingMore = false;
 	      	}
 
 	    );
