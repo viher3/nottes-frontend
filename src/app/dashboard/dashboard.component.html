@@ -17,6 +17,13 @@
 				    <i class="fa fa-plus"></i>&nbsp;&nbsp;{{ 'components.dashboard.create_doc_btn' | translate }}
 				</a>
 
+				<a (click)="loadEntities(1)" class="btn btn-sm btn-outline-default pull-right marginLeftActionBtn">
+					<i *ngIf="loadingMore" class="fa fa-refresh fa-spin"></i>
+					<span *ngIf="!loadingMore">
+						<i class="fa fa-refresh"></i>&nbsp;&nbsp;{{ 'common.reload' | translate }}
+					</span>
+				</a>
+
 				<a *ngIf="selectedItems.length" (click)="removeSelectedItems()" class="btn btn-outline-danger btn-sm pull-right">
 					<i class="fa fa-trash"></i>&nbsp;&nbsp;{{ 'common.delete_btn' | translate }}
 				</a>
