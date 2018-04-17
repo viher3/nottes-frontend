@@ -8,12 +8,14 @@ import { HttpModule } from '@angular/http';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AuthHttp, JwtHelper, AuthConfig, AUTH_PROVIDERS, provideAuth } from 'angular2-jwt';
 import { AuthModule } from 'app/auth.module'
-import { AppComponent } from './app.component';
+import { AppComponent } from 'app/app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { LoginComponent } from './login/login.component';
-import { UserComponent } from './user/user.component';
-import { NotteDetailComponent } from './notte/notteDetail.component';
-import { NotteCreateComponent } from './notte/notteCreate.component';
+import { LoginComponent } from 'app/login/login.component';
+import { UserComponent } from 'app/user/user.component';
+import { NotteDetailComponent } from 'app/notte/notteDetail.component';
+import { NotteCreateComponent } from 'app/notte/notteCreate.component';
+import { NotteEditComponent } from 'app/notte/notteEdit.component';
+import { NotteFormComponent } from 'app/notte/form/notteForm.component';
 import { AuthService } from 'app/user/auth.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { SidebarComponent, PageNotFoundComponent, ListComponent, CrudComponent, SpinnerComponent } from './shared';
@@ -21,7 +23,7 @@ import { HomeComponent } from './home/home.component';
 import { ToastrModule } from 'ngx-toastr';
 import {TranslateModule, TranslateLoader} from "@ngx-translate/core";
 import {TranslateHttpLoader} from "@ngx-translate/http-loader";
-import { ROUTING } from './app.routing';
+import { ROUTING } from 'app/app.routing';
 import * as moment from "moment";
 import * as $ from 'jquery';
 import { CommonEventsService } from 'app/services/shared/common-events.service'
@@ -44,7 +46,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     SpinnerComponent,
     HomeComponent,
     NotteDetailComponent,
-    NotteCreateComponent
+    NotteCreateComponent,
+    NotteEditComponent,
+    NotteFormComponent
   ],
   imports: [
     BrowserModule,

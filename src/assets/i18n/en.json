@@ -62,6 +62,10 @@
                 },
                 "success_mss" : "Document created correctly."
             },
+            "edit" : {
+                "title" : "Edit document",
+                "save" : "Save changes"
+            },
             "errors": {
                 "password_doesnt_match" : "Password doesn't match",
                 "password_min_length" : "Enter at least 6 characters"

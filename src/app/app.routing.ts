@@ -8,6 +8,7 @@ import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './shared/errors/pageNotFound.component';
 import { NotteDetailComponent } from './notte/notteDetail.component';
 import { NotteCreateComponent } from './notte/notteCreate.component';
+import { NotteEditComponent } from './notte/notteEdit.component';
 
 // TODO: translate route data.title values
 export const AppRoutes: Routes = [
@@ -18,6 +19,7 @@ export const AppRoutes: Routes = [
       { path: 'dashboard', component: DashboardComponent, data: { title: 'Escritorio' } },
       { path: 'user',  component: UserComponent },
       { path: 'notte/create', component: NotteCreateComponent },
+      { path: 'notte/edit/:id', component: NotteEditComponent },
       { path: 'notte/:id', component: NotteDetailComponent }
     ],
     component: HomeComponent,
