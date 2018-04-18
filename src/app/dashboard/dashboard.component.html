@@ -43,6 +43,7 @@
 						<th class="text-center">{{ 'components.dashboard.encrypted' | translate }}</th>
 						<th>{{ 'components.dashboard.created_by' | translate }}</th>
 						<th>{{ 'components.dashboard.updated_at' | translate }}</th>
+						<th></th>
 					</tr>
 
 				</thead>
@@ -62,6 +63,11 @@
 						</td>
 						<td>{{ item.creator_user.username }}</td>
 						<td>{{ item.updated_at | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+						<td>
+							<a [routerLink]="['/notte/edit/' + item.id ]" placement="top" ngbTooltip="{{ 'common.edit_btn' | translate }}"><i class="fa fa-edit"></i></a>
+							&nbsp;
+							<a (click)="deleteItem(item, 'name')" class="pointer" placement="top" ngbTooltip="{{ 'common.delete_btn' | translate }}"><i class="fa fa-trash text-danger"></i></a>
+						</td>
 					</tr>
 
 				</tbody>
@@ -72,7 +78,7 @@
 
 				<tfoot *ngIf="currentPaginationPosition < listElements.total_count">
 
-					<td class="text-center" colspan="5">
+					<td class="text-center" colspan="7">
 						
 						<button [disabled]="loadingMore" (click)="loadMore()" class="btn-outline-primary btn loadMoreBtn">
 							<i *ngIf="loadingMore" class="fa fa-refresh fa-spin"></i>

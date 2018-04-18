@@ -32,7 +32,7 @@ export class ListComponent
   	public 	currentPaginationPosition: number = 0;
   	private entityApiUrl: string = AppConfig.settings.api.api_url + "/" + this.entityName;
 
-	selectFromList(item)
+	selectFromList(item) : void
 	{
 	    if( this.selectedItems.indexOf(item) > -1 ) 
 	    {
@@ -47,7 +47,7 @@ export class ListComponent
 	    }
 	}
 
-	selectAll(event)
+	selectAll(event) : void
 	{
 	    this.selectedItems = [];
 	    if( ! event.target.checked ) return;
@@ -59,13 +59,13 @@ export class ListComponent
 	    }
 	}
 
-	isSelected(item)
+	isSelected(item) : boolean
 	{
 	    if( this.selectedItems.indexOf(item) > -1 ) return true;
 	    return false;
 	}
 
-	removeSelectedItems()
+	removeSelectedItems() : void
 	{
 		this.translator.get('common.remove_items').subscribe( (translation: string) => {
         	
@@ -73,7 +73,7 @@ export class ListComponent
 			{
 				for(let item of this.selectedItems)
 				{
-					this.deleteItem(item, this.entityNameField);
+					this.deleteItemRequest(item, this.entityNameField);
 				}
 
 				this.loadEntities();
@@ -81,7 +81,7 @@ export class ListComponent
       	});
 	}
 
-	loadEntities(page: number = 1, append: boolean = false)
+	loadEntities(page: number = 1, append: boolean = false) : void
 	{
 		let currItems = [];
 		let entityUrl = this.entityApiUrl + "?page=" + page;
@@ -123,13 +123,24 @@ export class ListComponent
 	    );
 	}
 
-	loadMore()
+	loadMore() : void
 	{
 		let nextPage = Number(this.listElements.current_page_number) + 1;
 		this.loadEntities(nextPage, true);
 	}
 
-	private deleteItem(item, nameField)
+	deleteItem(item, nameField) : void
+	{
+		this.translator.get('common.remove_items').subscribe( (translation: string) => {
+        	
+			if( confirm(translation) ) 
+			{
+				this.deleteItemRequest(item, nameField, true);
+			}
+		});
+	}
+
+	private deleteItemRequest(item, nameField, reload: boolean = false) : void
 	{
 		this.authHttp.delete(
 	        this.entityApiUrl + "/" + item.id
@@ -148,6 +159,11 @@ export class ListComponent
 	          	// remove form selected item list
 	          	var index = this.selectedItems.indexOf(item);
 	      		this.selectedItems.splice(index, 1);
+
+	      		if(reload) 
+	      		{
+	      			this.loadEntities();
+	      		}
 
 	      		this.loading = false;
 
