@@ -26,7 +26,7 @@ export class AuthService
 	 * @param 	string 		password
 	 * @return 	promise
 	 */
-    login(email:string, password:string ) 
+    login(email:string, password:string )
     {
     	return new Promise( (resolve, reject) => {
 
@@ -57,7 +57,7 @@ export class AuthService
 	 * Save the user JWT token in the local storage
 	 * @param 	json 		authResult
 	 */
-	private setSession(authResult) 
+	private setSession(authResult)  : void
 	{
         const expiresAt = moment().add(this.expiresIn, 'hour');
 
@@ -68,7 +68,7 @@ export class AuthService
     /** 
 	 * Destroys current user session
 	 */
-    logout() 
+    logout() : void
     {
         localStorage.removeItem("id_token");
         localStorage.removeItem("expires_at");
@@ -77,7 +77,7 @@ export class AuthService
     /** 
 	 * Check if user is logged in
 	 */
-    isLoggedIn() 
+    isLoggedIn() : boolean
     {
     	let isLoggedIn = moment().isBefore( this.getExpiration() );
 
@@ -97,7 +97,7 @@ export class AuthService
     /** 
 	 * Check if user is logged out
 	 */
-    isLoggedOut() 
+    isLoggedOut() : boolean
     {
         return !this.isLoggedIn();
     }
@@ -105,7 +105,7 @@ export class AuthService
     /** 
 	 * Get user session expiration time
 	 */
-    getExpiration() 
+    getExpiration() : any
     {
         const expiration = localStorage.getItem("expires_at");
         const expiresAt = JSON.parse(expiration);
@@ -114,9 +114,9 @@ export class AuthService
 
 	/**
 	 * Get user info from token.
-	 * @return JSON
+	 * @return Array
 	 */
-	getUser()
+	getUser() : Array<any>
 	{
 		let authToken = localStorage.getItem(this.tokenKey);
 
@@ -127,7 +127,7 @@ export class AuthService
     		return jwtHelper.decodeToken(authToken);
 		}
 
-		return {};
+		return [];
 	}	
 
 }
