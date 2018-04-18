@@ -8,21 +8,6 @@ import { NottesEditor } from 'nottes-editor.min.js';
 import { TranslateService } from "@ngx-translate/core";
 import * as $ from 'jquery';
 
-/*
-export interface notte
-{
-  content?: string,
-  created_at?: string,
-  creator_user?: JSON,
-  id?: number,
-  is_decrypted?: boolean,
-  is_encrypted?: boolean,
-  name?: string,
-  tags?: string,
-  updated_at?: string
-}
-*/
-
 @Component({
   selector: 'notteForm',
   templateUrl: './notteForm.component.html'
