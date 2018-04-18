@@ -60,11 +60,12 @@
                     "input_title" : "Enter a title",
                     "input_tags" : "Enter tags separated by comma ..."
                 },
-                "success_mss" : "Document created correctly."
+                "success_mss" : "Document has been created correctly."
             },
             "edit" : {
                 "title" : "Edit document",
-                "save" : "Save changes"
+                "save" : "Save changes",
+                "success_mss" : "Document has been updated correcly."
             },
             "errors": {
                 "password_doesnt_match" : "Password doesn't match",

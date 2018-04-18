@@ -185,7 +185,7 @@ export class NotteFormComponent implements OnInit
 
   private updateNotte(formObj)
   {
-    this.authHttp.post(
+    this.authHttp.put(
       this.apiUrl + "/notte/" + this.id, 
       formObj.form.value
     )

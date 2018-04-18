@@ -62,6 +62,11 @@
                 },
                 "success_mss" : "El documento se ha creado correctamente."
             },
+            "edit" : {
+                "title" : "Edit document",
+                "save" : "Save changes",
+                "success_mss" : "El documento se ha actualizado correctamente."
+            },
             "errors": {
                 "password_doesnt_match" : "La contraseña no coincide",
                 "password_min_length" : "Introduce como mínimo 6 caracteres"
