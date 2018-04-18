@@ -40,6 +40,7 @@
 						</th>
 						<th>{{ 'components.dashboard.name' | translate }}</th>
 						<th>{{ 'components.dashboard.tags' | translate }}</th>
+						<th class="text-center">{{ 'components.dashboard.encrypted' | translate }}</th>
 						<th>{{ 'components.dashboard.created_by' | translate }}</th>
 						<th>{{ 'components.dashboard.updated_at' | translate }}</th>
 					</tr>
@@ -56,6 +57,9 @@
 			            	<a [routerLink]="['/notte/' + item.id ]">{{ item.name }}</a>
 						</td>
 						<td>{{ item.tags }}</td>
+						<td class="text-center">
+							<i *ngIf="item.is_encrypted" class="fa fa-shield"></i>
+						</td>
 						<td>{{ item.creator_user.username }}</td>
 						<td>{{ item.updated_at | date:'dd/MM/yyyy HH:mm:ss' }}</td>
 					</tr>

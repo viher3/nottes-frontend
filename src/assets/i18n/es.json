@@ -38,7 +38,8 @@
     		"tags" : "Etiquetas",
     		"created_by" : "Creado por",
     		"updated_at" : "Última actualización",
-            "create_doc_btn": "Crear nota"
+            "create_doc_btn": "Crear nota",
+            "encrypted" : "Encriptado"
     	},
         "docs": {
             "detail" : {

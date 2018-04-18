@@ -38,7 +38,8 @@
     		"tags" : "Tags",
     		"created_by" : "Created by",
     		"updated_at" : "Updated at",
-            "create_doc_btn": "Create document"
+            "create_doc_btn": "Create document",
+            "encrypted" : "Encripted"
     	},
         "docs": {
             "detail" : {
