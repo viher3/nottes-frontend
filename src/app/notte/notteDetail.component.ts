@@ -1,10 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, OnInit } from '@angular/core';
 import { AppConfig } from 'app/app.config';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { AuthHttp } from 'angular2-jwt';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CrudComponent } from 'app/shared';
+import { CrudComponent, EncryptionPasswordComponent } from 'app/shared';
 import { TranslateService } from "@ngx-translate/core";
 
 @Component({

@@ -18,7 +18,14 @@ import { NotteEditComponent } from 'app/notte/notteEdit.component';
 import { NotteFormComponent } from 'app/notte/form/notteForm.component';
 import { AuthService } from 'app/user/auth.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { SidebarComponent, PageNotFoundComponent, ListComponent, CrudComponent, SpinnerComponent } from './shared';
+import { 
+  SidebarComponent, 
+  PageNotFoundComponent, 
+  ListComponent, 
+  CrudComponent, 
+  SpinnerComponent, 
+  EncryptionPasswordComponent 
+} from './shared';
 import { HomeComponent } from './home/home.component'; 
 import { ToastrModule } from 'ngx-toastr';
 import {TranslateModule, TranslateLoader} from "@ngx-translate/core";
@@ -43,6 +50,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     PageNotFoundComponent,
     ListComponent,
     CrudComponent,
+    EncryptionPasswordComponent,
     SpinnerComponent,
     HomeComponent,
     NotteDetailComponent,
