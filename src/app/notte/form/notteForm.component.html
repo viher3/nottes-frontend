@@ -1,6 +1,8 @@
-<div class="card-body" [hidden]="loading">
+<div class="card-body">
     
-	<h5 class="card-title">
+	<spinner [show]="loading"></spinner>
+    
+	<h5 class="card-title" [hidden]="loading">
 
 		<i class="fa fa-file-text-o"></i>&nbsp;
 		<span [translate]="title"></span>
@@ -16,9 +18,15 @@
 
 	<hr />
 	
-	<div class="notte-content">
+	<div class="notte-content" [hidden]="loading">
 
-		<form novalidate #f="ngForm">
+		<div class="row justify-content-md-center" *ngIf="notte?.is_encrypted && ! notte?.is_decrypted">
+
+			<encryption-password-form (encryptionPasswordEvent)="receiveEncryptionPassword($event)"></encryption-password-form>
+
+		</div>
+
+		<form novalidate #f="ngForm" [hidden]="!contentIsVisible">
 
 			<!-- name -->
 			<div class="form-group">

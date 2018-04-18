@@ -39,6 +39,9 @@ export class NotteFormComponent implements OnInit
   public  editorIsEmpty: boolean = true;
   public  contentIsVisible: boolean = false;
   private formSubmitApiUrl: string;
+  private encryptionPassword: string;
+  private encryptionpwd: string;
+  private encryptionpwd2: string;
 
   ngOnInit()
   {
@@ -49,6 +52,10 @@ export class NotteFormComponent implements OnInit
     if(this.action == "edit") 
     {
       this.loadEntity();
+    }
+    else if(this.action == "create")
+    {
+      this.contentIsVisible = true;
     }
   }
 
@@ -101,7 +108,7 @@ export class NotteFormComponent implements OnInit
             // add content to editor textarea
             $("div#nottes-editor textarea").val(this.notte.content);
 
-            if( ! data.json().is_encrypted || data.json().is_decrypted ) 
+            if( ! data.json().is_encrypted || data.json().is_decrypted) 
             {
               this.contentIsVisible = true;
             }
@@ -128,6 +135,19 @@ export class NotteFormComponent implements OnInit
           }
 
       );
+  }
+
+  receiveEncryptionPassword($event) 
+  {
+    // get password
+    this.encryptionPassword = $event;
+
+    // reload entity
+    this.loadEntity(this.encryptionPassword);
+
+    // TODO: set password in encryption pwd fields
+    this.encryptionpwd = this.encryptionPassword;
+    this.encryptionpwd2 = this.encryptionPassword;
   }
 
   private loadEditor()
