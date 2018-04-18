@@ -64,7 +64,7 @@
 	<div class="card-footer text-muted" *ngIf="!loading">
 	    <div class="row" [hidden]="!contentIsVisible">
 		    <div class="col-md-6">
-		    	{{ notte?.creator_user.username }}
+		    	<i class="fa fa-user"></i>&nbsp;&nbsp;{{ notte?.creator_user.username }}
 		    </div>
 		    <div class="col-md-6 text-right">
 		    	{{ 'components.docs.detail.last_update' | translate }} {{ notte?.updated_at | date:'dd/MM/yyyy HH:mm:ss' }}
