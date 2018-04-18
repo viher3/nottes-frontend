@@ -53,9 +53,9 @@ export class ListComponent
 	    if( ! event.target.checked ) return;
 
 	    // add all items
-	    for(var i in this.listElements) 
+	    for(var i in this.listElements.items) 
 	    {
-	      this.selectedItems.push(this.listElements[i]);
+	      this.selectedItems.push(this.listElements.items[i]);
 	    }
 	}
 
