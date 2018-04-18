@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'encryption-password-form',
@@ -8,13 +8,19 @@ import { Component, Input } from '@angular/core';
 
 export class EncryptionPasswordComponent
 {
-	/*
-	@Input() isEncrypted 	: string;
-	@Input() isDencrypted 	: string;
-	*/
+	constructor(){ }
 
-	constructor()
+	@Output() encryptionPasswordEvent = new EventEmitter<string>();
+
+	public encryptionPassword : string;
+
+	decryptDoc(formObj)
 	{
+	    this.encryptionPassword = formObj.form.value.encryptionPassword;
 
+	    if(formObj.valid)
+	    {
+	    	this.encryptionPasswordEvent.emit(this.encryptionPassword);
+	    }
 	}
 }

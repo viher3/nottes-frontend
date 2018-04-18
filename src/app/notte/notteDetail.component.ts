@@ -14,6 +14,8 @@ import { TranslateService } from "@ngx-translate/core";
 })
 export class NotteDetailComponent extends CrudComponent implements OnInit {
 
+  // @ViewChild(EncryptionPasswordComponent) encryptionPassword;
+
   constructor(
     protected translator: TranslateService,
   	protected toastr: ToastrService,
@@ -31,6 +33,7 @@ export class NotteDetailComponent extends CrudComponent implements OnInit {
   private id: number;
   private contentIsVisible: boolean = false;
   private submitedForm: boolean = false;
+  private encryptionPassword: string;
 
   ngOnInit()
   {
@@ -87,15 +90,14 @@ export class NotteDetailComponent extends CrudComponent implements OnInit {
     );
   }
 
-  descryptDoc(formObj)
+  receiveEncryptionPassword($event) 
   {
-    let encryptionPassword = formObj.form.value.encryptionPassword;
     this.submitedForm = true;
 
-    if(formObj.valid)
-    {
-      this.loadEntity(encryptionPassword);
-    }
-  }
+    // get password
+    this.encryptionPassword = $event
 
+    // reload entity
+    this.loadEntity(this.encryptionPassword);
+  }
 }

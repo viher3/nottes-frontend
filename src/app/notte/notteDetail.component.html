@@ -23,7 +23,7 @@
 
 			<div class="row justify-content-md-center" *ngIf="notte?.is_encrypted && ! notte?.is_decrypted">
 
-				<encryption-password-form></encryption-password-form>
+				<encryption-password-form (encryptionPasswordEvent)="receiveEncryptionPassword($event)"></encryption-password-form>
 
 			</div>
 
