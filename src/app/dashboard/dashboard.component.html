@@ -59,10 +59,10 @@
 						</td>
 						<td>{{ item.tags }}</td>
 						<td class="text-center">
-							<i *ngIf="item.is_encrypted" class="fa fa-shield"></i>
+							<i *ngIf="item.isEncrypted" class="fa fa-shield"></i>
 						</td>
-						<td>{{ item.creator_user.username }}</td>
-						<td>{{ item.updated_at | date:'dd/MM/yyyy HH:mm:ss' }}</td>
+						<td>{{ item.creatorUsername }}</td>
+						<td>{{ item.updatedAt | date:'dd/MM/yyyy HH:mm:ss' }}</td>
 						<td>
 							<a [routerLink]="['/notte/edit/' + item.id ]" placement="top" ngbTooltip="{{ 'common.edit_btn' | translate }}"><i class="fa fa-edit"></i></a>
 							&nbsp;
