@@ -36,9 +36,16 @@ export class DashboardComponent extends ListComponent implements OnInit {
 
   search()
   {
+    if( ! this.searchTerm.length ) return;
+
     this.loading = true;
 
     // TODO: search ...
+  }
+
+  searchOnKey(event: any) 
+  {
+    if(event.key == "Enter") this.search();
   }
 
 }

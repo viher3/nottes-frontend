@@ -2,7 +2,7 @@
     <h1 class="h2">{{ 'components.dashboard.panel_title' | translate }}</h1>
 
     <div id="listSearchBox" class="input-group mb-2 mr-sm-2 pull-right">
-	    <input type="text" [(ngModel)]="searchTerm" class="form-control" id="inlineFormInputGroupUsername2" placeholder="{{ 'common.search' | translate }} ...">
+	    <input type="text" [(ngModel)]="searchTerm" (keyup)="searchOnKey($event)" class="form-control" id="inlineFormInputGroupUsername2" placeholder="{{ 'common.search' | translate }} ...">
 	    <div class="input-group-prepend pointer">
 	      <div class="input-group-text" (click)="search()"><i class="fa fa-search"></i></div>
 	    </div>
