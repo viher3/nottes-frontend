@@ -27,7 +27,7 @@
 
 			</div>
 
-			<div [hidden]="!contentIsVisible">{{ notte?.content }}</div>
+			<div [hidden]="!contentIsVisible" [innerHTML]="notte?.content"></div>
 
 		</div>
 

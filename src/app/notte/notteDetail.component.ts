@@ -46,11 +46,12 @@ export class NotteDetailComponent extends CrudComponent implements OnInit {
 
   loadEntity(encryptionPassword: string = "")
   {
-    let entityEndpoint = this.apiUrl + "/notte/" + this.id;
+    let entityEndpoint = this.apiUrl + "/notte/" + this.id + "?format=html";
 
+    // decrypt if password is provided
     if(encryptionPassword.length) 
     {
-      entityEndpoint += "?pwd=" + encodeURI( btoa(encryptionPassword) );
+      entityEndpoint += "&pwd=" + encodeURI( btoa(encryptionPassword) );
     }
 
     this.authHttp.get(entityEndpoint).subscribe(
