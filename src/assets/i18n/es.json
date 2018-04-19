@@ -12,7 +12,8 @@
         "remove_item" : "¿Estas seguro que deseas eliminar el elemento seleccionado?",
         "no_results_found" : "No se han encontrado resultados.",
         "decrypt_btn" : "Desencriptar",
-        "reload" : "Recargar"
+        "reload" : "Recargar",
+        "search" : "Buscar"
     },
     "forms" : {
         "required_field" : "El campo es obligatorio."

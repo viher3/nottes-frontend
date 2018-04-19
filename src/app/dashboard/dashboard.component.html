@@ -1,5 +1,13 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
     <h1 class="h2">{{ 'components.dashboard.panel_title' | translate }}</h1>
+
+    <div id="listSearchBox" class="input-group mb-2 mr-sm-2 pull-right">
+	    <input type="text" [(ngModel)]="searchTerm" class="form-control" id="inlineFormInputGroupUsername2" placeholder="{{ 'common.search' | translate }} ...">
+	    <div class="input-group-prepend pointer">
+	      <div class="input-group-text" (click)="search()"><i class="fa fa-search"></i></div>
+	    </div>
+	</div>
+
 </div>
 
 <div class="col-md-12 padding0">

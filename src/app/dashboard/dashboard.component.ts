@@ -24,12 +24,21 @@ export class DashboardComponent extends ListComponent implements OnInit {
     super(translator, authHttp, toastr, "notte", "name");
   }
 
+  public searchTerm : string = "";
+
   ngOnInit()
   {
     $("body").removeClass("login-body");
 
     this.loading = true;
   	this.loadEntities();
+  }
+
+  search()
+  {
+    this.loading = true;
+
+    // TODO: search ...
   }
 
 }

@@ -12,7 +12,8 @@
         "remove_item" : "Are you sure you want to delete this item?",
         "no_results_found" : "No results found.",
         "decrypt_btn" : "Decrypt",
-        "reload" : "Reload"
+        "reload" : "Reload",
+        "search" : "Search"
     },
     "forms" : {
         "required_field" : "Field is required."
