@@ -1,0 +1,48 @@
+#sidebar {
+    background: #323232;
+    color: #fff;
+    min-height: 100%;
+    position: relative;
+}
+
+#sidebar a.navbar-brand {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    color: #FFF;
+    font-size: 32px;
+    padding-top: 30px;
+}
+
+#sidebar ul {
+    padding: 20px 0;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li{
+    width: 90%;
+    margin: 0 0 10px 10px;
+}
+#sidebar ul li.separator{
+    margin-top: 20px;
+}
+#sidebar ul li a {
+    font-size: 14px;
+    display: block;
+    color: #dbdbdb;
+    padding: 6px 12px;
+    border-radius: 10px;
+}
+#sidebar ul li a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+#sidebar ul li.active > a, 
+a[aria-expanded="true"] {
+    color: #fff;
+    background: #494949;
+}

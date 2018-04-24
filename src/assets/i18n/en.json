@@ -1,6 +1,7 @@
 {
     "sidebar": {
-    	"home": "Home",
+        "home": "Home",
+    	"config": "Configuration",
     	"logout": "Logout"
     },
     "common": {

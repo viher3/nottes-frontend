@@ -6,9 +6,16 @@
 
     <!-- Sidebar Links -->
     <ul class="list-unstyled">
-        <li class="active">
+
+        <li [ngClass]="{ 'active' : isActiveRoute('dashboard') }">
             <a [routerLink]="['/dashboard']">
                 <i class="fa fa-home"></i>&nbsp;&nbsp;{{ 'sidebar.home' | translate }}
+            </a>
+        </li>
+
+        <li [ngClass]="{ 'active' : isActiveRoute('config') }">
+            <a [routerLink]="['/config']">
+                <i class="fa fa-wrench"></i>&nbsp;&nbsp;{{ 'sidebar.config' | translate }}
             </a>
         </li>
 
@@ -17,6 +24,7 @@
                 <i class="fa fa-sign-out"></i>&nbsp;&nbsp;{{ 'sidebar.logout' | translate }}
             </a>
         </li>
+
     </ul>
 
 </nav>

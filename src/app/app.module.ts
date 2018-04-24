@@ -18,6 +18,7 @@ import { NotteEditComponent } from 'app/notte/notteEdit.component';
 import { NotteFormComponent } from 'app/notte/form/notteForm.component';
 import { AuthService } from 'app/user/auth.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ConfigurationComponent } from './configuration/configuration.component';
 import { 
   SidebarComponent, 
   PageNotFoundComponent, 
@@ -56,7 +57,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     NotteDetailComponent,
     NotteCreateComponent,
     NotteEditComponent,
-    NotteFormComponent
+    NotteFormComponent,
+    ConfigurationComponent
   ],
   imports: [
     BrowserModule,

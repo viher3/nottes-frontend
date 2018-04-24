@@ -1,6 +1,7 @@
 {
     "sidebar": {
     	"home": "Inicio",
+        "config": "Configuración",
     	"logout": "Cerrar sesión"
     },
     "common": {

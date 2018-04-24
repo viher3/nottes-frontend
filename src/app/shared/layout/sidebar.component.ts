@@ -6,7 +6,8 @@ import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: 'layout-sidebar',
-  templateUrl: './sidebar.component.html'
+  templateUrl: './sidebar.component.html',
+  styleUrls: ['./sidebar.component.scss']
 })
 
 export class SidebarComponent
@@ -18,7 +19,7 @@ export class SidebarComponent
 		private translator: TranslateService
 	){ }
 
-	logout()
+	logout() : void
 	{
 		this.auth.logout();
 
@@ -26,5 +27,11 @@ export class SidebarComponent
             this.toastr.success(translation);
         });
 		this.router.navigate(["/login"]);
+	}
+
+	isActiveRoute(routeValue : string) : boolean
+	{
+		if( this.router.url == '/' + routeValue ) return true;
+		return false;
 	}
 }

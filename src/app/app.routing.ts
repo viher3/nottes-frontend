@@ -9,6 +9,7 @@ import { PageNotFoundComponent } from './shared/errors/pageNotFound.component';
 import { NotteDetailComponent } from './notte/notteDetail.component';
 import { NotteCreateComponent } from './notte/notteCreate.component';
 import { NotteEditComponent } from './notte/notteEdit.component';
+import { ConfigurationComponent } from './configuration/configuration.component';
 
 // TODO: translate route data.title values
 export const AppRoutes: Routes = [
@@ -20,7 +21,8 @@ export const AppRoutes: Routes = [
       { path: 'user',  component: UserComponent },
       { path: 'notte/create', component: NotteCreateComponent },
       { path: 'notte/edit/:id', component: NotteEditComponent },
-      { path: 'notte/:id', component: NotteDetailComponent }
+      { path: 'notte/:id', component: NotteDetailComponent },
+      { path: 'config', component: ConfigurationComponent, data: { title: 'Configuración' } }
     ],
     component: HomeComponent,
   },
