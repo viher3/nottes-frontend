@@ -81,6 +81,9 @@
                 "success_mssg" : "El registro <strong>{{itemName}}</strong> se ha eliminado correctamente.",
                 "error_mssg" : "Error al eliminar el registro <strong>{{itemName}}</strong>."
             }
+        },
+        "configuration" : {
+            "panel_title" : "Configuración"
         }
     },
     "page_errors" : {

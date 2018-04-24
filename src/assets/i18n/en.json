@@ -81,6 +81,9 @@
                 "success_mssg" : "<strong>{{itemName}}</strong> has been removed correctly.",
                 "error_mssg" : "Error removing <strong>{{itemName}}</strong>."
             }
+        },
+        "configuration" : {
+            "panel_title" : "Configuration"
         }
     },
     "page_errors" : {

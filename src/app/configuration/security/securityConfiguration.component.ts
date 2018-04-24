@@ -7,12 +7,11 @@ import { SpinnerComponent } from 'app/shared';
 import { TranslateService } from "@ngx-translate/core";
 
 @Component({
-  selector: 'configuration',
-  templateUrl: './configuration.component.html',
-  styleUrls: ['./configuration.component.scss']
+  selector: 'security-configuration',
+  templateUrl: './securityConfiguration.component.html'
 })
-export class ConfigurationComponent implements OnInit {
-
+export class SecurityConfigurationComponent implements OnInit 
+{
   constructor(
   	protected toastr: ToastrService,
     protected authHttp: AuthHttp,
@@ -21,8 +20,6 @@ export class ConfigurationComponent implements OnInit {
   {
     
   }
-
-  private currentView : string = "general";
 
   ngOnInit()
   {
