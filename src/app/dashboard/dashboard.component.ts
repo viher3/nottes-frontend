@@ -24,8 +24,6 @@ export class DashboardComponent extends ListComponent implements OnInit {
     super(translator, authHttp, toastr, "notte", "name");
   }
 
-  public searchTerm : string = "";
-
   ngOnInit()
   {
     $("body").removeClass("login-body");
@@ -34,18 +32,14 @@ export class DashboardComponent extends ListComponent implements OnInit {
   	this.loadEntities();
   }
 
-  search()
-  {
-    if( ! this.searchTerm.length ) return;
-
-    this.loading = true;
-
-    // TODO: search ...
-  }
-
-  searchOnKey(event: any) 
+  searchOnKey(event: any)  : void
   {
     if(event.key == "Enter") this.search();
+  }
+
+  search() : void
+  {
+    super.searchEntities(1, false);
   }
 
 }

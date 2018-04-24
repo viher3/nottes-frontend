@@ -40,7 +40,8 @@
     		"created_by" : "Creado por",
     		"updated_at" : "Última actualización",
             "create_doc_btn": "Crear documento",
-            "encrypted" : "Encriptado"
+            "encrypted" : "Encriptado",
+            "searchResults" : "Resultados de búsqueda para: {{ value }}"
     	},
         "docs": {
             "detail" : {

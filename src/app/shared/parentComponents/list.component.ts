@@ -27,10 +27,13 @@ export class ListComponent
 	public  loadingMore: boolean = false;
 	public  selectedItems: any[] = [];
   	public  selectedAll: boolean = false;
+  	public  isSearch : boolean = false;
+  	public  searchTerm : string = "";
   	public  listElements: listElements;
   	public 	paginationTransParams: paginationTransParams;
   	public 	currentPaginationPosition: number = 0;
   	private entityApiUrl: string = AppConfig.settings.api.api_url + "/" + this.entityName;
+  	private searchResultTransParams = { value : "" };
 
 	selectFromList(item) : void
 	{
@@ -86,7 +89,10 @@ export class ListComponent
 		let currItems = [];
 		let entityUrl = this.entityApiUrl + "?page=" + page;
 
+		// reset values
+		this.isSearch 	 = false;
 		this.loadingMore = true;
+		this.searchTerm  = "";
 
 		if( append && typeof this.listElements !== "undefined" )
 		{
@@ -97,7 +103,7 @@ export class ListComponent
 
 	    	data => {
 
-	        	this.listElements = data.json();
+	    		this.listElements = data.json();
 
 	        	if(append)
 	        	{
@@ -126,7 +132,15 @@ export class ListComponent
 	loadMore() : void
 	{
 		let nextPage = Number(this.listElements.current_page_number) + 1;
-		this.loadEntities(nextPage, true);
+
+		if(this.isSearch)
+		{
+			this.searchEntities(nextPage, true);
+		}
+		else
+		{
+			this.loadEntities(nextPage, true);
+		}
 	}
 
 	deleteItem(item, nameField) : void
@@ -138,6 +152,89 @@ export class ListComponent
 				this.deleteItemRequest(item, nameField, true);
 			}
 		});
+	}
+
+	setPaginationTranslations() : void
+	{
+		this.currentPaginationPosition = ( (this.listElements).current_page_number * (this.listElements).num_items_per_page );
+
+		this.paginationTransParams = {
+			"current" : this.currentPaginationPosition,
+			"total" : this.listElements.total_count
+		}
+	}
+
+	searchEntities(page: number = 1, append: boolean = false) : void
+	{
+	    if( ! this.searchTerm.length ) return;
+
+	    this.isSearch 	= true;
+
+	    if( ! append )
+	    {
+	      this.loading = true;
+	    }
+	    else
+	    {
+	      this.loadingMore = true;
+	    }
+
+	    let currItems = [];
+
+	    if( append && typeof this.listElements !== "undefined" )
+	    {
+	      currItems = this.listElements.items;
+	    }
+
+	    // TODO: sanitize searchTerm
+	    let apiUrl : string = AppConfig.settings.api.api_url;
+	    let entityEndpoint : string = apiUrl +  "/search/" + this.searchTerm + "?p=" + page;
+
+	    this.authHttp.get(entityEndpoint).subscribe(
+
+	      data => {
+
+	      	this.listElements = data.json();
+
+	        if(append)
+	        {
+	          let newItems = this.listElements.items;
+
+	          this.listElements.items = [];
+
+	          for(let item of currItems)  this.listElements.items.push(item);
+	          for(let item of newItems)   this.listElements.items.push(item);
+	        }
+	        
+	        // set translation params
+	        this.setPaginationTranslations();
+	        this.setSearchTranslations();
+
+	        this.loading = false;
+	        this.loadingMore = false;
+
+	      },
+	      err => {
+
+	        let errorBody = JSON.parse(err._body);
+
+	        if(err.status == 500)
+	        {
+	          console.log(err);
+	        }
+	        
+	        this.loading = false;
+	        this.loadingMore = false;
+	      }
+
+	    );
+	}
+
+	setSearchTranslations() : void
+	{
+	    this.searchResultTransParams = {
+	      value : this.searchTerm
+	    }
 	}
 
 	private deleteItemRequest(item, nameField, reload: boolean = false) : void
@@ -180,15 +277,5 @@ export class ListComponent
 	          	console.log(err);
         	}
       	);
-	}
-
-	private setPaginationTranslations() : void
-	{
-		this.currentPaginationPosition = ( (this.listElements).current_page_number * (this.listElements).num_items_per_page );
-
-		this.paginationTransParams = {
-			"current" : this.currentPaginationPosition,
-			"total" : this.listElements.total_count
-		}
 	}
 }
