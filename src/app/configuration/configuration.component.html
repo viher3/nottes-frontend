@@ -15,11 +15,11 @@
 	  			<div class="col-md-2 config-sidebar">
 	  				
 	  				<ul>
-	  					<li>
-	  						<a><i class="fa fa-bars"></i>&nbsp;&nbsp;General</a>
+	  					<li class="pointer" (click)="currentView = 'general'">
+	  						<span [ngClass]="{ 'active' : currentView == 'general' }"><i class="fa fa-bars"></i>&nbsp;&nbsp;General</span>
 	  					</li>
-	  					<li>
-	  						<a><i class="fa fa-shield"></i>&nbsp;&nbsp;Seguridad</a>
+	  					<li  class="pointer" (click)="currentView = 'security'">
+	  						<span [ngClass]="{ 'active' : currentView == 'security' }"><i class="fa fa-shield"></i>&nbsp;&nbsp;Seguridad</span>
 	  					</li>
 	  				</ul>
 
