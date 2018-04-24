@@ -8,7 +8,8 @@ import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: 'general-configuration',
-  templateUrl: './generalConfiguration.component.html'
+  templateUrl: './generalConfiguration.component.html',
+  styleUrls: ['./generalConfiguration.component.scss']
 })
 export class GeneralConfigurationComponent implements OnInit 
 {
@@ -21,8 +22,14 @@ export class GeneralConfigurationComponent implements OnInit
     
   }
 
+  public selectedLanguage : Array <any> = [];
+  public languages : Array <any> = [
+    { label : "English", value: "en" },
+    { label : "Español", value: "es" }
+  ];
+
   ngOnInit()
   {
-    	
+    	// TODO: get current user lang
   }
 }
