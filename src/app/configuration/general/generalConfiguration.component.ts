@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthHttp } from 'angular2-jwt';
 import { SpinnerComponent } from 'app/shared';
 import { TranslateService } from "@ngx-translate/core";
+import { AuthService } from 'app/user/auth.service';
 
 @Component({
   selector: 'general-configuration',
@@ -17,6 +18,7 @@ export class GeneralConfigurationComponent implements OnInit
   	protected toastr: ToastrService,
     protected authHttp: AuthHttp,
     protected translator: TranslateService,
+    private auth: AuthService
   ) 
   {
     
@@ -30,6 +32,25 @@ export class GeneralConfigurationComponent implements OnInit
 
   ngOnInit()
   {
-    	// TODO: get current user lang
+    	// get current user lang
+      let userLang = this.getCurrentUserLanguage();
+      this.setSelectedUserLanguage(userLang);
+  }
+
+  private setSelectedUserLanguage(userLang : string)
+  {
+    for(let lang of this.languages)
+    {
+      if(lang["value"] == userLang)
+      {
+        this.selectedLanguage = lang;
+      }
+    }
+  }
+
+  private getCurrentUserLanguage()
+  {
+    let user : Array<any> = this.auth.getUser();
+    return user['language'];
   }
 }
