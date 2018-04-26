@@ -1,25 +1,67 @@
 <div class="general-config-wrapper">
 
 	<div class="form-group row">
-		<label for="nick" class="col-sm-2 col-form-label">Nick</label>
+		<label for="nick" class="col-sm-2 col-form-label">{{ 'components.configuration.nick' | translate }}</label>
 		<div class="col-sm-10">
 			<input id="nick" [(ngModel)]="nickname" name="nick" type="text" class="form-control" />
 		</div>
 	</div>
 
 	<div class="form-group row">
-		<label for="nick" class="col-sm-2 col-form-label">Email</label>
+		<label for="nick" class="col-sm-2 col-form-label">{{ 'components.configuration.email' | translate }}</label>
 		<div class="col-sm-10">
 			<input id="email" [(ngModel)]="email" name="email" type="email" class="form-control" />
 		</div>
 	</div>
 
 	<div class="form-group row">
-		<label for="nick" class="col-sm-2 col-form-label">Language</label>
+		<label for="nick" class="col-sm-2 col-form-label">{{ 'components.configuration.language' | translate }}</label>
 		<div class="col-sm-10">
 			<select class="form-control" [(ngModel)]="selectedLanguage">
 				<option *ngFor="let l of languages" [ngValue]="l">{{l.label}}</option>
 			</select>
+		</div>
+	</div>
+	
+	<!-- password confirmation -->
+	<div *ngIf="step == 'confirm_pwd'" id="password_confirmation">
+
+		<hr />
+
+		<div class="alert alert-info">
+			<i class="fa fa-info-circle"></i>&nbsp;
+			{{ 'components.configuration.pwd_confirm_message' | translate }}
+		</div>		
+
+		<div class="form-group row">
+			<label for="password" class="col-sm-2 col-form-label">{{ 'components.configuration.enter_password' | translate }}</label>
+			<div class="col-sm-10">
+				<input id="password" [(ngModel)]="password" name="password" type="password" class="form-control" />
+			</div>
+		</div>
+
+	</div>
+	<!-- end password confirmation -->	
+
+	<div class="row">
+		<div class="col-sm-2"></div>
+		<div class="col-sm-10 text-center">
+			
+			<button *ngIf="step == 'init'" (click)="saveChanges()" class="btn btn-primary">
+				<i class="fa fa-save"></i>&nbsp;
+				{{ 'common.save_changes' | translate }}
+			</button>
+
+			<button *ngIf="step == 'confirm_pwd'" (click)="confirmChanges()" class="btn btn-success">
+				<i class="fa fa-check"></i>&nbsp;
+				{{ 'common.confirm' | translate }}
+			</button>
+
+			<button *ngIf="step == 'confirm_pwd'" (click)="step = 'init'" class="btn btn-secondary">
+				<i class="fa fa-times"></i>&nbsp;
+				{{ 'common.cancel' | translate }}
+			</button>
+
 		</div>
 	</div>
 

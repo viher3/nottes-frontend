@@ -14,7 +14,12 @@
         "no_results_found" : "No results found.",
         "decrypt_btn" : "Decrypt",
         "reload" : "Reload",
-        "search" : "Search"
+        "search" : "Search",
+        "save" : "Save",
+        "save_changes" : "Save changes",
+        "acept" : "Acept",
+        "confirm" : "Confirm",
+        "cancel" : "Cancel"
     },
     "forms" : {
         "required_field" : "Field is required."
@@ -83,7 +88,12 @@
             }
         },
         "configuration" : {
-            "panel_title" : "Configuration"
+            "panel_title" : "Configuration",
+            "nick" : "Nick",
+            "email" : "Email",
+            "language" : "Language",
+            "pwd_confirm_message" : "You have to enter your account password to confirm the changes.",
+            "enter_password" : "Enter your password:"
         }
     },
     "page_errors" : {

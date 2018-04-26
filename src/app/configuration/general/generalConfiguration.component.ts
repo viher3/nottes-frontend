@@ -24,6 +24,7 @@ export class GeneralConfigurationComponent implements OnInit
     
   }
 
+  public step = "init";
   public nickname : string = "";
   public email : string = "";
   public selectedLanguage : Array <any> = [];
@@ -41,6 +42,16 @@ export class GeneralConfigurationComponent implements OnInit
     this.nickname = user['nickname'];
     this.email = user['email'];
     this.setSelectedUserLanguage(user['language']);
+  }
+
+  saveChanges()
+  {
+    this.step = "confirm_pwd";
+  }
+
+  confirmChanges()
+  {
+    // TODO: api request ... 
   }
 
   private setSelectedUserLanguage(userLang : string)
