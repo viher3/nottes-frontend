@@ -93,7 +93,9 @@
             "email" : "Email",
             "language" : "Language",
             "pwd_confirm_message" : "You have to enter your account password to confirm the changes.",
-            "enter_password" : "Enter your password:"
+            "enter_password" : "Enter your current password:",
+            "new_password" : "Enter your password",
+            "repeat_new_password" : "Repeat your password"
         }
     },
     "page_errors" : {

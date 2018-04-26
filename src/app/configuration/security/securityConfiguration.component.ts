@@ -8,7 +8,8 @@ import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: 'security-configuration',
-  templateUrl: './securityConfiguration.component.html'
+  templateUrl: './securityConfiguration.component.html',
+  styleUrls: ['./securityConfiguration.component.scss']
 })
 export class SecurityConfigurationComponent implements OnInit 
 {
@@ -21,8 +22,17 @@ export class SecurityConfigurationComponent implements OnInit
     
   }
 
+  public newPassword : string = "";
+  public newPassword2 : string = "";
+  public currentPassword : string = "";
+
   ngOnInit()
   {
     	
+  }
+
+  saveChanges()
+  {
+    
   }
 }
