@@ -24,6 +24,8 @@ export class GeneralConfigurationComponent implements OnInit
     
   }
 
+  public nickname : string = "";
+  public email : string = "";
   public selectedLanguage : Array <any> = [];
   public languages : Array <any> = [
     { label : "English", value: "en" },
@@ -32,9 +34,13 @@ export class GeneralConfigurationComponent implements OnInit
 
   ngOnInit()
   {
-    	// get current user lang
-      let userLang = this.getCurrentUserLanguage();
-      this.setSelectedUserLanguage(userLang);
+    // get user info
+    let user : Array<any> = this.auth.getUser();
+
+    // set user info
+    this.nickname = user['nickname'];
+    this.email = user['email'];
+    this.setSelectedUserLanguage(user['language']);
   }
 
   private setSelectedUserLanguage(userLang : string)
@@ -46,11 +52,5 @@ export class GeneralConfigurationComponent implements OnInit
         this.selectedLanguage = lang;
       }
     }
-  }
-
-  private getCurrentUserLanguage()
-  {
-    let user : Array<any> = this.auth.getUser();
-    return user['language'];
   }
 }
