@@ -27,11 +27,16 @@ export class GeneralConfigurationComponent implements OnInit
   public step = "init";
   public nickname : string = "";
   public email : string = "";
-  public selectedLanguage : Array <any> = [];
+  public password : string = "";
+  public selectedLanguage;
   public languages : Array <any> = [
     { label : "English", value: "en" },
     { label : "Español", value: "es" }
+
   ];
+
+  private apiUrl:
+   string = AppConfig.settings.api.api_url;
 
   ngOnInit()
   {
@@ -51,7 +56,37 @@ export class GeneralConfigurationComponent implements OnInit
 
   confirmChanges()
   {
+    let language =  this.selectedLanguage.value;
+
     // TODO: api request ... 
+    this.authHttp.put(this.apiUrl + "/configuration/general", 
+    {
+      "nickname" : this.nickname,
+      "email" : this.email,
+      "language" : language,
+      "password" : this.password
+    })
+    .subscribe(
+
+      data => {
+
+        // TODO: refresh token with new user data
+
+      },
+
+      error => {
+
+        let jsonError = JSON.parse(error._body);
+
+        if(jsonError.error == "invalid_password")
+        {
+          // TODO: Create toastr alert
+          alert("invalid pwd");          
+        }
+
+      }
+
+    );
   }
 
   private setSelectedUserLanguage(userLang : string)
