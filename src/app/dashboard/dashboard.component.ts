@@ -5,7 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthHttp } from 'angular2-jwt';
 import { ListComponent, SpinnerComponent } from 'app/shared';
 import { TranslateService } from "@ngx-translate/core";
-import { CommonEventsService } from 'app/services/shared/common-events.service'
+import { CommonEventsService } from 'app/services/shared/common-events.service';
+import { AuthService } from 'app/user/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -18,10 +19,11 @@ export class DashboardComponent extends ListComponent implements OnInit {
   	protected toastr: ToastrService,
     protected authHttp: AuthHttp,
     protected translator: TranslateService,
-    private common: CommonEventsService
+    private common: CommonEventsService,
+    protected auth : AuthService
   ) 
   {
-    super(translator, authHttp, toastr, "notte", "name");
+    super(translator, authHttp, toastr, "notte", "name", auth);
   }
 
   ngOnInit()

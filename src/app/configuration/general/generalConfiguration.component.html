@@ -52,12 +52,12 @@
 				{{ 'common.save_changes' | translate }}
 			</button>
 
-			<button *ngIf="step == 'confirm_pwd'" (click)="confirmChanges()" class="btn btn-success">
-				<i class="fa fa-check"></i>&nbsp;
+			<button [disabled]="loading || !password.length" *ngIf="step == 'confirm_pwd'" (click)="confirmChanges()" class="btn btn-success">
+				<i class="fa " [ngClass]="{'fa-check' : !loading, 'fa-refresh fa-spin' : loading }"></i>&nbsp;
 				{{ 'common.confirm' | translate }}
 			</button>
 
-			<button *ngIf="step == 'confirm_pwd'" (click)="step = 'init'" class="btn btn-secondary">
+			<button [disabled]="loading" *ngIf="step == 'confirm_pwd'" (click)="step = 'init'" class="btn btn-secondary">
 				<i class="fa fa-times"></i>&nbsp;
 				{{ 'common.cancel' | translate }}
 			</button>

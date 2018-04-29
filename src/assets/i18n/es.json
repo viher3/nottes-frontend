@@ -19,7 +19,8 @@
         "save_changes" : "Guardar los cambios",
         "acept" : "Aceptar",
         "confirm" : "Confirmar",
-        "cancel" : "Cancelar"
+        "cancel" : "Cancelar",
+        "changes_saved_success_mssg" : "Changes has been saved correctly."
     },
     "forms" : {
         "required_field" : "El campo es obligatorio."
@@ -95,7 +96,8 @@
             "pwd_confirm_message" : "Introduce la contraseña de tu cuenta para confirmar los cambios.",
             "enter_password" : "Introduce tu contraseña actual:",
             "new_password" : "Introduce tu contraseña",
-            "repeat_new_password" : "Repite la contraseña"
+            "repeat_new_password" : "Repite la contraseña",
+            "wrong_password_mssg" : "Contraseña incorrecta."
         }
     },
     "page_errors" : {

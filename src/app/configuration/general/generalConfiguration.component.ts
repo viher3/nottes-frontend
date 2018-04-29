@@ -24,7 +24,8 @@ export class GeneralConfigurationComponent implements OnInit
     
   }
 
-  public step = "init";
+  public loading : boolean = false;
+  public step : string = "init";
   public nickname : string = "";
   public email : string = "";
   public password : string = "";
@@ -57,8 +58,8 @@ export class GeneralConfigurationComponent implements OnInit
   confirmChanges()
   {
     let language =  this.selectedLanguage.value;
+    this.loading = true;
 
-    // TODO: api request ... 
     this.authHttp.put(this.apiUrl + "/configuration/general", 
     {
       "nickname" : this.nickname,
@@ -70,20 +71,32 @@ export class GeneralConfigurationComponent implements OnInit
 
       data => {
 
-        // TODO: refresh token with new user data
+        this.translator.get('common.changes_saved_success_mssg').subscribe( (translation: string) => {
+          this.toastr.success(translation);
+        });
 
+        this.loading = false;
+        this.step = "init";
+
+        // refresh token with new user data
+        this.auth.login(this.email, this.password);
       },
 
       error => {
+
+        this.auth.checkJwtHasExpiredInServerRequest(error);
 
         let jsonError = JSON.parse(error._body);
 
         if(jsonError.error == "invalid_password")
         {
-          // TODO: Create toastr alert
-          alert("invalid pwd");          
+          this.translator.get('components.configuration.wrong_password_mssg')
+          .subscribe( (translation: string) => {
+            this.toastr.error(translation);
+          });
         }
 
+        this.loading = false;
       }
 
     );

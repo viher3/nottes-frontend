@@ -19,7 +19,8 @@
         "save_changes" : "Save changes",
         "acept" : "Acept",
         "confirm" : "Confirm",
-        "cancel" : "Cancel"
+        "cancel" : "Cancel",
+        "changes_saved_success_mssg" : "Changes has been saved correctly."
     },
     "forms" : {
         "required_field" : "Field is required."
@@ -95,7 +96,8 @@
             "pwd_confirm_message" : "You have to enter your account password to confirm the changes.",
             "enter_password" : "Enter your current password:",
             "new_password" : "Enter your password",
-            "repeat_new_password" : "Repeat your password"
+            "repeat_new_password" : "Repeat your password",
+            "wrong_password_mssg" : "Wrong password."
         }
     },
     "page_errors" : {
