@@ -130,4 +130,23 @@ export class AuthService
 		return [];
 	}	
 
+	/**
+	 * Check if server returns a 401 - Expired JWT Token response.
+  	 * @param errorResponse 	Array 	Server array response 
+	 */
+	checkJwtHasExpiredInServerRequest(errorResponse) : void
+	{
+		let error = JSON.parse(errorResponse._body);
+
+		if(error.message == "Expired JWT Token" && error.code == 401)
+		{
+			// show alert
+    		this.translator.get('components.login.session_expired').subscribe( (translation: string) => {
+	            this.toastr.warning(translation);
+	        });
+
+	        this.logout();
+		}
+	}
+
 }
