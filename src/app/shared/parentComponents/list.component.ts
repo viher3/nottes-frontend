@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { AuthHttp } from 'angular2-jwt';
 import { listElements, paginationTransParams } from 'app/shared/parentComponents/list.interface'
+import { AuthService } from 'app/user/auth.service';
 
 @Component({
   selector: 'list-component',
@@ -18,7 +19,8 @@ export class ListComponent
 		protected authHttp: AuthHttp,
 		protected toastr: ToastrService,
 		protected entityName: String,
-		protected entityNameField: String
+		protected entityNameField: String,
+		protected auth : AuthService
 	){
 
 	}
@@ -121,7 +123,8 @@ export class ListComponent
 	        	this.loadingMore = false;
 	      	},
 	      	err => {
-		        console.log(err);
+		        
+	      		this.auth.checkJwtHasExpiredInServerRequest(err);
 		        this.loading = false;
 		        this.loadingMore = false;
 	      	}
@@ -216,6 +219,8 @@ export class ListComponent
 	      },
 	      err => {
 
+	      	this.auth.checkJwtHasExpiredInServerRequest(err);
+
 	        let errorBody = JSON.parse(err._body);
 
 	        if(err.status == 500)
@@ -266,6 +271,8 @@ export class ListComponent
 
 	        },
 	        err => {
+
+	        	this.auth.checkJwtHasExpiredInServerRequest(err);
 
 	        	this.translator.get('components.list.delete.error_mssg', { itemName: item[nameField] }).subscribe( (translation: string) => {
 	            	this.toastr.error(translation, null, { enableHtml: true });
