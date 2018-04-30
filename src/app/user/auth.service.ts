@@ -138,7 +138,10 @@ export class AuthService
 	{
 		let error = JSON.parse(errorResponse._body);
 
-		if(error.message == "Expired JWT Token" && error.code == 401)
+		if( error.code == 401 && 
+			(error.message == "Expired JWT Token" || 
+			error.message == "Invalid JWT Token") 
+		)
 		{
 			// show alert
     		this.translator.get('components.login.session_expired').subscribe( (translation: string) => {
