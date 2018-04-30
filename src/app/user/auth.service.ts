@@ -120,7 +120,7 @@ export class AuthService
 	{
 		let authToken = localStorage.getItem(this.tokenKey);
 
-		if( authToken.length )
+		if( authToken != null )
 		{
 			let jwtHelper: JwtHelper = new JwtHelper();
     		
