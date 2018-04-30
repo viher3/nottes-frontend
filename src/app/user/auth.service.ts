@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { JwtHelper } from 'angular2-jwt';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from "@ngx-translate/core";
-
+import { Router } from '@angular/router';
 import * as moment from "moment";
 
 @Injectable()
@@ -13,7 +13,8 @@ export class AuthService
   	constructor(
   		private http: HttpClient,
   		private toastr: ToastrService,
-  		private translator: TranslateService
+  		private translator: TranslateService,
+  		private router: Router
   	) { }
       
   	private loginUrl: 	string 	= AppConfig.settings.api.login_url;
@@ -149,6 +150,9 @@ export class AuthService
 	        });
 
 	        this.logout();
+
+	        // redirect
+	        this.router.navigateByUrl('login');
 		}
 	}
 
