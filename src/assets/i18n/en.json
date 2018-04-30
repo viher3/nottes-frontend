@@ -7,6 +7,9 @@
     "title" : {
         "dashboard" : "Dashboard",
         "configuration" : "Configuration",
+        "createDoc" : "Create document",
+        "editDoc" : "Edit document",
+        "login" : "Login",
         "404error" : "404 error"
     },
     "common": {

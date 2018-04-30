@@ -17,14 +17,14 @@ export const AppRoutes: Routes = [
       { path: '', component: HomeComponent },
       { path: 'dashboard', component: DashboardComponent, data: { title: 'dashboard' } },
       { path: 'user',  component: UserComponent },
-      { path: 'notte/create', component: NotteCreateComponent },
-      { path: 'notte/edit/:id', component: NotteEditComponent },
+      { path: 'notte/create', component: NotteCreateComponent, data: { title: 'createDoc' } },
+      { path: 'notte/edit/:id', component: NotteEditComponent, data: { title: 'editDoc' } },
       { path: 'notte/:id', component: NotteDetailComponent },
       { path: 'config', component: ConfigurationComponent, data: { title: 'configuration' } }
     ],
     component: HomeComponent,
   },
-  { path: 'login', component: LoginComponent },
+  { path: 'login', component: LoginComponent, data: { title: 'login' } },
   { path: '404', component: PageNotFoundComponent, data: { title: '404error' } },
   { path: '**', redirectTo: '/404' }
 ];

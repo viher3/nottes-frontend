@@ -7,6 +7,9 @@
     "title" : {
         "dashboard" : "Escritorio",
         "configuration" : "Configuración",
+        "createDoc" : "Crear documento",
+        "editDoc" : "Editar documento",
+        "login" : "Acceso usuarios",
         "404error" : "Error 404"
     },
     "common": {
