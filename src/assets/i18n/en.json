@@ -45,7 +45,8 @@
             },
             "submit_btn" : "Sign in",
             "logged_out_mssg" : "You have been logged out correctly.",
-            "session_expired" : "Your session has expired."
+            "session_expired" : "Your session has expired.",
+            "bad_credentials" : "Credenciales incorrectas"
         },
     	"dashboard": {
     		"panel_title" : "Dashboard",

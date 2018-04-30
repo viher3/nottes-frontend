@@ -5,6 +5,7 @@ import { AuthService } from 'app/user/auth.service';
 import { Router } from '@angular/router';
 import * as $ from 'jquery';
 import { CommonEventsService } from 'app/services/shared/common-events.service'
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
 	constructor(
 		private authService: AuthService, 
 		private router: Router,
-		private common: CommonEventsService
+		private common: CommonEventsService,
+		private translator: TranslateService
 	)
 	{ }
 
@@ -51,12 +53,24 @@ export class LoginComponent implements OnInit {
 	{
 		this.authService.login(email, password)
 		.then(
-			res => {
+			res => 
+			{
 				this.router.navigateByUrl('dashboard');
 			},
-			err => {
+			err => 
+			{
 				this.submited = false;
-				this.errorMssg = err.error.message;
+
+				if(err.error.message.toLowerCase() == "bad credentials")
+				{
+					this.translator.get('components.login.bad_credentials').subscribe( (translation: string) => {
+						this.errorMssg = translation;
+			        });
+				}
+				else
+				{
+					this.errorMssg = err.error.message;
+				}
 			}
 		);
 	}
