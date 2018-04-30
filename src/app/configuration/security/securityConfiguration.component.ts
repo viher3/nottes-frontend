@@ -67,6 +67,11 @@ export class SecurityConfigurationComponent implements OnInit
           this.toastr.success(translation);
         });
 
+        // reset values
+        this.newPassword = "";
+        this.newPassword2 = "";
+        this.currentPassword = "";
+
         this.loading = false;
       },
 
