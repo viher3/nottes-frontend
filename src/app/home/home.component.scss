@@ -3,3 +3,16 @@ div.container-scroller
 {
 	min-height: 100vh;
 }
+.scrollTop{
+    opacity: 0.5;
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 1;
+    color: #000;
+    font-size: 52px;
+    display: none;
+}
+.scrollTop:hover{
+    opacity: 0.7;
+}
