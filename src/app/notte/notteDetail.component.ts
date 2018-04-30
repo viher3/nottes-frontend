@@ -6,6 +6,7 @@ import { AuthHttp } from 'angular2-jwt';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CrudComponent, EncryptionPasswordComponent } from 'app/shared';
 import { TranslateService } from "@ngx-translate/core";
+import { AuthService } from 'app/user/auth.service';
 
 @Component({
   selector: 'notte-detail',
@@ -19,10 +20,11 @@ export class NotteDetailComponent extends CrudComponent implements OnInit {
   	protected toastr: ToastrService,
   	protected authHttp: AuthHttp,
     private route: ActivatedRoute,
-    protected router: Router
+    protected router: Router,
+    protected auth : AuthService
   ) 
   {
-    super(translator, authHttp, toastr, "notte", "name", "/dashboard", router);
+    super(translator, authHttp, toastr, "notte", "name", "/dashboard", router, auth);
   }
   
   public  loading: boolean = false;
@@ -68,6 +70,8 @@ export class NotteDetailComponent extends CrudComponent implements OnInit {
         this.loading = false;
       },
       err => {
+
+        this.auth.checkJwtHasExpiredInServerRequest(err);
 
         let errorBody = JSON.parse(err._body);
 

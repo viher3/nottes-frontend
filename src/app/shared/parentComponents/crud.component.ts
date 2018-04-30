@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { AuthHttp } from 'angular2-jwt';
 import { Router } from '@angular/router';
+import { AuthService } from 'app/user/auth.service';
 
 @Component({
   selector: 'crud-component',
@@ -20,7 +21,8 @@ export class CrudComponent
 		protected entityName: string,
 		protected entityNameField: string,
 		protected entityListUrl: string,
-		protected router: Router
+		protected router: Router,
+    	protected auth : AuthService
 	){ }
 
   	private entityApiUrl: string = AppConfig.settings.api.api_url + "/" + this.entityName;
@@ -52,6 +54,7 @@ export class CrudComponent
 			        },
 			        err => {
 
+			        	this.auth.checkJwtHasExpiredInServerRequest(err);
 			        	this.translator.get('components.list.delete.error_mssg', { itemName: item[this.entityNameField] })
 			        	.subscribe( (translation: string) => {
 			            	this.toastr.error(translation, null, { enableHtml: true });

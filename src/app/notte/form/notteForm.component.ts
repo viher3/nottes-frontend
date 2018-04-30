@@ -6,6 +6,7 @@ import { AuthHttp } from 'angular2-jwt';
 import { Router } from '@angular/router';
 import { NottesEditor } from 'nottes-editor.min.js';
 import { TranslateService } from "@ngx-translate/core";
+import { AuthService } from 'app/user/auth.service';
 import * as $ from 'jquery';
 
 @Component({
@@ -23,7 +24,8 @@ export class NotteFormComponent implements OnInit
     private toastr: ToastrService,
     private authHttp: AuthHttp,
     private router: Router,
-    private translator: TranslateService
+    private translator: TranslateService,
+    private auth : AuthService
   ) {
       this.submitedForm = false;
       this.isSaving     = false;
@@ -117,6 +119,8 @@ export class NotteFormComponent implements OnInit
           },
           err => {
 
+            this.auth.checkJwtHasExpiredInServerRequest(err);
+
             let errorBody = JSON.parse(err._body);
 
             if(err.status == 404 || err.status == 401)
@@ -181,6 +185,8 @@ export class NotteFormComponent implements OnInit
 
       },
       err => {
+
+        this.auth.checkJwtHasExpiredInServerRequest(err);
         // TODO: create handle server errors method (toastr)
         console.log(err);
         this.loading = false;
@@ -210,6 +216,8 @@ export class NotteFormComponent implements OnInit
 
       },
       err => {
+
+        this.auth.checkJwtHasExpiredInServerRequest(err);
         // TODO: create handle server errors method (toastr)
         console.log(err);
         this.loading = false;
