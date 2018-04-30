@@ -52,8 +52,17 @@ export class AppComponent {
 	      .mergeMap((route) => route.data)
 	      .subscribe((event) => 
 	      	{
-	      		let title = (typeof event['title'] !== 'undefined') ? " - " + event['title'] : "";
-	      		this.title.setTitle("Nottes" + title)
+            let title = "";
+
+            if(typeof event['title'] !== 'undefined')
+            {
+              // get translation
+              this.translate.get('title.' + event['title']).subscribe( (translation: string) => {
+                title = " - " + translation;
+              });
+            }
+
+	      		this.title.setTitle("Nottes" + title);
 	      	});
   	}
 

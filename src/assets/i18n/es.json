@@ -4,6 +4,11 @@
         "config": "Configuración",
     	"logout": "Cerrar sesión"
     },
+    "title" : {
+        "dashboard" : "Escritorio",
+        "configuration" : "Configuración",
+        "404error" : "Error 404"
+    },
     "common": {
         "go_back" : "Volver atrás",
         "go_back_list" : "Volver al listado",

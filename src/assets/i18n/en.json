@@ -4,6 +4,11 @@
     	"config": "Configuration",
     	"logout": "Logout"
     },
+    "title" : {
+        "dashboard" : "Dashboard",
+        "configuration" : "Configuration",
+        "404error" : "404 error"
+    },
     "common": {
         "go_back" : "Go back",
         "go_back_list" : "Go back to the list",
