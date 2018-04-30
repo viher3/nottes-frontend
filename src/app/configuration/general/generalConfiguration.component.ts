@@ -36,8 +36,7 @@ export class GeneralConfigurationComponent implements OnInit
 
   ];
 
-  private apiUrl:
-   string = AppConfig.settings.api.api_url;
+  private apiUrl : string = AppConfig.settings.api.api_url;
 
   ngOnInit()
   {
