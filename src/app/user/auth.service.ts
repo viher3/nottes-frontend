@@ -115,9 +115,8 @@ export class AuthService
 
 	/**
 	 * Get user info from token.
-	 * @return Array
 	 */
-	getUser() : Array<any>
+	getUser()
 	{
 		let authToken = localStorage.getItem(this.tokenKey);
 
