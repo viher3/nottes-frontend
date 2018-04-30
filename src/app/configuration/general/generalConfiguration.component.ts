@@ -79,6 +79,11 @@ export class GeneralConfigurationComponent implements OnInit
 
         // refresh token with new user data
         this.auth.login(this.email, this.password);
+
+        // TODO: Reload lang correctly
+        setTimeout(function(){
+          location.reload();
+        }, 1500);
       },
 
       error => {

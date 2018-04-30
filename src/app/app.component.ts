@@ -28,10 +28,8 @@ export class AppComponent {
   		// this language will be used as a fallback when a translation isn't found in the current language
       translate.setDefaultLang('en');
 
-      // set lang by browser 
-      // TODO: set lang by user preferences (db)
-      let browserLang = translate.getBrowserLang();
-      translate.use(browserLang.match(/en|es/) ? browserLang : 'en');
+      // set lang by user preferences
+      translate.use(this.getUserLanguage());
   	}
 
   	ngOnInit()
@@ -58,5 +56,17 @@ export class AppComponent {
 	      		this.title.setTitle("Nottes" + title)
 	      	});
   	}
+
+    getUserLanguage()
+    {
+      let user = this.authService.getUser();
+      
+      if(typeof user.language !== "undefined")
+      {
+        return user.language;
+      }
+      
+      return 'en';
+    }
 
 }
