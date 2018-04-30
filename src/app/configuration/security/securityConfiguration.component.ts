@@ -63,7 +63,7 @@ export class SecurityConfigurationComponent implements OnInit
 
       data => {
 
-        this.translator.get('common.changes_saved_success_mssg').subscribe( (translation: string) => {
+        this.translator.get('components.configuration.password_modified_correctly').subscribe( (translation: string) => {
           this.toastr.success(translation);
         });
 

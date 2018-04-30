@@ -98,7 +98,8 @@
             "new_password" : "Enter your password",
             "repeat_new_password" : "Repeat your password",
             "wrong_password_mssg" : "Wrong password.",
-            "change_your_pwd" : "Change your password"
+            "change_your_pwd" : "Change your password",            
+            "password_modified_correctly" : "Password has been modified correctly."
         }
     },
     "page_errors" : {

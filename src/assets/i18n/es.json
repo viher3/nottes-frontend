@@ -98,7 +98,8 @@
             "new_password" : "Introduce tu contraseña",
             "repeat_new_password" : "Repite la contraseña",
             "wrong_password_mssg" : "Contraseña incorrecta.",
-            "change_your_pwd" : "Modifica tu contraseña"
+            "change_your_pwd" : "Modifica tu contraseña",
+            "password_modified_correctly" : "La contraseña se ha modificado correctamente"
         }
     },
     "page_errors" : {
