@@ -1,4 +1,4 @@
-<nav id="sidebar" >
+<nav id="sidebar" class="d-none d-md-block d-lg-block">
 
     <div class="text-center">
         <a class="navbar-brand" [routerLink]="['/dashboard']">Nottes</a>
@@ -7,17 +7,13 @@
     <!-- Sidebar Links -->
     <ul class="list-unstyled">
 
-        <li [ngClass]="{ 'active' : isActiveRoute('dashboard') }">
-            <a [routerLink]="['/dashboard']">
-                <i class="fa fa-home"></i>&nbsp;&nbsp;{{ 'sidebar.home' | translate }}
+        <!-- menu items loop -->
+        <li *ngFor="let item of menu" [ngClass]="{ 'active' : isActiveRoute(item.routerLink) }">
+            <a [routerLink]="['/' + item.routerLink ]">
+                <i class="fa {{ item.faIco }}"></i>&nbsp;&nbsp;{{ item.translationKey | translate }}
             </a>
         </li>
-
-        <li [ngClass]="{ 'active' : isActiveRoute('config') }">
-            <a [routerLink]="['/config']">
-                <i class="fa fa-wrench"></i>&nbsp;&nbsp;{{ 'sidebar.config' | translate }}
-            </a>
-        </li>
+        <!-- end menu items loop -->
 
         <li class="separator">
             <a class="pointer" (click)="logout()">

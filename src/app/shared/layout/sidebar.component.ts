@@ -19,6 +19,13 @@ export class SidebarComponent
 		private translator: TranslateService
 	){ }
 
+	public menu : Array <any> = [
+
+		{ routerLink: "dashboard", translationKey: "sidebar.home", faIco: "fa-home" },
+		{ routerLink: "config", translationKey: "sidebar.config", faIco: "fa-wrench" }
+	
+	];
+
 	logout() : void
 	{
 		this.auth.logout();
