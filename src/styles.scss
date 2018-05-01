@@ -25,7 +25,7 @@ app-root
     cursor: pointer;
 }
 div#content-wrapper{
-    padding: 25px 30px 25px 15px;
+    padding: 25px 8px 25px 15px;
 }
 div#sidebar-wrapper{
     padding-right: 0;
@@ -79,4 +79,15 @@ button.loadMoreBtn{
 }
 .btn-outline-default{
     border: 1px solid #323232 !important;   
+}
+
+@media (max-width: 767px)
+{
+    div#content-wrapper{
+        padding: 20px 15px 10px 20px !important;
+    }
+    div#nottes-editor textarea{
+        width: 100%;
+        min-height: 300px;
+    }
 }
