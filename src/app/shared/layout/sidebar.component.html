@@ -1,3 +1,4 @@
+<!-- sidebar -->
 <nav id="sidebar" class="d-none d-md-block d-lg-block">
 
     <div class="text-center">
@@ -24,3 +25,34 @@
     </ul>
 
 </nav>
+<!-- end sidebar -->
+
+<!-- responsive navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
+  <div class="collapse navbar-collapse" id="navbarToggler">
+
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        
+        <li class="nav-item" *ngFor="let item of menu" [ngClass]="{ 'active' : isActiveRoute(item.routerLink) }">
+            <a class="nav-link" [routerLink]="['/' + item.routerLink ]">
+                <i class="fa {{ item.faIco }}"></i>&nbsp;&nbsp;{{ item.translationKey | translate }}
+            </a>
+        </li>
+
+        <li class="nav-item separator">
+            <a class="nav-link pointer" (click)="logout()">
+                <i class="fa fa-sign-out"></i>&nbsp;&nbsp;{{ 'sidebar.logout' | translate }}
+            </a>
+        </li>
+
+    </ul>
+
+  </div>
+
+</nav>
+<!-- end responsive navbar -->
