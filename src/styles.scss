@@ -2,6 +2,7 @@
 @import "app/login/login.component.scss";
 @import "app/notte/notteCreate.component.scss";
 @import "app/app.component.scss";
+@import "responsive.scss";
 
 body{
     background-color: #f5f5f5;
@@ -80,28 +81,7 @@ button.loadMoreBtn{
 .btn-outline-default{
     border: 1px solid #323232 !important;   
 }
-
-@media (max-width: 767px)
-{
-    div#content-wrapper{
-        padding: 20px 15px 10px 20px !important;
-    }
-    div#nottes-editor textarea{
-        width: 100%;
-        min-height: 300px;
-    }
-    div#sidebar-wrapper{
-        margin: 0 !important;
-    }
-}
-@media (max-width: 395px)
-{
-    div.responsiveActionBtns a,
-    div.responsiveActionBtns button
-    {
-        display: block;
-        width: 100%;
-        clear:both;
-        margin: 0 0 5px 0;
-    }
+div#nottes-editor textarea{
+    width: 100%;
+    min-height: 300px;
 }

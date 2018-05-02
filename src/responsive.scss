@@ -1,0 +1,34 @@
+@media (max-width: 767px)
+{
+    div#content-wrapper{
+        padding: 20px 15px 10px 20px !important;
+    }
+    div.docDetailResponsive{
+        margin-top: -100px !important;
+    }
+    div#sidebar-wrapper{
+        margin: 0 !important;
+    }
+}
+@media (max-width: 575px)
+{
+    div.responsiveActionBtns a,
+    div.responsiveActionBtns button
+    {
+        display: block;
+        width: 100%;
+        clear:both;
+        margin: 0 0 5px 0;
+    }
+}
+@media (min-width: 575px) and (max-width: 706px)
+{
+    div.responsiveActionBtns a,
+    div.responsiveActionBtns button
+    {
+        display: block;
+        width: 100%;
+        clear:both;
+        margin: 0 0 5px 0;
+    }   
+}
