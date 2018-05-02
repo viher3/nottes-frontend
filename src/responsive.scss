@@ -9,6 +9,18 @@
     div#sidebar-wrapper{
         margin: 0 !important;
     }
+    div.config-sidebar{
+        min-height: auto !important;
+        padding-bottom: 10px;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #CECECE;
+        border-right: 0 !important;
+    }
+    div.config-sidebar ul li{
+        max-width: 200px;
+        float:left;
+        margin-right: 30px;
+    }
 }
 @media (max-width: 575px)
 {
