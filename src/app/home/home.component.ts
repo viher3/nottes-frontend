@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private authService: AuthService, 
-    private router: Router,
+    public router: Router,
     private common: CommonEventsService
   ){ }
 
@@ -23,6 +23,18 @@ export class HomeComponent implements OnInit {
     {
       this.router.navigateByUrl('dashboard');
     }
+  }
+
+  isNotteDetailUrl()
+  {
+    let regex = /\/notte\/\d/;
+
+    if( regex.test(this.router.url) )
+    {
+      return true;
+    }
+
+    return false;
   }
 
 }

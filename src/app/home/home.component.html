@@ -4,7 +4,7 @@
 		<div id="sidebar-wrapper" class="col-md-2">
 			<layout-sidebar></layout-sidebar>
 		</div>
-		<div id="content-wrapper" class="col-md-10">
+		<div id="content-wrapper" [ngClass]="{ 'docDetailResponsive' : isNotteDetailUrl() }" class="col-md-10">
 			<router-outlet></router-outlet>
 		</div>
 		<i class="scrollTop pointer fa fa-arrow-circle-up"></i>
