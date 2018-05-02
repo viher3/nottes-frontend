@@ -91,3 +91,14 @@ button.loadMoreBtn{
         min-height: 300px;
     }
 }
+@media (max-width: 395px)
+{
+    div.responsiveActionBtns a,
+    div.responsiveActionBtns button
+    {
+        display: block;
+        width: 100%;
+        clear:both;
+        margin: 0 0 5px 0;
+    }
+}

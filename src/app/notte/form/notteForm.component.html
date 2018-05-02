@@ -2,19 +2,30 @@
     
 	<spinner [show]="loading"></spinner>
     
-	<h5 class="card-title" [hidden]="loading">
+	<div class="row">
 
-		<i class="fa fa-file-text-o"></i>&nbsp;
-		<span [translate]="title"></span>
-		<button (click)="onSubmit(f)" class="btn btn-sm btn-outline-primary pull-right marginLeftActionBtn">
-		    <i class="fa fa-save"></i>&nbsp;&nbsp;<span [translate]="saveBtn"></span>
-		</button>
-		<button class="btn btn-sm btn-outline-dark pull-right" onClick="javascript:history.go(-1);">
-		    <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;{{ 'common.go_back' | translate }}
-		</button>
+		<div class="col-xs-12 col-sm-12 col-md-6">
 
-	</h5>
-	<div class="clearfix"></div>
+			<h5 class="card-title" [hidden]="loading">
+				<i class="fa fa-file-text-o"></i>&nbsp;
+				<span [translate]="title"></span>
+			</h5>
+
+		</div>
+
+		<div class="responsiveActionBtns col-xs-12 col-sm-12 col-md-6 text-right">
+
+			<button (click)="onSubmit(f)" class="btn btn-sm btn-outline-primary">
+			    <i class="fa fa-save"></i>&nbsp;&nbsp;<span [translate]="saveBtn"></span>
+			</button>
+
+			<button class="btn btn-sm btn-outline-dark" onClick="javascript:history.go(-1);">
+			    <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;{{ 'common.go_back' | translate }}
+			</button>
+
+		</div>
+
+	</div>
 
 	<hr />
 	
@@ -104,14 +115,21 @@
 </div>
 
 <div class="card-footer text-muted" [hidden]="loading">
+    
     <div class="row">
-	    <div class="col-md-12 text-right">
+
+	    <div class="responsiveActionBtns col-md-12 text-right">
+
 	    	<button (click)="onSubmit(f)" class="btn btn-sm btn-outline-primary pull-right marginLeftActionBtn">
 			    <i class="fa fa-save"></i>&nbsp;&nbsp;<span [translate]="saveBtn"></span>
 			</button>
+		
 			<button class="btn btn-sm btn-outline-dark pull-right" onClick="javascript:history.go(-1);">
 			    <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;{{ 'common.go_back' | translate }}
 			</button>
+
 	    </div>
+    
     </div>
+
 </div>
