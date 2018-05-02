@@ -1,4 +1,5 @@
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+
     <h1 class="h2">{{ 'components.dashboard.panel_title' | translate }}</h1>
 
     <div id="listSearchBox" class="input-group mb-2 mr-sm-2 pull-right">
@@ -18,27 +19,39 @@
 
   		<div class="card-body" *ngIf="!loading">
 
-  			<h5 class="card-title">
+  			<div class="row">
 
-  				<span *ngIf="!isSearch">{{ 'components.dashboard.latest_docs' | translate }}</span>
-  				<span *ngIf="isSearch">{{ 'components.dashboard.searchResults' | translate:searchResultTransParams }}</span>
+				<div class="col-xs-12 col-sm-12 col-md-6">
 
-				<a [routerLink]="['/notte/create']" class="btn btn-sm btn-outline-primary pull-right marginLeftActionBtn">
-				    <i class="fa fa-plus"></i>&nbsp;&nbsp;{{ 'components.dashboard.create_doc_btn' | translate }}
-				</a>
+		  			<h5 class="card-title">
 
-				<a (click)="loadEntities(1)" class="btn btn-sm btn-outline-default pull-right marginLeftActionBtn">
-					<i *ngIf="loadingMore" class="fa fa-refresh fa-spin"></i>
-					<span *ngIf="!loadingMore">
-						<i class="fa fa-refresh"></i>&nbsp;&nbsp;{{ 'common.reload' | translate }}
-					</span>
-				</a>
+		  				<span *ngIf="!isSearch">{{ 'components.dashboard.latest_docs' | translate }}</span>
+		  				<span *ngIf="isSearch">{{ 'components.dashboard.searchResults' | translate:searchResultTransParams }}</span>
 
-				<a *ngIf="selectedItems.length" (click)="removeSelectedItems()" class="btn btn-outline-danger btn-sm pull-right">
-					<i class="fa fa-trash"></i>&nbsp;&nbsp;{{ 'common.delete_btn' | translate }}
-				</a>
-  			</h5>
-  			<br />
+					</h5>
+
+				</div>
+
+				<div class="dashboardActionBtns col-xs-12 col-sm-12 col-md-6 text-right">
+
+					<a [routerLink]="['/notte/create']" class="btn btn-sm btn-outline-primary pull-right marginLeftActionBtn">
+						<i class="fa fa-plus"></i>&nbsp;&nbsp;{{ 'components.dashboard.create_doc_btn' | translate }}
+					</a>
+
+					<a (click)="loadEntities(1)" class="btn btn-sm btn-outline-default marginLeftActionBtn">
+						<i *ngIf="loadingMore" class="fa fa-refresh fa-spin"></i>
+						<span *ngIf="!loadingMore">
+							<i class="fa fa-refresh"></i>&nbsp;&nbsp;{{ 'common.reload' | translate }}
+						</span>
+					</a>
+
+					<a *ngIf="selectedItems.length" (click)="removeSelectedItems()" class="btn btn-outline-danger btn-sm">
+						<i class="fa fa-trash"></i>&nbsp;&nbsp;{{ 'common.delete_btn' | translate }}
+					</a>
+
+	  			</div>
+  			
+  			</div>
 
 			<table class="table table-dashed table-responsive-sm">
 
