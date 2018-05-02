@@ -14,6 +14,7 @@ export class CommonEventsService
 
   init() : void
   {
+    this._scrollTop();
     this._setLoginBodyClass();
   }
 
@@ -27,5 +28,26 @@ export class CommonEventsService
     {
       $("body").removeClass("login-body");
     }
+  }
+
+  _scrollTop()
+  {
+    $(window).scroll(function()
+    {
+        if ($(this).scrollTop() > 100)
+        {
+            $('.scrollTop').fadeIn();
+        }
+        else
+        {
+            $('.scrollTop').fadeOut();
+        }
+    });
+
+    $('.scrollTop').on('click', function(e)
+    {
+      e.preventDefault();
+      $("html, body").animate({ scrollTop: 0 }, 600);
+    });
   }
 }

@@ -90,6 +90,9 @@ button.loadMoreBtn{
         width: 100%;
         min-height: 300px;
     }
+    div#sidebar-wrapper{
+        margin: 0 !important;
+    }
 }
 @media (max-width: 395px)
 {
