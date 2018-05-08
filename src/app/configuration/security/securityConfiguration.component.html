@@ -13,17 +13,17 @@
 	</div>
 
 	<div class="form-group row">
-		<label for="nick" class="col-sm-2 col-form-label">{{ 'components.configuration.repeat_new_password' | translate }}</label>
+		<label for="newPassword2" class="col-sm-2 col-form-label">{{ 'components.configuration.repeat_new_password' | translate }}</label>
 		<div class="col-sm-10">
-			<input id="nick" [(ngModel)]="newPassword2" [ngClass]="{'is-invalid' : ( formIsValid() == 'passwords_dont_match') }" name="nick" type="password" class="form-control" />
+			<input id="newPassword2" [(ngModel)]="newPassword2" [ngClass]="{'is-invalid' : ( formIsValid() == 'passwords_dont_match') }" name="newPassword2" type="password" class="form-control" />
 			<div class="invalid-feedback" *ngIf="formIsValid() == 'passwords_dont_match'">Las contraseñas no coinciden.</div>
 		</div>
 	</div>
 
 	<div class="form-group row" *ngIf="formIsValid() === true">
-		<label for="nick" class="col-sm-2 col-form-label">{{ 'components.configuration.enter_password' | translate }}</label>
+		<label for="currentPassword" class="col-sm-2 col-form-label">{{ 'components.configuration.enter_password' | translate }}</label>
 		<div class="col-sm-10">
-			<input id="nick" [(ngModel)]="currentPassword" name="nick" type="password" class="form-control" />
+			<input id="currentPassword" [(ngModel)]="currentPassword" name="currentPassword" type="password" class="form-control" />
 			<small>{{ 'components.configuration.pwd_confirm_message' | translate }}</small>
 		</div>
 	</div>
