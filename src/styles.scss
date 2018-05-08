@@ -15,6 +15,13 @@ app-root
 	width:100%;
 }
 
+layout-sidebar{
+    width: 100%;
+}
+.router-content{
+    padding: 20px 15px 10px 30px;
+}
+
 .wrapper {
     display: flex;
     align-items: stretch;
@@ -26,7 +33,7 @@ app-root
     cursor: pointer;
 }
 div#content-wrapper{
-    padding: 25px 8px 25px 15px;
+    padding: 0;
 }
 div#sidebar-wrapper{
     padding-right: 0;
@@ -84,4 +91,10 @@ button.loadMoreBtn{
 div#nottes-editor textarea{
     width: 100%;
     min-height: 300px;
+}
+a.navbar-brand{
+    padding-left: 20px;
+}
+ul.navbar-nav li.nav-item{
+    margin-left: 20px;
 }

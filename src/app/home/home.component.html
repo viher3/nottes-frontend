@@ -1,13 +1,18 @@
 <div class="container-scroller">
 
 	<div class="container-wrapper row noMarginRight">
-		<div id="sidebar-wrapper" class="col-md-2">
+		
+		<div id="content-wrapper" class="col-md-12">
+
 			<layout-sidebar></layout-sidebar>
-		</div>
-		<div id="content-wrapper" [ngClass]="{ 'docDetailResponsive' : isNotteDetailUrl() }" class="col-md-10">
-			<router-outlet></router-outlet>
+
+			<div class="router-content">
+				<router-outlet></router-outlet>
+			</div>
+
 		</div>
 		<i class="scrollTop pointer fa fa-arrow-circle-up"></i>
+
 	</div>
 
 </div>

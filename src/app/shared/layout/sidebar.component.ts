@@ -17,12 +17,17 @@ export class SidebarComponent
 		private auth: AuthService, 
 		private toastr: ToastrService,
 		private translator: TranslateService
-	){ }
+	){
+		let user = auth.getUser();
+		this.username = user.nickname;
+	}
+
+	public username : string;
 
 	public menu : Array <any> = [
 
 		{ routerLink: "dashboard", translationKey: "sidebar.home", faIco: "fa-home" },
-		{ routerLink: "config", translationKey: "sidebar.config", faIco: "fa-wrench" }
+		{ routerLink: "config", translationKey: "sidebar.config", faIco: "fa-wrench", wrapper: "usermenu" }
 	
 	];
 

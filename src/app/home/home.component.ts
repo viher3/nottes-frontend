@@ -25,16 +25,4 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  isNotteDetailUrl()
-  {
-    let regex = /\/notte\/\d/;
-
-    if( regex.test(this.router.url) )
-    {
-      return true;
-    }
-
-    return false;
-  }
-
 }
