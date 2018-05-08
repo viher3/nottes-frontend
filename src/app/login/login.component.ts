@@ -61,7 +61,9 @@ export class LoginComponent implements OnInit {
 			{
 				this.submited = false;
 
-				if(err.error.message.toLowerCase() == "bad credentials")
+				let errMessage = err.error.message.message;
+
+				if(err.error.code == 401 && err.error.message.message == "bad_credentials")
 				{
 					this.translator.get('components.login.bad_credentials').subscribe( (translation: string) => {
 						this.errorMssg = translation;
@@ -69,7 +71,7 @@ export class LoginComponent implements OnInit {
 				}
 				else
 				{
-					this.errorMssg = err.error.message;
+					this.errorMssg = errMessage;
 				}
 			}
 		);

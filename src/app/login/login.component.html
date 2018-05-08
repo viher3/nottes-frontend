@@ -9,7 +9,7 @@
 
       <div class="alert alert-danger" [hidden]="!errorMssg">{{ errorMssg }}</div>
 
-      <input type="email" id="inputEmail" class="form-control" placeholder="{{ 'components.login.placeholders.input_username' | translate }}" [(ngModel)]="username" name="username" required autofocus />
+      <input type="text" id="inputEmail" class="form-control" placeholder="{{ 'components.login.placeholders.input_username' | translate }}" [(ngModel)]="username" name="username" required autofocus />
 
       <input type="password" id="inputPassword" class="form-control" placeholder="{{ 'components.login.placeholders.input_password' | translate }}" name="password" [(ngModel)]="password" required />
       
