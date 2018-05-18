@@ -18,8 +18,8 @@ export class ListComponent
 		protected translator: TranslateService,
 		protected authHttp: AuthHttp,
 		protected toastr: ToastrService,
-		protected entityName: String,
-		protected entityNameField: String,
+		protected entityName: string,
+		protected entityNameField: string,
 		protected auth : AuthService
 	){
 
