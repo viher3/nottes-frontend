@@ -23,7 +23,7 @@ export class DashboardComponent extends ListComponent implements OnInit {
     protected auth : AuthService
   ) 
   {
-    super(translator, authHttp, toastr, "notte", "name", auth);
+    super(translator, authHttp, toastr, auth);
   }
 
   ngOnInit()

@@ -18,12 +18,13 @@ export class CrudComponent
 		protected translator: TranslateService,
 		protected authHttp: AuthHttp,
 		protected toastr: ToastrService,
-		protected entityName: string,
-		protected entityNameField: string,
-		protected entityListUrl: string,
 		protected router: Router,
     	protected auth : AuthService
 	){ }
+
+	private entityName : string = "notte";
+	private entityNameField : string = "name";
+	private entityListUrl : string = "/dashboard";
 
   	private entityApiUrl: string = AppConfig.settings.api.api_url + "/" + this.entityName;
   	protected loading: boolean = false;

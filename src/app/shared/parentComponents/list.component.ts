@@ -18,12 +18,11 @@ export class ListComponent
 		protected translator: TranslateService,
 		protected authHttp: AuthHttp,
 		protected toastr: ToastrService,
-		protected entityName: string,
-		protected entityNameField: string,
 		protected auth : AuthService
-	){
-
-	}
+	){ }
+	
+	private entityName : string = "notte";
+	private entityNameField : string = "name";
 
 	public  loading: boolean = false;
 	public  loadingMore: boolean = false;
@@ -42,7 +41,7 @@ export class ListComponent
 	    if( this.selectedItems.indexOf(item) > -1 ) 
 	    {
 	      // remove item
-	      var index = this.selectedItems.indexOf(item);
+	      let index = this.selectedItems.indexOf(item);
 	      this.selectedItems.splice(index, 1);
 	    }
 	    else

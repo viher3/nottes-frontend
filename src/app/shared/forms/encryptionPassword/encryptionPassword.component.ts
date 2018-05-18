@@ -12,6 +12,7 @@ export class EncryptionPasswordComponent
 
 	@Output() encryptionPasswordEvent = new EventEmitter<string>();
 
+	public submitedForm : boolean = false;
 	public encryptionPassword : string;
 
 	decryptDoc(formObj)

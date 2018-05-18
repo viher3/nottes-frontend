@@ -22,7 +22,8 @@ export class ConfigurationComponent implements OnInit {
     
   }
 
-  private currentView : string = "general";
+  public currentView : string = "general";
+  public loading : boolean = false;
 
   ngOnInit()
   {

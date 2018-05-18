@@ -24,7 +24,7 @@ export class NotteDetailComponent extends CrudComponent implements OnInit {
     protected auth : AuthService
   ) 
   {
-    super(translator, authHttp, toastr, "notte", "name", "/dashboard", router, auth);
+    super(translator, authHttp, toastr, router, auth);
   }
   
   public  loading: boolean = false;
