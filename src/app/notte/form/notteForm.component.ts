@@ -23,7 +23,7 @@ export class NotteFormComponent implements OnInit
   constructor(
     private toastr: ToastrService,
     private authHttp: AuthHttp,
-    private router: Router,
+    public router: Router,
     private translator: TranslateService,
     private auth : AuthService
   ) {

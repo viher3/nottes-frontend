@@ -31,7 +31,7 @@
 	
 	<div class="notte-content" [hidden]="loading">
 
-		<div class="row justify-content-md-center" *ngIf="notte?.is_encrypted && ! notte?.is_decrypted">
+		<div class="row justify-content-md-center" *ngIf="notte?.is_encrypted && ! notte?.is_decrypted && router.url != '/notte/create'">
 
 			<encryption-password-form (encryptionPasswordEvent)="receiveEncryptionPassword($event)"></encryption-password-form>
 
