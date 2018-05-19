@@ -159,7 +159,8 @@ export class NotteFormComponent implements OnInit
     this.editor = new NottesEditor("div#nottes-editor", 
     {
       "language"      : "en",
-      "image_upload_url"  : AppConfig.settings.api.api_image_upload
+      "image_upload_url"  : AppConfig.settings.api.api_image_upload,
+      "plugins"     : ["image"]
     });
   }
 
