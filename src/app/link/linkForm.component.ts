@@ -54,6 +54,7 @@ export class LinkFormComponent implements OnInit
 
   createLink(formObj)
   {
+    
     console.log(formObj);
   }
 
