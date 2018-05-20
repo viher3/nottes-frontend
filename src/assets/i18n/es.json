@@ -93,6 +93,18 @@
                 "password_min_length" : "Introduce como mínimo 6 caracteres"
             }
         },
+        "links" : {
+            "create" : {
+                "title" : "Crear enlace",
+                "save" : "Guardar enlace",
+                "input_url" : "Url del enlace",
+                "input_tags" : "Etiquetas",
+                "placeholders" : {
+                    "input_url" : "Url del enlace",
+                    "input_tags" : "Etiquetas separadas por comas"
+                }
+            }
+        },
         "list" : {
             "delete": {
                 "success_mssg" : "El registro <strong>{{itemName}}</strong> se ha eliminado correctamente.",

@@ -44,7 +44,7 @@
 							    <a class="dropdown-item" [routerLink]="['/notte/create']">
 							    	<i class="fa fa-file-text-o"></i>&nbsp;&nbsp;{{ 'components.dashboard.create_doc_btn' | translate }}
 							    </a>
-							    <a class="dropdown-item" href="#">
+							    <a class="dropdown-item" [routerLink]="['/link/create']">
 							    	<i class="fa fa-link"></i>&nbsp;&nbsp;{{ 'components.dashboard.create_link_btn' | translate }}
 								</a>
 							</div>
@@ -60,6 +60,7 @@
 						<a *ngIf="selectedItems.length" (click)="removeSelectedItems()" class="btn btn-outline-danger btn-sm">
 							<i class="fa fa-trash"></i>&nbsp;&nbsp;{{ 'common.delete_btn' | translate }}
 						</a>
+
 					</div>
 
 					<div *ngIf="isSearch">

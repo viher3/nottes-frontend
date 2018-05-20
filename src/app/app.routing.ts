@@ -9,6 +9,8 @@ import { NotteDetailComponent } from './notte/notteDetail.component';
 import { NotteCreateComponent } from './notte/notteCreate.component';
 import { NotteEditComponent } from './notte/notteEdit.component';
 import { ConfigurationComponent } from './configuration/configuration.component';
+import { LinkCreateComponent } from 'app/link/linkCreate.component';
+import { LinkFormComponent } from 'app/link/linkForm.component';
 
 export const AppRoutes: Routes = [
   { 
@@ -20,6 +22,7 @@ export const AppRoutes: Routes = [
       { path: 'notte/create', component: NotteCreateComponent, data: { title: 'createDoc' } },
       { path: 'notte/edit/:id', component: NotteEditComponent, data: { title: 'editDoc' } },
       { path: 'notte/:id', component: NotteDetailComponent },
+      { path: 'link/create', component: LinkCreateComponent },
       { path: 'config', component: ConfigurationComponent, data: { title: 'configuration' } }
     ],
     component: HomeComponent,

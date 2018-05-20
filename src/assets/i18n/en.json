@@ -93,6 +93,18 @@
                 "password_min_length" : "Enter at least 6 characters"
             }
         },
+        "links" : {
+            "create" : {
+                "title" : "Create link",
+                "save" : "Save link",
+                "input_url" : "Link Url",
+                "input_tags" : "Tags",
+                "placeholders" : {
+                    "input_url" : "Link Url",
+                    "input_tags" : "Tags"
+                }
+            }
+        },
         "list" : {
             "delete": {
                 "success_mssg" : "<strong>{{itemName}}</strong> has been removed correctly.",

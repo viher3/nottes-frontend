@@ -1,0 +1,90 @@
+<div class="card-body">
+    
+	<spinner [show]="loading"></spinner>
+    
+	<div class="row" [hidden]="loading">
+
+		<div class="col-xs-12 col-sm-6 col-md-6">
+
+			<h5 class="card-title" [hidden]="loading">
+				<i class="fa fa-file-text-o"></i>&nbsp;
+				<span [translate]="title"></span>
+			</h5>
+
+		</div>
+
+		<div class="responsiveActionBtns col-xs-12 col-sm-6 col-md-6 text-right">
+
+			<button (click)="onSubmit(f)" class="btn btn-sm btn-outline-primary pull-right marginLeftActionBtn">
+			    <i class="fa fa-save"></i>&nbsp;&nbsp;<span [translate]="saveBtn"></span>
+			</button>
+
+			<button class="btn btn-sm btn-outline-dark" onClick="javascript:history.go(-1);">
+			    <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;{{ 'common.go_back' | translate }}
+			</button>
+
+		</div>
+
+	</div>
+
+	<hr [hidden]="loading" />
+
+	<div class="createLink" [hidden]="loading">
+
+		<div class="row justify-content-center">
+
+			<form novalidate #f="ngForm" class="col-md-8">
+
+				<!-- url -->
+				<div class="form-group">
+
+					<label for="url">{{ 'components.links.create.input_url' | translate }}</label>
+					<input id="url" name="url" [(ngModel)]="url" type="text" class="form-control" placeholder="{{ 'components.links.create.placeholders.input_url' | translate }}" required [ngClass]="{ 'is-invalid': f.controls.url?.errors?.required && submitedForm }" />
+
+					<div *ngIf="f.controls.url?.errors?.required && submitedForm" class="invalid-feedback">
+						{{ 'forms.required_field' | translate }}
+					</div>
+
+				</div>
+				<!-- end url -->
+
+				<!-- tags -->
+				<div class="form-group">
+
+					<label for="tags">{{ 'components.links.create.input_tags' | translate }}</label>
+					<input id="tags" name="tags" [(ngModel)]="tags" type="text" class="form-control" placeholder="{{ 'components.links.create.placeholders.input_tags' | translate }}" required [ngClass]="{ 'is-invalid': f.controls.tags?.errors?.required && submitedForm }" />
+
+					<div *ngIf="f.controls.tags?.errors?.required && submitedForm" class="invalid-feedback">
+						{{ 'forms.required_field' | translate }}
+					</div>
+
+				</div>
+				<!-- end tags -->
+
+			</form>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div class="card-footer text-muted" [hidden]="loading">
+    
+    <div class="row">
+
+	    <div class="responsiveActionBtns col-md-12 text-right">
+
+	    	<button (click)="onSubmit(f)" class="btn btn-sm btn-outline-primary pull-right marginLeftActionBtn">
+			    <i class="fa fa-save"></i>&nbsp;&nbsp;<span [translate]="saveBtn"></span>
+			</button>
+		
+			<button class="btn btn-sm btn-outline-dark pull-right" onClick="javascript:history.go(-1);">
+			    <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;{{ 'common.go_back' | translate }}
+			</button>
+
+	    </div>
+    
+    </div>
+
+</div>
