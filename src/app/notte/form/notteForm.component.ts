@@ -41,9 +41,9 @@ export class NotteFormComponent implements OnInit
   public  editorIsEmpty: boolean = true;
   public  contentIsVisible: boolean = false;
   private formSubmitApiUrl: string;
-  public encryptionPassword: string;
-  public encryptionpwd: string;
-  public encryptionpwd2: string;
+  public  encryptionPassword: string;
+  public  encryptionpwd: string;
+  public  encryptionpwd2: string;
 
   ngOnInit()
   {
