@@ -22,8 +22,18 @@ export class LinkFormComponent implements OnInit
 	@Input() link : string;
   @Input() target : string;
 
-  public url : string;
-  public tags : string;
+  constructor(
+    private toastr: ToastrService,
+    private authHttp: AuthHttp,
+    public router: Router,
+    private translator: TranslateService,
+    private auth : AuthService
+  ) { }
+
+  private apiUrl: string = AppConfig.settings.api.api_url;
+  public inputTitle : string;
+  public inputUrl : string;
+  public inputTags : string;
   public loading : boolean = false;
   public submitedForm : boolean = false;
 
@@ -54,8 +64,35 @@ export class LinkFormComponent implements OnInit
 
   createLink(formObj)
   {
-    
-    console.log(formObj);
+    this.authHttp.post(
+      this.apiUrl + "/link", 
+      {
+        "name" : formObj.form.value.title,
+        "content" : formObj.form.value.url,
+        "tags" : formObj.form.value.tags
+      }
+    )
+    .subscribe(
+
+      data => {
+
+        var result = data.json();
+
+        // show success alert
+        this.translator.get('components.docs.create.success_mss').subscribe( (translation: string) => {
+          this.toastr.success(translation);
+        });
+
+        // redirect to detail view
+        //this.router.navigateByUrl('link/' + result.id);
+
+      },
+      err => {
+
+        this.auth.checkJwtHasExpiredInServerRequest(err);
+        this.loading = false;
+      }
+    ); 
   }
 
   updateLinl(formObj)

@@ -99,10 +99,13 @@
                 "save" : "Guardar enlace",
                 "input_url" : "Url del enlace",
                 "input_tags" : "Etiquetas",
+                "input_name" : "Nombre",
                 "placeholders" : {
                     "input_url" : "Url del enlace",
-                    "input_tags" : "Etiquetas separadas por comas"
-                }
+                    "input_tags" : "Etiquetas separadas por comas",
+                    "input_name" : "Nombre"
+                },
+                "success_mss" : "El enlace se ha creado correctamente."
             }
         },
         "list" : {

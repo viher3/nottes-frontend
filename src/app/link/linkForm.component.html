@@ -35,11 +35,24 @@
 
 			<form novalidate #f="ngForm" class="col-md-8">
 
+				<!-- title -->
+				<div class="form-group">
+
+					<label for="title">{{ 'components.links.create.input_name' | translate }}</label>
+					<input id="title" name="title" [(ngModel)]="inputTitle" type="text" class="form-control" placeholder="{{ 'components.links.create.placeholders.input_name' | translate }}" required [ngClass]="{ 'is-invalid': f.controls.title?.errors?.required && submitedForm }" />
+
+					<div *ngIf="f.controls.title?.errors?.required && submitedForm" class="invalid-feedback">
+						{{ 'forms.required_field' | translate }}
+					</div>
+
+				</div>
+				<!-- end title -->
+
 				<!-- url -->
 				<div class="form-group">
 
 					<label for="url">{{ 'components.links.create.input_url' | translate }}</label>
-					<input id="url" name="url" [(ngModel)]="url" type="text" class="form-control" placeholder="{{ 'components.links.create.placeholders.input_url' | translate }}" required [ngClass]="{ 'is-invalid': f.controls.url?.errors?.required && submitedForm }" />
+					<input id="url" name="url" [(ngModel)]="inputUrl" type="text" class="form-control" placeholder="{{ 'components.links.create.placeholders.input_url' | translate }}" required [ngClass]="{ 'is-invalid': f.controls.url?.errors?.required && submitedForm }" />
 
 					<div *ngIf="f.controls.url?.errors?.required && submitedForm" class="invalid-feedback">
 						{{ 'forms.required_field' | translate }}
@@ -52,7 +65,7 @@
 				<div class="form-group">
 
 					<label for="tags">{{ 'components.links.create.input_tags' | translate }}</label>
-					<input id="tags" name="tags" [(ngModel)]="tags" type="text" class="form-control" placeholder="{{ 'components.links.create.placeholders.input_tags' | translate }}" required [ngClass]="{ 'is-invalid': f.controls.tags?.errors?.required && submitedForm }" />
+					<input id="tags" name="tags" [(ngModel)]="inputTags" type="text" class="form-control" placeholder="{{ 'components.links.create.placeholders.input_tags' | translate }}" required [ngClass]="{ 'is-invalid': f.controls.tags?.errors?.required && submitedForm }" />
 
 					<div *ngIf="f.controls.tags?.errors?.required && submitedForm" class="invalid-feedback">
 						{{ 'forms.required_field' | translate }}
