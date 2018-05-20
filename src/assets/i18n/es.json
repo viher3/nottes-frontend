@@ -57,6 +57,7 @@
     		"tags" : "Etiquetas",
     		"created_by" : "Creado por",
     		"updated_at" : "Última actualización",
+            "create_btn" : "Crear",
             "create_doc_btn": "Crear documento",
             "create_link_btn": "Crear enlace",
             "encrypted" : "Encriptado",
