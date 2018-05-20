@@ -28,6 +28,7 @@
         "acept" : "Aceptar",
         "confirm" : "Confirmar",
         "cancel" : "Cancelar",
+        "clear_search" : "Limpiar resultados de búsqueda",
         "changes_saved_success_mssg" : "Changes has been saved correctly."
     },
     "forms" : {
