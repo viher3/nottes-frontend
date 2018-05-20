@@ -57,6 +57,7 @@
     		"created_by" : "Created by",
     		"updated_at" : "Updated at",
             "create_doc_btn": "Create document",
+            "create_link_btn": "Create link",
             "encrypted" : "Encripted",
             "searchResults" : "Search results for: {{ value }}"
     	},

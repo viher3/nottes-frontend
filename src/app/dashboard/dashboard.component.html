@@ -35,9 +35,20 @@
 				<div class="responsiveActionBtns col-xs-12 col-sm-6 col-md-6 text-right">
 
 					<div *ngIf="!isSearch">
-						<a [routerLink]="['/notte/create']" class="btn btn-sm btn-outline-primary pull-right marginLeftActionBtn">
-							<i class="fa fa-plus"></i>&nbsp;&nbsp;{{ 'components.dashboard.create_doc_btn' | translate }}
-						</a>
+
+						<div class="dropdown">
+							<button class="btn btn-sm btn-outline-primary pull-right marginLeftActionBtn dropdown-toggle" type="button" data-toggle="dropdown">
+							    <i class="fa fa-file-text-o"></i>&nbsp;&nbsp;Create
+							</button>
+							<div class="dropdown-menu">
+							    <a class="dropdown-item" [routerLink]="['/notte/create']">
+							    	<i class="fa fa-file-text-o"></i>&nbsp;&nbsp;{{ 'components.dashboard.create_doc_btn' | translate }}
+							    </a>
+							    <a class="dropdown-item" href="#">
+							    	<i class="fa fa-link"></i>&nbsp;&nbsp;{{ 'components.dashboard.create_link_btn' | translate }}
+								</a>
+							</div>
+						</div>
 
 						<a (click)="loadEntities(1)" class="btn btn-sm btn-outline-dark marginLeftActionBtn">
 							<i *ngIf="loadingMore" class="fa fa-refresh fa-spin"></i>
