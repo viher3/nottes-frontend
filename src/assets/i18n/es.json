@@ -53,13 +53,18 @@
             "panel_title" : "Escritorio",
             "latest_docs" : "Últimos documentos",
     		"name" : "Nombre",
+            "type" : "Tipo",
     		"tags" : "Etiquetas",
     		"created_by" : "Creado por",
     		"updated_at" : "Última actualización",
             "create_doc_btn": "Crear documento",
             "create_link_btn": "Crear enlace",
             "encrypted" : "Encriptado",
-            "searchResults" : "Resultados de búsqueda para: {{ value }}"
+            "searchResults" : "Resultados de búsqueda para: {{ value }}",
+            "types" : {
+                "doc" : "Documento",
+                "link" : "Enlace"
+            }
     	},
         "docs": {
             "detail" : {

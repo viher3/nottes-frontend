@@ -85,6 +85,7 @@
 							<input type="checkbox" (change)="selectAll($event)" />
 						</th>
 						<th>{{ 'components.dashboard.name' | translate }}</th>
+						<th>{{ 'components.dashboard.type' | translate }}</th>
 						<th>{{ 'components.dashboard.tags' | translate }}</th>
 						<th class="text-center">{{ 'components.dashboard.encrypted' | translate }}</th>
 						<th>{{ 'components.dashboard.created_by' | translate }}</th>
@@ -101,7 +102,12 @@
 							<input type="checkbox" [checked]="isSelected(item)" (click)="selectFromList(item)" />
 						</td>
 						<td>
-			            	<a [routerLink]="['/notte/' + item.id ]">{{ item.name }}</a>
+			            	<a *ngIf="item.type == 'doc'" [routerLink]="['/notte/' + item.id ]">{{ item.name }}</a>
+			            	<a *ngIf="item.type == 'link'" target="_blank" href="{{ item.content }}" ngbTooltip="{{ item.content }}">{{ item.name }}</a>
+						</td>
+						<td>
+							<i class="fa fa-file-text-o" *ngIf="item.type == 'doc'" ngbTooltip="{{ 'components.dashboard.types.doc' | translate }}"></i>
+							<i class="fa fa-link" *ngIf="item.type == 'link'" ngbTooltip="{{ 'components.dashboard.types.link' | translate }}"></i>
 						</td>
 						<td>{{ item.tags }}</td>
 						<td class="text-center">

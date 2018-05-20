@@ -53,13 +53,18 @@
     		"panel_title" : "Dashboard",
             "latest_docs" : "Latest documents",
     		"name" : "Name",
+            "type" : "Type",
     		"tags" : "Tags",
     		"created_by" : "Created by",
     		"updated_at" : "Updated at",
             "create_doc_btn": "Create document",
             "create_link_btn": "Create link",
             "encrypted" : "Encripted",
-            "searchResults" : "Search results for: {{ value }}"
+            "searchResults" : "Search results for: {{ value }}",
+            "types" : {
+                "doc" : "Document",
+                "link" : "Link"
+            }
     	},
         "docs": {
             "detail" : {
