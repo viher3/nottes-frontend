@@ -84,7 +84,7 @@ export class LinkFormComponent implements OnInit
         });
 
         // redirect to detail view
-        //this.router.navigateByUrl('link/' + result.id);
+        this.router.navigateByUrl('dashboard');
 
       },
       err => {
