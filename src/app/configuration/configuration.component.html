@@ -16,10 +16,10 @@
 	  				
 	  				<ul>
 	  					<li class="pointer" (click)="currentView = 'general'">
-	  						<span [ngClass]="{ 'active' : currentView == 'general' }"><i class="fa fa-bars"></i>&nbsp;&nbsp;General</span>
+	  						<span [ngClass]="{ 'active' : currentView == 'general' }"><i class="fa fa-bars"></i>&nbsp;&nbsp;{{ 'components.configuration.sidebar.general' | translate }}</span>
 	  					</li>
 	  					<li  class="pointer" (click)="currentView = 'security'">
-	  						<span [ngClass]="{ 'active' : currentView == 'security' }"><i class="fa fa-shield"></i>&nbsp;&nbsp;Seguridad</span>
+	  						<span [ngClass]="{ 'active' : currentView == 'security' }"><i class="fa fa-shield"></i>&nbsp;&nbsp;'components.configuration.sidebar.security' | translate }}</span>
 	  					</li>
 	  				</ul>
 

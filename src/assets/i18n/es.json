@@ -121,6 +121,10 @@
             }
         },
         "configuration" : {
+            "sidebar" : {
+                "general" : "General",
+                "security" : "Seguridad"
+            }, 
             "panel_title" : "Configuración",
             "nick" : "Nick",
             "email" : "Email",
