@@ -65,11 +65,7 @@
 				<div class="form-group">
 
 					<label for="tags">{{ 'components.links.create.input_tags' | translate }}</label>
-					<input id="tags" name="tags" [(ngModel)]="inputTags" type="text" class="form-control" placeholder="{{ 'components.links.create.placeholders.input_tags' | translate }}" required [ngClass]="{ 'is-invalid': f.controls.tags?.errors?.required && submitedForm }" />
-
-					<div *ngIf="f.controls.tags?.errors?.required && submitedForm" class="invalid-feedback">
-						{{ 'forms.required_field' | translate }}
-					</div>
+					<input id="tags" name="tags" [(ngModel)]="inputTags" type="text" class="form-control" placeholder="{{ 'components.links.create.placeholders.input_tags' | translate }}" />
 
 				</div>
 				<!-- end tags -->
