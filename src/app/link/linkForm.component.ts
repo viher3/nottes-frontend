@@ -37,9 +37,12 @@ export class LinkFormComponent implements OnInit
   public loading : boolean = false;
   public submitedForm : boolean = false;
 
-	ngOnInit()
-  {	
-
+  ngOnInit()
+  {
+    if(this.action == "edit")
+    {
+      this.loadEntity();
+    }
   }
 
   onSubmit(formObj)
@@ -57,7 +60,7 @@ export class LinkFormComponent implements OnInit
       }
       else if(this.action == "edit")
       {
-        this.updateLinl(formObj);
+        this.updateLink(formObj);
       }
     }
   }
@@ -95,7 +98,41 @@ export class LinkFormComponent implements OnInit
     ); 
   }
 
-  updateLinl(formObj)
+  loadEntity()
+  {
+    let entityEndpoint = this.apiUrl + "/notte/" + this.id;
+
+    this.authHttp.get(entityEndpoint).subscribe(
+
+      data => {
+
+        var link = data.json();
+
+        this.inputTitle = link.name;
+        this.inputUrl = link.content;
+        this.inputTags = link.tags;
+
+        this.loading = false;
+
+      },
+      err => {
+
+        this.auth.checkJwtHasExpiredInServerRequest(err);
+
+        let errorBody = JSON.parse(err._body);
+
+        if(err.status == 404 || err.status == 401)
+        {
+          this.router.navigateByUrl('404');
+        }
+        
+        this.loading = false;
+      }
+
+    );
+  }
+
+  updateLink(formObj)
   {
     console.log(formObj);
   }

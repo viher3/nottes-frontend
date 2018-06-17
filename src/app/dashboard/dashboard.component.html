@@ -116,7 +116,10 @@
 						<td>{{ item.creatorUsername }}</td>
 						<td>{{ item.updatedAt | date:'dd/MM/yyyy HH:mm:ss' }}</td>
 						<td>
-							<a [routerLink]="['/notte/edit/' + item.id ]" placement="top" ngbTooltip="{{ 'common.edit_btn' | translate }}"><i class="fa fa-edit"></i></a>
+							<a *ngIf="item.type == 'doc'" [routerLink]="['/notte/edit/' + item.id ]" placement="top" ngbTooltip="{{ 'common.edit_btn' | translate }}"><i class="fa fa-edit"></i></a>
+
+							<a *ngIf="item.type == 'link'" [routerLink]="['/link/edit/' + item.id ]" placement="top" ngbTooltip="{{ 'common.edit_btn' | translate }}"><i class="fa fa-edit"></i></a>
+
 							&nbsp;
 							<a (click)="deleteItem(item, 'name')" class="pointer" placement="top" ngbTooltip="{{ 'common.delete_btn' | translate }}"><i class="fa fa-trash text-danger"></i></a>
 						</td>

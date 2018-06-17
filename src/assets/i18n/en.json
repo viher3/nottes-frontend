@@ -112,6 +112,19 @@
                     "input_name" : "Name"
                 },
                 "success_mss" : "Link has been created correctly."
+            },
+            "edit" : {
+                "title" : "Edit link",
+                "save" : "Save link",
+                "input_url" : "Link Url",
+                "input_tags" : "Tags",
+                "input_name" : "Name",
+                "placeholders" : {
+                    "input_url" : "Link Url",
+                    "input_tags" : "Tags",
+                    "input_name" : "Name"
+                },
+                "success_mss" : "Link has been created correctly."
             }
         },
         "list" : {

@@ -17,6 +17,7 @@ import { NotteCreateComponent } from 'app/notte/notteCreate.component';
 import { NotteEditComponent } from 'app/notte/notteEdit.component';
 import { NotteFormComponent } from 'app/notte/form/notteForm.component';
 import { LinkCreateComponent } from 'app/link/linkCreate.component';
+import { LinkEditComponent } from 'app/link/linkEdit.component';
 import { LinkFormComponent } from 'app/link/linkForm.component';
 import { AuthService } from 'app/user/auth.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -54,6 +55,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     NotteEditComponent,
     NotteFormComponent,
     LinkCreateComponent,
+    LinkEditComponent,
     LinkFormComponent,
     ConfigurationComponent,
     GeneralConfigurationComponent,
