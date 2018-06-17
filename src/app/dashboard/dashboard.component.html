@@ -5,7 +5,8 @@
     <div id="listSearchBox" class="input-group mb-2 mr-sm-2 pull-right">
 	    <input type="text" [(ngModel)]="searchTerm" (keyup)="searchOnKey($event)" class="form-control" id="inlineFormInputGroupUsername2" placeholder="{{ 'common.search' | translate }} ...">
 	    <div class="input-group-prepend pointer">
-	      <div class="input-group-text" (click)="search()"><i class="fa fa-search"></i></div>
+	      	<div class="input-group-text" (click)="loadEntities(1)" *ngIf="isSearch" ngbTooltip="{{ 'common.clear_search' | translate }}" placement="bottom"><i class="fa fa-times"></i></div>
+	      	<div class="input-group-text" (click)="search()" *ngIf="!isSearch"><i class="fa fa-search"></i></div>
 	    </div>
 	</div>
 
@@ -63,14 +64,7 @@
 
 					</div>
 
-					<div *ngIf="isSearch">
-						<a (click)="loadEntities(1)" class="btn btn-sm btn-outline-dark marginLeftActionBtn">
-							<i *ngIf="loadingMore" class="fa fa-refresh fa-spin"></i>
-							<span *ngIf="!loadingMore">
-								<i class="fa fa-times"></i>&nbsp;&nbsp;{{ 'common.clear_search' | translate }}
-							</span>
-						</a>
-					</div>
+					
 
 	  			</div>
   			
