@@ -124,7 +124,7 @@
                     "input_tags" : "Tags",
                     "input_name" : "Name"
                 },
-                "success_mss" : "Link has been created correctly."
+                "success_mss" : "Link has been updated correctly."
             }
         },
         "list" : {

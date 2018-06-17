@@ -134,6 +134,38 @@ export class LinkFormComponent implements OnInit
 
   updateLink(formObj)
   {
-    console.log(formObj);
+    var params = {
+      "name" : formObj.form.value.title,
+      "content" : formObj.form.value.url,
+      "tags" : formObj.form.value.tags
+    }
+
+    this.authHttp.put(
+      this.apiUrl + "/notte/" + this.id, 
+      params
+    )
+    .subscribe(
+
+      data => {
+
+        var result = data.json();
+
+        // show success alert
+        this.translator.get('components.links.edit.success_mss').subscribe( (translation: string) => {
+          this.toastr.success(translation);
+        });
+
+        // redirect to detail view
+        this.router.navigateByUrl('dashboard');
+
+      },
+      err => {
+
+        this.auth.checkJwtHasExpiredInServerRequest(err);
+        // TODO: create handle server errors method (toastr)
+        console.log(err);
+        this.loading = false;
+      }
+    ); 
   }
 }

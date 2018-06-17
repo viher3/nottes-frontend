@@ -124,7 +124,7 @@
                     "input_tags" : "Etiquetas separadas por comas",
                     "input_name" : "Nombre"
                 },
-                "success_mss" : "El enlace se ha creado correctamente."
+                "success_mss" : "El enlace se ha actualizado correctamente."
             }
         },
         "list" : {
