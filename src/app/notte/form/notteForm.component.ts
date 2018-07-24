@@ -1,13 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { AppConfig } from 'app/app.config';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { AuthHttp } from 'angular2-jwt';
 import { Router } from '@angular/router';
-import { NottesEditor } from 'nottes-editor.min.js';
 import { TranslateService } from "@ngx-translate/core";
 import { AuthService } from 'app/user/auth.service';
 import * as $ from 'jquery';
+import { CKEditorModule } from 'ng2-ckeditor';
 
 @Component({
   selector: 'notteForm',
@@ -32,7 +32,7 @@ export class NotteFormComponent implements OnInit
     }
 
   private apiUrl: string = AppConfig.settings.api.api_url;
-  public  editor: any;
+  public  editorContent: string;
   public  notte: any = [];
   public  submitedForm: boolean;
   public  isSaving: boolean;
@@ -49,7 +49,7 @@ export class NotteFormComponent implements OnInit
   {
     this.notte.is_encrypted = false;
 
-    this.loadEditor();
+    this.initEditor();
 
     if(this.action == "edit") 
     {
@@ -59,6 +59,16 @@ export class NotteFormComponent implements OnInit
     {
       this.contentIsVisible = true;
     }
+  }
+
+  initEditor()
+  {
+
+  }
+
+  editorOnChange(editorValue)
+  {
+
   }
 
   onSubmit(formObj)
@@ -152,16 +162,6 @@ export class NotteFormComponent implements OnInit
     // TODO: set password in encryption pwd fields
     this.encryptionpwd = this.encryptionPassword;
     this.encryptionpwd2 = this.encryptionPassword;
-  }
-
-  private loadEditor()
-  {
-    this.editor = new NottesEditor("div#nottes-editor", 
-    {
-      "language"      : "en",
-      "image_upload_url"  : AppConfig.settings.api.api_image_upload,
-      "plugins"     : ["image"]
-    });
   }
 
   private createNewNotte(formObj)
