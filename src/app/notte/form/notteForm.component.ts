@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 import { TranslateService } from "@ngx-translate/core";
 import { AuthService } from 'app/user/auth.service';
 import * as $ from 'jquery';
-import { CKEditorModule } from 'ng2-ckeditor';
 
 @Component({
   selector: 'notteForm',
@@ -32,7 +31,22 @@ export class NotteFormComponent implements OnInit
     }
 
   private apiUrl: string = AppConfig.settings.api.api_url;
-  public  editorContent: string;
+  
+  // https://www.npmjs.com/package/ngx-ckeditor
+  public  editorContent: string = '';
+
+  // http://docs.ckeditor.com/#!/api/CKEDITOR.config
+  public  editorConfig: any = {
+
+    customConfig: 'config.js',
+/*
+    height: 400,
+    removePlugins: 'save,image,preview,print,about,iframe,flash,language,div,forms,uploadcare',
+    extraPlugins: 'filebrowser'
+*/
+
+  };
+
   public  notte: any = [];
   public  submitedForm: boolean;
   public  isSaving: boolean;
@@ -76,7 +90,7 @@ export class NotteFormComponent implements OnInit
     this.submitedForm = true;
 
     // add editor content to form object
-    formObj.form.value.content = this.editor.getContent();
+    formObj.form.value.content = this.editorContent;
 
     // check editor is empty
     this.editorIsEmpty = ( ! formObj.form.value.content.length) ? true : false;
