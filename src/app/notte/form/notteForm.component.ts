@@ -38,7 +38,6 @@ export class NotteFormComponent implements OnInit
   public  isSaving: boolean;
   public  is_encrypted: boolean = false;
   public  loading: boolean = false;
-  public  editorIsEmpty: boolean = true;
   public  contentIsVisible: boolean = false;
   private formSubmitApiUrl: string;
   public  encryptionPassword: string;
@@ -77,20 +76,28 @@ export class NotteFormComponent implements OnInit
       });
   }
 
+  private editorIsEmpty() 
+  {
+    var initData = '<p>&nbsp;</p>';
+    var editorData = this.editor.data.get();
+
+    if( editorData.replace(initData, "") == '' )
+    {
+      return true;
+    }
+
+    return false;
+  }
+
   onSubmit(formObj)
   {
     this.submitedForm = true;
 
-    console.log(this.editor.data.get());
-
     // add editor content to form object
     formObj.form.value.content = this.editor.data.get();
 
-    // check editor is empty
-    this.editorIsEmpty = ( ! formObj.form.value.content.length) ? true : false;
-
     // form validation
-    if(formObj.valid && ! this.editorIsEmpty) 
+    if(formObj.valid && ! this.editorIsEmpty() ) 
     {
       // transform fields
       formObj.form.value.isEncrypted = formObj.form.value.is_encrypted;
