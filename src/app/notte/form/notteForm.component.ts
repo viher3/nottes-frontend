@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { TranslateService } from "@ngx-translate/core";
 import { AuthService } from 'app/user/auth.service';
 import * as $ from 'jquery';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'notteForm',
@@ -38,12 +39,9 @@ export class NotteFormComponent implements OnInit
   // http://docs.ckeditor.com/#!/api/CKEDITOR.config
   public  editorConfig: any = {
 
-    customConfig: 'config.js',
-/*
     height: 400,
-    removePlugins: 'save,image,preview,print,about,iframe,flash,language,div,forms,uploadcare',
-    extraPlugins: 'filebrowser'
-*/
+    removePlugins: 'save,preview,print,about,iframe,flash,language,div,forms',
+    extraPlugins: 'image2'
 
   };
 
@@ -77,7 +75,16 @@ export class NotteFormComponent implements OnInit
 
   initEditor()
   {
-
+    ClassicEditor
+      .create( 
+        document.querySelector( '#notte-editor' ),
+        {
+          
+        }
+      )
+      .catch( err => {
+        console.error( err.stack );
+      } );
   }
 
   editorOnChange(editorValue)

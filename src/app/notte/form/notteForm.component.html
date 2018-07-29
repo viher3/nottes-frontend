@@ -55,7 +55,7 @@
 			<!-- content -->
 			<div id="nottes-editor-wrapper" class="form-group" [ngClass]="{ 'is-invalid': editorIsEmpty && submitedForm }">
 				<label>{{ 'components.docs.create.input_content' | translate }}</label>
-				<ck-editor name="notte-editor" [(ngModel)]="editorValue" skin="moono-lisa" language="en" [config]="editorConfig" [fullPage]="true"></ck-editor>
+				<div id="notte-editor"></div>
 
 				<div *ngIf="editorIsEmpty && submitedForm" class="form-error">
 					{{ 'forms.required_field' | translate }}

@@ -31,7 +31,7 @@ import { ROUTING } from 'app/app.routing';
 import * as moment from "moment";
 import * as $ from 'jquery';
 import { CommonEventsService } from 'app/services/shared/common-events.service'
-import { CKEditorModule } from 'ngx-ckeditor';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -85,8 +85,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    }),
-    CKEditorModule
+    })
   ],
   providers: [
     { 
