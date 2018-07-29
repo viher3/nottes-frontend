@@ -32,19 +32,7 @@ export class NotteFormComponent implements OnInit
     }
 
   private apiUrl: string = AppConfig.settings.api.api_url;
-  
-  // https://www.npmjs.com/package/ngx-ckeditor
-  public  editorContent: string = '';
-
-  // http://docs.ckeditor.com/#!/api/CKEDITOR.config
-  public  editorConfig: any = {
-
-    height: 400,
-    removePlugins: 'save,preview,print,about,iframe,flash,language,div,forms',
-    extraPlugins: 'image2'
-
-  };
-
+  public  editor: any;
   public  notte: any = [];
   public  submitedForm: boolean;
   public  isSaving: boolean;
@@ -77,27 +65,26 @@ export class NotteFormComponent implements OnInit
   {
     ClassicEditor
       .create( 
-        document.querySelector( '#notte-editor' ),
-        {
-          height: 600
-        }
+        document.querySelector( '#notte-editor' )
       )
-      .catch( err => {
+      .then( editor => 
+      {
+        this.editor = editor;
+      })
+      .catch( err => 
+      {
         console.error( err.stack );
-      } );
-  }
-
-  editorOnChange(editorValue)
-  {
-
+      });
   }
 
   onSubmit(formObj)
   {
     this.submitedForm = true;
 
+    console.log(this.editor.data.get());
+
     // add editor content to form object
-    formObj.form.value.content = this.editorContent;
+    formObj.form.value.content = this.editor.data.get();
 
     // check editor is empty
     this.editorIsEmpty = ( ! formObj.form.value.content.length) ? true : false;
