@@ -79,7 +79,7 @@ export class NotteFormComponent implements OnInit
       .create( 
         document.querySelector( '#notte-editor' ),
         {
-          
+          height: 600
         }
       )
       .catch( err => {
