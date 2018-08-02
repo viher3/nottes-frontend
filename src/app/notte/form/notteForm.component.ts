@@ -86,7 +86,7 @@ export class NotteFormComponent implements OnInit
       //console.log(ClassicEditor.builtinPlugins.map( plugin => plugin.pluginName ));
   }
 
-  private editorIsEmpty() 
+  editorIsEmpty() 
   {
     var initData = '<p>&nbsp;</p>';
     var editorData = this.editor.data.get();
