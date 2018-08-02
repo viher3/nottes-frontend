@@ -1,13 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { AppConfig } from 'app/app.config';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { AuthHttp } from 'angular2-jwt';
 import { Router } from '@angular/router';
-import { NottesEditor } from 'nottes-editor.min.js';
 import { TranslateService } from "@ngx-translate/core";
 import { AuthService } from 'app/user/auth.service';
 import * as $ from 'jquery';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'notteForm',
@@ -38,7 +38,6 @@ export class NotteFormComponent implements OnInit
   public  isSaving: boolean;
   public  is_encrypted: boolean = false;
   public  loading: boolean = false;
-  public  editorIsEmpty: boolean = true;
   public  contentIsVisible: boolean = false;
   private formSubmitApiUrl: string;
   public  encryptionPassword: string;
@@ -49,7 +48,7 @@ export class NotteFormComponent implements OnInit
   {
     this.notte.is_encrypted = false;
 
-    this.loadEditor();
+    this.initEditor();
 
     if(this.action == "edit") 
     {
@@ -61,18 +60,49 @@ export class NotteFormComponent implements OnInit
     }
   }
 
+  initEditor()
+  {
+    ClassicEditor
+      .create( 
+        document.querySelector( '#notte-editor'),
+        {
+          ckfinder: {
+            uploadUrl: 'http://localhost:8080/upload/image'
+          }
+        }
+      )
+      .then( editor => 
+      {
+        this.editor = editor;
+      })
+      .catch( err => 
+      {
+        console.error( err.stack );
+      });
+  }
+
+  private editorIsEmpty() 
+  {
+    var initData = '<p>&nbsp;</p>';
+    var editorData = this.editor.data.get();
+
+    if( editorData.replace(initData, "") == '' )
+    {
+      return true;
+    }
+
+    return false;
+  }
+
   onSubmit(formObj)
   {
     this.submitedForm = true;
 
     // add editor content to form object
-    formObj.form.value.content = this.editor.getContent();
-
-    // check editor is empty
-    this.editorIsEmpty = ( ! formObj.form.value.content.length) ? true : false;
+    formObj.form.value.content = this.editor.data.get();
 
     // form validation
-    if(formObj.valid && ! this.editorIsEmpty) 
+    if(formObj.valid && ! this.editorIsEmpty() ) 
     {
       // transform fields
       formObj.form.value.isEncrypted = formObj.form.value.is_encrypted;
@@ -152,16 +182,6 @@ export class NotteFormComponent implements OnInit
     // TODO: set password in encryption pwd fields
     this.encryptionpwd = this.encryptionPassword;
     this.encryptionpwd2 = this.encryptionPassword;
-  }
-
-  private loadEditor()
-  {
-    this.editor = new NottesEditor("div#nottes-editor", 
-    {
-      "language"      : "en",
-      "image_upload_url"  : AppConfig.settings.api.api_image_upload,
-      "plugins"     : ["image"]
-    });
   }
 
   private createNewNotte(formObj)
