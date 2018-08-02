@@ -66,9 +66,12 @@ export class NotteFormComponent implements OnInit
       .create( 
         document.querySelector( '#notte-editor'),
         {
+          removePlugins: ['ImageUpload'],
+          /*
           ckfinder: {
             uploadUrl: 'http://localhost:8080/upload/image'
           }
+          */
         }
       )
       .then( editor => 
@@ -79,6 +82,8 @@ export class NotteFormComponent implements OnInit
       {
         console.error( err.stack );
       });
+
+      //console.log(ClassicEditor.builtinPlugins.map( plugin => plugin.pluginName ));
   }
 
   private editorIsEmpty() 
@@ -138,7 +143,8 @@ export class NotteFormComponent implements OnInit
             this.notte = data.json(); 
 
             // add content to editor textarea
-            $("div#nottes-editor textarea").val(this.notte.content);
+            this.editor.data.set(this.notte.content)
+            //$("div#nottes-editor textarea").val();
 
             if( ! data.json().is_encrypted || data.json().is_decrypted) 
             {
