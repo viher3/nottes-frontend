@@ -12,6 +12,7 @@ import { ConfigurationComponent } from './configuration/configuration.component'
 import { LinkCreateComponent } from 'app/link/linkCreate.component';
 import { LinkEditComponent } from 'app/link/linkEdit.component';
 import { LinkFormComponent } from 'app/link/linkForm.component';
+import { FileUploadComponent } from 'app/file/fileUpload.component';
 
 export const AppRoutes: Routes = [
   { 
@@ -25,6 +26,7 @@ export const AppRoutes: Routes = [
       { path: 'notte/:id', component: NotteDetailComponent },
       { path: 'link/create', component: LinkCreateComponent },
       { path: 'link/edit/:id', component: LinkEditComponent },
+      { path: 'file/upload', component: FileUploadComponent },
       { path: 'config', component: ConfigurationComponent, data: { title: 'configuration' } }
     ],
     component: HomeComponent,

@@ -41,12 +41,15 @@
 							<button class="btn btn-sm btn-outline-primary pull-right marginLeftActionBtn dropdown-toggle" type="button" data-toggle="dropdown">
 							    <i class="fa fa-file-text-o"></i>&nbsp;&nbsp;{{ 'components.dashboard.create_btn' | translate }}
 							</button>
-							<div class="dropdown-menu">
+							<div class="dropdown-menu action-dropdown-menu">
 							    <a class="dropdown-item" [routerLink]="['/notte/create']">
 							    	<i class="fa fa-file-text-o"></i>&nbsp;&nbsp;{{ 'components.dashboard.create_doc_btn' | translate }}
 							    </a>
 							    <a class="dropdown-item" [routerLink]="['/link/create']">
 							    	<i class="fa fa-link"></i>&nbsp;&nbsp;{{ 'components.dashboard.create_link_btn' | translate }}
+								</a>
+							    <a class="dropdown-item" [routerLink]="['/file/upload']">
+							    	<i class="fa fa-upload"></i>&nbsp;&nbsp;{{ 'components.dashboard.upload_files_btn' | translate }}
 								</a>
 							</div>
 						</div>

@@ -60,6 +60,7 @@
             "create_btn" : "Crear",
             "create_doc_btn": "Crear documento",
             "create_link_btn": "Crear enlace",
+            "upload_files_btn": "Subir archivo/s",
             "encrypted" : "Encriptado",
             "searchResults" : "Resultados de búsqueda para: {{ value }}",
             "types" : {
