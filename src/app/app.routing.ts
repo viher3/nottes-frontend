@@ -26,7 +26,7 @@ export const AppRoutes: Routes = [
       { path: 'notte/:id', component: NotteDetailComponent },
       { path: 'link/create', component: LinkCreateComponent },
       { path: 'link/edit/:id', component: LinkEditComponent },
-      { path: 'file/upload', component: FileUploadComponent },
+      { path: 'file/upload', component: FileUploadComponent, data: { title: 'uploadFile' } },
       { path: 'config', component: ConfigurationComponent, data: { title: 'configuration' } }
     ],
     component: HomeComponent,

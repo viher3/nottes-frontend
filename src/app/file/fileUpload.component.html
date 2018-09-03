@@ -1,0 +1,66 @@
+<div class="card">
+
+	<div class="card-body">
+    
+		<spinner [show]="loading"></spinner>
+
+		<!-- card header -->
+		<div class="row" [hidden]="loading">
+
+			<div class="col-xs-12 col-sm-6 col-md-6">
+
+				<h5 class="card-title" [hidden]="loading">
+					<i class="fa fa-upload"></i>&nbsp;
+					<span>{{ 'title.uploadFile' | translate }}</span>
+				</h5>
+
+			</div>
+
+			<div class="responsiveActionBtns col-xs-12 col-sm-6 col-md-6 text-right">
+
+				<button (click)="onSubmit(f)" class="btn btn-sm btn-outline-primary pull-right marginLeftActionBtn">
+				    <i class="fa fa-save"></i>&nbsp;&nbsp;{{ 'common.save_files' | translate }}
+				</button>
+
+				<button class="btn btn-sm btn-outline-dark" onClick="javascript:history.go(-1);">
+				    <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;{{ 'common.go_back' | translate }}
+				</button>
+
+			</div>
+
+		</div>
+
+		<hr [hidden]="loading" />
+
+		<!-- card body -->
+		<div class="uploadFile" [hidden]="loading">
+
+			<div class="row justify-content-center">
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="card-footer text-muted" [hidden]="loading">
+	    
+	    <div class="row">
+
+		    <div class="responsiveActionBtns col-md-12 text-right">
+
+		    	<button (click)="onSubmit(f)" class="btn btn-sm btn-outline-primary pull-right marginLeftActionBtn">
+				    <i class="fa fa-save"></i>&nbsp;&nbsp;{{ 'common.save_files' | translate }}
+				</button>
+			
+				<button class="btn btn-sm btn-outline-dark pull-right" onClick="javascript:history.go(-1);">
+				    <i class="fa fa-arrow-left"></i>&nbsp;&nbsp;{{ 'common.go_back' | translate }}
+				</button>
+
+		    </div>
+	    
+	    </div>
+
+	</div>
+
+</div>

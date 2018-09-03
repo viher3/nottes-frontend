@@ -27,6 +27,6 @@ export class FileUploadComponent implements OnInit {
 
   ngOnInit()
   {
-    this.loading = true;
+    this.loading = false;
   }
 }
