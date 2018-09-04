@@ -7,6 +7,7 @@ import { ListComponent, SpinnerComponent } from 'app/shared';
 import { TranslateService } from "@ngx-translate/core";
 import { CommonEventsService } from 'app/services/shared/common-events.service';
 import { AuthService } from 'app/user/auth.service';
+import { FileUploader } from 'ng2-file-upload';
 
 @Component({
   selector: 'app-file-upload',
@@ -23,7 +24,8 @@ export class FileUploadComponent implements OnInit {
     
   }
 
-  public  loading: boolean = false;
+  public loading: boolean = false;
+  public uploader:FileUploader = new FileUploader({url: 'path_to_api'});
 
   ngOnInit()
   {

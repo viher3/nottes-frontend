@@ -31,7 +31,8 @@ import {TranslateHttpLoader} from "@ngx-translate/http-loader";
 import { ROUTING } from 'app/app.routing';
 import * as moment from "moment";
 import * as $ from 'jquery';
-import { CommonEventsService } from 'app/services/shared/common-events.service'
+import { CommonEventsService } from 'app/services/shared/common-events.service';
+import { FileUploadModule } from 'ng2-file-upload';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -61,9 +62,10 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     FileUploadComponent,
     ConfigurationComponent,
     GeneralConfigurationComponent,
-    SecurityConfigurationComponent
+    SecurityConfigurationComponent,
   ],
   imports: [
+    FileUploadModule,
     BrowserModule,
     NgbModule.forRoot(),
     ROUTING,
