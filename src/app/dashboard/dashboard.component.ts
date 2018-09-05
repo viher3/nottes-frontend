@@ -8,6 +8,12 @@ import { TranslateService } from "@ngx-translate/core";
 import { CommonEventsService } from 'app/services/shared/common-events.service';
 import { AuthService } from 'app/user/auth.service';
 
+/**
+ * @class         DashboardComponent
+ * @description   Dashboard component.
+ * @author        Alberto Vian - alberto@albertolabs.com
+ */
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -34,11 +40,23 @@ export class DashboardComponent extends ListComponent implements OnInit {
   	this.loadEntities();
   }
 
-  searchOnKey(event: any)  : void
+  /**
+   * Trigger the search event when the Enter key is pressed inside the search form.
+   *
+   * @param   Event   any   Key event
+   * @return  [type]  void
+   */
+  searchOnKey(event: any) : void
   {
     if(event.key == "Enter") this.search();
   }
 
+  /**
+   * Trigger the search event when the Enter key is pressed inside the search form.
+   *
+   * @param   Event   any   Key event
+   * @return  [type]  void
+   */
   search() : void
   {
     super.searchEntities(1, false);

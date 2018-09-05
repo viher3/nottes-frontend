@@ -70,8 +70,10 @@ export class FileUploadComponent implements OnInit {
 
   /**
    * Upload selected file/s to the server.
+   *
+   * @return  [type]  void
    */
-  uploadFiles()
+  uploadFiles() : void
   {
     this.uploading = true;
 
@@ -107,8 +109,10 @@ export class FileUploadComponent implements OnInit {
 
   /**
    * Trigger the click event on the file input.
+   *
+   * @return  [type]  void
    */
-  openFileSelectionDialog()
+  openFileSelectionDialog() : void
   {
     $("input#fileInput").click();
   }
@@ -117,8 +121,9 @@ export class FileUploadComponent implements OnInit {
    * Add selected files into 'selectedFiles' var
    *
    * @param   <File>  event   Selected file from the dialog
+   * @return  [type]  void
    */
-  onFileSelected(event)
+  onFileSelected(event) : void
   {
     this.selectedFiles = event.target.files;
   }
