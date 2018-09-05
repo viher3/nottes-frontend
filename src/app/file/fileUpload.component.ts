@@ -1,13 +1,18 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { AppConfig } from 'app/app.config';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
-import { AuthHttp } from 'angular2-jwt';
+import { AuthHttp, JwtHelper } from 'angular2-jwt';
 import { ListComponent, SpinnerComponent } from 'app/shared';
 import { TranslateService } from "@ngx-translate/core";
 import { CommonEventsService } from 'app/services/shared/common-events.service';
 import { AuthService } from 'app/user/auth.service';
-import { FileUploader } from 'ng2-file-upload';
+
+/**
+ * @class         FileUploadComponent
+ * @description   Component for uploading new files to the server.
+ * @author        Alberto Vian - alberto@albertolabs.com
+ */
 
 @Component({
   selector: 'app-file-upload',
@@ -16,21 +21,105 @@ import { FileUploader } from 'ng2-file-upload';
 })
 export class FileUploadComponent implements OnInit {
 
+  /**
+   * Loading state
+   * @var Boolean
+   */
+  public loading: boolean = false;
+
+  /**
+   * Upload state
+   * @var Boolean
+   */
+  public uploading: boolean = false;
+
+  /**
+   * Selected files from input
+   * @var Array <File>
+   */
+  private selectedFiles: Array <File>;
+
+  /**
+   * Authentication API Token
+   * @var String
+   */
+  private authToken : string;
+
+  /**
+   * Upload files API endpoint
+   * @var String
+   */
+  private apiUrl : string;
+
   constructor(
-  	protected toastr: ToastrService,
-    protected translator: TranslateService
+  	private toastr : ToastrService,
+    private translator : TranslateService,
+    private authHttp : AuthHttp,
+    private http : HttpClient,
+    private auth : AuthService
   ) 
   {
-    
+    this.apiUrl = AppConfig.settings.api.api_upload_url;
+    this.authToken = 'Bearer ' + localStorage.getItem(AppConfig.settings.users.session.tokenKey);
   }
-
-  public uploading: boolean = false;
-  public loading: boolean = false;
-  private apiUploadUrl : string = AppConfig.settings.api.api_upload_url;
-  public uploader:FileUploader = new FileUploader({ url: this.apiUploadUrl });
 
   ngOnInit()
   {
     this.loading = false;
+  }
+
+  /**
+   * Upload selected file/s to the server.
+   */
+  uploadFiles()
+  {
+    this.uploading = true;
+
+    // Build formData object
+    const formData = new FormData();
+
+    for(let file of this.selectedFiles)
+    {
+      formData.append('files[]', file, file.name);
+    };
+
+    // Build options object
+    const options = { 
+      headers : new HttpHeaders({
+        'Authorization' : this.authToken
+      })
+    };
+
+    // POST request to API
+    this.http.post(this.apiUrl, formData, options).subscribe(
+
+      result => {
+
+        this.uploading = false;
+
+      },
+      error => {
+        this.auth.checkJwtHasExpiredInServerRequest(error);
+        this.uploading = false;
+      }
+    );
+  }
+
+  /**
+   * Trigger the click event on the file input.
+   */
+  openFileSelectionDialog()
+  {
+    $("input#fileInput").click();
+  }
+
+  /**
+   * Add selected files into 'selectedFiles' var
+   *
+   * @param   <File>  event   Selected file from the dialog
+   */
+  onFileSelected(event)
+  {
+    this.selectedFiles = event.target.files;
   }
 }

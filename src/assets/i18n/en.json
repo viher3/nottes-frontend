@@ -153,6 +153,9 @@
             "wrong_password_mssg" : "Wrong password.",
             "change_your_pwd" : "Change your password",            
             "password_modified_correctly" : "Password has been modified correctly."
+        },
+        "uploads" : {
+            "select_files_btn" : "Select files"
         }
     },
     "page_errors" : {
