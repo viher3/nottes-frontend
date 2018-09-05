@@ -52,7 +52,7 @@ export class DashboardComponent extends ListComponent implements OnInit {
   }
 
   /**
-   * Trigger the search event when the Enter key is pressed inside the search form.
+   * Get all entities matching with the entered search query.
    *
    * @param   Event   any   Key event
    * @return  [type]  void
