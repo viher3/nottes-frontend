@@ -26,7 +26,8 @@ export class FileUploadComponent implements OnInit {
 
   public uploading: boolean = false;
   public loading: boolean = false;
-  public uploader:FileUploader = new FileUploader({url: 'path_to_api'});
+  private apiUploadUrl : string = AppConfig.settings.api.api_upload_url;
+  public uploader:FileUploader = new FileUploader({ url: this.apiUploadUrl });
 
   ngOnInit()
   {
