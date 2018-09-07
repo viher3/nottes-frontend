@@ -155,7 +155,9 @@
             "password_modified_correctly" : "La contraseña se ha modificado correctamente"
         },
         "uploads" : {
-            "select_files_btn" : "Seleccionar archivos"
+            "select_files_btn" : "Seleccionar archivos",
+            "selected_files" : "Archivos seleccionados",
+            "remove_file" : "Eliminar archivo"
         }
     },
     "page_errors" : {

@@ -127,4 +127,24 @@ export class FileUploadComponent implements OnInit {
   {
     this.selectedFiles = event.target.files;
   }
+
+  /**
+   * Remove file from the selected files array
+   *
+   * @param   <File>  file  Selected file to remove
+   * @return  [type]  void
+   */
+  removeFile(file) : void
+  {
+    var newSelectedFiles = [];
+
+    for(var i in this.selectedFiles)
+    {
+      if(this.selectedFiles[i] == file || isNaN(Number(i)) ) continue;
+
+      newSelectedFiles.push(this.selectedFiles[i]);
+    }
+
+    this.selectedFiles = newSelectedFiles;
+  }
 }

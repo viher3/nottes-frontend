@@ -155,7 +155,9 @@
             "password_modified_correctly" : "Password has been modified correctly."
         },
         "uploads" : {
-            "select_files_btn" : "Select files"
+            "select_files_btn" : "Select files",
+            "selected_files" : "Selected files",
+            "remove_file" : "Remove file"
         }
     },
     "page_errors" : {
