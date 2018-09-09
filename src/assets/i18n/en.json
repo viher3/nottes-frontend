@@ -68,7 +68,8 @@
             "searchResults" : "Search results for: {{ value }}",
             "types" : {
                 "doc" : "Document",
-                "link" : "Link"
+                "link" : "Link",
+                "file" : "File"
             }
     	},
         "docs": {

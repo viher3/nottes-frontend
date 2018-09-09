@@ -99,12 +99,24 @@
 							<input type="checkbox" [checked]="isSelected(item)" (click)="selectFromList(item)" />
 						</td>
 						<td>
+							<!-- doc -->
 			            	<a *ngIf="item.type == 'doc'" [routerLink]="['/notte/' + item.id ]">{{ item.name }}</a>
+
+			            	<!-- link -->
 			            	<a *ngIf="item.type == 'link'" target="_blank" href="{{ item.content }}" ngbTooltip="{{ item.content }}">{{ item.name }}</a>
+
+			            	<!-- file -->
+			            	<a *ngIf="item.type == 'file'" target="_blank" [routerLink]="">{{ item.name }}</a>
 						</td>
 						<td>
+							<!-- doc -->
 							<i class="fa fa-file-text-o" *ngIf="item.type == 'doc'" ngbTooltip="{{ 'components.dashboard.types.doc' | translate }}"></i>
+
+							<!-- link -->
 							<i class="fa fa-link" *ngIf="item.type == 'link'" ngbTooltip="{{ 'components.dashboard.types.link' | translate }}"></i>
+
+							<!-- file -->
+							<i class="fa fa-download" *ngIf="item.type == 'file'" ngbTooltip="{{ 'components.dashboard.types.file' | translate }}"></i>
 						</td>
 						<td>{{ item.tags }}</td>
 						<td class="text-center">
