@@ -101,9 +101,9 @@ export class FileUploadComponent implements OnInit {
         this.uploading = false;
 
         // show success alert
-        for(let uploadedFile of data)
+        for(var i in data)
         {
-          let filename = uploadedFile.fileInfo.original_name;
+          let filename = data[i].fileInfo.original_name;
 
           this.translator
             .get('components.uploads.create.success_mss', { file : filename })
