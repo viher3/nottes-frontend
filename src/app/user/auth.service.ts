@@ -136,10 +136,12 @@ export class AuthService
 	 */
 	checkJwtHasExpiredInServerRequest(errorResponse) : void
 	{
-		let error = (typeof errorResponse != "object") 
-					?  JSON.parse(errorResponse._body)
-					: errorResponse.error;
-		
+		let error = (errorResponse.code) 
+					? errorResponse.error
+					: JSON.parse(errorResponse._body);
+
+		error = (error.error) ? error.error : error;
+
 		if( error.code == 401 && 
 			(error.message == "Expired JWT Token" || 
 			error.message == "Invalid JWT Token") 
