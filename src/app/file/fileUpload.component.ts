@@ -7,6 +7,7 @@ import { ListComponent, SpinnerComponent } from 'app/shared';
 import { TranslateService } from "@ngx-translate/core";
 import { CommonEventsService } from 'app/services/shared/common-events.service';
 import { AuthService } from 'app/user/auth.service';
+import 'rxjs/Rx';
 
 /**
  * @class         FileUploadComponent
@@ -78,7 +79,7 @@ export class FileUploadComponent implements OnInit {
     this.uploading = true;
 
     // Build formData object
-    const formData = new FormData();
+    const formData : FormData = new FormData();
 
     for(let file of this.selectedFiles)
     {
@@ -92,13 +93,27 @@ export class FileUploadComponent implements OnInit {
       })
     };
 
-    // POST request to API
+    // Post request to API
     this.http.post(this.apiUrl, formData, options).subscribe(
 
-      result => {
+      data => {
 
         this.uploading = false;
 
+        // show success alert
+        for(let uploadedFile of data)
+        {
+          let filename = uploadedFile.fileInfo.original_name;
+
+          this.translator
+            .get('components.uploads.create.success_mss', { file : filename })
+            .subscribe( (translation: string) => {
+              this.toastr.success(translation, null, { enableHtml: true });
+          });
+        }
+
+        // TODO: redirect to detail view
+        // this.router.navigateByUrl('file/' + result.id);
       },
       error => {
         this.auth.checkJwtHasExpiredInServerRequest(error);

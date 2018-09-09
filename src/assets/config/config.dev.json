@@ -4,7 +4,7 @@
         "base_url" 	: "http://127.0.0.1:8000",
         "login_url" : "http://127.0.0.1:8000/api/login_check",
         "api_url"	: "http://127.0.0.1:8000/api",
-        "api_upload_url" : "http://127.0.0.1:8000/api/upload"
+        "api_upload_url" : "http://127.0.0.1:8000/api/documents"
     },
     "users" : {
     	"session" : {
