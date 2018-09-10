@@ -83,6 +83,8 @@ export class DashboardComponent extends ListComponent implements OnInit {
 
       data => {
 
+        if( ! data._body ) return;
+
         var blob = new Blob([data._body], { type: mimetype });
         
         if (window.navigator && window.navigator.msSaveOrOpenBlob) 
@@ -101,6 +103,7 @@ export class DashboardComponent extends ListComponent implements OnInit {
       },
 
       error => {
+        console.log(error); // TODO: handle forbidden error
         this.auth.checkJwtHasExpiredInServerRequest(error);
       }
 
