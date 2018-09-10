@@ -106,7 +106,7 @@
 			            	<a *ngIf="item.type == 'link'" target="_blank" href="{{ item.content }}" ngbTooltip="{{ item.content }}">{{ item.name }}</a>
 
 			            	<!-- file -->
-			            	<a *ngIf="item.type == 'file'" target="_blank" [routerLink]="">{{ item.name }}</a>
+			            	<div *ngIf="item.type == 'file'" (click)="downloadFile(item.document.id, item.document.name, item.document.mimetype)" class="linkStyle">{{ item.name }}</div>
 						</td>
 						<td>
 							<!-- doc -->

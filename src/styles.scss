@@ -103,3 +103,10 @@ ul.navbar-nav li.nav-item{
 .ck-editor__editable {
     min-height: 400px;
 }
+.linkStyle{
+    color: #007bff;
+}
+.linkStyle:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
