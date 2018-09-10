@@ -7,6 +7,7 @@ import { ListComponent, SpinnerComponent } from 'app/shared';
 import { TranslateService } from "@ngx-translate/core";
 import { CommonEventsService } from 'app/services/shared/common-events.service';
 import { AuthService } from 'app/user/auth.service';
+import { Router } from '@angular/router';
 import 'rxjs/Rx';
 
 /**
@@ -57,7 +58,8 @@ export class FileUploadComponent implements OnInit {
     private translator : TranslateService,
     private authHttp : AuthHttp,
     private http : HttpClient,
-    private auth : AuthService
+    private auth : AuthService,
+    private router : Router
   ) 
   {
     this.apiUrl = AppConfig.settings.api.api_upload_url;
@@ -112,8 +114,8 @@ export class FileUploadComponent implements OnInit {
           });
         }
 
-        // TODO: redirect to detail view
-        // this.router.navigateByUrl('file/' + result.id);
+        // redirect to dashboard
+        this.router.navigateByUrl('dashboard');
       },
       error => {
         this.auth.checkJwtHasExpiredInServerRequest(error);
