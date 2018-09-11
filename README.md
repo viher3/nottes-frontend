@@ -30,6 +30,14 @@ Comming soon features:
 
 Run `ng build --prod --extract-css false` to build the project. The build artifacts will be stored in the `dist/` directory.
 
+## Configuration
+
+After building the project, you have to edit the config file updating your API endpoint.
+
+Production config file is located here:
+
+`dist/assets/config/config.prod.json`
+
 ## LICENSE
 
 Nottes is released under the MIT Licence. See the LICENSE file for details.
