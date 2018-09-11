@@ -39,7 +39,7 @@ export class FileUploadComponent implements OnInit {
    * Selected files from input
    * @var Array <File>
    */
-  private selectedFiles: Array <File>;
+  public selectedFiles: Array <File>;
 
   /**
    * Authentication API Token
