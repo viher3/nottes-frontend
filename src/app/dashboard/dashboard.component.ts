@@ -83,23 +83,29 @@ export class DashboardComponent extends ListComponent implements OnInit {
 
       data => {
 
-        if( ! data._body ) return;
-
-        var blob = new Blob([data._body], { type: mimetype });
+        try
+        {
+          var blob = new Blob([(<any>data)._body], { type: mimetype });
         
-        if (window.navigator && window.navigator.msSaveOrOpenBlob) 
-        {
-          window.navigator.msSaveOrOpenBlob(blob, filename);
-        } 
-        else 
-        {
-          var a = document.createElement('a');
-          a.href = URL.createObjectURL(blob);
-          a.download = filename;
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
+          if (window.navigator && window.navigator.msSaveOrOpenBlob) 
+          {
+            window.navigator.msSaveOrOpenBlob(blob, filename);
+          } 
+          else 
+          {
+            var a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+          }
         }
+        catch(e)
+        {
+          console.log(e); 
+        }
+
       },
 
       error => {
