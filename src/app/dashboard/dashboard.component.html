@@ -1,6 +1,5 @@
+<!--
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-
-    <h1 class="h2">{{ 'components.dashboard.panel_title' | translate }}</h1>
 
     <div id="listSearchBox" class="input-group mb-2 mr-sm-2 pull-right">
 	    <input type="text" [(ngModel)]="searchTerm" (keyup)="searchOnKey($event)" class="form-control" id="inlineFormInputGroupUsername2" placeholder="{{ 'common.search' | translate }} ...">
@@ -11,16 +10,22 @@
 	</div>
 
 </div>
+-->
 
-<div class="col-md-12 padding0">
+<div class="col-12 padding0">
 
-	<div class="card">
+	<spinner [show]="loading"></spinner>
 
-		<spinner [show]="loading"></spinner>
+	<div class="row">
 
-  		<div class="card-body" *ngIf="!loading">
+		<div class="col-3 left-item-list">
+			items list
+		</div>
 
-  			<div class="row">
+		<div class="col-9" *ngIf="!loading">
+
+			<!--
+			<div class="row">
 
 				<div class="col-xs-12 col-sm-6 col-md-6">
 
@@ -67,11 +72,10 @@
 
 					</div>
 
-					
-
 	  			</div>
-  			
-  			</div>
+			
+			</div>
+			-->
 
 			<table class="table table-dashed table-responsive-sm">
 
