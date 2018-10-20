@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { AppConfig } from 'app/app.config';
 import { RequestOptions, ResponseContentType } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
@@ -53,9 +53,15 @@ export class DashboardComponent extends ListComponent implements OnInit {
     this.loading = true;
   	super.loadEntities();
 
-    // subscribe to navActionEmitter event
+    // subscribe to 'navActionEmitter' event
     this.navActionService.navActionEmitter$.subscribe(newAction => {
       this.action = newAction;
+    });
+
+    // subscribe to 'reloadEntitiesEmitter' event
+    this.nottesService.reloadEntitiesEmitter$.subscribe(notteId => {
+      this.reloadEntites("");
+      this.loadEntityEvent(notteId);
     });
   }
 

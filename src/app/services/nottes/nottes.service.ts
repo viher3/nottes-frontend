@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { AuthService } from 'app/user/auth.service';
 import { AuthHttp } from 'angular2-jwt';
 import { ToastrService } from 'ngx-toastr';
@@ -23,6 +23,7 @@ export class NottesService
   public  notte: JSON;
   public  apiUrl : string = AppConfig.settings.api.api_url;
   private entityApiUrl: string = AppConfig.settings.api.api_url + "/notte";
+  public  reloadEntitiesEmitter$ : EventEmitter<any>;
 
   constructor(
   	protected toastr: ToastrService,
@@ -32,7 +33,7 @@ export class NottesService
     protected http : HttpClient
   ) 
   {
-    
+    this.reloadEntitiesEmitter$ = new EventEmitter();
   }
 
   /**

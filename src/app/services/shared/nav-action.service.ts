@@ -11,6 +11,12 @@ export class NavActionService
     this.navActionEmitter$ = new EventEmitter();
   }
 
+  /**
+   * Set action value
+   *
+   * @param   String  action  Action value
+   * @return  [tyè]   void
+   */
   setAction(action : string) : void
   {
     this.action = action;

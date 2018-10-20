@@ -8,6 +8,8 @@ import { TranslateService } from "@ngx-translate/core";
 import { AuthService } from 'app/user/auth.service';
 import * as $ from 'jquery';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { NavActionService } from 'app/services/shared/nav-action.service';
+import { NottesService } from 'app/services/nottes/nottes.service';
 
 @Component({
   selector: 'notteForm',
@@ -25,7 +27,9 @@ export class NotteFormComponent implements OnInit
     private authHttp: AuthHttp,
     public router: Router,
     private translator: TranslateService,
-    private auth : AuthService
+    private auth : AuthService,
+    private navActionService : NavActionService,
+    private nottesService : NottesService
   ) {
       this.submitedForm = false;
       this.isSaving     = false;
@@ -208,8 +212,10 @@ export class NotteFormComponent implements OnInit
         });
 
         // redirect to detail view
-        this.router.navigateByUrl('notte/' + result.id);
+        this.navActionService.setAction('init');
 
+        // refresh list entities
+        this.nottesService.reloadEntitiesEmitter$.emit(result.id);
       },
       err => {
 
