@@ -1,4 +1,4 @@
-import { Component, ViewChild, AfterViewInit, OnInit } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, Input, OnInit } from '@angular/core';
 import { AppConfig } from 'app/app.config';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
@@ -7,60 +7,55 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CrudComponent, EncryptionPasswordComponent } from 'app/shared';
 import { TranslateService } from "@ngx-translate/core";
 import { AuthService } from 'app/user/auth.service';
+import { NottesService } from 'app/services/nottes/nottes.service';
 
 @Component({
   selector: 'notte-detail',
   templateUrl: './notteDetail.component.html',
   styleUrls: ['./notteDetail.component.scss']
 })
-export class NotteDetailComponent extends CrudComponent implements OnInit {
+export class NotteDetailComponent extends CrudComponent {
+
+  @Input() notte : any;
+  @Input() contentIsVisible : boolean = false;
 
   constructor(
     protected translator: TranslateService,
   	protected toastr: ToastrService,
   	protected authHttp: AuthHttp,
-    private route: ActivatedRoute,
     protected router: Router,
-    protected auth : AuthService
+    protected auth : AuthService,
+    protected nottesService: NottesService,
+    private   route: ActivatedRoute
   ) 
   {
-    super(translator, authHttp, toastr, router, auth);
+    super(translator, authHttp, toastr, router, auth, nottesService);
   }
   
   public  loading: boolean = false;
   private apiUrl: string = AppConfig.settings.api.api_url;
-  public  notte: JSON;
-  private id: number;
-  private contentIsVisible: boolean = false;
   private submitedForm: boolean = false;
   private encryptionPassword: string;
 
-  ngOnInit()
+  /**
+   * Get entered encryption password for the current notte
+   *
+   * @param   String  $event  Entered encryption password
+   * @return  [type]  void
+   */
+  receiveEncryptionPassword($event) 
   {
-    this.route.params.subscribe(params => 
-    {
-      this.id = +params["id"];
-    });
+    this.submitedForm = true;
 
-    this.loading = true;
-  	this.loadEntity();
-  }
+    // get password
+    this.encryptionPassword = $event;
 
-  loadEntity(encryptionPassword: string = "")
-  {
-    let entityEndpoint = this.apiUrl + "/notte/" + this.id + "?format=html";
-
-    // decrypt if password is provided
-    if(encryptionPassword.length) 
-    {
-      entityEndpoint += "&pwd=" + encodeURI( btoa(encryptionPassword) );
-    }
-
-    this.authHttp.get(entityEndpoint).subscribe(
+    // reload entity
+    this.nottesService.loadEntity(this.notte.id, this.encryptionPassword).subscribe(
 
       data => {
 
-        this.notte = data.json(); 
+        this.notte = data.json();
 
         if( ! data.json().is_encrypted || data.json().is_decrypted ) 
         {
@@ -77,7 +72,7 @@ export class NotteDetailComponent extends CrudComponent implements OnInit {
 
         if(err.status == 404 || err.status == 401)
         {
-          this.router.navigateByUrl('404');
+          // this.router.navigateByUrl('404');
         }
         else if(err.status == 500 && errorBody.error == "wrong_encryption_password")
         {
@@ -89,18 +84,6 @@ export class NotteDetailComponent extends CrudComponent implements OnInit {
         
         this.loading = false;
       }
-
     );
-  }
-
-  receiveEncryptionPassword($event) 
-  {
-    this.submitedForm = true;
-
-    // get password
-    this.encryptionPassword = $event;
-
-    // reload entity
-    this.loadEntity(this.encryptionPassword);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { TranslateService } from "@ngx-translate/core";
 import { AppConfig } from 'app/app.config';
 import { HttpClient } from '@angular/common/http';
@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthHttp } from 'angular2-jwt';
 import { Router } from '@angular/router';
 import { AuthService } from 'app/user/auth.service';
+import { NottesService } from 'app/services/nottes/nottes.service';
 
 @Component({
   selector: 'crud-component',
@@ -14,12 +15,15 @@ import { AuthService } from 'app/user/auth.service';
 
 export class CrudComponent
 {
+	@Output() public deleteItemEvent = new EventEmitter<boolean>();
+
 	constructor(
 		protected translator: TranslateService,
 		protected authHttp: AuthHttp,
 		protected toastr: ToastrService,
 		protected router: Router,
-    	protected auth : AuthService
+    	protected auth : AuthService,
+    	protected nottesService: NottesService
 	){ }
 
 	private entityName : string = "notte";
@@ -33,41 +37,42 @@ export class CrudComponent
   	{
   		this.translator.get('common.remove_item').subscribe( (translation: string) => {
 
-	  		if( confirm(translation) )
-	  		{
-	  			// delete request
-		  		this.authHttp.delete(
-			        this.entityApiUrl + "/" + item.id
-		      	)
-		      	.subscribe(
+	  		if( ! confirm(translation) ) return;
 
-			        data => {
+	  		// delete request
+	  		this.authHttp.delete(
+		        this.entityApiUrl + "/" + item.id
+	      	)
+	      	.subscribe(
 
-			          	// show success alert
-			          	this.translator.get('components.list.delete.success_mssg', { itemName: item[this.entityNameField] })
-			          	.subscribe( (translation: string) => {
-			            	this.toastr.success(translation, null, { enableHtml: true });
-			          	});
+		        data => {
 
-			          	// redirect to list view
-          				this.router.navigateByUrl(this.entityListUrl);
+		          	// show success alert
+		          	this.translator.get('components.list.delete.success_mssg', { itemName: item[this.entityNameField] })
+		          	.subscribe( (translation: string) => {
+		            	this.toastr.success(translation, null, { enableHtml: true });
+		          	});
 
-			        },
-			        err => {
+		          	// remove item from list
+		          	$("div.left-item-list").find("#item_" + item.id).remove();
 
-			        	this.auth.checkJwtHasExpiredInServerRequest(err);
-			        	this.translator.get('components.list.delete.error_mssg', { itemName: item[this.entityNameField] })
-			        	.subscribe( (translation: string) => {
-			            	this.toastr.error(translation, null, { enableHtml: true });
-			          	});
+		          	// Emits the deleteItem event
+	  				this.deleteItemEvent.emit(true);
+		        },
+		        err => {
 
-			          	this.loading = false;
+		        	this.auth.checkJwtHasExpiredInServerRequest(err);
+		        	this.translator.get('components.list.delete.error_mssg', { itemName: item[this.entityNameField] })
+		        	.subscribe( (translation: string) => {
+		            	this.toastr.error(translation, null, { enableHtml: true });
+		          	});
 
-			          	// TODO: create handle server errors method (toastr)
-			          	console.log(err);
-		        	}
-		      	);		
-	  		}
+		          	this.loading = false;
+
+		          	// TODO: create handle server errors method (toastr)
+		          	console.log(err);
+	        	}
+	      	);
         });
   	}
 }

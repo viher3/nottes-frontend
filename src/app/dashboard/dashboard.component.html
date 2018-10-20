@@ -18,7 +18,7 @@
 
 		<div class="col-3 left-item-list pr-0">
 			
-			<div (click)="loadEntityEvent(item.id)" class="notte-list-item" *ngFor="let item of listElements.items">
+			<div (click)="loadEntityEvent(item.id)" class="notte-list-item" *ngFor="let item of listElements.items" id="item_{{ item.id }}">
 				<h5>
 					<!-- doc -->
 					<i class="fa fa-file-text-o" *ngIf="item.type == 'doc'" ngbTooltip="{{ 'components.dashboard.types.doc' | translate }}"></i>
@@ -43,10 +43,9 @@
 
 		</div>
 
-		<div class="col-9 content-preview">
+		<div class="col-9 content-preview pr-0 pl-0">
 
-			<div id="welcome-dashboard" class="d-flex h-100 w-100">
-
+			<div *ngIf="!notte?.id" id="welcome-dashboard" class="d-flex h-100 w-100">
 				<div class="align-self-center w-100 text-center">
 					
 					<!-- loading -->
@@ -59,10 +58,13 @@
 					</div>
 
 				</div>
-
 			</div>
 
-			<div id="content-preview-wrapper h-100 w-100"></div>
+			<div *ngIf="notte?.id" id="content-preview-wrapper h-100 w-100">
+				
+				<notte-detail [notte]="notte" [contentIsVisible]="contentIsVisible" (deleteItemEvent)="reloadEntites($event)"></notte-detail>
+
+			</div>
 
 			<!--
 			<div class="row">

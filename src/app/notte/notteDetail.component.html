@@ -1,8 +1,6 @@
 <div class="card">
 
-	<spinner [show]="loading"></spinner>
-
-	<div class="card-body" *ngIf="!loading">
+	<div class="card-body">
 	    
 		<div class="row">
 
@@ -18,9 +16,6 @@
 				</a>
 				<a class="btn btn-sm btn-outline-primary pull-right marginLeftActionBtn" [routerLink]="['/notte/edit/' + notte.id ]">
 				    <i class="fa fa-edit"></i>&nbsp;&nbsp;{{ 'common.edit_btn' | translate }}
-				</a>
-				<a class="btn btn-sm btn-outline-dark pull-right" [routerLink]="['/dashboard']">
-				    <i class="fa fa-list"></i>&nbsp;&nbsp;{{ 'common.go_back_list' | translate }}
 				</a>
 			</div>
 
@@ -49,7 +44,7 @@
 	<div class="card-footer text-muted" *ngIf="!loading">
 	    <div class="row" [hidden]="!contentIsVisible">
 		    <div class="col-md-6">
-		    	<i class="fa fa-user"></i>&nbsp;&nbsp;{{ notte?.creator_user.username }}
+		    	<i class="fa fa-user"></i>&nbsp;&nbsp;{{ notte?.creator_user?.username }}
 		    </div>
 		    <div class="col-md-6 text-right">
 		    	{{ 'components.docs.detail.last_update' | translate }} {{ notte?.updated_at | date:'dd/MM/yyyy HH:mm:ss' }}

@@ -32,6 +32,7 @@ import { ROUTING } from 'app/app.routing';
 import * as moment from "moment";
 import * as $ from 'jquery';
 import { CommonEventsService } from 'app/services/shared/common-events.service';
+import { NottesService } from 'app/services/nottes/nottes.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -96,7 +97,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AuthService,
     JwtHelper,
     Title,
-    CommonEventsService
+    CommonEventsService,
+    NottesService
   ],
   bootstrap: [AppComponent]
 })

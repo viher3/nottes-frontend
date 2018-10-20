@@ -7,8 +7,8 @@ import { AuthHttp } from 'angular2-jwt';
 import { ListComponent, SpinnerComponent } from 'app/shared';
 import { TranslateService } from "@ngx-translate/core";
 import { CommonEventsService } from 'app/services/shared/common-events.service';
+import { NottesService } from 'app/services/nottes/nottes.service';
 import { AuthService } from 'app/user/auth.service';
-import 'rxjs/Rx' ;
 
 /**
  * @class         DashboardComponent
@@ -25,7 +25,10 @@ export class DashboardComponent extends ListComponent implements OnInit {
 
   private apiUrl : string = AppConfig.settings.api.api_url;
   private contentIsVisible: boolean = false;
-  public  notte: JSON;
+  private submitedForm: boolean = false;
+  private encryptionPassword: string;
+  public  notte: any;
+  public  id : number;
 
   constructor(
   	protected toastr: ToastrService,
@@ -33,7 +36,8 @@ export class DashboardComponent extends ListComponent implements OnInit {
     protected translator: TranslateService,
     private common: CommonEventsService,
     protected auth : AuthService,
-    protected http : HttpClient
+    protected http : HttpClient,
+    private nottesService: NottesService
   ) 
   {
     super(translator, authHttp, toastr, auth);
@@ -121,37 +125,24 @@ export class DashboardComponent extends ListComponent implements OnInit {
   /**
    * Handle the load entity click event
    *
-   * @param   Number  id          Entity Id
+   * @param   Number  id                        Entity Id
+   * @param   String  encryptionPassword        Encryption password for the notte
    */
-  loadEntityEvent(id)
+  loadEntityEvent(id : number, encryptionPassword: string = "")
   {
-    this.loadEntity(id);
-  }
-
-  /**
-   * Load and preview a selected entity.
-   *
-   * @param   Number  id          Entity Id
-   */
-  loadEntity(id : number, encryptionPassword: string = "")
-  {
+    // reset default values
+    this.contentIsVisible = false;
     this.loading = true;
-    
-    let entityEndpoint = this.apiUrl + "/notte/" + id + "?format=html";
+    this.notte = {};
 
-    // decrypt if password is provided
-    if(encryptionPassword.length) 
-    {
-      entityEndpoint += "&pwd=" + encodeURI( btoa(encryptionPassword) );
-    }
-
-    this.authHttp.get(entityEndpoint).subscribe(
+    // API request
+    this.nottesService.loadEntity(id).subscribe(
 
       data => {
 
-        this.notte = data.json(); 
+        this.notte = data.json();
 
-        if( ! data.json().is_encrypted || data.json().is_decrypted ) 
+        if( ! this.notte.is_encrypted || this.notte.is_decrypted ) 
         {
           this.contentIsVisible = true;
         }
@@ -166,7 +157,7 @@ export class DashboardComponent extends ListComponent implements OnInit {
 
         if(err.status == 404 || err.status == 401)
         {
-          // TODO: show 404 error
+          // this.router.navigateByUrl('404');
         }
         else if(err.status == 500 && errorBody.error == "wrong_encryption_password")
         {
@@ -182,4 +173,15 @@ export class DashboardComponent extends ListComponent implements OnInit {
     );
   }
 
+  /**
+   * Handle the reload entities event after removing an entity 
+   *   
+   * @param   Boolean   $event    Return the boolean result of an entity removing action
+   * @return  [type]  void
+   */
+  reloadEntites($event)
+  {
+    this.notte = {};
+    super.loadEntities();
+  }
 }
