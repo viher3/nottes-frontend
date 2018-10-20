@@ -1,55 +1,53 @@
-<div class="card">
+<div>
+    
+	<div class="row">
 
-	<div class="card-body">
-	    
-		<div class="row">
-
-			<div class="col-xs-12 col-sm-6 col-md-6">
-				<h5 class="card-title">
-					<span class="notte-name">{{ notte?.name }}</span>
-				</h5>
-			</div>
-
-			<div class="responsiveActionBtns col-xs-12 col-sm-6 col-md-6 text-right">
-				<a class="btn btn-sm btn-outline-danger pull-right marginLeftActionBtn" (click)="deleteEntity(notte)">
-				    <i class="fa fa-edit"></i>&nbsp;&nbsp;{{ 'common.delete_btn' | translate }}
-				</a>
-				<a class="btn btn-sm btn-outline-primary pull-right marginLeftActionBtn" [routerLink]="['/notte/edit/' + notte.id ]">
-				    <i class="fa fa-edit"></i>&nbsp;&nbsp;{{ 'common.edit_btn' | translate }}
-				</a>
-			</div>
-
+		<div class="col-xs-12 col-sm-6 col-md-6">
+			<h5 class="card-title">
+				<span class="notte-name">{{ notte?.name }}</span>
+			</h5>
 		</div>
 
-		<hr />
-		
-		<div class="notte-content">
-
-			<div class="row justify-content-md-center" *ngIf="notte?.is_encrypted && ! notte?.is_decrypted">
-
-				<encryption-password-form (encryptionPasswordEvent)="receiveEncryptionPassword($event)"></encryption-password-form>
-
-			</div>
-
-			<div [hidden]="!contentIsVisible" [innerHTML]="notte?.content"></div>
-
-		</div>
-
-		<div [hidden]="!contentIsVisible">
-			<small>{{ notte?.tags }}</small>
+		<div class="responsiveActionBtns col-xs-12 col-sm-6 col-md-6 text-right">
+			<a class="btn btn-sm btn-outline-danger pull-right marginLeftActionBtn" (click)="deleteEntity(notte)">
+			    <i class="fa fa-edit"></i>&nbsp;&nbsp;{{ 'common.delete_btn' | translate }}
+			</a>
+			<a class="btn btn-sm btn-outline-primary pull-right marginLeftActionBtn" [routerLink]="['/notte/edit/' + notte.id ]">
+			    <i class="fa fa-edit"></i>&nbsp;&nbsp;{{ 'common.edit_btn' | translate }}
+			</a>
 		</div>
 
 	</div>
 
-	<div class="card-footer text-muted" *ngIf="!loading">
-	    <div class="row" [hidden]="!contentIsVisible">
-		    <div class="col-md-6">
-		    	<i class="fa fa-user"></i>&nbsp;&nbsp;{{ notte?.creator_user?.username }}
-		    </div>
-		    <div class="col-md-6 text-right">
-		    	{{ 'components.docs.detail.last_update' | translate }} {{ notte?.updated_at | date:'dd/MM/yyyy HH:mm:ss' }}
-		    </div>
+	<hr />
+	
+	<div class="notte-content">
+
+		<div class="row justify-content-md-center" *ngIf="notte?.is_encrypted && ! notte?.is_decrypted">
+
+			<encryption-password-form (encryptionPasswordEvent)="receiveEncryptionPassword($event)"></encryption-password-form>
+
+		</div>
+
+		<div [hidden]="!contentIsVisible" [innerHTML]="notte?.content"></div>
+
+	</div>
+
+	<div [hidden]="!contentIsVisible">
+		<small>{{ notte?.tags }}</small>
+	</div>
+
+</div>
+
+<hr />
+
+<div class="text-muted" *ngIf="!loading">
+    <div class="row" [hidden]="!contentIsVisible">
+	    <div class="col-md-6">
+	    	<i class="fa fa-user"></i>&nbsp;&nbsp;{{ notte?.creator_user?.username }}
 	    </div>
-	</div>
-
+	    <div class="col-md-6 text-right">
+	    	{{ 'components.docs.detail.last_update' | translate }} {{ notte?.updated_at | date:'dd/MM/yyyy HH:mm:ss' }}
+	    </div>
+    </div>
 </div>

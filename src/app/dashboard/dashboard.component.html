@@ -61,7 +61,7 @@
 			</div>
 
 			<!-- preview notte content -->
-			<div *ngIf="action == 'showEntity'" id="content-preview-wrapper h-100 w-100">
+			<div *ngIf="action == 'showEntity'" id="content-preview-wrapper h-100 w-100" class="white-right">
 				
 				<notte-detail [notte]="notte" [contentIsVisible]="contentIsVisible" (deleteItemEvent)="reloadEntites($event)"></notte-detail>
 
