@@ -15,7 +15,8 @@ div.dashboardActionBtns{
 div.left-item-list{
 	border-right: 1px solid #CECECE;
 	height: 94vh;
-	overflow-y: visible;
+	max-height: 94vh;
+	overflow-y: scroll;
 }
 div.notte-list-item{
 	padding: 20px;
