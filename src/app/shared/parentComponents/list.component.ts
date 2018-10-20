@@ -30,7 +30,7 @@ export class ListComponent
   	public  selectedAll: boolean = false;
   	public  isSearch : boolean = false;
   	public  searchTerm : string = "";
-  	public  listElements: listElements;
+  	public  listElements: listElements = {};
   	public 	paginationTransParams: paginationTransParams;
   	public 	currentPaginationPosition: number = 0;
   	private entityApiUrl: string = AppConfig.settings.api.api_url + "/" + this.entityName;
