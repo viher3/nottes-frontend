@@ -53,6 +53,7 @@
             "bad_credentials" : "Bad credentials"
         },
     	"dashboard": {
+            "select_to_preview" : "Selecciona un elemento para visualizarlo",
             "panel_title" : "Escritorio",
             "latest_docs" : "Últimos documentos",
     		"name" : "Nombre",

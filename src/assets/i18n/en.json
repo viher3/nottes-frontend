@@ -53,6 +53,7 @@
             "bad_credentials" : "Credenciales incorrectas"
         },
     	"dashboard": {
+            "select_to_preview" : "Select a item to preview",
     		"panel_title" : "Dashboard",
             "latest_docs" : "Latest documents",
     		"name" : "Name",
