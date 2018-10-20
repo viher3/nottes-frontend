@@ -15,4 +15,29 @@ div.dashboardActionBtns{
 div.left-item-list{
 	border-right: 1px solid #CECECE;
 	height: 94vh;
+	overflow-y: visible;
+}
+div.notte-list-item{
+	padding: 20px;
+	border-bottom: 1px solid #CECECE;
+}
+div.notte-list-item:hover{
+	background-color: #e5e5e5;
+	cursor: pointer;
+}
+div.notte-list-item .tags span{
+	font-size: 12px;	
+}
+div.notte-list-item .updated_at{
+	font-size: 12px;
+}
+div.notte-list-item .encrypted{
+	font-size: 12px;
+}
+div#welcome-dashboard{
+	font-size: 32px;
+	opacity: 0.5;
+}
+div#welcome-dashboard div.align-self-center i{
+	font-size: 74px;
 }
