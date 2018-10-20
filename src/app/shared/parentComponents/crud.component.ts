@@ -33,6 +33,12 @@ export class CrudComponent
   	private entityApiUrl: string = AppConfig.settings.api.api_url + "/" + this.entityName;
   	protected loading: boolean = false;
 
+  	/**
+  	 * Delete an entity
+  	 *
+  	 * @param 	Object 	item 	Entity object
+  	 * @return 	[type]  void
+  	 */
   	deleteEntity(item)
   	{
   		this.translator.get('common.remove_item').subscribe( (translation: string) => {

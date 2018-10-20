@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AppConfig } from 'app/app.config';
 import { RequestOptions, ResponseContentType } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
@@ -9,6 +9,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { CommonEventsService } from 'app/services/shared/common-events.service';
 import { NottesService } from 'app/services/nottes/nottes.service';
 import { AuthService } from 'app/user/auth.service';
+import { NavActionService } from 'app/services/shared/nav-action.service';
 
 /**
  * @class         DashboardComponent
@@ -29,6 +30,7 @@ export class DashboardComponent extends ListComponent implements OnInit {
   private encryptionPassword: string;
   public  notte: any;
   public  id : number;
+  public  action : string = "init";
 
   constructor(
   	protected toastr: ToastrService,
@@ -37,7 +39,8 @@ export class DashboardComponent extends ListComponent implements OnInit {
     private common: CommonEventsService,
     protected auth : AuthService,
     protected http : HttpClient,
-    private nottesService: NottesService
+    private nottesService: NottesService,
+    private navActionService: NavActionService
   ) 
   {
     super(translator, authHttp, toastr, auth);
@@ -49,6 +52,11 @@ export class DashboardComponent extends ListComponent implements OnInit {
 
     this.loading = true;
   	super.loadEntities();
+
+    // subscribe to navActionEmitter event
+    this.navActionService.navActionEmitter$.subscribe(newAction => {
+      this.action = newAction;
+    });
   }
 
   /**
@@ -131,6 +139,7 @@ export class DashboardComponent extends ListComponent implements OnInit {
   loadEntityEvent(id : number, encryptionPassword: string = "")
   {
     // reset default values
+    this.action = "showEntity";
     this.contentIsVisible = false;
     this.loading = true;
     this.notte = {};
