@@ -24,6 +24,8 @@ import 'rxjs/Rx' ;
 export class DashboardComponent extends ListComponent implements OnInit {
 
   private apiUrl : string = AppConfig.settings.api.api_url;
+  private contentIsVisible: boolean = false;
+  public  notte: JSON;
 
   constructor(
   	protected toastr: ToastrService,
@@ -42,7 +44,7 @@ export class DashboardComponent extends ListComponent implements OnInit {
     $("body").removeClass("login-body");
 
     this.loading = true;
-  	this.loadEntities();
+  	super.loadEntities();
   }
 
   /**
@@ -73,7 +75,7 @@ export class DashboardComponent extends ListComponent implements OnInit {
    * @param   Number  id          Document Id
    * @param   String  filename    Document filename
    * @param   String  mimetype    Document file MimeType
-  * @return   [type]  void
+   * @return  [type]  void
    */
   downloadFile(id : number, filename : string, mimetype: string) : void
   {
@@ -114,6 +116,70 @@ export class DashboardComponent extends ListComponent implements OnInit {
       }
 
     ); 
+  }
+
+  /**
+   * Handle the load entity click event
+   *
+   * @param   Number  id          Entity Id
+   */
+  loadEntityEvent(id)
+  {
+    this.loadEntity(id);
+  }
+
+  /**
+   * Load and preview a selected entity.
+   *
+   * @param   Number  id          Entity Id
+   */
+  loadEntity(id : number, encryptionPassword: string = "")
+  {
+    this.loading = true;
+    
+    let entityEndpoint = this.apiUrl + "/notte/" + id + "?format=html";
+
+    // decrypt if password is provided
+    if(encryptionPassword.length) 
+    {
+      entityEndpoint += "&pwd=" + encodeURI( btoa(encryptionPassword) );
+    }
+
+    this.authHttp.get(entityEndpoint).subscribe(
+
+      data => {
+
+        this.notte = data.json(); 
+
+        if( ! data.json().is_encrypted || data.json().is_decrypted ) 
+        {
+          this.contentIsVisible = true;
+        }
+
+        this.loading = false;
+      },
+      err => {
+
+        this.auth.checkJwtHasExpiredInServerRequest(err);
+
+        let errorBody = JSON.parse(err._body);
+
+        if(err.status == 404 || err.status == 401)
+        {
+          // TODO: show 404 error
+        }
+        else if(err.status == 500 && errorBody.error == "wrong_encryption_password")
+        {
+          // wrong encryption password
+          this.translator.get('components.docs.detail.wrong_encryption_password').subscribe( (translation: string) => {
+            this.toastr.error(translation);
+          });
+        }
+        
+        this.loading = false;
+      }
+
+    );
   }
 
 }

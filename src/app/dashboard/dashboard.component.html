@@ -14,13 +14,11 @@
 
 <div class="col-12 padding0">
 
-	<spinner [show]="loading"></spinner>
-
 	<div class="row">
 
 		<div class="col-3 left-item-list pr-0">
 			
-			<div class="notte-list-item" *ngFor="let item of listElements.items">
+			<div (click)="loadEntityEvent(item.id)" class="notte-list-item" *ngFor="let item of listElements.items">
 				<h5>
 					<!-- doc -->
 					<i class="fa fa-file-text-o" *ngIf="item.type == 'doc'" ngbTooltip="{{ 'components.dashboard.types.doc' | translate }}"></i>
@@ -28,12 +26,14 @@
 					<i class="fa fa-link" *ngIf="item.type == 'link'" ngbTooltip="{{ 'components.dashboard.types.link' | translate }}"></i>
 					<!-- file -->
 					<i class="fa fa-download" *ngIf="item.type == 'file'" ngbTooltip="{{ 'components.dashboard.types.file' | translate }}"></i>
-					&nbsp;{{ item.name }}
-				</h5>
-				<div *ngIf="item.is_encrypted">
-					<span class="badge badge-warning">
+					&nbsp;
+					{{ item.name }}
+					&nbsp;
+					<span class="badge badge-warning encrypted-label" *ngIf="item.is_encrypted">
 						<i class="fa fa-shield"></i>&nbsp;&nbsp;{{ 'components.dashboard.encrypted' | translate }}
 					</span>
+				</h5>
+				<div>
 				</div>
 				<div class="tags">
 					<span class="badge badge-info">{{ item.tags }}</span>
@@ -43,15 +43,26 @@
 
 		</div>
 
-		<div class="col-9 content-preview" *ngIf="!loading">
+		<div class="col-9 content-preview">
 
-			<!-- preview message -->
 			<div id="welcome-dashboard" class="d-flex h-100 w-100">
+
 				<div class="align-self-center w-100 text-center">
-					<i class="fa fa-eye"></i>
-					<p>Select a item to preview</p>
+					
+					<!-- loading -->
+					<spinner [show]="loading"></spinner>
+
+					<!-- preview message -->
+					<div *ngIf="!loading">
+						<i class="fa fa-eye"></i>
+						<p>Select a item to preview</p>
+					</div>
+
 				</div>
+
 			</div>
+
+			<div id="content-preview-wrapper h-100 w-100"></div>
 
 			<!--
 			<div class="row">
