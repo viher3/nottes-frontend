@@ -57,3 +57,18 @@ div.content-preview{
 	max-height: 93vh;
 	overflow-y: scroll;
 }
+
+div.left-item-list div.item-content{
+	width:90%;
+	float:left;
+}
+div.left-item-list div.ellipsis{
+	width:10%;
+	float:left;
+	text-align:right;
+	margin-top:-8px;
+	opacity:0.3;
+}
+div.left-item-list div.ellipsis:hover{
+	opacity:1;
+}
