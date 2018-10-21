@@ -82,6 +82,13 @@
 
 			</div>
 
+			<!-- edit notte -->
+			<div *ngIf="action == 'editNotte'" class="white-right h-100">
+
+				<notteForm title="components.docs.edit.title" saveBtn="components.docs.edit.save" action="edit" id="{{ notte.id }}"></notteForm>
+
+			</div>
+
 			<!--
 			<div class="row">
 

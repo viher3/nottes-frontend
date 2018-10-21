@@ -88,4 +88,13 @@ export class NotteDetailComponent extends CrudComponent {
       }
     );
   }
+
+  /**
+   * Load the edit view
+   */
+  editEntity() : void
+  {
+    // redirect to detail view
+    this.navActionService.setAction('editNotte');
+  }
 }
