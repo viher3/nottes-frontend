@@ -7,6 +7,7 @@ import { AuthHttp } from 'angular2-jwt';
 import { Router } from '@angular/router';
 import { AuthService } from 'app/user/auth.service';
 import { NottesService } from 'app/services/nottes/nottes.service';
+import { NavActionService } from 'app/services/shared/nav-action.service';
 
 @Component({
   selector: 'crud-component',
@@ -23,7 +24,8 @@ export class CrudComponent
 		protected toastr: ToastrService,
 		protected router: Router,
     	protected auth : AuthService,
-    	protected nottesService: NottesService
+    	protected nottesService: NottesService,
+    	protected navActionService : NavActionService
 	){ }
 
 	private entityName : string = "notte";
@@ -64,6 +66,9 @@ export class CrudComponent
 
 		          	// Emits the deleteItem event
 	  				this.deleteItemEvent.emit(true);
+
+	  				// redirect to detail view
+        			this.navActionService.setAction('init');
 		        },
 		        err => {
 

@@ -8,6 +8,7 @@ import { CrudComponent, EncryptionPasswordComponent } from 'app/shared';
 import { TranslateService } from "@ngx-translate/core";
 import { AuthService } from 'app/user/auth.service';
 import { NottesService } from 'app/services/nottes/nottes.service';
+import { NavActionService } from 'app/services/shared/nav-action.service';
 
 @Component({
   selector: 'notte-detail',
@@ -26,10 +27,11 @@ export class NotteDetailComponent extends CrudComponent {
     protected router: Router,
     protected auth : AuthService,
     protected nottesService: NottesService,
-    private   route: ActivatedRoute
+    private   route: ActivatedRoute,
+    protected navActionService : NavActionService
   ) 
   {
-    super(translator, authHttp, toastr, router, auth, nottesService);
+    super(translator, authHttp, toastr, router, auth, nottesService, navActionService);
   }
   
   public  loading: boolean = false;
