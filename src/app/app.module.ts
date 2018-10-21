@@ -23,7 +23,7 @@ import { FileUploadComponent } from 'app/file/fileUpload.component';
 import { AuthService } from 'app/user/auth.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ConfigurationComponent, GeneralConfigurationComponent, SecurityConfigurationComponent } from './configuration';
-import { SidebarComponent, PageNotFoundComponent, ListComponent, CrudComponent, SpinnerComponent, EncryptionPasswordComponent } from './shared';
+import { SidebarComponent, PageNotFoundComponent, ListComponent, SpinnerComponent, EncryptionPasswordComponent } from './shared';
 import { HomeComponent } from './home/home.component'; 
 import { ToastrModule } from 'ngx-toastr';
 import {TranslateModule, TranslateLoader} from "@ngx-translate/core";
@@ -50,7 +50,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     SidebarComponent,
     PageNotFoundComponent,
     ListComponent,
-    CrudComponent,
     EncryptionPasswordComponent,
     SpinnerComponent,
     HomeComponent,
