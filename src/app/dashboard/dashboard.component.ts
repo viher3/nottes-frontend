@@ -199,4 +199,9 @@ export class DashboardComponent extends ListComponent implements OnInit {
     this.notte = {};
     super.loadEntities();
   }
+
+  setContentIsVisibleChange($event)
+  {
+    this.contentIsVisible = $event;
+  }
 }

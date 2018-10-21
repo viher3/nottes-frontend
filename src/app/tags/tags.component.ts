@@ -42,5 +42,10 @@ export class TagsComponent {
 		{
 			this.tags.push(this.value);
 		}
+		
+		/*
+		console.log(this.value);
+		console.log(this.tags);
+		*/
 	}
 }

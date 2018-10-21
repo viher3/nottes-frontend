@@ -43,7 +43,6 @@
 
 				<div class="tags">
 					<tags value="{{ item.tags }}"></tags>
-					
 				</div>
 
 				<div *ngIf="item.updatedAt" class="updated_at">{{ 'components.dashboard.updated_at' | translate }} {{ item.updatedAt | date:'dd/MM/yyyy HH:mm:ss' }}</div>
@@ -72,7 +71,7 @@
 			<!-- preview notte content -->
 			<div *ngIf="action == 'showEntity'" id="content-preview-wrapper w-100" class="white-right">
 				
-				<notte-detail [notte]="notte" [contentIsVisible]="contentIsVisible" (deleteItemEvent)="reloadEntites($event)"></notte-detail>
+				<notte-detail [notte]="notte" [contentIsVisible]="contentIsVisible" (contentIsVisibleChange)="setContentIsVisibleChange($event)" (deleteItemEvent)="reloadEntites($event)"></notte-detail>
 
 			</div>
 

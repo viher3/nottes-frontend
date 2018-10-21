@@ -1,4 +1,4 @@
-import { Component, ViewChild, AfterViewInit, Input, OnInit } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { AppConfig } from 'app/app.config';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
@@ -23,8 +23,9 @@ import { NavActionService } from 'app/services/shared/nav-action.service';
 })
 export class NotteDetailComponent extends CrudComponent {
 
-  @Input() notte : any;
-  @Input() contentIsVisible : boolean = false;
+  @Input()  notte : any;
+  @Input()  contentIsVisible : boolean = false;
+  @Output() contentIsVisibleChange = new EventEmitter<boolean>();
 
   constructor(
     protected translator: TranslateService,
@@ -71,6 +72,9 @@ export class NotteDetailComponent extends CrudComponent {
         }
 
         this.loading = false;
+
+        // emit 'contentIsVisibleChange' event
+        this.contentIsVisibleChange.emit(true);
       },
       err => {
 
