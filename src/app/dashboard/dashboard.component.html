@@ -46,14 +46,14 @@
 				</div>
 
 				<div *ngIf="item.updatedAt" class="updated_at">{{ 'components.dashboard.updated_at' | translate }} {{ item.updatedAt | date:'dd/MM/yyyy HH:mm:ss' }}</div>
-				
+
 			</div>
 
 		</div>
 
 		<div class="col-9 content-preview pr-0 pl-0">
 
-			<div *ngIf="action == 'init' || loading" id="welcome-dashboard" class="d-flex h-100 w-100">
+			<div *ngIf="action == 'init' || loading" id="welcome-dashboard" class="d-flex h-100 w-100 white-right">
 				<div class="align-self-center w-100 text-center">
 					
 					<!-- loading -->

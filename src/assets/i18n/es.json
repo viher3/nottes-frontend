@@ -2,7 +2,10 @@
     "sidebar": {
     	"home": "Inicio",
         "config": "Configuración",
-    	"logout": "Cerrar sesión"
+    	"logout": "Cerrar sesión",
+        "content" : "Contenido",
+        "categories" : "Categorias",
+        "users" : "Usuarios"
     },
     "title" : {
         "dashboard" : "Escritorio",

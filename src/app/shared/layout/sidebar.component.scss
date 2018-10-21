@@ -88,12 +88,137 @@ div.navigation-content div.nav-content-item span{
     margin-left: 8px;
 }
 
-li.nav-item-font-size span{
+li#text_logo span{
     font-size: 22px;
     color: #FFF;
     cursor: pointer;
+    display: inline-block;
+    padding-top: 8px;
 }
 
 input#search_input{
     width: 600px;
+}
+
+/* megamenu */
+.navbar-light {
+  color: #fff;
+  background-color: #ccc6c6;
+  border-color: #aca1a2;
+}
+
+.navbar-light .navbar-nav > li > a {
+  color: #fff;
+}
+
+.navbar-light .navbar-nav > .dropdown > a .caret {
+  border-top-color: #fff;
+  border-bottom-color: #fff;
+}
+
+.navbar-light .navbar-brand {
+  color: #fff;
+}
+
+.menu-large {
+  position: static !important;
+}
+
+.megamenu {
+  padding: 10px 25px;
+  width: 100%;
+  margin-top: 0;
+  background-color: #343a40;
+  border-top: 0;
+  border-right: 0;
+  border-radius: 0;
+}
+
+.megamenu > div > li > ul {
+  padding: 0;
+  margin: 0;
+}
+
+.megamenu > div > li > ul > li {
+  list-style: none;
+}
+
+.megamenu .card {
+    outline: none;
+}
+
+.megamenu .card:hover,
+.megamenu .card:focus {
+    outline: 1px solid #000;
+}
+
+.megamenu > div > li > ul > li.link {
+  display: block;
+  padding: 3px 20px 15px 24px;
+  clear: both;
+  font-weight: normal;
+  line-height: 1.428571429;
+  color: #333333;
+  color: #FFF;
+  white-space: normal;
+}
+
+.megamenu > div > li > ul > li.link i{
+    margin-right: 7px;
+}
+
+.megamenu > div > li > ul > li.link:hover span,
+.megamenu > div > li > ul > li.link:focus span{
+  text-decoration: underline;
+  color: #FFF;
+  cursor: pointer;
+}
+
+.megamenu.disabled > a,
+.megamenu.disabled > a:hover,
+.megamenu.disabled > a:focus {
+  color: #999999;
+}
+
+.megamenu.disabled > a:hover,
+.megamenu.disabled > a:focus {
+  text-decoration: none;
+  background-color: transparent;
+  background-image: none;
+  cursor: not-allowed;
+}
+
+.megamenu.dropdown-header {
+  color: #FFF;
+  font-weight: bold;
+  font-size: 18px;
+  padding-left: 4px;
+  padding-bottom: 16px;
+}
+
+ul.megamenu div.row li.dropdown-item:hover{
+    background-color: transparent !important;
+}
+
+@media (max-width: 768px) {
+  .megamenu {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .megamenu > li {
+    margin-bottom: 30px;
+  }
+  .megamenu > li:last-child {
+    margin-bottom: 0;
+  }
+  .megamenu.dropdown-header {
+    padding: 3px 15px !important;
+  }
+  .navbar-nav .open .dropdown-menu .dropdown-header {
+    color: #fff;
+  }
+}
+
+div#navbarSupportedContent ul.navbar-nav li.dropdown a.dropdown-toggle::after{
+    display:none;
 }

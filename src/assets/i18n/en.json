@@ -2,7 +2,10 @@
     "sidebar": {
         "home": "Home",
     	"config": "Configuration",
-    	"logout": "Logout"
+    	"logout": "Logout",
+        "content" : "Content",
+        "categories" : "Categories",
+        "users" : "Users"
     },
     "title" : {
         "dashboard" : "Dashboard",

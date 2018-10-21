@@ -8,11 +8,48 @@
     
     <ul class="navbar-nav mr-auto">
         
-        <li class="nav-item ml-3 toggle-menu" (click)="toggleSidebar()">
-            <i class="fa fa-bars fa-2x"></i>
+        <!--<li class="nav-item ml-3 toggle-menu" (click)="toggleSidebar()">-->
+
+        <li class="dropdown menu-large nav-item"> 
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+                <i class="fa fa-bars fa-2x"></i>
+            </a>
+            <ul class="dropdown-menu megamenu">
+                <div class="row">
+                    <li class="col-md-3 dropdown-item">
+                        <ul>
+                            <li class="dropdown-header megamenu">{{ 'sidebar.content' | translate }}</li>
+                            <li (click)="setAction('createNotte')" class="link">
+                                <i class="fa fa-file-text-o"></i>
+                                <span>{{ 'components.dashboard.create_doc_btn' | translate }}</span>
+                            </li>
+                            <li (click)="setAction('createLink')" class="link">
+                                <i class="fa fa-link"></i>
+                                <span>{{ 'components.dashboard.create_link_btn' | translate }}</span>
+                            </li>
+                            <li (click)="setAction('uploadFile')" class="link">
+                                <i class="fa fa-upload"></i>
+                                <span>{{ 'components.dashboard.create_link_btn' | translate }}</span>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="col-md-3 dropdown-item">
+                        <ul>
+                            <li class="dropdown-header megamenu">{{ 'sidebar.categories' | translate }}</li>
+                        </ul>
+                    </li>
+                    <li class="col-md-3 dropdown-item">
+                        <ul>
+                            <li class="dropdown-header megamenu">{{ 'sidebar.users' | translate }}</li>
+                        </ul>
+                    </li>
+                </div>
+            </ul>
         </li>
 
-        <li class="nav-item nav-item-font-size" (click)="setAction('init', false)">
+        <!--</li>-->
+
+        <li class="nav-item" id="text_logo" (click)="setAction('init', false)">
             <span>Nottes</span>
         </li>
 
@@ -76,7 +113,7 @@
   </div>
 
 </nav>
-
+<!--
 <div class="navigation-content" *ngIf="isSidebarToggled">
     
     <div class="nav-content-item" (click)="setAction('createNotte')">
@@ -95,3 +132,4 @@
     </div>
 
 </div>
+-->
