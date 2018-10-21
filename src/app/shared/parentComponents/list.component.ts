@@ -137,7 +137,8 @@ export class ListComponent
 
 		if(this.isSearch)
 		{
-			this.searchEntities(nextPage, true);
+			// TODO ..
+			// this.searchEntities(nextPage, true);
 		}
 		else
 		{
@@ -164,81 +165,6 @@ export class ListComponent
 			"current" : this.currentPaginationPosition,
 			"total" : this.listElements.total_count
 		}
-	}
-
-	searchEntities(page: number = 1, append: boolean = false) : void
-	{
-	    if( ! this.searchTerm.length ) return;
-
-	    this.isSearch 	= true;
-
-	    if( ! append )
-	    {
-	      this.loading = true;
-	    }
-	    else
-	    {
-	      this.loadingMore = true;
-	    }
-
-	    let currItems = [];
-
-	    if( append && typeof this.listElements !== "undefined" )
-	    {
-	      currItems = this.listElements.items;
-	    }
-
-	    // TODO: sanitize searchTerm
-	    let apiUrl : string = AppConfig.settings.api.api_url;
-	    let entityEndpoint : string = apiUrl +  "/search/" + this.searchTerm + "?p=" + page;
-
-	    this.authHttp.get(entityEndpoint).subscribe(
-
-	      data => {
-
-	      	this.listElements = data.json();
-
-	        if(append)
-	        {
-	          let newItems = this.listElements.items;
-
-	          this.listElements.items = [];
-
-	          for(let item of currItems)  this.listElements.items.push(item);
-	          for(let item of newItems)   this.listElements.items.push(item);
-	        }
-	        
-	        // set translation params
-	        this.setPaginationTranslations();
-	        this.setSearchTranslations();
-
-	        this.loading = false;
-	        this.loadingMore = false;
-
-	      },
-	      err => {
-
-	      	this.auth.checkJwtHasExpiredInServerRequest(err);
-
-	        let errorBody = JSON.parse(err._body);
-
-	        if(err.status == 500)
-	        {
-	          console.log(err);
-	        }
-	        
-	        this.loading = false;
-	        this.loadingMore = false;
-	      }
-
-	    );
-	}
-
-	setSearchTranslations() : void
-	{
-	    this.searchResultTransParams = {
-	      value : this.searchTerm
-	    }
 	}
 
 	private deleteItemRequest(item, nameField, reload: boolean = false) : void

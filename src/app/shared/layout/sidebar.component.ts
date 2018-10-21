@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from "@ngx-translate/core";
 import { NavActionService } from 'app/services/shared/nav-action.service';
+import { SearchService } from 'app/services/search/search.service';
 
 /**
  * @class         SidebarComponent
@@ -24,7 +25,8 @@ export class SidebarComponent
 		private auth : AuthService, 
 		private toastr : ToastrService,
 		private translator : TranslateService,
-		private navActionService : NavActionService
+		private navActionService : NavActionService,
+		private searchService : SearchService
 	){
 		let user = auth.getUser();
 		this.username = user.nickname;
@@ -33,6 +35,7 @@ export class SidebarComponent
 	public action : string = "init";
 	public username : string;
 	public isSidebarToggled : boolean = false;
+	public searchTerm : string = "";
 
 	public menu : Array <any> = [
 
@@ -78,5 +81,36 @@ export class SidebarComponent
 		this.navActionService.setAction(action);
 
 	  	if(toggleSidebar) this.toggleSidebar();
+	}
+
+	/**
+	 * Load home
+	 */
+	loadHome() : void
+	{
+		this.setAction('init', false);
+		// TODO: reload entities
+	}
+
+	/**
+	 * Trigger the search event when the Enter key is pressed inside the search form.
+	 *
+	 * @param   Event   any   Key event
+	 * @return  [type]  void
+	 */
+	searchOnKey(event: any) : void
+	{
+		if(event.key == "Enter") this.search();
+	}
+
+	/**
+	 * Get all entities matching with the entered search query.
+	 *
+	 * @param   Event   any   Key event
+	 * @return  [type]  void
+	 */
+	search() : void
+	{
+		this.searchService.search(this.searchTerm);
 	}
 }

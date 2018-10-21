@@ -33,6 +33,7 @@
                             </li>
                         </ul>
                     </li>
+                    <!--
                     <li class="col-md-3 dropdown-item">
                         <ul>
                             <li class="dropdown-header megamenu">{{ 'sidebar.categories' | translate }}</li>
@@ -43,13 +44,14 @@
                             <li class="dropdown-header megamenu">{{ 'sidebar.users' | translate }}</li>
                         </ul>
                     </li>
+                    -->
                 </div>
             </ul>
         </li>
 
         <!--</li>-->
 
-        <li class="nav-item" id="text_logo" (click)="setAction('init', false)">
+        <li class="nav-item" id="text_logo" (click)="loadHome()">
             <span>Nottes</span>
         </li>
 
@@ -66,18 +68,16 @@
                 <li class="nav-item">
                     <div class="justify-content-md-center">
                         
-                        <form class="form-inline my-2 my-lg-0 my-lg-0">
-
+                        <div class="form-inline my-2 my-lg-0 my-lg-0">
                             <div class="input-group">
-                                <input class="form-control" id="search_input" type="text" placeholder="{{ 'common.search' | translate }}" />
+                                <input class="form-control" [(ngModel)]="searchTerm" (keyup)="searchOnKey($event)" id="search_input" type="text" placeholder="{{ 'common.search' | translate }}" />
                                 <div class="input-group-append">
                                   <button class="btn btn-info my-2 my-sm-0" type="submit">
                                         <i class="fa fa-search"></i>
                                     </button>
                                 </div>
                             </div>
-                        
-                        </form>
+                        </div>
 
                     </div>
                 </li>

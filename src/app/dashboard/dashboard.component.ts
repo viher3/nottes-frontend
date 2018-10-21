@@ -10,6 +10,7 @@ import { CommonEventsService } from 'app/services/shared/common-events.service';
 import { NottesService } from 'app/services/nottes/nottes.service';
 import { AuthService } from 'app/user/auth.service';
 import { NavActionService } from 'app/services/shared/nav-action.service';
+import { SearchService } from 'app/services/search/search.service';
 
 /**
  * @class         DashboardComponent
@@ -40,7 +41,8 @@ export class DashboardComponent extends ListComponent implements OnInit {
     protected auth : AuthService,
     protected http : HttpClient,
     private nottesService: NottesService,
-    private navActionService: NavActionService
+    private navActionService: NavActionService,
+    private searchService : SearchService
   ) 
   {
     super(translator, authHttp, toastr, auth);
@@ -69,28 +71,11 @@ export class DashboardComponent extends ListComponent implements OnInit {
       }
 
     });
-  }
 
-  /**
-   * Trigger the search event when the Enter key is pressed inside the search form.
-   *
-   * @param   Event   any   Key event
-   * @return  [type]  void
-   */
-  searchOnKey(event: any) : void
-  {
-    if(event.key == "Enter") this.search();
-  }
-
-  /**
-   * Get all entities matching with the entered search query.
-   *
-   * @param   Event   any   Key event
-   * @return  [type]  void
-   */
-  search() : void
-  {
-    super.searchEntities(1, false);
+    // subscribe to 'getSearchResultsEvent' event
+    this.searchService.getSearchResultsEvent.subscribe(listElements => {
+      this.listElements = listElements;
+    });
   }
 
   /**

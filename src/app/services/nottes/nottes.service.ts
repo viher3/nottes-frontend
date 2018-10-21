@@ -117,4 +117,12 @@ export class NottesService
       );
     });
   }
+
+  /**
+   * Reload all entities
+   */
+  reloadEntities() : void
+  {
+    // TODO ...
+  }
 }
