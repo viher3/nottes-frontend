@@ -60,8 +60,14 @@ export class DashboardComponent extends ListComponent implements OnInit {
 
     // subscribe to 'reloadEntitiesEmitter' event
     this.nottesService.reloadEntitiesEmitter$.subscribe(notteId => {
+      
       this.reloadEntites("");
-      this.loadEntityEvent(notteId);
+
+      if(notteId) 
+      {
+        this.loadEntity(notteId);
+      }
+
     });
   }
 
@@ -139,10 +145,28 @@ export class DashboardComponent extends ListComponent implements OnInit {
   /**
    * Handle the load entity click event
    *
+   * @param   Object    item    Item object
+   * @return  [type]    void
+   */
+  loadEntityEvent(item : any) : void
+  {
+    if(item.type == "link")
+    {
+      window.open(item.content, '_blank');
+    }
+    else if(item.type == "doc")
+    {
+      this.loadEntity(item.id);
+    }
+  }
+
+  /**
+   * Load a notte entity
+   *
    * @param   Number  id                        Entity Id
    * @param   String  encryptionPassword        Encryption password for the notte
    */
-  loadEntityEvent(id : number, encryptionPassword: string = "")
+  loadEntity(id : number, encryptionPassword: string = "")
   {
     // reset default values
     this.action = "showEntity";
@@ -194,14 +218,31 @@ export class DashboardComponent extends ListComponent implements OnInit {
    * @param   Boolean   $event    Return the boolean result of an entity removing action
    * @return  [type]  void
    */
-  reloadEntites($event)
+  reloadEntites($event) : void
   {
     this.notte = {};
     super.loadEntities();
   }
 
-  setContentIsVisibleChange($event)
+  /**
+   * Set contentIsVisible value when change event is fired from child component 
+   *
+   * @param   Boolean   $event    true|false
+   * @return  [type]    void
+   */
+  setContentIsVisibleChange($event) : void
   {
     this.contentIsVisible = $event;
+  }
+
+  /**
+   * Remove an entity
+   *
+   * @param   Object      item    Entity object
+   * @return  [type]      void
+   */ 
+  removeEntity(item) : void
+  {
+    this.nottesService.removeEntity(item);
   }
 }

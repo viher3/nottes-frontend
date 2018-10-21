@@ -6,7 +6,15 @@ import { AuthHttp } from 'angular2-jwt';
 import { Router } from '@angular/router';
 import { TranslateService } from "@ngx-translate/core";
 import { AuthService } from 'app/user/auth.service';
+import { NavActionService } from 'app/services/shared/nav-action.service';
+import { NottesService } from 'app/services/nottes/nottes.service';
 import * as $ from 'jquery';
+
+/**
+ * @class         LinkFormComponent
+ * @description   LinkForm component.
+ * @author        Alberto Vian - alberto@albertolabs.com
+ */
 
 @Component({
   selector: 'linkForm',
@@ -27,7 +35,9 @@ export class LinkFormComponent implements OnInit
     private authHttp: AuthHttp,
     public router: Router,
     private translator: TranslateService,
-    private auth : AuthService
+    private auth : AuthService,
+    private navActionService : NavActionService,
+    private nottesService : NottesService
   ) { }
 
   private apiUrl: string = AppConfig.settings.api.api_url;
@@ -45,7 +55,13 @@ export class LinkFormComponent implements OnInit
     }
   }
 
-  onSubmit(formObj)
+  /**
+   * Form submit
+   * 
+   * @param    Object   formObj   Form data
+   * @return   [type]   void
+   */
+  onSubmit(formObj) : void
   {
     this.submitedForm = true;
 
@@ -65,7 +81,13 @@ export class LinkFormComponent implements OnInit
     }
   }
 
-  createLink(formObj)
+  /**
+   * Create a new link entity
+   *
+   * @param   Object    formObj   Form data
+   * @return  [type]    void
+   */
+  createLink(formObj) : void
   {
     this.authHttp.post(
       this.apiUrl + "/link", 
@@ -87,8 +109,10 @@ export class LinkFormComponent implements OnInit
         });
 
         // redirect to detail view
-        this.router.navigateByUrl('dashboard');
+        this.navActionService.setAction('init');
 
+        // refresh list entities
+        this.nottesService.reloadEntitiesEmitter$.emit();
       },
       err => {
 

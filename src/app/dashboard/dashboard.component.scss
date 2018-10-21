@@ -18,14 +18,7 @@ div.left-item-list{
 	max-height: 94vh;
 	overflow-y: scroll;
 }
-div.notte-list-item{
-	padding: 20px;
-	border-bottom: 1px solid #CECECE;
-}
-div.notte-list-item:hover{
-	background-color: #e5e5e5;
-	cursor: pointer;
-}
+
 div.notte-list-item .tags span{
 	font-size: 12px;	
 }
@@ -58,17 +51,33 @@ div.content-preview{
 	overflow-y: scroll;
 }
 
-div.left-item-list div.item-content{
-	width:90%;
-	float:left;
-}
-div.left-item-list div.ellipsis{
-	width:10%;
-	float:left;
-	text-align:right;
-	margin-top:-8px;
-	opacity:0.3;
-}
 div.left-item-list div.ellipsis:hover{
 	opacity:1;
+}
+
+div.notte-list-item-container{
+	width: 100%;
+	border-bottom: 1px solid #CECECE;
+}
+
+div.notte-list-item-container:hover{
+	background-color: #e5e5e5;
+	cursor: pointer;
+}
+
+div.notte-list-item-container div.notte-list-item{
+	width: 85%;
+	float:left;
+	padding: 20px 0 20px 20px;
+}
+
+div.notte-list-item-container div.ellipsis{
+	width:15%;
+	opacity: 0.3;
+	float: left;
+	padding-top: 15px;
+}
+
+div.notte-list-item-container div.ellipsis i.dropdown-toggle::after {
+	display: none;
 }

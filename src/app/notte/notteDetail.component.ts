@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { AuthHttp } from 'angular2-jwt';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CrudComponent, EncryptionPasswordComponent } from 'app/shared';
+import { EncryptionPasswordComponent } from 'app/shared';
 import { TranslateService } from "@ngx-translate/core";
 import { AuthService } from 'app/user/auth.service';
 import { NottesService } from 'app/services/nottes/nottes.service';
@@ -21,7 +21,7 @@ import { NavActionService } from 'app/services/shared/nav-action.service';
   templateUrl: './notteDetail.component.html',
   styleUrls: ['./notteDetail.component.scss']
 })
-export class NotteDetailComponent extends CrudComponent {
+export class NotteDetailComponent{
 
   @Input()  notte : any;
   @Input()  contentIsVisible : boolean = false;
@@ -38,7 +38,7 @@ export class NotteDetailComponent extends CrudComponent {
     protected navActionService : NavActionService
   ) 
   {
-    super(translator, authHttp, toastr, router, auth, nottesService, navActionService);
+    
   }
   
   public  loading: boolean = false;
@@ -106,5 +106,16 @@ export class NotteDetailComponent extends CrudComponent {
   {
     // redirect to detail view
     this.navActionService.setAction('editNotte');
+  }
+
+  /**
+   * Delete an entity
+   *
+   * @param   Object  item  Entity object
+   * @return  [type]  void
+   */
+  deleteEntity(item) : void
+  {
+    this.nottesService.removeEntity(item);
   }
 }
