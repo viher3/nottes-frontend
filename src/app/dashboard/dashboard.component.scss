@@ -51,3 +51,9 @@ div.white-right{
 	padding: 30px;
 	height: 100%;
 }
+
+div.content-preview{
+	height: 93vh;
+	max-height: 93vh;
+	overflow-y: scroll;
+}
