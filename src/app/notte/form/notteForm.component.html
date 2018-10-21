@@ -9,7 +9,8 @@
 
 	</div>
 
-	<div class="responsiveActionBtns col-xs-12 col-sm-6 col-md-6 text-right">
+	<!-- action btns -->
+	<div *ngIf="(action == 'edit' && ! notte?.is_encrypted) || (action == 'edit' && notte?.is_encrypted && notte?.is_decrypted) || action == 'create'" class="responsiveActionBtns col-xs-12 col-sm-6 col-md-6 text-right">
 
 		<button (click)="onSubmit(f)" class="btn btn-sm btn-outline-primary">
 		    <i class="fa fa-save"></i>&nbsp;&nbsp;<span [translate]="saveBtn"></span>
@@ -102,16 +103,17 @@
 
 	</form>
 
-</div>
+	<div class="row" [hidden]="loading">
 
-<div class="row" [hidden]="loading">
+		<!-- action btns -->
+	    <div *ngIf="(action == 'edit' && ! notte?.is_encrypted) || (action == 'edit' && notte?.is_encrypted && notte?.is_decrypted) || action == 'create'" class="responsiveActionBtns col-md-12 text-right">
 
-    <div class="responsiveActionBtns col-md-12 text-right">
+	    	<button (click)="onSubmit(f)" class="btn btn-sm btn-outline-primary pull-right marginLeftActionBtn">
+			    <i class="fa fa-save"></i>&nbsp;&nbsp;<span [translate]="saveBtn"></span>
+			</button>
 
-    	<button (click)="onSubmit(f)" class="btn btn-sm btn-outline-primary pull-right marginLeftActionBtn">
-		    <i class="fa fa-save"></i>&nbsp;&nbsp;<span [translate]="saveBtn"></span>
-		</button>
+	    </div>
 
-    </div>
+	</div>
 
 </div>

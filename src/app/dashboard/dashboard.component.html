@@ -69,21 +69,21 @@
 			</div>
 
 			<!-- preview notte content -->
-			<div *ngIf="action == 'showEntity'" id="content-preview-wrapper h-100 w-100" class="white-right">
+			<div *ngIf="action == 'showEntity'" id="content-preview-wrapper w-100" class="white-right">
 				
 				<notte-detail [notte]="notte" [contentIsVisible]="contentIsVisible" (deleteItemEvent)="reloadEntites($event)"></notte-detail>
 
 			</div>
 
 			<!-- create new notte -->
-			<div *ngIf="action == 'createNotte'" class="white-right h-100">
+			<div *ngIf="action == 'createNotte'" class="white-right">
 
 				<notteForm title="components.docs.create.title" saveBtn="components.docs.create.save" action="create"></notteForm>
 
 			</div>
 
 			<!-- edit notte -->
-			<div *ngIf="action == 'editNotte'" class="white-right h-100">
+			<div *ngIf="action == 'editNotte'" class="white-right">
 
 				<notteForm title="components.docs.edit.title" saveBtn="components.docs.edit.save" action="edit" id="{{ notte.id }}"></notteForm>
 
