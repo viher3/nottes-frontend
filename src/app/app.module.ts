@@ -34,6 +34,7 @@ import * as $ from 'jquery';
 import { CommonEventsService } from 'app/services/shared/common-events.service';
 import { NottesService } from 'app/services/nottes/nottes.service';
 import { NavActionService } from 'app/services/shared/nav-action.service';
+import { TagsComponent } from 'app/tags/tags.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -64,6 +65,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ConfigurationComponent,
     GeneralConfigurationComponent,
     SecurityConfigurationComponent,
+    TagsComponent
   ],
   imports: [
     BrowserModule,

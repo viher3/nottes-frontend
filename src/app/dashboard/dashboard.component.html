@@ -42,7 +42,8 @@
 				<div class="clearfix"></div>
 
 				<div class="tags">
-					<span class="badge badge-info">{{ item.tags }}</span>
+					<tags value="{{ item.tags }}"></tags>
+					
 				</div>
 
 				<div *ngIf="item.updatedAt" class="updated_at">{{ 'components.dashboard.updated_at' | translate }} {{ item.updatedAt | date:'dd/MM/yyyy HH:mm:ss' }}</div>

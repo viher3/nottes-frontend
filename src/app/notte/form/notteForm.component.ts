@@ -102,7 +102,7 @@ export class NotteFormComponent implements OnInit
   /**
    * Check if editor is empty
    */
-  editorIsEmpty() : void
+  editorIsEmpty() : boolean
   {
     var initData = '<p>&nbsp;</p>';
     var editorData = this.editor.data.get();
