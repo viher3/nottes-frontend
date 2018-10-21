@@ -10,6 +10,12 @@ import { AuthService } from 'app/user/auth.service';
 import { NottesService } from 'app/services/nottes/nottes.service';
 import { NavActionService } from 'app/services/shared/nav-action.service';
 
+/**
+ * @class         NotteDetailComponent
+ * @description   NotteDetail component.
+ * @author        Alberto Vian - alberto@albertolabs.com
+ */
+
 @Component({
   selector: 'notte-detail',
   templateUrl: './notteDetail.component.html',

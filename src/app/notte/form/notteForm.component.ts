@@ -11,6 +11,12 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { NavActionService } from 'app/services/shared/nav-action.service';
 import { NottesService } from 'app/services/nottes/nottes.service';
 
+/**
+ * @class         NotteFormComponent
+ * @description   NotteForm component.
+ * @author        Alberto Vian - alberto@albertolabs.com
+ */
+
 @Component({
   selector: 'notteForm',
   templateUrl: './notteForm.component.html'
@@ -64,7 +70,10 @@ export class NotteFormComponent implements OnInit
     }
   }
 
-  initEditor()
+  /**
+   * Initialize wysiwyg editor
+   */
+  initEditor() : void
   {
     ClassicEditor
       .create( 
@@ -90,7 +99,10 @@ export class NotteFormComponent implements OnInit
       //console.log(ClassicEditor.builtinPlugins.map( plugin => plugin.pluginName ));
   }
 
-  editorIsEmpty() 
+  /**
+   * Check if editor is empty
+   */
+  editorIsEmpty() : void
   {
     var initData = '<p>&nbsp;</p>';
     var editorData = this.editor.data.get();
@@ -103,7 +115,13 @@ export class NotteFormComponent implements OnInit
     return false;
   }
 
-  onSubmit(formObj)
+  /**
+   * Submit the form
+   *
+   * @param   Object  formObj   Form data
+   * @return  [type]  void
+   */
+  onSubmit(formObj) : void
   {
     this.submitedForm = true;
 
@@ -131,7 +149,13 @@ export class NotteFormComponent implements OnInit
     }
   }
 
-  loadEntity(encryptionPassword: string = "")
+  /**
+   * Load entity data
+   *
+   * @param   String  encryptionPassword  Encryption password
+   * @return  [type]  void
+   */
+  loadEntity(encryptionPassword: string = "") : void
   {
       let entityEndpoint = this.apiUrl + "/notte/" + this.id;
 
@@ -181,7 +205,13 @@ export class NotteFormComponent implements OnInit
       );
   }
 
-  receiveEncryptionPassword($event) 
+  /**
+   * Receives the encryption password and reloads the entity with that password
+   *
+   * @param   String  $event  Encryption password
+   * @return  [type]  void
+   */
+  receiveEncryptionPassword($event) : void
   {
     // get password
     this.encryptionPassword = $event;
@@ -194,6 +224,12 @@ export class NotteFormComponent implements OnInit
     this.encryptionpwd2 = this.encryptionPassword;
   }
 
+  /**
+   * Create a new notte (document)
+   *
+   * @param   Object  formObj   Data sent by the form
+   * @return  [type]  void
+   */
   private createNewNotte(formObj)
   {
     this.authHttp.post(
@@ -227,7 +263,13 @@ export class NotteFormComponent implements OnInit
     ); 
   }
 
-  private updateNotte(formObj)
+  /**
+   * Update a notte (document)
+   *
+   * @param   Object  formObj   Data sent by the form
+   * @return  [type]  void
+   */
+  private updateNotte(formObj) : void
   {
     this.authHttp.put(
       this.apiUrl + "/notte/" + this.id, 
@@ -245,8 +287,10 @@ export class NotteFormComponent implements OnInit
         });
 
         // redirect to detail view
-        this.router.navigateByUrl('notte/' + result.id);
+        this.navActionService.setAction('init');
 
+        // refresh list entities
+        this.nottesService.reloadEntitiesEmitter$.emit(result.id);
       },
       err => {
 

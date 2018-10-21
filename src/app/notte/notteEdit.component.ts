@@ -1,6 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+/**
+ * @class         NotteEditComponent
+ * @description   NotteEdit component.
+ * @author        Alberto Vian - alberto@albertolabs.com
+ */
+
 @Component({
   selector: 'notte-edit',
   templateUrl: './notteEdit.component.html'
