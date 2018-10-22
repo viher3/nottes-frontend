@@ -17,6 +17,7 @@ div.left-item-list{
 	height: 94vh;
 	max-height: 94vh;
 	overflow-y: scroll;
+	background-color: #FFF;
 }
 
 div.notte-list-item .tags span{
@@ -49,6 +50,7 @@ div.content-preview{
 	height: 93vh;
 	max-height: 93vh;
 	overflow-y: scroll;
+	background-color: #F4F4F4;
 }
 
 div.left-item-list div.ellipsis:hover{
@@ -61,7 +63,7 @@ div.notte-list-item-container{
 }
 
 div.notte-list-item-container:hover{
-	background-color: #e5e5e5;
+	background-color: #EAEAEA;
 	cursor: pointer;
 }
 
@@ -80,4 +82,8 @@ div.notte-list-item-container div.ellipsis{
 
 div.notte-list-item-container div.ellipsis i.dropdown-toggle::after {
 	display: none;
+}
+
+div.content-preview-wrapper{
+	padding: 20px;
 }
