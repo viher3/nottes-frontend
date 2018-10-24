@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AppConfig } from 'app/app.config';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
@@ -23,12 +23,13 @@ import * as $ from 'jquery';
 })
 export class LinkFormComponent implements OnInit 
 {
-  @Input() id : number;
-  @Input() title : string;
-  @Input() saveBtn : string;
-  @Input() action : string;
-	@Input() link : string;
-  @Input() target : string;
+  @Input()  id : number;
+  @Input()  title : string;
+  @Input()  saveBtn : string;
+  @Input()  action : string;
+	@Input()  link : string;
+  @Input()  target : string;
+  @Output() loadingEvent = new EventEmitter<boolean>();
 
   constructor(
     private toastr: ToastrService,
@@ -67,7 +68,7 @@ export class LinkFormComponent implements OnInit
 
     if(formObj.valid)
     {
-      this.loading = true;
+      this.loadingEvent.emit(false);
 
       // save form
       if(this.action == "create")
@@ -108,7 +109,10 @@ export class LinkFormComponent implements OnInit
           this.toastr.success(translation);
         });
 
-        // redirect to detail view
+        // emit 'loadingEvent' event
+        this.loadingEvent.emit(true);
+
+        // redirect to init view
         this.navActionService.setAction('init');
 
         // refresh list entities
@@ -117,7 +121,7 @@ export class LinkFormComponent implements OnInit
       err => {
 
         this.auth.checkJwtHasExpiredInServerRequest(err);
-        this.loading = false;
+        this.loadingEvent.emit(false);
       }
     ); 
   }
@@ -136,7 +140,7 @@ export class LinkFormComponent implements OnInit
         this.inputUrl = link.content;
         this.inputTags = link.tags;
 
-        this.loading = false;
+        this.loadingEvent.emit(false);
 
       },
       err => {
@@ -150,14 +154,23 @@ export class LinkFormComponent implements OnInit
           this.router.navigateByUrl('404');
         }
         
-        this.loading = false;
+        this.loadingEvent.emit(false);
       }
 
     );
   }
 
+  /**
+   * Update new link entity
+   *
+   * @param   Object    formObj   Form data
+   * @return  [type]    void
+   */
   updateLink(formObj)
   {
+    // emit 'loadingEvent' event
+    this.loadingEvent.emit(true);
+
     var params = {
       "name" : formObj.form.value.title,
       "content" : formObj.form.value.url,
@@ -179,16 +192,21 @@ export class LinkFormComponent implements OnInit
           this.toastr.success(translation);
         });
 
-        // redirect to detail view
-        this.router.navigateByUrl('dashboard');
+        // redirect to init view
+        this.navActionService.setAction('init');
 
+        // emit 'loadingEvent' event
+        this.loadingEvent.emit(false);
+
+        // refresh list entities
+        this.nottesService.reloadEntitiesEmitter$.emit();
       },
       err => {
 
         this.auth.checkJwtHasExpiredInServerRequest(err);
         // TODO: create handle server errors method (toastr)
         console.log(err);
-        this.loading = false;
+        this.loadingEvent.emit(false);
       }
     ); 
   }

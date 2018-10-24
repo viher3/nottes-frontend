@@ -221,6 +221,18 @@ export class DashboardComponent extends ListComponent implements OnInit {
   }
 
   /**
+   * Set loading value when event is fired from child component 
+   *
+   * @param   Boolean   $event    true|false
+   * @return  [type]    void
+   */
+  setLoadingEvent($event) : void
+  {
+    console.log("ENTRA LOADING");
+    this.loading = $event;
+  }
+
+  /**
    * Remove an entity
    *
    * @param   Object      item    Entity object
@@ -246,7 +258,8 @@ export class DashboardComponent extends ListComponent implements OnInit {
     }
     else if(item.type == "link")
     {
-
+      this.notte = item;
+      this.navActionService.setAction('editLink');
     }
   }
 }

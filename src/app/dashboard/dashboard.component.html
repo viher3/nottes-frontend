@@ -109,7 +109,14 @@
 
 			<!-- create link -->
 			<div *ngIf="action == 'createLink'" class="content-preview-wrapper">
-				<linkForm title="components.links.create.title" saveBtn="components.links.create.save" action="create"></linkForm>
+				<linkForm (loadingEvent)="setLoadingEvent($event)" title="components.links.create.title" saveBtn="components.links.create.save" action="create"></linkForm>
+			</div>
+
+			<!-- edit link -->
+			<div *ngIf="action == 'editLink'" class="content-preview-wrapper">
+
+				<linkForm title="components.links.edit.title" saveBtn="components.links.edit.save" action="edit" id="{{ notte.id }}"></linkForm>
+
 			</div>
 
 			<!--
