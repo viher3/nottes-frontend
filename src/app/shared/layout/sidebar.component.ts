@@ -64,23 +64,13 @@ export class SidebarComponent
 	}
 
 	/**
-	 * Toggle sidebar
-	 */
-	toggleSidebar() : void
-	{
-	    this.isSidebarToggled = ! this.isSidebarToggled;
-	}
-
-	/**
 	 * Set action value
 	 *
 	 * @param String 	action 		Action value
 	 */
-	setAction(action : string, toggleSidebar : boolean = true) : void
+	setAction(action : string) : void
 	{
 		this.navActionService.setAction(action);
-
-	  	if(toggleSidebar) this.toggleSidebar();
 	}
 
 	/**

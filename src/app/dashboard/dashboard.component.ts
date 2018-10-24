@@ -230,4 +230,23 @@ export class DashboardComponent extends ListComponent implements OnInit {
   {
     this.nottesService.removeEntity(item);
   }
+
+   /**
+   * Edit an entity
+   *
+   * @param   Object      item    Entity object
+   * @return  [type]      void
+   */
+  editEntity(item) : void
+  {
+    if(item.type == "doc")
+    {
+      this.notte = item;
+      this.navActionService.setAction('editNotte');
+    }
+    else if(item.type == "link")
+    {
+
+    }
+  }
 }

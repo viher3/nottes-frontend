@@ -15,7 +15,7 @@ export class NavActionService
    * Set action value
    *
    * @param   String  action  Action value
-   * @return  [tyè]   void
+   * @return  [type]   void
    */
   setAction(action : string) : void
   {
