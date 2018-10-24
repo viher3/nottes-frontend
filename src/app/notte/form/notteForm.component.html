@@ -1,12 +1,12 @@
-<div class="card">
+<div class="card" [hidden]="loading">
 
 	<div class="card-body">
 
-		<div class="row" [hidden]="loading">
+		<div class="row">
 
 			<div class="col-xs-12 col-sm-6 col-md-6">
 
-				<h5 class="card-title" [hidden]="loading">
+				<h5 class="card-title">
 					<i class="fa fa-file-text-o"></i>&nbsp;
 					<span [translate]="title"></span>
 				</h5>
@@ -24,9 +24,9 @@
 
 		</div>
 
-		<hr [hidden]="loading" />
+		<hr />
 
-		<div class="notte-content" [hidden]="loading">
+		<div class="notte-content">
 
 			<div class="row justify-content-md-center" *ngIf="notte?.is_encrypted && ! notte?.is_decrypted && action != 'create'">
 
@@ -107,7 +107,7 @@
 
 			</form>
 
-			<div class="row" [hidden]="loading">
+			<div class="row">
 
 				<!-- action btns -->
 			    <div *ngIf="(action == 'edit' && ! notte?.is_encrypted) || (action == 'edit' && notte?.is_encrypted && notte?.is_decrypted) || action == 'create'" class="responsiveActionBtns col-md-12 text-right">
