@@ -78,7 +78,7 @@ export class SidebarComponent
 	 */
 	loadHome() : void
 	{
-		this.setAction('init', false);
+		this.setAction('init');
 		// TODO: reload entities
 	}
 
