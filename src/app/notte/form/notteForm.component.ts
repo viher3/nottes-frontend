@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { AppConfig } from 'app/app.config';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
@@ -23,10 +23,11 @@ import { NottesService } from 'app/services/nottes/nottes.service';
 })
 export class NotteFormComponent implements OnInit 
 {
-  @Input() title : string;
-  @Input() saveBtn : string;
-  @Input() action : string;
-  @Input() id : number;
+  @Input()  title : string;
+  @Input()  saveBtn : string;
+  @Input()  action : string;
+  @Input()  id : number;
+  @Output() loadingEvent = new EventEmitter<boolean>();
 
   constructor(
     private toastr: ToastrService,
@@ -135,7 +136,7 @@ export class NotteFormComponent implements OnInit
       formObj.form.value.isEncrypted = formObj.form.value.is_encrypted;
       delete formObj.form.value.is_encrypted;
 
-      this.loading = true;
+      this.loadingEvent.emit(true);
 
       // save form
       if(this.action == "create")
@@ -179,7 +180,7 @@ export class NotteFormComponent implements OnInit
               this.contentIsVisible = true;
             }
 
-            this.loading = false;
+            this.loadingEvent.emit(false);
           },
           err => {
 
@@ -199,7 +200,8 @@ export class NotteFormComponent implements OnInit
               });
             }
             
-            this.loading = false;
+
+            this.loadingEvent.emit(false);
           }
 
       );
@@ -258,7 +260,7 @@ export class NotteFormComponent implements OnInit
         this.auth.checkJwtHasExpiredInServerRequest(err);
         // TODO: create handle server errors method (toastr)
         console.log(err);
-        this.loading = false;
+        this.loadingEvent.emit(false);
       }
     ); 
   }
@@ -297,7 +299,7 @@ export class NotteFormComponent implements OnInit
         this.auth.checkJwtHasExpiredInServerRequest(err);
         // TODO: create handle server errors method (toastr)
         console.log(err);
-        this.loading = false;
+        this.loadingEvent.emit(false);
       }
     ); 
   }

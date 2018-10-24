@@ -103,7 +103,7 @@
 			<!-- edit notte -->
 			<div *ngIf="action == 'editNotte'" class="content-preview-wrapper">
 
-				<notteForm title="components.docs.edit.title" saveBtn="components.docs.edit.save" action="edit" id="{{ notte.id }}"></notteForm>
+				<notteForm (loadingEvent)="setLoadingEvent($event)" title="components.docs.edit.title" saveBtn="components.docs.edit.save" action="edit" id="{{ notte.id }}"></notteForm>
 
 			</div>
 
