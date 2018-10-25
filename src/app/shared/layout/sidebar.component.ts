@@ -101,6 +101,7 @@ export class SidebarComponent
 	 */
 	search() : void
 	{
+		this.setAction('init');
 		this.searchService.search(this.searchTerm);
 	}
 }

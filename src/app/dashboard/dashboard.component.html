@@ -18,53 +18,62 @@
 
 		<div class="col-3 left-item-list pr-0 h-100">
 			
-			<div id="item_{{ item.id }}" class="notte-list-item-container" *ngFor="let item of listElements.items">
+			<!-- items count -->
+			<div id="list_items_count">
+				<span class="align-middle">{{ 'components.pagination.listing_x_of_y' | translate:paginationTransParams }}</span>
+			</div>
+			<!-- end items count -->
 
-				<div (click)="loadEntityEvent(item)" class="notte-list-item">
+			<!-- item list -->
+			<div class="notte-list-item-main-wrapper">
+				<div id="item_{{ item.id }}" class="notte-list-item-container" *ngFor="let item of listElements.items">
 
-					<div class="item-content">
-						<h5>
-							<!-- doc -->
-							<i class="fa fa-file-text-o" *ngIf="item.type == 'doc'" ngbTooltip="{{ 'components.dashboard.types.doc' | translate }}"></i>
-							<!-- link -->
-							<i class="fa fa-link" *ngIf="item.type == 'link'" ngbTooltip="{{ 'components.dashboard.types.link' | translate }}"></i>
-							<!-- file -->
-							<i class="fa fa-download" *ngIf="item.type == 'file'" ngbTooltip="{{ 'components.dashboard.types.file' | translate }}"></i>
-							&nbsp;
-							{{ item.name }}
-							&nbsp;
-							<span class="badge badge-warning encrypted-label" *ngIf="item.is_encrypted">
-								<i class="fa fa-shield"></i>&nbsp;&nbsp;{{ 'components.dashboard.encrypted' | translate }}
-							</span>
-						</h5>
-					</div>
+					<div (click)="loadEntityEvent(item)" class="notte-list-item">
 
-					<div class="tags">
-						<tags value="{{ item.tags }}"></tags>
-					</div>
+						<div class="item-content">
+							<h5>
+								<!-- doc -->
+								<i class="fa fa-file-text-o" *ngIf="item.type == 'doc'" ngbTooltip="{{ 'components.dashboard.types.doc' | translate }}"></i>
+								<!-- link -->
+								<i class="fa fa-link" *ngIf="item.type == 'link'" ngbTooltip="{{ 'components.dashboard.types.link' | translate }}"></i>
+								<!-- file -->
+								<i class="fa fa-download" *ngIf="item.type == 'file'" ngbTooltip="{{ 'components.dashboard.types.file' | translate }}"></i>
+								&nbsp;
+								{{ item.name }}
+								&nbsp;
+								<span class="badge badge-warning encrypted-label" *ngIf="item.is_encrypted">
+									<i class="fa fa-shield"></i>&nbsp;&nbsp;{{ 'components.dashboard.encrypted' | translate }}
+								</span>
+							</h5>
+						</div>
 
-					<div *ngIf="item.updatedAt" class="updated_at">{{ 'components.dashboard.updated_at' | translate }} {{ item.updatedAt | date:'dd/MM/yyyy HH:mm:ss' }}</div>
+						<div class="tags">
+							<tags value="{{ item.tags }}"></tags>
+						</div>
 
-				</div>
-
-				<!-- ellipsis actions -->
-				<div class="ellipsis">
-					
-					<div class="btn-group">
-
-						<i class="fa fa-ellipsis-h fa-2x dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-					  	
-					  	<div class="dropdown-menu">
-    						<a class="dropdown-item" href="javascript:void();"><i class="fa fa-plus-square-o"></i>&nbsp;&nbsp;{{ 'common.select' | translate }}</a>
-					    	<a (click)="editEntity(item);" class="dropdown-item"><i class="fa fa-edit text-primary"></i>&nbsp;&nbsp;{{ 'common.edit_btn' | translate }}</a>
-    						<a (click)="removeEntity(item)" class="dropdown-item"><i class="fa fa-trash text-danger"></i>&nbsp;&nbsp;{{ 'common.delete_btn' | translate }}</a>
-					  	</div>
+						<div *ngIf="item.updatedAt" class="updated_at">{{ 'components.dashboard.updated_at' | translate }} {{ item.updatedAt | date:'dd/MM/yyyy HH:mm:ss' }}</div>
 
 					</div>
 
-				</div>
-				<div class="clearfix"></div>
+					<!-- ellipsis actions -->
+					<div class="ellipsis">
+						
+						<div class="btn-group">
 
+							<i class="fa fa-ellipsis-h fa-2x dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+						  	
+						  	<div class="dropdown-menu">
+	    						<a class="dropdown-item" href="javascript:void();"><i class="fa fa-plus-square-o"></i>&nbsp;&nbsp;{{ 'common.select' | translate }}</a>
+						    	<a (click)="editEntity(item);" class="dropdown-item"><i class="fa fa-edit text-primary"></i>&nbsp;&nbsp;{{ 'common.edit_btn' | translate }}</a>
+	    						<a (click)="removeEntity(item)" class="dropdown-item"><i class="fa fa-trash text-danger"></i>&nbsp;&nbsp;{{ 'common.delete_btn' | translate }}</a>
+						  	</div>
+
+						</div>
+
+					</div>
+					<div class="clearfix"></div>
+
+				</div><!-- end item list -->
 			</div>
 
 		</div>

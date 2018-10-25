@@ -16,8 +16,12 @@ div.left-item-list{
 	border-right: 1px solid #CECECE;
 	min-height: 94vh;
 	max-height: 94vh;
-	overflow-y: scroll;
 	background-color: #FFF;
+}
+div.left-item-list div.notte-list-item-main-wrapper{
+	overflow-y: scroll;
+	min-height: 94vh;
+	max-height: 94vh;
 }
 
 div.notte-list-item .tags span{
@@ -91,4 +95,16 @@ div.content-preview-wrapper{
 div.ellipsis div.dropdown-menu a:active,
 div.ellipsis div.dropdown-menu a:active i{
 	color: #FFF !important;
+}
+
+div.left-item-list div#list_items_count{
+	height: 40px;
+	display: table;
+	width: 100%;
+	border-bottom: 1px solid #CECECE;
+}
+div.left-item-list div#list_items_count span{
+	display: table-cell;
+	font-size: 12px;
+	padding-left: 20px;
 }
