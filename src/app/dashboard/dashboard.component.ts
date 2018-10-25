@@ -76,6 +76,16 @@ export class DashboardComponent extends ListComponent implements OnInit {
     this.searchService.getSearchResultsEvent.subscribe(listElements => {
       this.listElements = listElements;
     });
+    
+    // subscribe to 'getSearchResultsEvent' event
+    this.searchService.getPaginationTranslationsEvent.subscribe(paginationTransParams => {
+      this.paginationTransParams = paginationTransParams;
+    });
+    
+    // subscribe to 'getSearchResultsEvent' event
+    this.searchService.getSearchTranslationsEvent.subscribe(searchTerm => {
+      this.searchTerm = searchTerm;
+    });
   }
 
   /**

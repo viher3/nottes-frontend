@@ -1,4 +1,4 @@
-import { Component, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { AuthService } from 'app/user/auth.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -36,6 +36,7 @@ export class SidebarComponent
 	public username : string;
 	public isSidebarToggled : boolean = false;
 	public searchTerm : string = "";
+	public isSearch : boolean = false;
 
 	public menu : Array <any> = [
 
@@ -43,6 +44,14 @@ export class SidebarComponent
 		{ routerLink: "config", translationKey: "sidebar.config", faIco: "fa-wrench", wrapper: "usermenu" }
 	
 	];
+
+	ngOnInit()
+	{
+		// subscribe to 'getSearchResultsEvent' event
+	    this.searchService.isSearchEvent.subscribe(isSearch => {
+	      this.isSearch = isSearch;
+	    });
+	}
 
 	/**
 	 * Logout the current user
@@ -103,5 +112,18 @@ export class SidebarComponent
 	{
 		this.setAction('init');
 		this.searchService.search(this.searchTerm);
+	}
+
+	/**
+	 * Clear search results.
+	 *
+	 * @return  [type]  void
+	 */
+	clearSearch() : void
+	{
+		this.searchTerm = "";
+		this.setAction('init');
+
+		// TODO: reload entities
 	}
 }

@@ -20,6 +20,9 @@ export class SearchService
   public  isSearch : boolean = false;
 
   public getSearchResultsEvent : EventEmitter<any>;
+  public getPaginationTranslationsEvent : EventEmitter<any>;
+  public getSearchTranslationsEvent : EventEmitter<any>;
+  public isSearchEvent : EventEmitter<any>;
 
   constructor(
     protected translator: TranslateService,
@@ -29,6 +32,9 @@ export class SearchService
   ) 
   {
     this.getSearchResultsEvent = new EventEmitter();    
+    this.getPaginationTranslationsEvent = new EventEmitter();    
+    this.getSearchTranslationsEvent = new EventEmitter();    
+    this.isSearchEvent = new EventEmitter();    
   }
 
   /**
@@ -43,9 +49,19 @@ export class SearchService
     this.searchEntities(1);
   }
 
+  /**
+   * Set pagination translations value
+   *
+   * @return  [type]    void
+   */
   setPaginationTranslations() : void
   {
     this.currentPaginationPosition = ( (this.listElements).current_page_number * (this.listElements).num_items_per_page );
+
+    if( this.listElements.items.length < (this.listElements).num_items_per_page )
+    {
+      this.currentPaginationPosition = this.listElements.items.length;
+    }
 
     this.paginationTransParams = {
       "current" : this.currentPaginationPosition,
@@ -53,11 +69,19 @@ export class SearchService
     }
   }
 
+  /**
+   * Make API request to the search endpoint
+   *
+   * @param   Number    page    Page number
+   * @param   Boolean   append  Indicates if data has to be appended into the "listElements" array
+   * @return  [type]    void
+   */
   searchEntities(page: number = 1, append: boolean = false) : void
   {
       if( ! this.searchTerm.length ) return;
 
-      this.isSearch   = true;
+      this.isSearch = true;
+      this.isSearchEvent.emit(true);
 
       if( ! append )
       {
@@ -103,6 +127,8 @@ export class SearchService
           this.loadingMore = false;
 
           this.getSearchResultsEvent.emit(this.listElements);
+          this.getPaginationTranslationsEvent.emit(this.paginationTransParams);
+          this.getSearchTranslationsEvent.emit(this.searchTerm);
 
         },
         err => {
@@ -123,6 +149,11 @@ export class SearchService
       );
   }
 
+  /**
+   * Set search translations value
+   *
+   * @return  [type]    void
+   */
   setSearchTranslations() : void
   {
       this.searchResultTransParams = {
