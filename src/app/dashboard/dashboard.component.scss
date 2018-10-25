@@ -14,7 +14,7 @@ div.dashboardActionBtns{
 }
 div.left-item-list{
 	border-right: 1px solid #CECECE;
-	height: 94vh;
+	min-height: 94vh;
 	max-height: 94vh;
 	overflow-y: scroll;
 	background-color: #FFF;
