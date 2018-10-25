@@ -87,3 +87,8 @@ div.notte-list-item-container div.ellipsis i.dropdown-toggle::after {
 div.content-preview-wrapper{
 	padding: 20px;
 }
+
+div.ellipsis div.dropdown-menu a:active,
+div.ellipsis div.dropdown-menu a:active i{
+	color: #FFF !important;
+}
