@@ -105,6 +105,8 @@ div.left-item-list div#list_items_count{
 }
 div.left-item-list div#list_items_count span{
 	display: table-cell;
-	font-size: 12px;
 	padding-left: 20px;
+}
+div.left-item-list div#list_items_count span.pagination{
+	font-size: 12px;
 }

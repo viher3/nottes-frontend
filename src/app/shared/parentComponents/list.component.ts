@@ -25,7 +25,6 @@ export class ListComponent
 	private entityNameField : string = "name";
 
 	public  loading: boolean = false;
-	public  loadingMore: boolean = false;
 	public  selectedItems: any[] = [];
   	public  selectedAll: boolean = false;
   	public  isSearch : boolean = false;

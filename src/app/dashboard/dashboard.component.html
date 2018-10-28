@@ -20,12 +20,16 @@
 			
 			<!-- items count -->
 			<div id="list_items_count">
-				<span class="align-middle">{{ 'components.pagination.listing_x_of_y' | translate:paginationTransParams }}</span>
+				<span *ngIf="!loadingMore" class="align-middle pagination">{{ 'components.pagination.listing_x_of_y' | translate:paginationTransParams }}</span>
+				<span *ngIf="loadingMore" class="align-middle">
+					<i class="fa fa-refresh fa-spin"></i>&nbsp;&nbsp;{{ 'common.loading' | translate }} ...
+				</span>
 			</div>
 			<!-- end items count -->
 
 			<!-- item list -->
 			<div class="notte-list-item-main-wrapper">
+
 				<div id="item_{{ item.id }}" class="notte-list-item-container" *ngFor="let item of listElements.items">
 
 					<div (click)="loadEntityEvent(item)" class="notte-list-item">
@@ -74,6 +78,7 @@
 					<div class="clearfix"></div>
 
 				</div><!-- end item list -->
+
 			</div>
 
 		</div>

@@ -32,6 +32,7 @@ export class DashboardComponent extends ListComponent implements OnInit {
   public  notte: any;
   public  id : number;
   public  action : string = "init";
+  public  loadingMore : boolean = false;
 
   constructor(
   	protected toastr: ToastrService,
@@ -100,6 +101,28 @@ export class DashboardComponent extends ListComponent implements OnInit {
     });
 
     this.nottesService.loadEntities();
+    this.loadMoreScrollEvent();
+  }
+
+  /**
+   * Load more entities - scroll event handler
+   */
+  loadMoreScrollEvent()
+  {
+    $("div.left-item-list div.notte-list-item-main-wrapper").on("scroll", () =>
+    {
+      var scroll = $("div.left-item-list div.notte-list-item-main-wrapper").scrollTop();
+          scroll = scroll - 68;
+
+      var divHeight = $("div.left-item-list div.notte-list-item-main-wrapper")[0].scrollHeight;
+          divHeight = (divHeight - $(window).height());
+
+      if(scroll == divHeight)
+      {
+        this.loadingMore = true;
+        // loadingMore ...
+      }
+    });
   }
 
   /**

@@ -36,7 +36,8 @@
         "cancel" : "Cancel",
         "clear_search" : "Clear search results",
         "changes_saved_success_mssg" : "Changes has been saved correctly.",
-        "select" : "Select"
+        "select" : "Select",
+        "loading" : "Loading"
     },
     "forms" : {
         "required_field" : "Field is required."
