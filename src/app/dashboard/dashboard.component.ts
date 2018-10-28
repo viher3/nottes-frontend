@@ -95,6 +95,11 @@ export class DashboardComponent extends ListComponent implements OnInit {
       this.loading = isLoading;
     });
 
+    // subscribe to 'isLoadingMoreNottesEvent' event
+    this.nottesService.isLoadingMoreNottesEvent.subscribe(isLoadingMore => {
+      this.loadingMore = isLoadingMore;
+    });
+
     // subscribe to 'setNottesPaginationTranslationsEvent' event
     this.nottesService.setNottesPaginationTranslationsEvent.subscribe(paginationTransParams => {
       this.paginationTransParams = paginationTransParams;
@@ -106,23 +111,46 @@ export class DashboardComponent extends ListComponent implements OnInit {
 
   /**
    * Load more entities - scroll event handler
+   *
+   * @return  [type]  void
    */
-  loadMoreScrollEvent()
+  loadMoreScrollEvent() : void
   {
     $("div.left-item-list div.notte-list-item-main-wrapper").on("scroll", () =>
     {
       var scroll = $("div.left-item-list div.notte-list-item-main-wrapper").scrollTop();
-          scroll = scroll - 68;
 
+      var offset    = 56;
       var divHeight = $("div.left-item-list div.notte-list-item-main-wrapper")[0].scrollHeight;
-          divHeight = (divHeight - $(window).height());
-
-      if(scroll == divHeight)
+          divHeight = (divHeight - $(window).height()) + offset;
+      
+      if(scroll >= divHeight)
       {
         this.loadingMore = true;
-        // loadingMore ...
+        this.loadMoreRequest();
       }
     });
+  }
+
+  /**
+   * Load more entities request
+   *
+   * @return  [type]  void
+   */
+  loadMoreRequest() : void
+  {
+    let nextPage = Number(this.listElements.current_page_number) + 1;
+    
+    console.log(this.isSearch);
+
+    if(this.isSearch)
+    {
+      // TODO ..
+    }
+    else
+    {
+      this.loadEntities(nextPage, true);
+    }
   }
 
   /**

@@ -145,6 +145,12 @@ export class NottesService
    */
   loadEntities(page: number = 1, append: boolean = false) : void
   {
+    // Avoid load more entities if all items are listed
+    if(append && this.currentPaginationPosition == this.listElements.total_count)
+    {
+      return;
+    }
+
     this.isLoadingNottesEvent.emit(true);
 
     let currItems = [];
@@ -165,21 +171,21 @@ export class NottesService
 
           this.listElements = data.json();
 
-            if(append)
-            {
-              let newItems = this.listElements.items;
+          if(append)
+          {
+            let newItems = this.listElements.items;
 
-              this.listElements.items = [];
+            this.listElements.items = [];
 
-              for(let item of currItems)  this.listElements.items.push(item);
-              for(let item of newItems)   this.listElements.items.push(item);
-            }
+            for(let item of currItems)  this.listElements.items.push(item);
+            for(let item of newItems)   this.listElements.items.push(item);
+          }
 
-            // set translation params
-            this.setPaginationTranslations();
-            this.isLoadingNottesEvent.emit(false);
-            this.isLoadingMoreNottesEvent.emit(false);
-            this.loadEntitiesEvent.emit(this.listElements);
+          // set translation params
+          this.setPaginationTranslations();
+          this.isLoadingNottesEvent.emit(false);
+          this.isLoadingMoreNottesEvent.emit(false);
+          this.loadEntitiesEvent.emit(this.listElements);
         },
         err => {
             
@@ -196,6 +202,11 @@ export class NottesService
   setPaginationTranslations() : void
   {
     this.currentPaginationPosition = ( (this.listElements).current_page_number * (this.listElements).num_items_per_page );
+
+    if(this.currentPaginationPosition > this.listElements.total_count)
+    {
+      this.currentPaginationPosition = this.listElements.total_count;
+    }
 
     this.paginationTransParams = {
       "current" : this.currentPaginationPosition,
