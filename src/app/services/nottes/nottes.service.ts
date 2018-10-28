@@ -137,7 +137,7 @@ export class NottesService
    */
   reloadEntities() : void
   {
-    // TODO ...
+    this.loadEntities();
   }
 
   /**
@@ -202,8 +202,6 @@ export class NottesService
       "total" : this.listElements.total_count
     }
     
-    console.log(this.paginationTransParams);
-
     this.setNottesPaginationTranslationsEvent.emit(this.paginationTransParams);
   }
 }
