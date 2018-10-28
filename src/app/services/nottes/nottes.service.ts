@@ -29,8 +29,18 @@ export class NottesService
   private entityListUrl : string = "/dashboard";
   private entityApiUrl: string = AppConfig.settings.api.api_url + "/notte";
   
+  private isSearch : boolean = false;
+  private loadingMore : boolean = false;
+  private listElements : any = [];
+  private currentPaginationPosition : number;
+  private paginationTransParams : any = [];
+
   public reloadEntitiesEmitter$ : EventEmitter<any>;
-  public deleteItemEvent : EventEmitter<boolean>
+  public deleteItemEvent : EventEmitter<boolean>;
+  public loadEntitiesEvent : EventEmitter<any>;
+  public isLoadingNottesEvent : EventEmitter<boolean>;
+  public isLoadingMoreNottesEvent : EventEmitter<boolean>;
+  public setNottesPaginationTranslationsEvent : EventEmitter<any>;
 
   constructor(
   	protected toastr: ToastrService,
@@ -42,7 +52,11 @@ export class NottesService
   ) 
   {
     this.reloadEntitiesEmitter$ = new EventEmitter();
+    this.loadEntitiesEvent = new EventEmitter();
     this.deleteItemEvent = new EventEmitter();
+    this.isLoadingNottesEvent = new EventEmitter();
+    this.isLoadingMoreNottesEvent = new EventEmitter();
+    this.setNottesPaginationTranslationsEvent = new EventEmitter();
   }
 
   /**
@@ -124,5 +138,72 @@ export class NottesService
   reloadEntities() : void
   {
     // TODO ...
+  }
+
+  /**
+   * Load all entities
+   */
+  loadEntities(page: number = 1, append: boolean = false) : void
+  {
+    this.isLoadingNottesEvent.emit(true);
+
+    let currItems = [];
+    let entityUrl = this.entityApiUrl + "?page=" + page;
+
+    // reset values
+    this.isSearch    = false;
+    this.loadingMore = true;
+
+    if( append && typeof this.listElements !== "undefined" )
+    {
+      currItems = this.listElements.items;
+    }
+
+    this.authHttp.get(entityUrl).subscribe(
+
+        data => {
+
+          this.listElements = data.json();
+
+            if(append)
+            {
+              let newItems = this.listElements.items;
+
+              this.listElements.items = [];
+
+              for(let item of currItems)  this.listElements.items.push(item);
+              for(let item of newItems)   this.listElements.items.push(item);
+            }
+
+            // set translation params
+            this.setPaginationTranslations();
+            this.isLoadingNottesEvent.emit(false);
+            this.isLoadingMoreNottesEvent.emit(false);
+            this.loadEntitiesEvent.emit(this.listElements);
+        },
+        err => {
+            
+          this.auth.checkJwtHasExpiredInServerRequest(err);
+          this.loading = false;
+          this.loadingMore = false;
+        }
+      );
+  }
+
+  /**
+   * Set pagination translations
+   */
+  setPaginationTranslations() : void
+  {
+    this.currentPaginationPosition = ( (this.listElements).current_page_number * (this.listElements).num_items_per_page );
+
+    this.paginationTransParams = {
+      "current" : this.currentPaginationPosition,
+      "total" : this.listElements.total_count
+    }
+    
+    console.log(this.paginationTransParams);
+
+    this.setNottesPaginationTranslationsEvent.emit(this.paginationTransParams);
   }
 }

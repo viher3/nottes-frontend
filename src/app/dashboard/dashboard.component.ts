@@ -52,9 +52,6 @@ export class DashboardComponent extends ListComponent implements OnInit {
   {
     $("body").removeClass("login-body");
 
-    this.loading = true;
-  	super.loadEntities();
-
     // subscribe to 'navActionEmitter' event
     this.navActionService.navActionEmitter$.subscribe(newAction => {
       this.action = newAction;
@@ -77,15 +74,32 @@ export class DashboardComponent extends ListComponent implements OnInit {
       this.listElements = listElements;
     });
     
-    // subscribe to 'getSearchResultsEvent' event
+    // subscribe to 'getPaginationTranslationsEvent' event
     this.searchService.getPaginationTranslationsEvent.subscribe(paginationTransParams => {
       this.paginationTransParams = paginationTransParams;
     });
     
-    // subscribe to 'getSearchResultsEvent' event
+    // subscribe to 'getSearchTranslationsEvent' event
     this.searchService.getSearchTranslationsEvent.subscribe(searchTerm => {
       this.searchTerm = searchTerm;
     });
+
+    // subscribe to 'loadEntitiesEvent' event
+    this.nottesService.loadEntitiesEvent.subscribe(listElements => {
+      this.listElements = listElements;
+    });
+
+    // subscribe to 'isLoadingNottesEvent' event
+    this.nottesService.isLoadingNottesEvent.subscribe(isLoading => {
+      this.loading = isLoading;
+    });
+
+    // subscribe to 'setNottesPaginationTranslationsEvent' event
+    this.nottesService.setNottesPaginationTranslationsEvent.subscribe(paginationTransParams => {
+      this.paginationTransParams = paginationTransParams;
+    });
+
+    this.nottesService.loadEntities();
   }
 
   /**
@@ -216,7 +230,7 @@ export class DashboardComponent extends ListComponent implements OnInit {
   reloadEntites($event) : void
   {
     this.notte = {};
-    super.loadEntities();
+    this.nottesService.loadEntities();
   }
 
   /**
@@ -271,5 +285,10 @@ export class DashboardComponent extends ListComponent implements OnInit {
       this.notte = item;
       this.navActionService.setAction('editLink');
     }
+  }
+
+  loadEntities(page: number = 1, append: boolean = false) : void
+  {
+    this.nottesService.loadEntities(page, append);
   }
 }

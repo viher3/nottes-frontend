@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { TranslateService } from "@ngx-translate/core";
 import { NavActionService } from 'app/services/shared/nav-action.service';
 import { SearchService } from 'app/services/search/search.service';
+import { NottesService } from 'app/services/nottes/nottes.service';
 
 /**
  * @class         SidebarComponent
@@ -26,7 +27,8 @@ export class SidebarComponent
 		private toastr : ToastrService,
 		private translator : TranslateService,
 		private navActionService : NavActionService,
-		private searchService : SearchService
+		private searchService : SearchService,
+		private nottesService: NottesService
 	){
 		let user = auth.getUser();
 		this.username = user.nickname;
@@ -123,7 +125,6 @@ export class SidebarComponent
 	{
 		this.searchTerm = "";
 		this.setAction('init');
-
-		// TODO: reload entities
+		this.nottesService.loadEntities();
 	}
 }
