@@ -125,9 +125,13 @@ div.left-item-list div#list_items_count span.pagination{
 		max-height: 46.7vh;
 	}
 
-	div.content-preview{
-		min-height: 53.3vh;
-		max-height: 53.3vh;
+	div.left-item-list div.notte-list-item-main-wrapper{
+		min-height: 42vh;
+		max-height: 42vh;
 	}
 
+	div.content-preview{
+		min-height: 48vh;
+		max-height: 48vh;
+	}
 }
