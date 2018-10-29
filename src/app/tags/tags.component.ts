@@ -15,7 +15,7 @@ export class TagsComponent {
 
 	@Input() value : string;
 
-	private tags : any;
+	public tags : any;
 
 	constructor()
 	{
