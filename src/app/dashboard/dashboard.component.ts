@@ -52,6 +52,9 @@ export class DashboardComponent extends ListComponent implements OnInit {
   {
     $("body").removeClass("login-body");
 
+    // set last action value
+    this.action = this.navActionService.getAction();
+
     // subscribe to 'navActionEmitter' event
     this.navActionService.navActionEmitter$.subscribe(newAction => {
       this.action = newAction;

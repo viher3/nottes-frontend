@@ -83,7 +83,19 @@ export class SidebarComponent
 	 */
 	setAction(action : string) : void
 	{
-		this.navActionService.setAction(action);
+		// check route
+		var currentRoute = this.router.url;
+
+		if(currentRoute == "/dashboard")
+		{
+			this.navActionService.setAction(action);
+		}
+		else
+		{
+			// redirect to dashboard
+			this.navActionService.setAction(action);
+			this.router.navigateByUrl('dashboard');
+		}
 	}
 
 	/**

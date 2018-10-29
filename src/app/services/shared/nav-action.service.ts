@@ -22,4 +22,14 @@ export class NavActionService
     this.action = action;
     this.navActionEmitter$.emit(action);
   }
+
+  /**
+   * Get action value
+   *
+   * @return  String    this.action   Action value
+   */
+  getAction() : string
+  {
+    return this.action;
+  }
 }
