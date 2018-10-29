@@ -8,6 +8,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { Observable } from 'rxjs/Observable';
 import { NavActionService } from 'app/services/shared/nav-action.service';
 import { NottesService } from 'app/services/nottes/nottes.service';
+import { RequestOptions, ResponseContentType } from '@angular/http';
 
 /**
  * @class         FileService
@@ -47,6 +48,7 @@ export class FileService
     private translator: TranslateService,
     private toastr : ToastrService,
     private auth : AuthService,
+    private authHttp: AuthHttp,
     private nottesService: NottesService,
     private navActionService: NavActionService
   ) 
@@ -117,4 +119,64 @@ export class FileService
     );
   }
 
+  /**
+   * Download selected file.
+   *
+   * @param   Number  id          Document Id
+   * @param   String  filename    Document filename
+   * @param   String  mimetype    Document file MimeType
+   * @return  [type]  void
+   */
+  downloadFile(id : number, filename : string, mimetype: string) : void
+  {
+    let options = new RequestOptions({responseType: ResponseContentType.Blob});
+
+    this.authHttp.get(this.apiUrl + "/document/" + id, options).subscribe(
+
+      data => {
+
+        try
+        {
+          var blob = new Blob([(<any>data)._body], { type: mimetype });
+        
+          if (window.navigator && window.navigator.msSaveOrOpenBlob) 
+          {
+            window.navigator.msSaveOrOpenBlob(blob, filename);
+          } 
+          else 
+          {
+            var a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+          }
+        }
+        catch(e)
+        {
+          console.log(e); 
+        }
+
+      },
+
+      error => {
+        console.log(error); // TODO: handle forbidden error
+        this.auth.checkJwtHasExpiredInServerRequest(error);
+      }
+
+    ); 
+  }
+
+  /**
+   * Preview a file
+   *
+   * @param   String  mimetype    File mimetype
+   * @param   String  filepath    File path
+   * @return  [type]  void
+   */
+  previewFile(mimetype : string, filepath : string)
+  {
+
+  }
 }

@@ -1,12 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output, OnInit } from '@angular/core';
 import { AppConfig } from 'app/app.config';
 import { FileService } from 'app/services/file/file.service';
 import { Router } from '@angular/router';
+import { TranslateService } from "@ngx-translate/core";
 import 'rxjs/Rx';
 
 /**
- * @class         FileUploadComponent
- * @description   Component for uploading new files to the server.
+ * @class         FilePreviewComponent
+ * @description   Component for file preview
  * @author        Alberto Vian - alberto@albertolabs.com
  */
 
@@ -17,10 +18,21 @@ import 'rxjs/Rx';
 })
 export class FilePreviewComponent {
 
+  @Input() id : number;
+  @Input() creatorUser : string;
+  @Input() filename : string;
+  @Input() mimetype : string;
+  @Input() filepath : string;
+
   constructor(
     private fileService : FileService
   ) 
   {
     
+  }
+
+  ngOnInit()
+  {
+    console.log(this.id);
   }
 }

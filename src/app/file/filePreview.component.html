@@ -1,0 +1,42 @@
+<div class="row">
+
+	<div class="col-xs-12 col-sm-9 col-md-9">
+		<h5 class="card-title">
+			<span class="notte-name">{{ filename }}</span>
+		</h5>
+	</div>
+
+</div>
+
+<div class="card">
+
+	<div class="card-body">
+
+		<!-- action btns -->
+		<div class="row pb-3">
+			
+			<div class="col-9 align-middle">
+				<i class="fa fa-user-circle align-middle"></i><span class="align-middle">&nbsp;&nbsp;{{ creatorUser }}</span>
+			</div>
+
+			<div class="responsiveActionBtns col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-right">
+
+				<button (click)="onSubmit(f)" class="btn btn-sm btn-outline-danger pull-right marginLeftActionBtn">
+				    <i class="fa fa-trash"></i>&nbsp;&nbsp;<span>{{ 'common.delete_btn' | translate }}</span>
+				</button>
+
+			</div>
+
+		</div>
+
+		<hr />
+
+		<div>
+			
+			{{ filepath }}
+
+		</div>
+
+	</div>
+
+</div>

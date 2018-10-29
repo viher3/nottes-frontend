@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
 import { AppConfig } from 'app/app.config';
-import { RequestOptions, ResponseContentType } from '@angular/http';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { AuthHttp } from 'angular2-jwt';
@@ -115,6 +114,11 @@ export class DashboardComponent extends ListComponent implements OnInit {
       this.paginationTransParams = paginationTransParams;
     });
 
+    // subscribe to 'isUploading' event
+    this.nottesService.setNottesPaginationTranslationsEvent.subscribe(paginationTransParams => {
+      this.paginationTransParams = paginationTransParams;
+    });
+
     this.nottesService.loadEntities();
     this.loadMoreScrollEvent();
   }
@@ -163,56 +167,6 @@ export class DashboardComponent extends ListComponent implements OnInit {
   }
 
   /**
-   * Download selected file.
-   *
-   * @param   Number  id          Document Id
-   * @param   String  filename    Document filename
-   * @param   String  mimetype    Document file MimeType
-   * @return  [type]  void
-   */
-   // TODO: Move into nottes.service.ts
-  downloadFile(id : number, filename : string, mimetype: string) : void
-  {
-    let options = new RequestOptions({responseType: ResponseContentType.Blob});
-
-    this.authHttp.get(this.apiUrl + "/document/" + id, options).subscribe(
-
-      data => {
-
-        try
-        {
-          var blob = new Blob([(<any>data)._body], { type: mimetype });
-        
-          if (window.navigator && window.navigator.msSaveOrOpenBlob) 
-          {
-            window.navigator.msSaveOrOpenBlob(blob, filename);
-          } 
-          else 
-          {
-            var a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = filename;
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-          }
-        }
-        catch(e)
-        {
-          console.log(e); 
-        }
-
-      },
-
-      error => {
-        console.log(error); // TODO: handle forbidden error
-        this.auth.checkJwtHasExpiredInServerRequest(error);
-      }
-
-    ); 
-  }
-
-  /**
    * Handle the load entity click event
    *
    * @param   Object    item    Item object
@@ -227,6 +181,11 @@ export class DashboardComponent extends ListComponent implements OnInit {
     else if(item.type == "doc")
     {
       this.loadEntity(item.id);
+    }
+    else if(item.type == "file")
+    {
+      this.notte = item;
+      this.navActionService.setAction('filePreview');
     }
   }
 
