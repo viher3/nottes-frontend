@@ -129,7 +129,7 @@
 			<!-- file preview -->
 			<div *ngIf="action == 'filePreview'" class="content-preview-wrapper">
 
-				<file-preview id="{{ notte.id }}" creatorUser="{{ notte.creator_user?.nickname }}" filename="{{ notte?.document?.name }}" mimetype="{{ notte?.document?.mimetype }}" filepath="{{ notte?.document?.path }}"></file-preview>
+				<file-preview id="{{ notte.id }}" documentId="{{ notte?.document?.id }}" creatorUser="{{ notte.creator_user?.nickname }}" filename="{{ notte?.document?.name }}" mimetype="{{ notte?.document?.mimetype }}" filepath="{{ notte?.document?.path }}"></file-preview>
 
 			</div>
 

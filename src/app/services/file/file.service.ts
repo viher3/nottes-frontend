@@ -131,7 +131,7 @@ export class FileService
   {
     let options = new RequestOptions({responseType: ResponseContentType.Blob});
 
-    this.authHttp.get(this.apiUrl + "/document/" + id, options).subscribe(
+    this.authHttp.get(this.apiUrl + "/" + id, options).subscribe(
 
       data => {
 
@@ -177,6 +177,6 @@ export class FileService
    */
   previewFile(mimetype : string, filepath : string)
   {
-
+    //   TODO
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, Output, OnInit } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { AppConfig } from 'app/app.config';
 import { FileService } from 'app/services/file/file.service';
 import { Router } from '@angular/router';
@@ -19,6 +19,7 @@ import 'rxjs/Rx';
 export class FilePreviewComponent {
 
   @Input() id : number;
+  @Input() documentId : number;
   @Input() creatorUser : string;
   @Input() filename : string;
   @Input() mimetype : string;
@@ -31,8 +32,13 @@ export class FilePreviewComponent {
     
   }
 
-  ngOnInit()
+  /**
+   * Download selected file.
+   *
+   * @return  [type]  void
+   */
+  download() : void
   {
-    console.log(this.id);
+    this.fileService.downloadFile(this.documentId, this.filename, this.mimetype);
   }
 }

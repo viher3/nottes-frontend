@@ -31,9 +31,12 @@
 
 		<hr />
 
-		<div>
+		<div class="text-center">
 			
-			{{ filepath }}
+			<button (click)="download()" class="btn btn-lg btn-primary mt-2 mb-2">
+				<i class="fa fa-download"></i>&nbsp;
+				{{ 'common.download' | translate }}
+			</button>
 
 		</div>
 

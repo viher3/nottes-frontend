@@ -37,7 +37,8 @@
         "clear_search" : "Clear search results",
         "changes_saved_success_mssg" : "Changes has been saved correctly.",
         "select" : "Select",
-        "loading" : "Loading"
+        "loading" : "Loading",
+        "download" : "Download"
     },
     "forms" : {
         "required_field" : "Field is required."
