@@ -20,6 +20,7 @@ div.left-item-list{
 }
 div.left-item-list div.notte-list-item-main-wrapper{
 	overflow-y: scroll;
+	overflow-x: hidden;
 	height: 89vh;
 }
 
@@ -85,6 +86,10 @@ div.notte-list-item-container div.ellipsis{
 
 div.notte-list-item-container div.ellipsis i.dropdown-toggle::after {
 	display: none;
+}
+
+div.notte-list-item-container div.item-content h5{
+	word-break: break-all;
 }
 
 div.content-preview-wrapper{
