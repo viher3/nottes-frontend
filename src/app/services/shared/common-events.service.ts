@@ -15,19 +15,6 @@ export class CommonEventsService
   init() : void
   {
     this._scrollTop();
-    this._setLoginBodyClass();
-  }
-
-  _setLoginBodyClass() : void
-  {
-    if(this.router.url == "/login")
-    {
-      $("body").addClass("login-body");
-    }
-    else
-    {
-      $("body").removeClass("login-body");
-    }
   }
 
   _scrollTop()
@@ -43,5 +30,16 @@ export class CommonEventsService
             $('.scrollTop').fadeOut();
         }
     });
+  }
+
+  /**
+   * Scroll the entities list to the top
+   * 
+   * @return  [type]    void
+   */
+  scrollItemsListToTop() : void
+  {
+    // scroll to top
+    $("div.left-item-list div.notte-list-item-main-wrapper").animate({scrollTop:"0px"});
   }
 }

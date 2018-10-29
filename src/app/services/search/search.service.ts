@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthHttp } from 'angular2-jwt';
 import { listElements, paginationTransParams } from 'app/shared/parentComponents/list.interface'
 import { AuthService } from 'app/user/auth.service';
+import { CommonEventsService } from 'app/services/shared/common-events.service';
 
 @Injectable()
 export class SearchService
@@ -29,7 +30,8 @@ export class SearchService
     protected translator: TranslateService,
     protected authHttp: AuthHttp,
     protected toastr: ToastrService,
-    protected auth : AuthService
+    protected auth : AuthService,
+    protected commonEventsService : CommonEventsService
   ) 
   {
     this.getSearchResultsEvent = new EventEmitter();    
@@ -71,16 +73,7 @@ export class SearchService
     }
   }
 
-  /**
-   * Scroll the entities list to the top
-   * 
-   * @return  [type]    void
-   */
-  scrollItemsListToTop() : void
-  {
-    // scroll to top
-    $("div.left-item-list div.notte-list-item-main-wrapper").animate({scrollTop:"0px"});
-  }
+  
 
   /**
    * Make API request to the search endpoint
@@ -105,7 +98,7 @@ export class SearchService
       if( ! append )
       {
         this.loading = true;
-        this.scrollItemsListToTop();
+        this.commonEventsService.scrollItemsListToTop();
       }
       else
       {

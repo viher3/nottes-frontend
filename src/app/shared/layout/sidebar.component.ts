@@ -6,6 +6,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { NavActionService } from 'app/services/shared/nav-action.service';
 import { SearchService } from 'app/services/search/search.service';
 import { NottesService } from 'app/services/nottes/nottes.service';
+import { CommonEventsService } from 'app/services/shared/common-events.service';
 
 /**
  * @class         SidebarComponent
@@ -28,7 +29,8 @@ export class SidebarComponent
 		private translator : TranslateService,
 		private navActionService : NavActionService,
 		private searchService : SearchService,
-		private nottesService: NottesService
+		private nottesService: NottesService,
+		private commonEventsService : CommonEventsService
 	){
 		let user = auth.getUser();
 		this.username = user.nickname;
@@ -126,6 +128,6 @@ export class SidebarComponent
 		this.searchTerm = "";
 		this.setAction('init');
 		this.nottesService.loadEntities();
-		this.searchService.scrollItemsListToTop();
+		this.commonEventsService.scrollItemsListToTop();
 	}
 }
