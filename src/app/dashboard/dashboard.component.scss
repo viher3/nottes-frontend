@@ -114,3 +114,20 @@ div.left-item-list div#list_items_count span{
 div.left-item-list div#list_items_count span.pagination{
 	font-size: 12px;
 }
+
+/**
+ * Responsive styles
+ */
+@media (max-width: 575px) 
+{ 
+	div.left-item-list{
+		min-height: 46.7vh;
+		max-height: 46.7vh;
+	}
+
+	div.content-preview{
+		min-height: 53.3vh;
+		max-height: 53.3vh;
+	}
+
+}
