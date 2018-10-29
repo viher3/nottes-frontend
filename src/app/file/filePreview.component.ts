@@ -50,7 +50,7 @@ export class FilePreviewComponent {
    * @param   Object      item    Entity object
    * @return  [type]      void
    */ 
-  remove(item) : void
+  remove() : void
   {
     var item = { 
       "id" : this.id,
