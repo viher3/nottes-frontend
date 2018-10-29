@@ -132,7 +132,7 @@
         <div class="input-group">
             <input class="form-control mt-2" [(ngModel)]="searchTerm" (keyup)="searchOnKey($event)" id="responsive_search_input" type="text" placeholder="{{ 'common.search' | translate }}" />
             <div class="input-group-append">
-                <button id="clear_search_btn" (click)="clearSearch()" *ngIf="isSearch" class="btn my-2 my-sm-0">
+                <button id="responsive_clear_search_btn" (click)="clearSearch()" *ngIf="isSearch" class="btn my-2 my-sm-0">
                     <i class="fa fa-times"></i>
                 </button>
                 <button class="btn btn-info my-2 my-sm-0" id="responsive_search_submit_btn" type="submit">

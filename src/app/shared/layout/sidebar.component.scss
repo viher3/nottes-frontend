@@ -243,7 +243,9 @@ ul#responsive_user_dropdown div.dropdown-menu{
 
 @media (min-width: 576px) and (max-width: 992px)
 {
-  nav#responsive_navbar div.input-group-append button#responsive_search_submit_btn{
+  nav#responsive_navbar div.input-group-append button#responsive_search_submit_btn,
+  nav#responsive_navbar div.input-group-append button#responsive_clear_search_btn
+  {
     margin-top: 8px !important;
   }
 }
