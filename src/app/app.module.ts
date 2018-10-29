@@ -20,6 +20,7 @@ import { LinkCreateComponent } from 'app/link/linkCreate.component';
 import { LinkEditComponent } from 'app/link/linkEdit.component';
 import { LinkFormComponent } from 'app/link/linkForm.component';
 import { FileUploadComponent } from 'app/file/fileUpload.component';
+import { FilePreviewComponent } from 'app/file/filePreview.component';
 import { AuthService } from 'app/user/auth.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ConfigurationComponent, GeneralConfigurationComponent, SecurityConfigurationComponent } from './configuration';
@@ -63,6 +64,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     LinkEditComponent,
     LinkFormComponent,
     FileUploadComponent,
+    FilePreviewComponent,
     ConfigurationComponent,
     GeneralConfigurationComponent,
     SecurityConfigurationComponent,
