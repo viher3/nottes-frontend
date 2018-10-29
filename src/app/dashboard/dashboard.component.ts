@@ -84,6 +84,16 @@ export class DashboardComponent extends ListComponent implements OnInit {
     this.searchService.getSearchTranslationsEvent.subscribe(searchTerm => {
       this.searchTerm = searchTerm;
     });
+    
+    // subscribe to 'isSearchEvent' event
+    this.searchService.isSearchEvent.subscribe(isSearchValue => {
+      this.isSearch = isSearchValue;
+    });
+    
+    // subscribe to 'isLoadingMoreSearchEvent' event
+    this.searchService.isLoadingMoreSearchEvent.subscribe(isLoadingMoreValue => {
+      this.loadingMore = isLoadingMoreValue;
+    });
 
     // subscribe to 'loadEntitiesEvent' event
     this.nottesService.loadEntitiesEvent.subscribe(listElements => {
@@ -138,13 +148,13 @@ export class DashboardComponent extends ListComponent implements OnInit {
    */
   loadMoreRequest() : void
   {
+    if(this.loadingMore) return;
+
     let nextPage = Number(this.listElements.current_page_number) + 1;
     
-    console.log(this.isSearch);
-
     if(this.isSearch)
     {
-      // TODO ..
+      this.searchService.searchEntities(nextPage, true);
     }
     else
     {
@@ -160,6 +170,7 @@ export class DashboardComponent extends ListComponent implements OnInit {
    * @param   String  mimetype    Document file MimeType
    * @return  [type]  void
    */
+   // TODO: Move into nottes.service.ts
   downloadFile(id : number, filename : string, mimetype: string) : void
   {
     let options = new RequestOptions({responseType: ResponseContentType.Blob});
@@ -225,6 +236,7 @@ export class DashboardComponent extends ListComponent implements OnInit {
    * @param   Number  id                        Entity Id
    * @param   String  encryptionPassword        Encryption password for the notte
    */
+   // TODO: Move into nottes.service.ts
   loadEntity(id : number, encryptionPassword: string = "")
   {
     // reset default values

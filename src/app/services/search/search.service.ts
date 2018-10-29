@@ -22,7 +22,8 @@ export class SearchService
   public getSearchResultsEvent : EventEmitter<any>;
   public getPaginationTranslationsEvent : EventEmitter<any>;
   public getSearchTranslationsEvent : EventEmitter<any>;
-  public isSearchEvent : EventEmitter<any>;
+  public isSearchEvent : EventEmitter<boolean>;
+  public isLoadingMoreSearchEvent : EventEmitter<boolean>;
 
   constructor(
     protected translator: TranslateService,
@@ -35,6 +36,7 @@ export class SearchService
     this.getPaginationTranslationsEvent = new EventEmitter();    
     this.getSearchTranslationsEvent = new EventEmitter();    
     this.isSearchEvent = new EventEmitter();    
+    this.isLoadingMoreSearchEvent = new EventEmitter();    
   }
 
   /**
@@ -58,15 +60,26 @@ export class SearchService
   {
     this.currentPaginationPosition = ( (this.listElements).current_page_number * (this.listElements).num_items_per_page );
 
-    if( this.listElements.items.length < (this.listElements).num_items_per_page )
+    if(this.currentPaginationPosition > this.listElements.total_count)
     {
-      this.currentPaginationPosition = this.listElements.items.length;
+      this.currentPaginationPosition = this.listElements.total_count;
     }
 
     this.paginationTransParams = {
       "current" : this.currentPaginationPosition,
       "total" : this.listElements.total_count
     }
+  }
+
+  /**
+   * Scroll the entities list to the top
+   * 
+   * @return  [type]    void
+   */
+  scrollItemsListToTop() : void
+  {
+    // scroll to top
+    $("div.left-item-list div.notte-list-item-main-wrapper").animate({scrollTop:"0px"});
   }
 
   /**
@@ -80,16 +93,24 @@ export class SearchService
   {
       if( ! this.searchTerm.length ) return;
 
+      // Avoid load more entities if all items are listed
+      if(append && this.currentPaginationPosition == this.listElements.total_count)
+      {
+        return;
+      }
+
       this.isSearch = true;
       this.isSearchEvent.emit(true);
 
       if( ! append )
       {
         this.loading = true;
+        this.scrollItemsListToTop();
       }
       else
       {
         this.loadingMore = true;
+        this.isLoadingMoreSearchEvent.emit(true);
       }
 
       let currItems = [];
@@ -126,10 +147,10 @@ export class SearchService
           this.loading = false;
           this.loadingMore = false;
 
+          this.isLoadingMoreSearchEvent.emit(false);
           this.getSearchResultsEvent.emit(this.listElements);
           this.getPaginationTranslationsEvent.emit(this.paginationTransParams);
           this.getSearchTranslationsEvent.emit(this.searchTerm);
-
         },
         err => {
 

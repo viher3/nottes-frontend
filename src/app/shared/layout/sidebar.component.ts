@@ -126,5 +126,6 @@ export class SidebarComponent
 		this.searchTerm = "";
 		this.setAction('init');
 		this.nottesService.loadEntities();
+		this.searchService.scrollItemsListToTop();
 	}
 }
