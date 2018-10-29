@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, HostListener } from '@angular/core';
 import { AuthService } from 'app/user/auth.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -17,7 +17,10 @@ import { CommonEventsService } from 'app/services/shared/common-events.service';
 @Component({
   selector: 'layout-sidebar',
   templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
+  styleUrls: ['./sidebar.component.scss'],
+  host: {
+    '(window:resize)': 'onResize($event)'
+  }
 })
 
 export class SidebarComponent
@@ -41,6 +44,7 @@ export class SidebarComponent
 	public isSidebarToggled : boolean = false;
 	public searchTerm : string = "";
 	public isSearch : boolean = false;
+	public appWidth = $(window).width();
 
 	public menu : Array <any> = [
 
@@ -56,6 +60,17 @@ export class SidebarComponent
 	      this.isSearch = isSearch;
 	    });
 	}
+
+	/**
+	 * Update appWidth value when desktop is resized
+	 * 
+	 * @param 	Object 	event 	On resize event object
+	 * @return 	[type]	void
+	 */
+	onResize(event) : void
+	{
+    	this.appWidth = event.target.innerWidth;
+   	}
 
 	/**
 	 * Logout the current user
@@ -141,5 +156,15 @@ export class SidebarComponent
 		this.setAction('init');
 		this.nottesService.loadEntities();
 		this.commonEventsService.scrollItemsListToTop();
+	}
+
+	/**
+	 * Check if app stauts is responsive
+	 * @return 	Boolean 	true|false
+	 */
+	isResponsive() : boolean
+	{
+		if(this.appWidth < 992) return true;
+		return false;
 	}
 }

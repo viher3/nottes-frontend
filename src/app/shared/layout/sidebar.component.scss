@@ -200,6 +200,17 @@ ul.megamenu div.row li.dropdown-item:hover{
     background-color: transparent !important;
 }
 
+div#navbarSupportedContent ul.navbar-nav li.dropdown a.dropdown-toggle::after{
+    display:none;
+}
+button#clear_search_btn:hover{
+  background: #CECECE;
+}
+
+ul#responsive_user_dropdown div.dropdown-menu{
+  position: absolute;
+}
+
 @media (max-width: 768px) {
   .megamenu {
     margin-left: 0;
@@ -217,11 +228,22 @@ ul.megamenu div.row li.dropdown-item:hover{
   .navbar-nav .open .dropdown-menu .dropdown-header {
     color: #fff;
   }
+  div#navbarSupportedContent .dropdown-menu{
+    border: none !important;
+  }
+  input#search_input,
+  input#responsive_search_input
+  {
+    width: 60%;
+  }
+  button.navbar-toggler{
+    margin-left: 10px;
+  }
 }
 
-div#navbarSupportedContent ul.navbar-nav li.dropdown a.dropdown-toggle::after{
-    display:none;
-}
-button#clear_search_btn:hover{
-  background: #CECECE;
+@media (min-width: 576px) and (max-width: 992px)
+{
+  nav#responsive_navbar div.input-group-append button#responsive_search_submit_btn{
+    margin-top: 8px !important;
+  }
 }
