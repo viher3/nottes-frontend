@@ -152,6 +152,7 @@ export class NottesService
     }
 
     this.isLoadingNottesEvent.emit(true);
+    this.isLoadingMoreNottesEvent.emit(true);
 
     let currItems = [];
     let entityUrl = this.entityApiUrl + "?page=" + page;

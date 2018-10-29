@@ -126,7 +126,6 @@ export class DashboardComponent extends ListComponent implements OnInit {
       
       if(scroll >= divHeight)
       {
-        this.loadingMore = true;
         this.loadMoreRequest();
       }
     });
