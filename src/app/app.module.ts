@@ -36,6 +36,7 @@ import { NottesService } from 'app/services/nottes/nottes.service';
 import { NavActionService } from 'app/services/shared/nav-action.service';
 import { TagsComponent } from 'app/tags/tags.component';
 import { SearchService } from 'app/services/search/search.service';
+import { FileService } from 'app/services/file/file.service';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -103,7 +104,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     CommonEventsService,
     NottesService,
     NavActionService,
-    SearchService
+    SearchService,
+    FileService
   ],
   bootstrap: [AppComponent]
 })

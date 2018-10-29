@@ -1,12 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AppConfig } from 'app/app.config';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ToastrService } from 'ngx-toastr';
-import { AuthHttp, JwtHelper } from 'angular2-jwt';
-import { ListComponent, SpinnerComponent } from 'app/shared';
-import { TranslateService } from "@ngx-translate/core";
-import { CommonEventsService } from 'app/services/shared/common-events.service';
-import { AuthService } from 'app/user/auth.service';
+import { FileService } from 'app/services/file/file.service';
 import { Router } from '@angular/router';
 import 'rxjs/Rx';
 
@@ -17,17 +11,11 @@ import 'rxjs/Rx';
  */
 
 @Component({
-  selector: 'app-file-upload',
+  selector: 'file-upload',
   templateUrl: './fileUpload.component.html',
   styleUrls: ['./fileUpload.component.scss']
 })
 export class FileUploadComponent implements OnInit {
-
-  /**
-   * Loading state
-   * @var Boolean
-   */
-  public loading: boolean = false;
 
   /**
    * Upload state
@@ -41,34 +29,18 @@ export class FileUploadComponent implements OnInit {
    */
   public selectedFiles: Array <File>;
 
-  /**
-   * Authentication API Token
-   * @var String
-   */
-  private authToken : string;
-
-  /**
-   * Upload files API endpoint
-   * @var String
-   */
-  private apiUrl : string;
-
   constructor(
-  	private toastr : ToastrService,
-    private translator : TranslateService,
-    private authHttp : AuthHttp,
-    private http : HttpClient,
-    private auth : AuthService,
-    private router : Router
+    private fileService : FileService
   ) 
   {
-    this.apiUrl = AppConfig.settings.api.api_upload_url;
-    this.authToken = 'Bearer ' + localStorage.getItem(AppConfig.settings.users.session.tokenKey);
+    
   }
 
   ngOnInit()
   {
-    this.loading = false;
+    this.fileService.isUploading.subscribe(uploading => {
+      this.uploading = uploading;
+    });
   }
 
   /**
@@ -78,50 +50,7 @@ export class FileUploadComponent implements OnInit {
    */
   uploadFiles() : void
   {
-    this.uploading = true;
-
-    // Build formData object
-    const formData : FormData = new FormData();
-
-    for(let file of this.selectedFiles)
-    {
-      formData.append('files[]', file, file.name);
-    };
-
-    // Build options object
-    const options = { 
-      headers : new HttpHeaders({
-        'Authorization' : this.authToken
-      })
-    };
-
-    // Post request to API
-    this.http.post(this.apiUrl, formData, options).subscribe(
-
-      data => {
-
-        this.uploading = false;
-
-        // show success alert
-        for(var i in data)
-        {
-          let filename = data[i].fileInfo.original_name;
-
-          this.translator
-            .get('components.uploads.create.success_mss', { file : filename })
-            .subscribe( (translation: string) => {
-              this.toastr.success(translation, null, { enableHtml: true });
-          });
-        }
-
-        // redirect to dashboard
-        this.router.navigateByUrl('dashboard');
-      },
-      error => {
-        this.auth.checkJwtHasExpiredInServerRequest(error);
-        this.uploading = false;
-      }
-    );
+    this.fileService.uploadFiles(this.selectedFiles);
   }
 
   /**
