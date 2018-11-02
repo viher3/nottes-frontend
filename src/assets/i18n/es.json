@@ -45,7 +45,7 @@
     },
     "components": {
         "pagination" : {
-            "listing_x_of_y" : "Listing {{ current }} of {{ total }}"
+            "listing_x_of_y" : "Mostrando {{ current }} de {{ total }}"
         },
         "login" : {
             "title" : "Acceso usuarios",
