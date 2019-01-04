@@ -8,51 +8,47 @@
 
 </div>
 
-<div class="card">
+<div>
 
-	<div class="card-body">
-
-		<!-- action btns -->
-		<div class="row pb-3">
-			<div class="col-9 align-middle">
-				<i class="fa fa-user-circle align-middle"></i><span class="align-middle">&nbsp;&nbsp;{{ notte?.creator_user?.nickname }}</span>
-			</div>
-			<div class="responsiveActionBtns col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-right">
-				<button class="btn btn-sm btn-outline-danger pull-right marginLeftActionBtn" (click)="deleteEntity(notte)" *ngIf="! notte?.is_encrypted || notte?.is_decrypted">
-				    <i class="fa fa-trash"></i>&nbsp;&nbsp;{{ 'common.delete_btn' | translate }}
-				</button>
-				<button (click)="editEntity()" *ngIf="! notte?.is_encrypted || notte?.is_decrypted" href="#" class="btn btn-sm btn-outline-primary pull-right marginLeftActionBtn">
-				    <i class="fa fa-edit"></i>&nbsp;&nbsp;{{ 'common.edit_btn' | translate }}
-				</button>
-			</div>
+	<!-- action btns -->
+	<div class="row pb-3">
+		<div class="col-9 align-middle">
+			<i class="fa fa-user-circle align-middle"></i><span class="align-middle">&nbsp;&nbsp;{{ notte?.creator_user?.nickname }}</span>
 		</div>
+		<div class="responsiveActionBtns col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-right">
+			<button class="btn btn-sm btn-outline-danger pull-right marginLeftActionBtn" (click)="deleteEntity(notte)" *ngIf="! notte?.is_encrypted || notte?.is_decrypted">
+			    <i class="fa fa-trash"></i>&nbsp;&nbsp;{{ 'common.delete_btn' | translate }}
+			</button>
+			<button (click)="editEntity()" *ngIf="! notte?.is_encrypted || notte?.is_decrypted" href="#" class="btn btn-sm btn-outline-primary pull-right marginLeftActionBtn">
+			    <i class="fa fa-edit"></i>&nbsp;&nbsp;{{ 'common.edit_btn' | translate }}
+			</button>
+		</div>
+	</div>
 
-		<!-- content -->
-		<div class="notte-content">
+	<!-- content -->
+	<div class="notte-content">
 
-			<div class="row justify-content-md-center" *ngIf="notte?.is_encrypted && ! notte?.is_decrypted">
+		<div class="row justify-content-md-center" *ngIf="notte?.is_encrypted && ! notte?.is_decrypted">
 
-				<encryption-password-form (encryptionPasswordEvent)="receiveEncryptionPassword($event)"></encryption-password-form>
-
-			</div>
-
-			<div [hidden]="!contentIsVisible" [innerHTML]="notte?.content"></div>
+			<encryption-password-form (encryptionPasswordEvent)="receiveEncryptionPassword($event)"></encryption-password-form>
 
 		</div>
 
-		<div [hidden]="!contentIsVisible">
-		</div>
-
-		<div class="row" [hidden]="!contentIsVisible">
-		    <div class="col-md-6">
-				<small>{{ notte?.tags }}</small>
-				<!--<tags value="{{ notte?.tags }}"></tags>-->
-		    </div>
-		    <div class="col-md-6 text-right">
-		    	<small>{{ 'components.docs.detail.last_update' | translate }} {{ notte?.updated_at | date:'dd/MM/yyyy HH:mm:ss' }}</small>
-		    </div>
-	    </div>
+		<div [hidden]="!contentIsVisible" [innerHTML]="notte?.content"></div>
 
 	</div>
+
+	<div [hidden]="!contentIsVisible">
+	</div>
+
+	<div class="row" [hidden]="!contentIsVisible">
+	    <div class="col-md-6">
+			<small>{{ notte?.tags }}</small>
+			<!--<tags value="{{ notte?.tags }}"></tags>-->
+	    </div>
+	    <div class="col-md-6 text-right">
+	    	<small>{{ 'components.docs.detail.last_update' | translate }} {{ notte?.updated_at | date:'dd/MM/yyyy HH:mm:ss' }}</small>
+	    </div>
+    </div>
 
 </div>
