@@ -1,124 +1,120 @@
-<div class="card" [hidden]="loading">
+<div [hidden]="loading">
 
-	<div class="card-body">
+	<div class="row">
 
-		<div class="row">
+		<div class="col-xs-12 col-sm-6 col-md-6">
 
-			<div class="col-xs-12 col-sm-6 col-md-6">
-
-				<h5 class="card-title">
-					<i class="fa fa-file-text-o"></i>&nbsp;
-					<span [translate]="title"></span>
-				</h5>
-
-			</div>
-
-			<!-- action btns -->
-			<div *ngIf="(action == 'edit' && ! notte?.is_encrypted) || (action == 'edit' && notte?.is_encrypted && notte?.is_decrypted) || action == 'create'" class="responsiveActionBtns col-xs-12 col-sm-6 col-md-6 text-right">
-
-				<button (click)="onSubmit(f)" class="btn btn-sm btn-outline-primary">
-				    <i class="fa fa-save"></i>&nbsp;&nbsp;<span [translate]="saveBtn"></span>
-				</button>
-
-			</div>
+			<h5 class="card-title">
+				<i class="fa fa-file-text-o"></i>&nbsp;
+				<span [translate]="title"></span>
+			</h5>
 
 		</div>
 
-		<hr />
+		<!-- action btns -->
+		<div *ngIf="(action == 'edit' && ! notte?.is_encrypted) || (action == 'edit' && notte?.is_encrypted && notte?.is_decrypted) || action == 'create'" class="responsiveActionBtns col-xs-12 col-sm-6 col-md-6 text-right">
 
-		<div class="notte-content">
+			<button (click)="onSubmit(f)" class="btn btn-sm btn-outline-primary">
+			    <i class="fa fa-save"></i>&nbsp;&nbsp;<span [translate]="saveBtn"></span>
+			</button>
 
-			<div class="row justify-content-md-center" *ngIf="notte?.is_encrypted && ! notte?.is_decrypted && action != 'create'">
+		</div>
 
-				<encryption-password-form (encryptionPasswordEvent)="receiveEncryptionPassword($event)"></encryption-password-form>
+	</div>
+
+	<hr />
+
+	<div class="notte-content">
+
+		<div class="row justify-content-md-center" *ngIf="notte?.is_encrypted && ! notte?.is_decrypted && action != 'create'">
+
+			<encryption-password-form (encryptionPasswordEvent)="receiveEncryptionPassword($event)"></encryption-password-form>
+
+		</div>
+
+		<form novalidate #f="ngForm" [hidden]="!contentIsVisible">
+
+			<!-- name -->
+			<div class="form-group">
+
+				<label for="notte-name">{{ 'components.docs.create.input_title' | translate }}</label>
+				<input id="notte-name" name="name" [(ngModel)]="notte.name" type="text" class="form-control" placeholder="{{ 'components.docs.create.placeholders.input_title' | translate }}" required [ngClass]="{ 'is-invalid': f.controls.name?.errors?.required && submitedForm }" />
+
+				<div *ngIf="f.controls.name?.errors?.required && submitedForm" class="invalid-feedback">
+					{{ 'forms.required_field' | translate }}
+				</div>
 
 			</div>
+			<!-- end name -->
 
-			<form novalidate #f="ngForm" [hidden]="!contentIsVisible">
+			<!-- content -->
+			<div id="nottes-editor-wrapper" class="form-group" [ngClass]="{ 'is-invalid': editorIsEmpty && submitedForm }">
+				<label>{{ 'components.docs.create.input_content' | translate }}</label>
+				<div id="notte-editor"></div>
 
-				<!-- name -->
-				<div class="form-group">
+				<div *ngIf="editorIsEmpty && submitedForm" class="form-error">
+					{{ 'forms.required_field' | translate }}
+				</div>
+			</div>
+			<!-- end content -->
 
-					<label for="notte-name">{{ 'components.docs.create.input_title' | translate }}</label>
-					<input id="notte-name" name="name" [(ngModel)]="notte.name" type="text" class="form-control" placeholder="{{ 'components.docs.create.placeholders.input_title' | translate }}" required [ngClass]="{ 'is-invalid': f.controls.name?.errors?.required && submitedForm }" />
+			<!-- tags -->
+			<div class="form-group">
+				<label for="notte-tags">{{ 'components.docs.create.input_tags' | translate }}</label>
+				<input id="notte-tags" name="tags" [(ngModel)]="notte.tags" type="text" class="form-control" placeholder="{{ 'components.docs.create.placeholders.input_tags' | translate }}" ngModel />
+			</div>
+			<!-- end tags -->
 
-					<div *ngIf="f.controls.name?.errors?.required && submitedForm" class="invalid-feedback">
-						{{ 'forms.required_field' | translate }}
+			<!-- encrypted -->
+			<div class="form-group is-encrypted-switch">
+			  <span class="switch">
+			    <input type="checkbox" class="switch" id="notte-is-encrypted" name="is_encrypted" [(ngModel)]="notte.is_encrypted" />
+			    <label for="notte-is-encrypted">{{ 'components.docs.create.input_is_encrypted' | translate }}</label>
+			  </span>
+			</div>
+
+			<div class="row" [hidden]="!notte.is_encrypted">
+				
+				<div class="form-group col-md-4">
+					<label for="encryption-password">{{ 'components.docs.create.input_encryption_pwd' | translate }}</label>
+					<input [ngClass]="{ 'is-invalid': f.controls.encryptionpwd?.errors?.minlength && f.controls.encryptionpwd.dirty && f.value.encryptionpwd.length }" [(ngModel)]="encryptionpwd" type="password" class="form-control" id="encryptionpwd" name="encryptionpwd" minlength="6" />
+
+					<!-- check password length -->
+					<div class="invalid-feedback" *ngIf="f.controls.encryptionpwd?.errors?.minlength && f.controls.encryptionpwd.dirty && f.value.encryptionpwd.length">
+						{{ 'components.docs.errors.password_min_length' | translate }}
 					</div>
+					<!-- end check password length -->
 
 				</div>
-				<!-- end name -->
+				
+				<div class="form-group col-md-4">
 
-				<!-- content -->
-				<div id="nottes-editor-wrapper" class="form-group" [ngClass]="{ 'is-invalid': editorIsEmpty && submitedForm }">
-					<label>{{ 'components.docs.create.input_content' | translate }}</label>
-					<div id="notte-editor"></div>
+					<label for="encryption-password2">{{ 'components.docs.create.input_repeat_encryption_pwd' | translate }}</label>
+					<input [(ngModel)]="encryptionpwd2" type="password" class="form-control" id="encryptionpwd2" name="encryptionpwd2" minlength="6" [ngClass]="{ 'is-invalid': (f.value.encryptionpwd2 != f.value.encryptionpwd) && f.controls.encryptionpwd.dirty && f.controls.encryptionpwd2.dirty && f.value.encryptionpwd2.length }" />
 
-					<div *ngIf="editorIsEmpty && submitedForm" class="form-error">
-						{{ 'forms.required_field' | translate }}
+					<!-- check if passwords match -->
+					<div class="invalid-feedback" *ngIf="(f.value.encryptionpwd2 != f.value.encryptionpwd) && f.controls.encryptionpwd.dirty && f.controls.encryptionpwd2.dirty && f.value.encryptionpwd2.length" >
+						{{ 'components.docs.errors.password_doesnt_match' | translate }}
 					</div>
-				</div>
-				<!-- end content -->
-
-				<!-- tags -->
-				<div class="form-group">
-					<label for="notte-tags">{{ 'components.docs.create.input_tags' | translate }}</label>
-					<input id="notte-tags" name="tags" [(ngModel)]="notte.tags" type="text" class="form-control" placeholder="{{ 'components.docs.create.placeholders.input_tags' | translate }}" ngModel />
-				</div>
-				<!-- end tags -->
-
-				<!-- encrypted -->
-				<div class="form-group is-encrypted-switch">
-				  <span class="switch">
-				    <input type="checkbox" class="switch" id="notte-is-encrypted" name="is_encrypted" [(ngModel)]="notte.is_encrypted" />
-				    <label for="notte-is-encrypted">{{ 'components.docs.create.input_is_encrypted' | translate }}</label>
-				  </span>
-				</div>
-
-				<div class="row" [hidden]="!notte.is_encrypted">
-					
-					<div class="form-group col-md-4">
-						<label for="encryption-password">{{ 'components.docs.create.input_encryption_pwd' | translate }}</label>
-						<input [ngClass]="{ 'is-invalid': f.controls.encryptionpwd?.errors?.minlength && f.controls.encryptionpwd.dirty && f.value.encryptionpwd.length }" [(ngModel)]="encryptionpwd" type="password" class="form-control" id="encryptionpwd" name="encryptionpwd" minlength="6" />
-
-						<!-- check password length -->
-						<div class="invalid-feedback" *ngIf="f.controls.encryptionpwd?.errors?.minlength && f.controls.encryptionpwd.dirty && f.value.encryptionpwd.length">
-							{{ 'components.docs.errors.password_min_length' | translate }}
-						</div>
-						<!-- end check password length -->
-
-					</div>
-					
-					<div class="form-group col-md-4">
-
-						<label for="encryption-password2">{{ 'components.docs.create.input_repeat_encryption_pwd' | translate }}</label>
-						<input [(ngModel)]="encryptionpwd2" type="password" class="form-control" id="encryptionpwd2" name="encryptionpwd2" minlength="6" [ngClass]="{ 'is-invalid': (f.value.encryptionpwd2 != f.value.encryptionpwd) && f.controls.encryptionpwd.dirty && f.controls.encryptionpwd2.dirty && f.value.encryptionpwd2.length }" />
-
-						<!-- check if passwords match -->
-						<div class="invalid-feedback" *ngIf="(f.value.encryptionpwd2 != f.value.encryptionpwd) && f.controls.encryptionpwd.dirty && f.controls.encryptionpwd2.dirty && f.value.encryptionpwd2.length" >
-							{{ 'components.docs.errors.password_doesnt_match' | translate }}
-						</div>
-						<!-- end check if passwords match -->
-
-					</div>
+					<!-- end check if passwords match -->
 
 				</div>
-				<!-- end encrypted -->
-
-			</form>
-
-			<div class="row">
-
-				<!-- action btns -->
-			    <div *ngIf="(action == 'edit' && ! notte?.is_encrypted) || (action == 'edit' && notte?.is_encrypted && notte?.is_decrypted) || action == 'create'" class="responsiveActionBtns col-md-12 text-right">
-
-			    	<button (click)="onSubmit(f)" class="btn btn-sm btn-outline-primary pull-right marginLeftActionBtn">
-					    <i class="fa fa-save"></i>&nbsp;&nbsp;<span [translate]="saveBtn"></span>
-					</button>
-
-			    </div>
 
 			</div>
+			<!-- end encrypted -->
+
+		</form>
+
+		<div class="row">
+
+			<!-- action btns -->
+		    <div *ngIf="(action == 'edit' && ! notte?.is_encrypted) || (action == 'edit' && notte?.is_encrypted && notte?.is_decrypted) || action == 'create'" class="responsiveActionBtns col-md-12 text-right">
+
+		    	<button (click)="onSubmit(f)" class="btn btn-sm btn-outline-primary pull-right marginLeftActionBtn">
+				    <i class="fa fa-save"></i>&nbsp;&nbsp;<span [translate]="saveBtn"></span>
+				</button>
+
+		    </div>
 
 		</div>
 
