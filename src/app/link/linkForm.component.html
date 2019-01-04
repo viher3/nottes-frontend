@@ -1,88 +1,84 @@
-<div class="card">
+<div>
 
-	<div class="card-body">
+	<div class="row">
 
-		<div class="row">
+		<div class="col-xs-12 col-sm-6 col-md-6">
 
-			<div class="col-xs-12 col-sm-6 col-md-6">
-
-				<h5 class="card-title">
-					<i class="fa fa-file-text-o"></i>&nbsp;
-					<span [translate]="title"></span>
-				</h5>
-
-			</div>
-
-			<div class="responsiveActionBtns col-xs-12 col-sm-6 col-md-6 text-right">
-
-				<button (click)="onSubmit(f)" class="btn btn-sm btn-outline-primary pull-right marginLeftActionBtn">
-				    <i class="fa fa-save"></i>&nbsp;&nbsp;<span [translate]="saveBtn"></span>
-				</button>
-
-			</div>
+			<h5 class="card-title">
+				<i class="fa fa-file-text-o"></i>&nbsp;
+				<span [translate]="title"></span>
+			</h5>
 
 		</div>
 
-		<hr />
+		<div class="responsiveActionBtns col-xs-12 col-sm-6 col-md-6 text-right">
 
-		<div class="createLink">
-
-			<div class="row justify-content-left">
-
-				<form novalidate #f="ngForm" class="col-md-12">
-
-					<!-- title -->
-					<div class="form-group">
-
-						<label for="title">{{ 'components.links.create.input_name' | translate }}</label>
-						<input id="title" name="title" [(ngModel)]="inputTitle" type="text" class="form-control" placeholder="{{ 'components.links.create.placeholders.input_name' | translate }}" required [ngClass]="{ 'is-invalid': f.controls.title?.errors?.required && submitedForm }" />
-
-						<div *ngIf="f.controls.title?.errors?.required && submitedForm" class="invalid-feedback">
-							{{ 'forms.required_field' | translate }}
-						</div>
-
-					</div>
-					<!-- end title -->
-
-					<!-- url -->
-					<div class="form-group">
-
-						<label for="url">{{ 'components.links.create.input_url' | translate }}</label>
-						<input id="url" name="url" [(ngModel)]="inputUrl" type="text" class="form-control" placeholder="{{ 'components.links.create.placeholders.input_url' | translate }}" required [ngClass]="{ 'is-invalid': f.controls.url?.errors?.required && submitedForm }" />
-
-						<div *ngIf="f.controls.url?.errors?.required && submitedForm" class="invalid-feedback">
-							{{ 'forms.required_field' | translate }}
-						</div>
-
-					</div>
-					<!-- end url -->
-
-					<!-- tags -->
-					<div class="form-group">
-
-						<label for="tags">{{ 'components.links.create.input_tags' | translate }}</label>
-						<input id="tags" name="tags" [(ngModel)]="inputTags" type="text" class="form-control" placeholder="{{ 'components.links.create.placeholders.input_tags' | translate }}" />
-
-					</div>
-					<!-- end tags -->
-
-				</form>
-
-			</div>
+			<button (click)="onSubmit(f)" class="btn btn-sm btn-outline-primary pull-right marginLeftActionBtn">
+			    <i class="fa fa-save"></i>&nbsp;&nbsp;<span [translate]="saveBtn"></span>
+			</button>
 
 		</div>
 
-		<div class="row">
+	</div>
 
-		    <div class="responsiveActionBtns col-md-12 text-right">
+	<hr />
 
-		    	<button (click)="onSubmit(f)" class="btn btn-sm btn-outline-primary pull-right marginLeftActionBtn">
-				    <i class="fa fa-save"></i>&nbsp;&nbsp;<span [translate]="saveBtn"></span>
-				</button>
+	<div class="createLink">
 
-		    </div>
+		<div class="row justify-content-left">
+
+			<form novalidate #f="ngForm" class="col-md-12">
+
+				<!-- title -->
+				<div class="form-group">
+
+					<label for="title">{{ 'components.links.create.input_name' | translate }}</label>
+					<input id="title" name="title" [(ngModel)]="inputTitle" type="text" class="form-control" placeholder="{{ 'components.links.create.placeholders.input_name' | translate }}" required [ngClass]="{ 'is-invalid': f.controls.title?.errors?.required && submitedForm }" />
+
+					<div *ngIf="f.controls.title?.errors?.required && submitedForm" class="invalid-feedback">
+						{{ 'forms.required_field' | translate }}
+					</div>
+
+				</div>
+				<!-- end title -->
+
+				<!-- url -->
+				<div class="form-group">
+
+					<label for="url">{{ 'components.links.create.input_url' | translate }}</label>
+					<input id="url" name="url" [(ngModel)]="inputUrl" type="text" class="form-control" placeholder="{{ 'components.links.create.placeholders.input_url' | translate }}" required [ngClass]="{ 'is-invalid': f.controls.url?.errors?.required && submitedForm }" />
+
+					<div *ngIf="f.controls.url?.errors?.required && submitedForm" class="invalid-feedback">
+						{{ 'forms.required_field' | translate }}
+					</div>
+
+				</div>
+				<!-- end url -->
+
+				<!-- tags -->
+				<div class="form-group">
+
+					<label for="tags">{{ 'components.links.create.input_tags' | translate }}</label>
+					<input id="tags" name="tags" [(ngModel)]="inputTags" type="text" class="form-control" placeholder="{{ 'components.links.create.placeholders.input_tags' | translate }}" />
+
+				</div>
+				<!-- end tags -->
+
+			</form>
 
 		</div>
+
+	</div>
+
+	<div class="row">
+
+	    <div class="responsiveActionBtns col-md-12 text-right">
+
+	    	<button (click)="onSubmit(f)" class="btn btn-sm btn-outline-primary pull-right marginLeftActionBtn">
+			    <i class="fa fa-save"></i>&nbsp;&nbsp;<span [translate]="saveBtn"></span>
+			</button>
+
+	    </div>
 
 	</div>
 
