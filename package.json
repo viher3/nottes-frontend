@@ -34,12 +34,13 @@
     "moment": "^2.22.1",
     "ngx-toastr": "^8.4.0",
     "node-sass": "^4.9.2",
-    "npm": "^6.0.0",
+    "npm": "^6.5.0",
     "popper.js": "^1.14.3",
     "rxjs": "^5.5.10",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
+    "@angular-devkit/build-angular": "^0.11.4",
     "@angular/cli": "^6.0.3",
     "@angular/compiler-cli": "^5.2.10",
     "@angular/language-service": "^5.2.10",
@@ -55,10 +56,9 @@
     "karma-coverage-istanbul-reporter": "^1.2.1",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
-    "protractor": "~5.1.2",
+    "protractor": "^5.4.2",
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
-    "typescript": "~2.4.2",
-    "@angular-devkit/build-angular": "~0.5.0"
+    "typescript": "~2.4.2"
   }
 }

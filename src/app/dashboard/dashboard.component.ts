@@ -123,29 +123,6 @@ export class DashboardComponent extends ListComponent implements OnInit {
     });
 
     this.nottesService.loadEntities();
-    this.loadMoreScrollEvent();
-  }
-
-  /**
-   * Load more entities - scroll event handler
-   *
-   * @return  [type]  void
-   */
-  loadMoreScrollEvent() : void
-  {
-    $("div.left-item-list div.notte-list-item-main-wrapper").on("scroll", () =>
-    {
-      var scroll = $("div.left-item-list div.notte-list-item-main-wrapper").scrollTop();
-
-      var offset    = 56;
-      var divHeight = $("div.left-item-list div.notte-list-item-main-wrapper")[0].scrollHeight;
-          divHeight = (divHeight - $(window).height()) + offset;
-      
-      if(scroll >= divHeight)
-      {
-        this.loadMoreRequest();
-      }
-    });
   }
 
   /**

@@ -2,89 +2,74 @@
 
 	<div class="row">
 
-		<div class="col-xl-3 col-lg-3 col-md-4 col-sm-5 col-xs-6 left-item-list pr-0 h-100">
-			
-			<!-- items count -->
-			<div id="list_items_count">
-				<span *ngIf="!loadingMore" class="align-middle pagination">{{ 'components.pagination.listing_x_of_y' | translate:paginationTransParams }}</span>
-				<span *ngIf="loadingMore" class="align-middle">
-					<i class="fa fa-refresh fa-spin"></i>&nbsp;&nbsp;{{ 'common.loading' | translate }} ...
-				</span>
+		<div class="col-xl-9 col-lg-9 pr-0 h-100 notte-list-item-main-wrapper">
+
+			<!-- loading spinner -->
+			<div *ngIf="loading" class="text-center loading-more-spinner">
+				<i class="fa fa-refresh fa-spin"></i>&nbsp;&nbsp;{{ 'common.loading' | translate }} ...
 			</div>
-			<!-- end items count -->
+			<!-- end loading spinner -->
 
-			<!-- item list -->
-			<div class="notte-list-item-main-wrapper">
-
-				<div id="item_{{ item.id }}" class="notte-list-item-container" *ngFor="let item of listElements.items">
-
-					<div (click)="loadEntityEvent(item)" class="notte-list-item">
-
-						<div class="item-content">
-							<h5>
-								<!-- doc -->
-								<i class="fa fa-file-text-o" *ngIf="item.type == 'doc'" ngbTooltip="{{ 'components.dashboard.types.doc' | translate }}"></i>
-								<!-- link -->
-								<i class="fa fa-link" *ngIf="item.type == 'link'" ngbTooltip="{{ 'components.dashboard.types.link' | translate }}"></i>
-								<!-- file -->
-								<i class="fa fa-download" *ngIf="item.type == 'file'" ngbTooltip="{{ 'components.dashboard.types.file' | translate }}"></i>
-								&nbsp;
-								{{ item.name }}
-								&nbsp;
-								<span class="badge badge-warning encrypted-label" *ngIf="item.is_encrypted">
-									<i class="fa fa-shield"></i>&nbsp;&nbsp;{{ 'components.dashboard.encrypted' | translate }}
-								</span>
-							</h5>
-						</div>
-
-						<div class="tags">
-							<tags value="{{ item.tags }}"></tags>
-						</div>
-
-						<div *ngIf="item.updatedAt" class="updated_at">{{ 'components.dashboard.updated_at' | translate }} {{ item.updatedAt | date:'dd/MM/yyyy HH:mm:ss' }}</div>
-
+			<!-- items list -->
+			<div *ngIf="action == 'init'">
+				<div *ngIf="!loading || loadingMore" class="pt-2 row">
+					<div class="col-6">
+						<span *ngIf="!loadingMore">{{ 'components.pagination.listing_x_of_y' | translate:paginationTransParams }}</span>
 					</div>
-
-					<!-- ellipsis actions -->
-					<div class="ellipsis">
-						
-						<div class="btn-group">
-
-							<i class="fa fa-ellipsis-h fa-2x dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
-						  	
-						  	<div class="dropdown-menu">
-	    						<a class="dropdown-item" href="javascript:void();"><i class="fa fa-plus-square-o"></i>&nbsp;&nbsp;{{ 'common.select' | translate }}</a>
-						    	<a (click)="editEntity(item);" class="dropdown-item"><i class="fa fa-edit text-primary"></i>&nbsp;&nbsp;{{ 'common.edit_btn' | translate }}</a>
-	    						<a (click)="removeEntity(item)" class="dropdown-item"><i class="fa fa-trash text-danger"></i>&nbsp;&nbsp;{{ 'common.delete_btn' | translate }}</a>
-						  	</div>
-
-						</div>
-
+					<div class="col-6 text-right">
+						<span class="pr-3">filter dropdown</span>
 					</div>
-					<div class="clearfix"></div>
-
-				</div><!-- end item list -->
-
-			</div>
-
-		</div>
-
-		<div class="col-xl-9 col-lg-9 col-md-8 col-sm-7 col-xs-6 content-preview pr-0 pl-0">
-
-			<div *ngIf="action == 'init' || loading" id="welcome-dashboard" class="d-flex h-100 w-100">
-				<div class="align-self-center w-100 text-center">
-					
-					<!-- loading -->
-					<spinner [show]="loading"></spinner>
-
-					<!-- preview message -->
-					<div *ngIf="!loading">
-						<i class="fa fa-eye"></i>
-						<p>{{ 'components.dashboard.select_to_preview' | translate }}</p>
-					</div>
-
 				</div>
+
+				<!-- item list -->
+				<table *ngIf="!loading || loadingMore" class="table table-dashed mt-2">
+
+					<tr>
+						<th width="50%">{{ 'components.dashboard.name' | translate }}</th>
+						<th>{{ 'components.dashboard.type' | translate }}</th>
+						<th>{{ 'components.dashboard.tags' | translate }}</th>
+						<th>{{ 'components.dashboard.updated_at' | translate }}</th>
+						<th></th>
+					</tr>
+
+					<tr *ngFor="let item of listElements.items">
+						<td>
+							<a (click)="loadEntityEvent(item);" class="mr-1 link">{{ item.name }}</a>
+							<span class="badge badge-warning encrypted-label ml-2" *ngIf="item.is_encrypted">
+								<i class="fa fa-shield"></i>&nbsp;&nbsp;{{ 'components.dashboard.encrypted' | translate }}
+							</span>
+						</td>
+						<td>
+							<!-- doc -->
+							<i class="fa fa-file-text-o" *ngIf="item.type == 'doc'" ngbTooltip="{{ 'components.dashboard.types.doc' | translate }}"></i>
+							<!-- link -->
+							<i class="fa fa-link" *ngIf="item.type == 'link'" ngbTooltip="{{ 'components.dashboard.types.link' | translate }}"></i>
+							<!-- file -->
+							<i class="fa fa-download" *ngIf="item.type == 'file'" ngbTooltip="{{ 'components.dashboard.types.file' | translate }}"></i>
+						</td>
+						<td>
+							<tags value="{{ item.tags }}"></tags>
+						</td>
+						<td>
+							{{ item.updatedAt | date:'dd/MM/yyyy HH:mm:ss' }}
+						</td>
+						<td>
+							<!-- actions -->
+							<a (click)="loadEntityEvent(item);" ngbTooltip="{{ 'common.select' | translate }}" class="mr-1 link"><i class="fa fa-plus-square-o"></i></a>
+					    	<a (click)="editEntity(item);" ngbTooltip="{{ 'common.edit_btn' | translate }}" class="mr-1 link"><i class="fa fa-edit text-primary"></i></a>
+							<a (click)="removeEntity(item)" ngbTooltip="{{ 'common.delete_btn' | translate }}" class="mr-1 pointer"><i class="fa fa-trash text-danger"></i></a>
+						</td>
+					</tr>
+
+				</table>
+
+				<!-- load more btn -->
+				<div *ngIf="!loading && (paginationTransParams.current < paginationTransParams.total)" class="text-center mt-2 mb-2">
+					<button (click)="loadMoreRequest()" class="btn btn-primary">{{ 'components.dashboard.load_more' | translate }}</button>
+				</div>
+
 			</div>
+			<!-- end items list -->
 
 			<!-- preview notte content -->
 			<div *ngIf="action == 'showEntity'" class="content-preview-wrapper">
@@ -132,6 +117,7 @@
 				<file-preview id="{{ notte.id }}" documentId="{{ notte?.document?.id }}" creatorUser="{{ notte.creator_user?.nickname }}" filename="{{ notte?.document?.name }}" mimetype="{{ notte?.document?.mimetype }}" filepath="{{ notte?.document?.path }}"></file-preview>
 
 			</div>
+
 
 		</div>
 

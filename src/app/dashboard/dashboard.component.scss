@@ -1,6 +1,12 @@
 app-dashboard table .fa-shield{
     color: #323232;
 }
+.link{
+	color: #007bff !important
+}
+.link:hover{
+	cursor: pointer;
+}
 
 div#listSearchBox{
 	max-width: 300px;
@@ -18,10 +24,15 @@ div.left-item-list{
 	max-height: 94vh;
 	background-color: #FFF;
 }
-div.left-item-list div.notte-list-item-main-wrapper{
-	overflow-y: scroll;
-	overflow-x: hidden;
-	height: 89vh;
+div.notte-list-item-main-wrapper{
+	background: white;
+	margin: 0 auto;
+	padding: 20px;
+}
+
+div.loading-more-spinner{
+	font-size: 32px;
+	margin: 20px 0;
 }
 
 div.notte-list-item .tags span{

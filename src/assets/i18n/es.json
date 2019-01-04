@@ -77,7 +77,8 @@
                 "doc" : "Documento",
                 "link" : "Enlace",
                 "file" : "Archivo"
-            }
+            },
+            "load_more" : "Cargar más"
     	},
         "docs": {
             "detail" : {
