@@ -25,21 +25,30 @@
 				<table *ngIf="!loading || loadingMore" class="table table-dashed mt-2">
 
 					<tr>
-						<th width="50%">{{ 'components.dashboard.name' | translate }}</th>
-						<th>{{ 'components.dashboard.type' | translate }}</th>
-						<th>{{ 'components.dashboard.tags' | translate }}</th>
-						<th>{{ 'components.dashboard.updated_at' | translate }}</th>
+						<th class="d-block-table-cell d-sm-none" width="80%">{{ 'components.dashboard.name' | translate }}</th>
+						<th class="d-none d-sm-table-cell" width="50%">{{ 'components.dashboard.name' | translate }}</th>
+						<th class="d-none d-sm-table-cell">{{ 'components.dashboard.type' | translate }}</th>
+						<th class="d-none d-sm-table-cell">{{ 'components.dashboard.tags' | translate }}</th>
+						<th class="d-none d-sm-table-cell">{{ 'components.dashboard.updated_at' | translate }}</th>
 						<th></th>
 					</tr>
 
 					<tr *ngFor="let item of listElements.items">
 						<td>
+							<div class="d-inline d-sm-none pr-2">
+								<!-- doc -->
+								<i class="fa fa-file-text-o" *ngIf="item.type == 'doc'" placement="right" ngbTooltip="{{ 'components.dashboard.types.doc' | translate }}"></i>
+								<!-- link -->
+								<i class="fa fa-link" *ngIf="item.type == 'link'" placement="right" ngbTooltip="{{ 'components.dashboard.types.link' | translate }}"></i>
+								<!-- file -->
+								<i class="fa fa-download" *ngIf="item.type == 'file'" placement="right" ngbTooltip="{{ 'components.dashboard.types.file' | translate }}"></i>
+							</div>
 							<a (click)="loadEntityEvent(item);" class="mr-1 link">{{ item.name }}</a>
 							<span class="badge badge-warning encrypted-label ml-2" *ngIf="item.is_encrypted">
 								<i class="fa fa-shield"></i>&nbsp;&nbsp;{{ 'components.dashboard.encrypted' | translate }}
 							</span>
 						</td>
-						<td>
+						<td class="d-none d-sm-table-cell">
 							<!-- doc -->
 							<i class="fa fa-file-text-o" *ngIf="item.type == 'doc'" ngbTooltip="{{ 'components.dashboard.types.doc' | translate }}"></i>
 							<!-- link -->
@@ -47,10 +56,10 @@
 							<!-- file -->
 							<i class="fa fa-download" *ngIf="item.type == 'file'" ngbTooltip="{{ 'components.dashboard.types.file' | translate }}"></i>
 						</td>
-						<td>
+						<td class="d-none d-sm-table-cell">
 							<tags value="{{ item.tags }}"></tags>
 						</td>
-						<td>
+						<td class="d-none d-sm-table-cell">
 							{{ item.updatedAt | date:'dd/MM/yyyy HH:mm:ss' }}
 						</td>
 						<td>
