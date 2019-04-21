@@ -28,9 +28,6 @@ div.notte-list-item-main-wrapper{
 	background: white;
 	margin: 0 auto;
 	padding: 20px;
-	border-right:1px solid #CECECE;
-	border-left:1px solid #CECECE;
-	border-bottom:1px solid #CECECE;
 }
 
 div.loading-more-spinner{
@@ -44,19 +41,12 @@ div.notte-list-item .tags span{
 div.notte-list-item .updated_at{
 	font-size: 12px;
 }
-div.notte-list-item .encrypted{
-	font-size: 12px;
-}
 div#welcome-dashboard{
 	font-size: 32px;
 	opacity: 0.5;
 }
 div#welcome-dashboard div.align-self-center i{
 	font-size: 74px;
-}
-div.notte-list-item span.encrypted-label{
-	font-size: 12px;
-	font-weight: normal;
 }
 div.white-right{
 	background-color: #FFF;
@@ -127,6 +117,27 @@ div.left-item-list div#list_items_count span{
 }
 div.left-item-list div#list_items_count span.pagination{
 	font-size: 12px;
+}
+
+/**
+ * Cards
+ */
+
+div#dashboard div.card-columns{
+	padding-top: 20px;
+	column-count: 6;
+}
+
+div#dashboard div.card-columns div.card h5.card-title{
+	font-size: 16px;
+	padding-top: 3px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.text-encrypted{
+	color: #cc9200;
 }
 
 /**
