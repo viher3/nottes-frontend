@@ -1,135 +1,127 @@
-<div class="col-12 padding0">
+<div class="col-xl-12 pr-0 h-100 notte-list-item-main-wrapper">
 
-	<div class="row">
+	<!-- loading spinner -->
+	<div *ngIf="loading" class="text-center loading-more-spinner">
+		<i class="fa fa-refresh fa-spin"></i>&nbsp;&nbsp;{{ 'common.loading' | translate }} ...
+	</div>
+	<!-- end loading spinner -->
 
-		<div class="col-xl-9 col-lg-9 pr-0 h-100 notte-list-item-main-wrapper">
-
-			<!-- loading spinner -->
-			<div *ngIf="loading" class="text-center loading-more-spinner">
-				<i class="fa fa-refresh fa-spin"></i>&nbsp;&nbsp;{{ 'common.loading' | translate }} ...
+	<!-- items list -->
+	<div *ngIf="action == 'init'">
+		<div *ngIf="!loading || loadingMore" class="pt-2 row">
+			<div class="col-6">
+				<span *ngIf="!loadingMore">{{ 'components.pagination.listing_x_of_y' | translate:paginationTransParams }}</span>
 			</div>
-			<!-- end loading spinner -->
+			<div class="col-6 text-right">
+				<span class="pr-3">{{ 'components.dashboard.latest_docs' | translate }}</span>
+			</div>
+		</div>
 
-			<!-- items list -->
-			<div *ngIf="action == 'init'">
-				<div *ngIf="!loading || loadingMore" class="pt-2 row">
-					<div class="col-6">
-						<span *ngIf="!loadingMore">{{ 'components.pagination.listing_x_of_y' | translate:paginationTransParams }}</span>
+		<!-- item list -->
+		<table *ngIf="!loading || loadingMore" class="table table-dashed mt-2">
+
+			<tr>
+				<th class="d-block-table-cell d-sm-none" width="80%">{{ 'components.dashboard.name' | translate }}</th>
+				<th class="d-none d-sm-table-cell" width="50%">{{ 'components.dashboard.name' | translate }}</th>
+				<th class="d-none d-sm-table-cell">{{ 'components.dashboard.type' | translate }}</th>
+				<th class="d-none d-sm-table-cell">{{ 'components.dashboard.tags' | translate }}</th>
+				<th class="d-none d-sm-table-cell">{{ 'components.dashboard.updated_at' | translate }}</th>
+				<th></th>
+			</tr>
+
+			<tr *ngFor="let item of listElements.items">
+				<td>
+					<div class="d-inline d-sm-none pr-2">
+						<!-- doc -->
+						<i class="fa fa-file-text-o" *ngIf="item.type == 'doc'" placement="right" ngbTooltip="{{ 'components.dashboard.types.doc' | translate }}"></i>
+						<!-- link -->
+						<i class="fa fa-link" *ngIf="item.type == 'link'" placement="right" ngbTooltip="{{ 'components.dashboard.types.link' | translate }}"></i>
+						<!-- file -->
+						<i class="fa fa-download" *ngIf="item.type == 'file'" placement="right" ngbTooltip="{{ 'components.dashboard.types.file' | translate }}"></i>
 					</div>
-					<div class="col-6 text-right">
-						<span class="pr-3">{{ 'components.dashboard.latest_docs' | translate }}</span>
-					</div>
-				</div>
+					<a (click)="loadEntityEvent(item);" class="mr-1 link">{{ item.name }}</a>
+					<span class="badge badge-warning encrypted-label ml-2" *ngIf="item.is_encrypted">
+						<i class="fa fa-shield"></i>&nbsp;&nbsp;{{ 'components.dashboard.encrypted' | translate }}
+					</span>
+				</td>
+				<td class="d-none d-sm-table-cell">
+					<!-- doc -->
+					<i class="fa fa-file-text-o" *ngIf="item.type == 'doc'" ngbTooltip="{{ 'components.dashboard.types.doc' | translate }}"></i>
+					<!-- link -->
+					<i class="fa fa-link" *ngIf="item.type == 'link'" ngbTooltip="{{ 'components.dashboard.types.link' | translate }}"></i>
+					<!-- file -->
+					<i class="fa fa-download" *ngIf="item.type == 'file'" ngbTooltip="{{ 'components.dashboard.types.file' | translate }}"></i>
+				</td>
+				<td class="d-none d-sm-table-cell">
+					<tags value="{{ item.tags }}"></tags>
+				</td>
+				<td class="d-none d-sm-table-cell">
+					{{ item.updatedAt | date:'dd/MM/yyyy HH:mm:ss' }}
+				</td>
+				<td>
+					<!-- actions -->
+					<a (click)="loadEntityEvent(item);" ngbTooltip="{{ 'common.select' | translate }}" class="mr-1 link"><i class="fa fa-plus-square-o"></i></a>
+					<a (click)="editEntity(item);" ngbTooltip="{{ 'common.edit_btn' | translate }}" class="mr-1 link"><i class="fa fa-edit text-primary"></i></a>
+					<a (click)="removeEntity(item)" ngbTooltip="{{ 'common.delete_btn' | translate }}" class="mr-1 pointer"><i class="fa fa-trash text-danger"></i></a>
+				</td>
+			</tr>
 
-				<!-- item list -->
-				<table *ngIf="!loading || loadingMore" class="table table-dashed mt-2">
+		</table>
 
-					<tr>
-						<th class="d-block-table-cell d-sm-none" width="80%">{{ 'components.dashboard.name' | translate }}</th>
-						<th class="d-none d-sm-table-cell" width="50%">{{ 'components.dashboard.name' | translate }}</th>
-						<th class="d-none d-sm-table-cell">{{ 'components.dashboard.type' | translate }}</th>
-						<th class="d-none d-sm-table-cell">{{ 'components.dashboard.tags' | translate }}</th>
-						<th class="d-none d-sm-table-cell">{{ 'components.dashboard.updated_at' | translate }}</th>
-						<th></th>
-					</tr>
-
-					<tr *ngFor="let item of listElements.items">
-						<td>
-							<div class="d-inline d-sm-none pr-2">
-								<!-- doc -->
-								<i class="fa fa-file-text-o" *ngIf="item.type == 'doc'" placement="right" ngbTooltip="{{ 'components.dashboard.types.doc' | translate }}"></i>
-								<!-- link -->
-								<i class="fa fa-link" *ngIf="item.type == 'link'" placement="right" ngbTooltip="{{ 'components.dashboard.types.link' | translate }}"></i>
-								<!-- file -->
-								<i class="fa fa-download" *ngIf="item.type == 'file'" placement="right" ngbTooltip="{{ 'components.dashboard.types.file' | translate }}"></i>
-							</div>
-							<a (click)="loadEntityEvent(item);" class="mr-1 link">{{ item.name }}</a>
-							<span class="badge badge-warning encrypted-label ml-2" *ngIf="item.is_encrypted">
-								<i class="fa fa-shield"></i>&nbsp;&nbsp;{{ 'components.dashboard.encrypted' | translate }}
-							</span>
-						</td>
-						<td class="d-none d-sm-table-cell">
-							<!-- doc -->
-							<i class="fa fa-file-text-o" *ngIf="item.type == 'doc'" ngbTooltip="{{ 'components.dashboard.types.doc' | translate }}"></i>
-							<!-- link -->
-							<i class="fa fa-link" *ngIf="item.type == 'link'" ngbTooltip="{{ 'components.dashboard.types.link' | translate }}"></i>
-							<!-- file -->
-							<i class="fa fa-download" *ngIf="item.type == 'file'" ngbTooltip="{{ 'components.dashboard.types.file' | translate }}"></i>
-						</td>
-						<td class="d-none d-sm-table-cell">
-							<tags value="{{ item.tags }}"></tags>
-						</td>
-						<td class="d-none d-sm-table-cell">
-							{{ item.updatedAt | date:'dd/MM/yyyy HH:mm:ss' }}
-						</td>
-						<td>
-							<!-- actions -->
-							<a (click)="loadEntityEvent(item);" ngbTooltip="{{ 'common.select' | translate }}" class="mr-1 link"><i class="fa fa-plus-square-o"></i></a>
-					    	<a (click)="editEntity(item);" ngbTooltip="{{ 'common.edit_btn' | translate }}" class="mr-1 link"><i class="fa fa-edit text-primary"></i></a>
-							<a (click)="removeEntity(item)" ngbTooltip="{{ 'common.delete_btn' | translate }}" class="mr-1 pointer"><i class="fa fa-trash text-danger"></i></a>
-						</td>
-					</tr>
-
-				</table>
-
-				<!-- load more btn -->
-				<div *ngIf="!loading && (paginationTransParams.current < paginationTransParams.total)" class="text-center mt-2 mb-2">
-					<button (click)="loadMoreRequest()" class="btn btn-primary">{{ 'components.dashboard.load_more' | translate }}</button>
-				</div>
-
-			</div>
-			<!-- end items list -->
-
-			<!-- preview notte content -->
-			<div *ngIf="action == 'showEntity'" class="content-preview-wrapper">
-				
-				<notte-detail [notte]="notte" [contentIsVisible]="contentIsVisible" (contentIsVisibleChange)="setContentIsVisibleChange($event)" (deleteItemEvent)="reloadEntites($event)"></notte-detail>
-
-			</div>
-
-			<!-- create new notte -->
-			<div *ngIf="action == 'createNotte'" class="content-preview-wrapper">
-
-				<notteForm title="components.docs.create.title" saveBtn="components.docs.create.save" action="create"></notteForm>
-
-			</div>
-
-			<!-- edit notte -->
-			<div *ngIf="action == 'editNotte'" class="content-preview-wrapper">
-
-				<notteForm (loadingEvent)="setLoadingEvent($event)" title="components.docs.edit.title" saveBtn="components.docs.edit.save" action="edit" id="{{ notte.id }}"></notteForm>
-
-			</div>
-
-			<!-- create link -->
-			<div *ngIf="action == 'createLink'" class="content-preview-wrapper">
-				<linkForm (loadingEvent)="setLoadingEvent($event)" title="components.links.create.title" saveBtn="components.links.create.save" action="create"></linkForm>
-			</div>
-
-			<!-- edit link -->
-			<div *ngIf="action == 'editLink'" class="content-preview-wrapper">
-
-				<linkForm title="components.links.edit.title" saveBtn="components.links.edit.save" action="edit" id="{{ notte.id }}"></linkForm>
-
-			</div>
-
-			<!-- file upload -->
-			<div *ngIf="action == 'fileUpload'" class="content-preview-wrapper">
-
-				<file-upload></file-upload>
-
-			</div>
-
-			<!-- file preview -->
-			<div *ngIf="action == 'filePreview'" class="content-preview-wrapper">
-
-				<file-preview id="{{ notte.id }}" documentId="{{ notte?.document?.id }}" creatorUser="{{ notte.creator_user?.nickname }}" filename="{{ notte?.document?.name }}" mimetype="{{ notte?.document?.mimetype }}" filepath="{{ notte?.document?.path }}"></file-preview>
-
-			</div>
-
-
+		<!-- load more btn -->
+		<div *ngIf="!loading && (paginationTransParams.current < paginationTransParams.total)" class="text-center mt-2 mb-2">
+			<button (click)="loadMoreRequest()" class="btn btn-primary">{{ 'components.dashboard.load_more' | translate }}</button>
 		</div>
 
 	</div>
+	<!-- end items list -->
+
+	<!-- preview notte content -->
+	<div *ngIf="action == 'showEntity'" class="content-preview-wrapper">
+
+		<notte-detail [notte]="notte" [contentIsVisible]="contentIsVisible" (contentIsVisibleChange)="setContentIsVisibleChange($event)" (deleteItemEvent)="reloadEntites($event)"></notte-detail>
+
+	</div>
+
+	<!-- create new notte -->
+	<div *ngIf="action == 'createNotte'" class="content-preview-wrapper">
+
+		<notteForm title="components.docs.create.title" saveBtn="components.docs.create.save" action="create"></notteForm>
+
+	</div>
+
+	<!-- edit notte -->
+	<div *ngIf="action == 'editNotte'" class="content-preview-wrapper">
+
+		<notteForm (loadingEvent)="setLoadingEvent($event)" title="components.docs.edit.title" saveBtn="components.docs.edit.save" action="edit" id="{{ notte.id }}"></notteForm>
+
+	</div>
+
+	<!-- create link -->
+	<div *ngIf="action == 'createLink'" class="content-preview-wrapper">
+		<linkForm (loadingEvent)="setLoadingEvent($event)" title="components.links.create.title" saveBtn="components.links.create.save" action="create"></linkForm>
+	</div>
+
+	<!-- edit link -->
+	<div *ngIf="action == 'editLink'" class="content-preview-wrapper">
+
+		<linkForm title="components.links.edit.title" saveBtn="components.links.edit.save" action="edit" id="{{ notte.id }}"></linkForm>
+
+	</div>
+
+	<!-- file upload -->
+	<div *ngIf="action == 'fileUpload'" class="content-preview-wrapper">
+
+		<file-upload></file-upload>
+
+	</div>
+
+	<!-- file preview -->
+	<div *ngIf="action == 'filePreview'" class="content-preview-wrapper">
+
+		<file-preview id="{{ notte.id }}" documentId="{{ notte?.document?.id }}" creatorUser="{{ notte.creator_user?.nickname }}" filename="{{ notte?.document?.name }}" mimetype="{{ notte?.document?.mimetype }}" filepath="{{ notte?.document?.path }}"></file-preview>
+
+	</div>
+
 
 </div>
