@@ -8,13 +8,18 @@
     "@testing-library/user-event": "^7.2.1",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.3.0"
+    "react-scripts": "3.3.0",
+    "react-notifications-component": "^2.1.0",
+    "react-router-dom": "^5.1.2",
+    "reactstrap": "^8.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start:dev": "webpack-dev-server --open --mode=development --env.NODE_ENV=dev",
+    "start:demo": "webpack-dev-server --open --mode=production --env.NODE_ENV=demo",
+    "start:prod": "webpack-dev-server --open --mode=production --env.NODE_ENV=prod",
+    "build:dev": "webpack --config webpack.config.js --mode=development --env.NODE_ENV=dev",
+    "build:demo": "webpack --config webpack.config.js --mode=production --env.NODE_ENV=demo",
+    "build:prod": "webpack --config webpack.config.js --mode=production --env.NODE_ENV=prod"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -30,5 +35,19 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "bootstrap": "^4.4.1",
+    "@babel/core": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.0",
+    "dotenv-webpack": "^1.7.0",
+    "file-loader": "^4.2.0",
+    "style-loader": "^1.0.0",
+    "webpack": "^4.41.0",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.8.2"
   }
 }
