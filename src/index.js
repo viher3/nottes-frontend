@@ -1,16 +1,14 @@
+import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom'
-import ReactNotification from 'react-notifications-component'
-import { Provider } from 'react-redux';
+//import ReactNotification from 'react-notifications-component'
+//import { Provider } from 'react-redux';
 
 ReactDOM.render(
 <BrowserRouter>
-    <Provider>
-        <ReactNotification />
-        <App />
-    </Provider>
+    <App />
 </BrowserRouter>,
 document.getElementById('wrapper')
 );

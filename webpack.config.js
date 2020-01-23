@@ -7,7 +7,7 @@ module.exports = env => {
 
     return {
         entry: [
-            'babel-polyfill',
+           // 'babel-polyfill',
             path.resolve(__dirname, "src/index.js")
         ],
         output: {
