@@ -5,16 +5,18 @@ import { faBars, faSignOutAlt, faUser, faCog } from '@fortawesome/free-solid-svg
 
 import {
     Nav,
-    NavItem,
     Navbar as BNavbar,
-    NavLink,
     NavbarBrand,
     NavbarToggler,
     Collapse,
     UncontrolledDropdown,
     DropdownToggle,
     DropdownMenu,
-    DropdownItem
+    DropdownItem,
+    InputGroup,
+    InputGroupAddon,
+    Input,
+    Button
 } from 'reactstrap';
 
 class Navbar extends React.Component
@@ -32,7 +34,7 @@ class Navbar extends React.Component
     render(){
         return(
             <div className="row border-bottom white-bg">
-                <BNavbar className="navbar navbar-expand-lg navbar-static-top" role="navigation">
+                <BNavbar className="navbar navbar-expand-lg navbar-static-top col-12" role="navigation">
                     <NavbarBrand href="/" className="navbar-brand">
                         <img className="logo" alt="logo" />
                     </NavbarBrand>
@@ -40,20 +42,13 @@ class Navbar extends React.Component
                         <FontAwesomeIcon icon={faBars} />
                     </NavbarToggler>
                     <Collapse isOpen={this.state.isOpen} navbar className="">
-                        <Nav className="mr-auto nav" navbar>
-                            <UncontrolledDropdown nav inNavbar>
-                                <DropdownToggle nav caret>
-                                    Dropdown menu
-                                </DropdownToggle>
-                                <DropdownMenu>
-                                    <DropdownItem className="nav-link">
-                                        Option 1
-                                    </DropdownItem>
-                                </DropdownMenu>
-                            </UncontrolledDropdown>
-                            <NavItem>
-                                <NavLink href="#">Another link</NavLink>
-                            </NavItem>
+                        <Nav className="mr-auto nav ml-3" navbar>
+                            <InputGroup>
+                                <Input />
+                                <InputGroupAddon addonType="prepend">
+                                    <Button>Search</Button>
+                                </InputGroupAddon>
+                            </InputGroup>
                         </Nav>
                         <Nav className="mr-right nav" navbar>
                             <UncontrolledDropdown nav inNavbar>
@@ -65,14 +60,14 @@ class Navbar extends React.Component
                                     <DropdownItem className="nav-link">
                                         <Link to="/config">
                                             <FontAwesomeIcon icon={faCog} />
-                                            <span className="ml-2">Configuración</span>
+                                            <span className="ml-2">Configuration</span>
                                         </Link>
                                     </DropdownItem>
                                     <DropdownItem divider />
                                     <DropdownItem className="nav-link">
                                         <Link to="/logout">
                                             <FontAwesomeIcon icon={faSignOutAlt} />
-                                            <span className="ml-2">Salir</span>
+                                            <span className="ml-2">Logout</span>
                                         </Link>
                                     </DropdownItem>
                                 </DropdownMenu>
