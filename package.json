@@ -13,7 +13,10 @@
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.1.2",
     "reactstrap": "^8.0.1",
-    "redux": "^4.0.4"
+    "redux": "^4.0.4",
+    "@fortawesome/fontawesome-svg-core": "^1.2.25",
+    "@fortawesome/free-solid-svg-icons": "^5.11.2",
+    "@fortawesome/react-fontawesome": "^0.1.6"
   },
   "scripts": {
     "start:dev": "webpack-dev-server --open --mode=development --env.NODE_ENV=dev",
