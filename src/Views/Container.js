@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from 'Components/Common/Navbar';
+import Sidebar from 'Components/Common/Sidebar';
 
 class Container extends React.Component
 {
@@ -11,8 +12,13 @@ class Container extends React.Component
                         <div className="row">
                             <div className="col-12">
                                 <Navbar/>
-                                <section className="main-section">
-                                    {this.props.children}
+                                <section className="main-section row">
+                                    <div className="col-2">
+                                        <Sidebar/>
+                                    </div>
+                                    <div className="col-10">
+                                        {this.props.children}
+                                    </div>
                                 </section>
                             </div>
                         </div>
