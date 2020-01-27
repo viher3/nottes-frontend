@@ -1,6 +1,4 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import '~react-notifications-component/dist/theme.css';
 
-body{
-  background:grey;
-}
+@import 'Assets/sass/common/navbar.scss';

@@ -33,7 +33,7 @@ class Navbar extends React.Component
 
     render(){
         return(
-            <div className="row border-bottom white-bg">
+            <div id="navbar_container" className="row border-bottom white-bg">
                 <BNavbar className="navbar navbar-expand-lg navbar-static-top col-12" role="navigation">
                     <NavbarBrand href="/" className="navbar-brand">
                         <img className="logo" alt="logo" />
@@ -46,7 +46,7 @@ class Navbar extends React.Component
                             <InputGroup>
                                 <Input />
                                 <InputGroupAddon addonType="prepend">
-                                    <Button>Search</Button>
+                                    <Button className="search-btn">Search</Button>
                                 </InputGroupAddon>
                             </InputGroup>
                         </Nav>
