@@ -1,8 +1,35 @@
-div#navbar_container{
+/**
+ * Vars
+ */
+$inactiveNavbarColor: #f0f0f0;
 
-  button.search-btn{
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
+/**
+ * Styles
+ */
+div#navbar_container {
+
+  nav.navbar {
+
+    & {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    input {
+      & {
+        margin-left: 50px;
+        background-color: $inactiveNavbarColor;
+        min-width: 350px;
+        border: 1px solid $inactiveNavbarColor;
+      }
+
+      &:focus,
+      &:active {
+        background-color: #FFF;
+        box-shadow: none;
+        border: 1px solid $inactiveNavbarColor;
+      }
+    }
   }
 
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faSignOutAlt, faUser, faCog } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faSignOutAlt, faUser, faCog, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import {
     Nav,
@@ -27,7 +27,8 @@ class Navbar extends React.Component
 
         this.state = {
             isOpen : false,
-            user: '.'
+            user : '.',
+            isSearchActive : false
         };
     }
 
@@ -43,12 +44,7 @@ class Navbar extends React.Component
                     </NavbarToggler>
                     <Collapse isOpen={this.state.isOpen} navbar className="">
                         <Nav className="mr-auto nav ml-3" navbar>
-                            <InputGroup>
-                                <Input />
-                                <InputGroupAddon addonType="prepend">
-                                    <Button className="search-btn">Search</Button>
-                                </InputGroupAddon>
-                            </InputGroup>
+                            <Input placeholder="Search" />
                         </Nav>
                         <Nav className="mr-right nav" navbar>
                             <UncontrolledDropdown nav inNavbar>
@@ -83,6 +79,18 @@ class Navbar extends React.Component
 
         this.setState({
             isOpen: (! this.state.isOpen)
+        });
+    }
+
+    onFocusInSearch = () => {
+        this.setState({
+            isSearchActive: true
+        });
+    }
+
+    onFocusSearchOut = () => {
+        this.setState({
+            isSearchActive: false
         });
     }
 }
