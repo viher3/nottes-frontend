@@ -35,8 +35,8 @@ module.exports = env => {
                     use: ["babel-loader"]
                 },
                 {
-                    test:/\.css$/,
-                    use:['style-loader','css-loader']
+                    test: /\.scss$/,
+                    use: ['style-loader', 'css-loader', 'sass-loader']
                 },
                 {
                     test: /\.(eot|svg|ttf|woff|woff2)$/,
@@ -66,7 +66,7 @@ module.exports = env => {
             }),
             new webpack.DefinePlugin({
                 ENV: JSON.stringify(env)
-            }),
+            })
         ],
         node: {
             fs: "empty"

@@ -1,9 +1,7 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'react-notifications-component/dist/theme.css'
-
 import React from 'react';
 import { Switch, Route } from 'react-router-dom'
 import { Routes } from 'Constants/Routes';
+import 'Assets/sass/app.scss';
 
 function App() {
 
