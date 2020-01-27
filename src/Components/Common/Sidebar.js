@@ -1,22 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faSignOutAlt, faUser, faCog, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faTrash, faShareAlt, faClock } from '@fortawesome/free-solid-svg-icons';
 
 import {
-    Nav,
-    Navbar as BNavbar,
-    NavbarBrand,
-    NavbarToggler,
-    Collapse,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem,
-    InputGroup,
-    InputGroupAddon,
-    Input,
-    Button
+    ListGroup,
+    ListGroupItem
 } from 'reactstrap';
 
 class Sidebar extends React.Component
@@ -34,7 +22,20 @@ class Sidebar extends React.Component
 
     render(){
         return(
-            <p>TODO</p>
+            <ListGroup className="sidebar">
+                <ListGroupItem color="info" tag="a" href="#">
+                    <FontAwesomeIcon icon={ faHome } className="mr-3" />Home
+                </ListGroupItem>
+                <ListGroupItem tag="a" href="#">
+                    <FontAwesomeIcon icon={ faShareAlt } className="mr-3" />Shared
+                </ListGroupItem>
+                <ListGroupItem tag="a" href="#">
+                    <FontAwesomeIcon icon={ faClock } className="mr-3" />Recently seen
+                </ListGroupItem>
+                <ListGroupItem tag="a" href="#">
+                    <FontAwesomeIcon icon={ faTrash } className="mr-3" />Trash
+                </ListGroupItem>
+            </ListGroup>
         );
     }
 }

@@ -1,0 +1,27 @@
+section.main-section{
+
+  div.sidebar-wrapper{
+
+    &{
+      padding-left: 0;
+    }
+
+    ul.sidebar{
+
+      &{
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      a.list-group-item{
+        border-top-left-radius: 0;
+        border-top-right-radius: .25rem;
+        border-bottom-right-radius: .25rem;
+        border-bottom-left-radius: 0;
+        border: 0;
+      }
+
+    }
+
+  }
+}
