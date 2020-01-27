@@ -11,7 +11,7 @@ class Container extends React.Component
                         <div className="row">
                             <div className="col-12">
                                 <Navbar/>
-                                <section>
+                                <section className="main-section">
                                     {this.props.children}
                                 </section>
                             </div>

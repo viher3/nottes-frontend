@@ -35,7 +35,7 @@ class Navbar extends React.Component
     render(){
         return(
             <div id="navbar_container" className="row border-bottom white-bg">
-                <BNavbar className="navbar navbar-expand-lg navbar-static-top col-12" role="navigation">
+                <BNavbar className="navbar navbar-expand-lg navbar-static-top col-12 shadow-sm" role="navigation">
                     <NavbarBrand href="/" className="navbar-brand">
                         <img className="logo" alt="logo" />
                     </NavbarBrand>
