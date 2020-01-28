@@ -1,6 +1,8 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom'
-import { Routes } from 'Constants/Routes';
+import {PrivateRoutes, Routes} from 'Constants/Routes';
+import PrivateRoute from 'Components/Routing/PrivateRoute';
+
 import 'Assets/sass/app.scss';
 
 function App() {
@@ -13,6 +15,14 @@ function App() {
                     path={route.path}
                     exact={route.exact}
                     component={route.component}
+                />
+            ))}
+            {PrivateRoutes.map((route, index) => (
+                <PrivateRoute
+                key={index}
+                path={route.path}
+                exact={route.exact}
+                component={route.component}
                 />
             ))}
         </Switch>
