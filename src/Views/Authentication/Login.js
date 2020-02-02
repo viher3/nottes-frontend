@@ -1,10 +1,12 @@
 import React from 'react';
-import {Form, FormGroup, Input, Alert, Spinner} from 'reactstrap';
+import {Form, Input, Spinner, Button } from 'reactstrap';
 import AuthHelper from 'Helpers/AuthHelper';
 import AuthService from 'Services/Auth/AuthService';
 import NotificationService from 'Services/Common/NotificationService';
+import 'Assets/sass/authentication/login.scss';
 
 class Login extends React.Component {
+
     constructor(props) {
         super(props);
 
@@ -21,35 +23,56 @@ class Login extends React.Component {
 
     render() {
         return (
-            <div className="middle-box text-center loginscreen">
-                <div className="login-wrapper">
-                    <h2>Nottes</h2>
-
-                    <Form className="m-t">
-                        <FormGroup>
-                            <Input type="text" name="user" value={this.state.user}
-                                   onChange={this.handleInputChange}
-                                   onKeyPress={this.handleInputKeyPress}
-                                   className="form-control" placeholder="User or email" autoFocus/>
-                        </FormGroup>
-                        <FormGroup>
-                            <Input type="password" name="password" value={this.state.password}
-                                   onChange={this.handleInputChange}
-                                   onKeyPress={this.handleInputKeyPress}
-                                   className="form-control" placeholder="Password"/>
-                        </FormGroup>
-                        <button disabled={this.state.loading} type="button" onClick={this.submit}
-                                className="btn btn-primary block full-width m-b">
-                            {this.state.loading ? (
-                                <Spinner size="sm" color="light"/>
-                            ) : (
-                                <span>Sign in</span>
-                            )}
-                        </button>
-                        <a href="#">
-                            <small>Forgot your password?</small>
-                        </a>
-                    </Form>
+            <div className="container">
+                <div className="row">
+                    <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                        <div className="card card-signin my-5">
+                            <div className="card-body">
+                                <h5 className="card-title text-center">Sign In</h5>
+                                <Form className="form-signin">
+                                    <div className="form-label-group">
+                                        <Input type="text"
+                                               name="user"
+                                               id="inputEmail"
+                                               className="form-control"
+                                               placeholder="Username or email"
+                                               value={this.state.user}
+                                               onChange={this.handleInputChange}
+                                               onKeyPress={this.handleInputKeyPress}
+                                               autoFocus />
+                                        <label htmlFor="inputEmail">Username or email</label>
+                                    </div>
+                                    <div className="form-label-group">
+                                        <input type="password"
+                                               name="password"
+                                               id="inputPassword"
+                                               className="form-control"
+                                               placeholder="Password"
+                                               value={this.state.password}
+                                               onChange={this.handleInputChange}
+                                               onKeyPress={this.handleInputKeyPress} />
+                                        <label htmlFor="inputPassword">Password</label>
+                                    </div>
+                                    <div className="custom-control custom-checkbox mb-3">
+                                        <input type="checkbox" className="custom-control-input" id="customCheck1" />
+                                        <label className="custom-control-label" htmlFor="customCheck1">Remember password</label>
+                                    </div>
+                                    <Button
+                                        color="blue"
+                                        className="btn btn-lg btn-primary btn-block text-uppercase"
+                                        disabled={this.state.loading}
+                                        onClick={this.submit}
+                                        type="button">
+                                        {this.state.loading ? (
+                                            <Spinner size="sm" color="light"/>
+                                        ) : (
+                                            <span>Sign in</span>
+                                        )}
+                                    </Button>
+                                </Form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
@@ -70,7 +93,6 @@ class Login extends React.Component {
      * @param event
      */
     handleInputChange = (event) => {
-
         const target = event.target;
         const value = target.value;
         const name = target.name;
@@ -116,7 +138,7 @@ class Login extends React.Component {
                 }
             }).catch((response) => {
 
-                let error = 'Error, no se ha obtenido respuesta.';
+                let error = 'No server response';
 
                 if (response.error) {
                     error = response.error;
