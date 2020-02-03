@@ -23,6 +23,7 @@ module.exports = env => {
                 'Assets' : path.resolve(__dirname, mainPath + '/Assets'),
                 'Helpers' : path.resolve(__dirname, mainPath + '/Helpers'),
                 'Services' : path.resolve(__dirname, mainPath + '/Services'),
+                'Managers' : path.resolve(__dirname, mainPath + '/Managers'),
                 '@' : path.resolve(__dirname, mainPath),
             },
             extensions: [".js", ".jsx"]
