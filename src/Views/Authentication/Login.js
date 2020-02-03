@@ -3,7 +3,6 @@ import {Form, Input, Spinner, Button } from 'reactstrap';
 import AuthHelper from 'Helpers/AuthHelper';
 import AuthService from 'Services/Auth/AuthService';
 import NotificationService from 'Services/Common/NotificationService';
-import 'Assets/sass/authentication/login.scss';
 
 class Login extends React.Component {
 
@@ -23,7 +22,8 @@ class Login extends React.Component {
 
     render() {
         return (
-            <div className="container">
+            <div id="login-container">
+                <div className="container">
                 <div className="row">
                     <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
                         <div className="card card-signin my-5">
@@ -36,7 +36,7 @@ class Login extends React.Component {
                                                id="inputEmail"
                                                className="form-control"
                                                placeholder="Username or email"
-                                               value={this.state.user}
+                                               value={this.state.form.user}
                                                onChange={this.handleInputChange}
                                                onKeyPress={this.handleInputKeyPress}
                                                autoFocus />
@@ -48,7 +48,7 @@ class Login extends React.Component {
                                                id="inputPassword"
                                                className="form-control"
                                                placeholder="Password"
-                                               value={this.state.password}
+                                               value={this.state.form.password}
                                                onChange={this.handleInputChange}
                                                onKeyPress={this.handleInputKeyPress} />
                                         <label htmlFor="inputPassword">Password</label>
@@ -74,6 +74,7 @@ class Login extends React.Component {
                         </div>
                     </div>
                 </div>
+            </div>
             </div>
         );
     }
@@ -140,8 +141,12 @@ class Login extends React.Component {
 
                 let error = 'No server response';
 
-                if (response.error) {
+                if (response.code === 401) {
                     error = response.error;
+
+                    if(error === 'bad_credentials'){
+                        error = 'Bad credentials';
+                    }
                 }
 
                 NotificationService.add('danger', 'Error', error);
@@ -151,6 +156,14 @@ class Login extends React.Component {
     }
 
     componentDidMount() {
+
+        this.setState({
+            form:{
+                user: '',
+                password: ''
+            }
+        })
+
         if (AuthHelper.getToken()) {
             this.props.history.push('/');
         }

@@ -23,13 +23,19 @@ if (null !== AuthHelper.getToken()) {
 instance.interceptors.response.use((response) => {
     return response;
 }, (error) => {
-    // Si ha expirado el JWT, redirigimos a la pantalla de login
+
+    let hasAction = false;
+
+    // Redirect to login page if JWT has expired
     if (error.response.status === 401) {
         if (error.response.data && error.response.data.message === EXPIRED_TOKEN_MESSAGE) {
-            NotificationService.add('warning', 'Aviso', 'Tu sesión ha expirado');
+            hasAction = true;
+            NotificationService.add('warning', 'Warning', 'Your session has expired');
             AuthHelper.removeToken();
         }
-    } else {
+    }
+
+    if(false === hasAction){
         return new Promise((resolve, reject) => {
             reject(error);
         });

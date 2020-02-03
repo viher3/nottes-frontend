@@ -17,7 +17,7 @@ class AuthService {
             '_password': password
         };
 
-        let loginUrl = '/api/login';
+        let loginUrl = '/api/login_check';
 
         return axios.post(loginUrl, params).then((response) => {
 
@@ -35,17 +35,18 @@ class AuthService {
                     'token': authToken
                 };
             }
-        }).catch((error) => {
+
+        }).catch(error => {
 
             let errorMessage = '';
+            let statusCode = error.response.status;
 
-            if (error.response.status === 401) {
-                errorMessage = 'Error, wrong credentials';
-            } else {
-                errorMessage = error.response.data.message;
+            if(error.response.data.message.message){
+                errorMessage = error.response.data.message.message;
             }
 
             throw {
+                'code' : statusCode,
                 'status': 'error',
                 'error': errorMessage
             };
