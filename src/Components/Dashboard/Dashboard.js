@@ -1,13 +1,13 @@
 import React from 'react';
 import NotteManager from 'Managers/NotteManager';
 import NotteName from 'Components/Notte/NotteName';
+import NotteType from 'Components/Notte/NotteType';
 
 import {
     Table
 } from 'reactstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFileAlt, faShieldAlt } from '@fortawesome/free-solid-svg-icons'
 
 class Dashboard extends React.Component {
 
@@ -55,11 +55,13 @@ class Dashboard extends React.Component {
                                         <td>
                                             <NotteName item={item} />
                                         </td>
-                                        <td>{item.type}</td>
+                                        <td>
+                                            <NotteType item={item} />
+                                        </td>
                                         <td>{item.tags}</td>
                                         <td>{item.updatedAt}</td>
                                         <td>
-                                            <FontAwesomeIcon icon={faFileAlt} />
+                                            -
                                         </td>
                                     </tr>
                                 )
@@ -98,9 +100,7 @@ class Dashboard extends React.Component {
     }
 
     componentDidMount() {
-
         this.list();
-
     }
 }
 
