@@ -1,30 +1,35 @@
 import React from 'react';
+import NotteManager from 'Managers/NotteManager';
+import NotteName from 'Components/Notte/NotteName';
 
 import {
     Table
 } from 'reactstrap';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFileAlt, faShieldAlt } from '@fortawesome/free-solid-svg-icons'
+
 class Dashboard extends React.Component {
+
     constructor(props) {
         super(props);
 
         this.state = {
-            data: [
-                {
-                    'id': 1,
-                    'name': 'test',
-                    'type': 'text',
-                    'tags': 'abc,tas',
-                    'updatedAt': 'now'
-                }
-            ]
+            data: [],
+            loading: false,
+            listing: {
+                current: 0,
+                total: 0
+            }
         };
+
+        this.notteManager = new NotteManager();
     }
 
     render() {
         return (
             <section>
-                <p>Listing {this.state.data.length} of X</p>
+                <p>Listing {this.state.listing.current} of {this.state.listing.total}</p>
 
                 <Table>
                     <thead>
@@ -47,11 +52,15 @@ class Dashboard extends React.Component {
                             (
                                 this.state.data.map((item) =>
                                     <tr key={item.id}>
-                                        <td>{item.name}</td>
+                                        <td>
+                                            <NotteName item={item} />
+                                        </td>
                                         <td>{item.type}</td>
                                         <td>{item.tags}</td>
                                         <td>{item.updatedAt}</td>
-                                        <td>TODO: actions</td>
+                                        <td>
+                                            <FontAwesomeIcon icon={faFileAlt} />
+                                        </td>
                                     </tr>
                                 )
                             )
@@ -60,6 +69,38 @@ class Dashboard extends React.Component {
                 </Table>
             </section>
         );
+    }
+
+    /**
+     * Get list data
+     * @returns {Promise<void>}
+     */
+    list = async () => {
+
+        this.setState({loading: true});
+
+        await this.notteManager.list().then(response => {
+
+            this.setState({
+                loading: false,
+                listing: {
+                    current: response.data.current_page_number * response.data.num_items_per_page,
+                    total: response.data.total_count
+                },
+                data: response.data.items
+            });
+
+            console.log(response);
+
+        }).catch(error => {
+
+        });
+    }
+
+    componentDidMount() {
+
+        this.list();
+
     }
 }
 
