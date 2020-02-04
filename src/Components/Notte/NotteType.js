@@ -1,6 +1,6 @@
 import React from 'react';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faFileAlt, faLink} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faFileAlt, faLink} from '@fortawesome/free-solid-svg-icons';
 import { NOTTE } from 'Constants/Notte';
 
 class NotteType extends React.Component {

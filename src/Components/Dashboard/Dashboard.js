@@ -2,12 +2,8 @@ import React from 'react';
 import NotteManager from 'Managers/NotteManager';
 import NotteName from 'Components/Notte/NotteName';
 import NotteType from 'Components/Notte/NotteType';
-
-import {
-    Table
-} from 'reactstrap';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import ActionsDropdown from 'Components/Dashboard/ActionsDropdown';
+import { Table } from 'reactstrap';
 
 class Dashboard extends React.Component {
 
@@ -28,8 +24,13 @@ class Dashboard extends React.Component {
 
     render() {
         return (
-            <section>
-                <p>Listing {this.state.listing.current} of {this.state.listing.total}</p>
+            <section className="row">
+                <div className="col-12 col-xl-10 col-lg-10 col-md-10">
+                    <p>Listing {this.state.listing.current} of {this.state.listing.total}</p>
+                </div>
+                <div className="col-12 col-xl-2 col-lg-2 col-md-2 text-center">
+                    <ActionsDropdown />
+                </div>
 
                 <Table>
                     <thead>
