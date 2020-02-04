@@ -3,6 +3,7 @@ import NotteManager from 'Managers/NotteManager';
 import NotteName from 'Components/Notte/NotteName';
 import NotteType from 'Components/Notte/NotteType';
 import ActionsDropdown from 'Components/Dashboard/ActionsDropdown';
+import ListingCountText from 'Components/Common/ListingCountText';
 import { Table } from 'reactstrap';
 
 class Dashboard extends React.Component {
@@ -23,6 +24,10 @@ class Dashboard extends React.Component {
     }
 
     render() {
+
+        // TODO: https://www.robinwieruch.de/react-warning-cant-call-setstate-on-an-unmounted-component
+        // <ListingCountText list={this.state.listing} itemsCount={this.state.data.length} />
+
         return (
             <section className="row">
                 <div className="col-12 col-xl-10 col-lg-10 col-md-10">
