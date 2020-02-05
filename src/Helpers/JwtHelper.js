@@ -1,7 +1,7 @@
 class JwtHelper
 {
     /**
-     * Transforma el token a un objeto JSON
+     * Convert token to a JSON object
      *
      * @param token
      * @returns {any}

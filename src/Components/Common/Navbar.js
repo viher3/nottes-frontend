@@ -52,17 +52,17 @@ class Navbar extends React.Component
                                     <FontAwesomeIcon icon={faUser} />
                                     <span className="ml-2">Hello,user</span>
                                 </DropdownToggle>
-                                <DropdownMenu>
+                                <DropdownMenu right>
                                     <DropdownItem className="nav-link">
                                         <Link to="/config">
-                                            <FontAwesomeIcon icon={faCog} />
+                                            <FontAwesomeIcon icon={faCog} className="ml-2" />
                                             <span className="ml-2">Configuration</span>
                                         </Link>
                                     </DropdownItem>
                                     <DropdownItem divider />
                                     <DropdownItem className="nav-link">
                                         <Link to="/logout">
-                                            <FontAwesomeIcon icon={faSignOutAlt} />
+                                            <FontAwesomeIcon icon={faSignOutAlt} className="ml-2" />
                                             <span className="ml-2">Logout</span>
                                         </Link>
                                     </DropdownItem>

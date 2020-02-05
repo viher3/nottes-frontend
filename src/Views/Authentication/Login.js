@@ -134,13 +134,18 @@ class Login extends React.Component {
             let auth = new AuthService();
 
             await auth.checkLogin(this.state.form.user, this.state.form.password).then((response) => {
-                if (response.status === 'ok') {
+
+                console.log('ok');
+                console.log(response);
+                console.log('--');
+
+                if (response && response.status === 'ok') {
                     this.props.history.push('/');
                 }
             }).catch((response) => {
 
                 let error = 'No server response';
-
+console.log(response);
                 if (response.code === 401) {
                     error = response.error;
 

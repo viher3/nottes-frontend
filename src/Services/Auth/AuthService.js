@@ -21,7 +21,7 @@ class AuthService {
 
         return axios.post(loginUrl, params).then((response) => {
 
-            if (response.status === 200) {
+            if (response && response.status === 200) {
                 let authToken = response.data.token;
 
                 // Guarda el token en el localStorage
