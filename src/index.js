@@ -6,9 +6,10 @@ import { BrowserRouter } from 'react-router-dom'
 import ReactNotification from 'react-notifications-component'
 import { Provider } from 'react-redux';
 import Store from 'Store/Store';
+import History from 'Utils/History';
 
 ReactDOM.render(
-    <BrowserRouter>
+    <BrowserRouter history={History}>
         <Provider store={Store}>
             <ReactNotification />
             <App />

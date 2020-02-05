@@ -24,6 +24,7 @@ module.exports = env => {
                 'Helpers' : path.resolve(__dirname, mainPath + '/Helpers'),
                 'Services' : path.resolve(__dirname, mainPath + '/Services'),
                 'Managers' : path.resolve(__dirname, mainPath + '/Managers'),
+                'Utils' : path.resolve(__dirname, mainPath + '/Utils'),
                 '@' : path.resolve(__dirname, mainPath),
             },
             extensions: [".js", ".jsx"]
