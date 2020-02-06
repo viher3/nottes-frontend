@@ -55,7 +55,7 @@ class Login extends React.Component {
                                     </div>
                                     <div className="custom-control custom-checkbox mb-3">
                                         <input type="checkbox" className="custom-control-input" id="customCheck1" />
-                                        <label className="custom-control-label" htmlFor="customCheck1">Remember password</label>
+                                        <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
                                     </div>
                                     <Button
                                         color="blue"
@@ -135,17 +135,13 @@ class Login extends React.Component {
 
             await auth.checkLogin(this.state.form.user, this.state.form.password).then((response) => {
 
-                console.log('ok');
-                console.log(response);
-                console.log('--');
-
                 if (response && response.status === 'ok') {
                     this.props.history.push('/');
                 }
             }).catch((response) => {
 
                 let error = 'No server response';
-console.log(response);
+
                 if (response.code === 401) {
                     error = response.error;
 
