@@ -1,5 +1,4 @@
 import React from 'react';
-import History from 'Utils/History';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -39,7 +38,7 @@ class ActionsDropdown extends React.Component {
                     <span className="mr-2">New</span>
                 </DropdownToggle>
                 <DropdownMenu right>
-                    <DropdownItem onClick={ History.push('/add') }>
+                    <DropdownItem onClick={() => this.props.History.push('/add')}>
                         <FontAwesomeIcon icon={faFileAlt} className="mr-3" />
                         <span>Document</span>
                     </DropdownItem>
