@@ -1,4 +1,6 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom'
+import { RoutesPath } from 'Constants/Routes';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -38,7 +40,7 @@ class ActionsDropdown extends React.Component {
                     <span className="mr-2">New</span>
                 </DropdownToggle>
                 <DropdownMenu right>
-                    <DropdownItem onClick={() => this.props.History.push('/add')}>
+                    <DropdownItem onClick={() => this.props.history.push(RoutesPath.createNotte)}>
                         <FontAwesomeIcon icon={faFileAlt} className="mr-3" />
                         <span>Document</span>
                     </DropdownItem>
@@ -66,4 +68,4 @@ class ActionsDropdown extends React.Component {
     }
 }
 
-export default ActionsDropdown;
+export default withRouter(ActionsDropdown);

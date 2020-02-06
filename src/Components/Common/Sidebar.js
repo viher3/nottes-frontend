@@ -1,7 +1,8 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faTrash, faShareAlt, faClock } from '@fortawesome/free-solid-svg-icons';
-
+import { withRouter } from "react-router-dom";
+import { RoutesPath } from 'Constants/Routes';
 import {
     ListGroup,
     ListGroupItem
@@ -23,7 +24,7 @@ class Sidebar extends React.Component
     render(){
         return(
             <ListGroup className="sidebar">
-                <ListGroupItem color="info" tag="a" href="#">
+                <ListGroupItem color="info" onClick={() => this.props.history.push(RoutesPath.dashboard)}>
                     <FontAwesomeIcon icon={ faHome } className="mr-3" />Home
                 </ListGroupItem>
                 <ListGroupItem tag="a" href="#">
@@ -40,4 +41,4 @@ class Sidebar extends React.Component
     }
 }
 
-export default Sidebar;
+export default withRouter(Sidebar);
