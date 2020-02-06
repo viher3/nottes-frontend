@@ -13,7 +13,7 @@ class NotteForm extends React.Component {
 
     render() {
         return (
-            <Form className="my-4">
+            <Form>
                 <FormGroup>
                     <Label for="title">Title</Label>
                     <Input type="text" name="title" id="title" placeholder="Enter a title" />
