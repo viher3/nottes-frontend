@@ -1,5 +1,5 @@
 import React from 'react';
-import {Switch, Route, withRouter} from 'react-router-dom'
+import {Switch, Route} from 'react-router-dom'
 import {PrivateRoutes, Routes} from 'Constants/Routes';
 import PrivateRoute from 'Components/Routing/PrivateRoute';
 
@@ -31,4 +31,4 @@ class App extends React.Component {
     }
 }
 
-export default withRouter(App);
+export default App;
