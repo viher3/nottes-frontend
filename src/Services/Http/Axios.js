@@ -36,9 +36,6 @@ instance.interceptors.response.use((response) => {
         let errorMessage = '';
         let removeToken = false;
 
-        console.log('interceptor')
-        console.log(error.response)
-
         if (error.response.data && error.response.data.message === EXPIRED_TOKEN_MESSAGE) {
             errorMessage = 'Your session has expired';
             removeToken = true;

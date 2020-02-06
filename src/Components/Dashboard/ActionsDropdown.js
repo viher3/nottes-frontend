@@ -1,4 +1,5 @@
 import React from 'react';
+import History from 'Utils/History';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -30,6 +31,7 @@ class ActionsDropdown extends React.Component {
             <ButtonDropdown
                 isOpen={this.state.isDropdownOpen}
                 toggle={this.toggleActionsDropdown}
+                size="sm"
                 className="text-center"
             >
                 <DropdownToggle caret>
@@ -37,7 +39,7 @@ class ActionsDropdown extends React.Component {
                     <span className="mr-2">New</span>
                 </DropdownToggle>
                 <DropdownMenu right>
-                    <DropdownItem>
+                    <DropdownItem onClick={ History.push('/add') }>
                         <FontAwesomeIcon icon={faFileAlt} className="mr-3" />
                         <span>Document</span>
                     </DropdownItem>

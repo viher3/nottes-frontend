@@ -13,10 +13,7 @@ import {
     DropdownToggle,
     DropdownMenu,
     DropdownItem,
-    InputGroup,
-    InputGroupAddon,
-    Input,
-    Button
+    Input
 } from 'reactstrap';
 
 class Navbar extends React.Component
@@ -36,7 +33,7 @@ class Navbar extends React.Component
         return(
             <div id="navbar_container" className="row border-bottom white-bg">
                 <BNavbar className="navbar navbar-expand-lg navbar-static-top col-12 shadow-sm" role="navigation">
-                    <NavbarBrand href="/" className="navbar-brand">
+                    <NavbarBrand className="navbar-brand">
                         <img className="logo" alt="logo" />
                     </NavbarBrand>
                     <NavbarToggler onClick={this.toggle} >
