@@ -6,6 +6,7 @@ import { RoutesPath } from 'Constants/Routes';
 
 const EXPIRED_TOKEN_MESSAGE = 'Expired JWT Token';
 const INVALID_TOKEN_MESSAGE = 'Invalid JWT Token';
+const BAD_CREDENTIALS_MESSAGE = 'bad_credentials';
 
 const instance = axios.create({
     baseURL: process.env.API_ENDPOINT
@@ -34,16 +35,20 @@ instance.interceptors.response.use((response) => {
 
         let errorMessage = '';
         let removeToken = false;
-        hasAction = true;
+
+        console.log('interceptor')
+        console.log(error.response)
 
         if (error.response.data && error.response.data.message === EXPIRED_TOKEN_MESSAGE) {
             errorMessage = 'Your session has expired';
             removeToken = true;
+            hasAction = true;
         }
 
         if (error.response.data && error.response.data.message === INVALID_TOKEN_MESSAGE) {
             errorMessage = 'Invalid authentication token';
             removeToken = true;
+            hasAction = true;
         }
 
         if(errorMessage.length){
@@ -52,7 +57,7 @@ instance.interceptors.response.use((response) => {
 
         if(removeToken) {
             AuthHelper.removeToken();
-            History.push(RoutesPath.login);
+            window.location.reload(false);
         }
     }
 

@@ -41,12 +41,12 @@ class AuthService {
             let errorMessage = '';
             let statusCode = error.response.status;
 
-            if(error.response.data.message.message){
+            if (error.response.data.message.message) {
                 errorMessage = error.response.data.message.message;
             }
 
             throw {
-                'code' : statusCode,
+                'code': statusCode,
                 'status': 'error',
                 'error': errorMessage
             };
@@ -57,8 +57,7 @@ class AuthService {
     /**
      * Logout user
      */
-    logout()
-    {
+    logout() {
         AuthHelper.removeToken();
         NotificationService.add('success', null, 'Logout successful');
     }
