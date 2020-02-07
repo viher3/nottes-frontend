@@ -65,7 +65,7 @@ class HeadlinesButton extends Component {
 const toolbarPlugin = createToolbarPlugin();
 const { Toolbar } = toolbarPlugin;
 const plugins = [toolbarPlugin];
-const text = 'In this editor a toolbar shows up once you select part of the text …';
+const text = '\n';
 
 export default class CustomToolbarEditor extends Component {
 
