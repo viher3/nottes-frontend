@@ -6,17 +6,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { Card, CardHeader, CardBody } from 'reactstrap';
 
-class CreateNotte extends React.Component {
+class AddData extends React.Component {
+
+    constructor(props) {
+        super(props);
+    }
 
     render() {
         return (
             <Container>
                 <Card>
                     <CardHeader>
-                        <FontAwesomeIcon icon={faPlusCircle} className="mr-2" />Add data
+                        <FontAwesomeIcon icon={faPlusCircle} className="mr-2" />{this.props.title}
                     </CardHeader>
                     <CardBody>
-                        <NotteForm />
+                        <NotteForm type={this.props.type} />
                     </CardBody>
                 </Card>
             </Container>
@@ -25,4 +29,4 @@ class CreateNotte extends React.Component {
 
 }
 
-export default CreateNotte;
+export default AddData;

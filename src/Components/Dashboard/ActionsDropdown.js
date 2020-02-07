@@ -40,7 +40,7 @@ class ActionsDropdown extends React.Component {
                     <span className="mr-2">New</span>
                 </DropdownToggle>
                 <DropdownMenu right>
-                    <DropdownItem onClick={() => this.props.history.push(RoutesPath.createNotte)}>
+                    <DropdownItem onClick={() => this.props.history.push(RoutesPath.createDocument)}>
                         <FontAwesomeIcon icon={faFileAlt} className="mr-3" />
                         <span>Document</span>
                     </DropdownItem>

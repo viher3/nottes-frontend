@@ -1,11 +1,11 @@
 import Dashboard from 'Views/Dashboard';
 import Login from "Views/Authentication/Login";
 import Logout from "Views/Authentication/Logout";
-import CreateNotte from "Views/Notte/CreateNotte";
+import CreateDocument from "Views/Notte/CreateDocument";
 
 export const RoutesPath = {
     'dashboard' : '/',
-    'createNotte' : '/add',
+    'createDocument' : '/add',
     'login' : '/login',
     'logout' : '/logout'
 };
@@ -17,9 +17,9 @@ export const PrivateRoutes = [
         component: Dashboard
     },
     {
-        path : RoutesPath.createNotte,
+        path : RoutesPath.createDocument,
         exact: true,
-        component: CreateNotte
+        component: CreateDocument
     },
     {
         path : RoutesPath.logout,

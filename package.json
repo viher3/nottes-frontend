@@ -9,6 +9,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
+    "availity-reactstrap-validation": "^2.6.1",
     "draft-js": "^0.11.4",
     "draft-js-buttons": "^2.0.2",
     "draft-js-plugins-editor": "^3.0.0",
