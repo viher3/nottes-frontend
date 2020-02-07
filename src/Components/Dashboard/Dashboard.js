@@ -4,6 +4,7 @@ import NotteName from 'Components/Notte/NotteName';
 import NotteType from 'Components/Notte/NotteType';
 import ActionsDropdown from 'Components/Dashboard/ActionsDropdown';
 import ListingCountText from 'Components/Common/ListingCountText';
+import Moment from 'react-moment';
 import { Table } from 'reactstrap';
 
 class Dashboard extends React.Component {
@@ -65,7 +66,9 @@ class Dashboard extends React.Component {
                                             <NotteType item={item} />
                                         </td>
                                         <td>{item.tags}</td>
-                                        <td>{item.updatedAt}</td>
+                                        <td>
+                                            <Moment fromNow>{item.updated_at}</Moment>
+                                        </td>
                                         <td>
                                             -
                                         </td>
