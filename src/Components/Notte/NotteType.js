@@ -13,20 +13,29 @@ class NotteType extends React.Component {
     render() {
         return (
             <div>
-                <Tooltip placement="top" content={this.props.item.type} id={this.props.item.id}>
-                    {this.getIcon()}
-                </Tooltip>
+                {
+                    true === this.props.tooltip ?
+                    (
+                        <Tooltip placement="top" content={this.getTranslation()} id={this.props.item.id}>
+                            {this.getIcon()}
+                        </Tooltip>
+                    ) :
+                    (
+                        <span>
+                            {this.getIcon('mr-2')}
+                            {this.getTranslation()}
+                        </span>
+                    )
+                }
             </div>
         );
     }
 
     /**
      * Get icon for given type
-     *
-     * @param typeId
      * @returns {*}
      */
-    getIcon() {
+    getIcon(classes='') {
 
         let icon = null;
 
@@ -41,10 +50,27 @@ class NotteType extends React.Component {
         }
 
         if(null !== icon) {
-            return <FontAwesomeIcon icon={icon} className="ml-2" />;
+            return <FontAwesomeIcon icon={icon} className={classes} />;
         }
 
         return '';
+    }
+
+    /**
+     * Get type translation
+     * @returns {string}
+     */
+    getTranslation() {
+        switch (this.props.item.type) {
+            case NOTTE.TYPES.doc:
+                return 'Document';
+
+            case NOTTE.TYPES.link:
+                return 'Link';
+
+            default:
+                return '';
+        }
     }
 }
 

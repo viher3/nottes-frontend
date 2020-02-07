@@ -11,6 +11,7 @@ import Tooltip from 'Components/Common/Tooltip';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlusCircle, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+import NotteList from "Components/Notte/NotteList";
 
 class Dashboard extends React.Component {
 
@@ -34,7 +35,7 @@ class Dashboard extends React.Component {
         // TODO: https://www.robinwieruch.de/react-warning-cant-call-setstate-on-an-unmounted-component
         // <ListingCountText list={this.state.listing} itemsCount={this.state.data} />
         return (
-            <section className="row">
+            <section id="dashboard_content" className="row notteList">
                 <div className="col-12 col-xl-10 col-lg-10 col-md-10">
                     <p>Listing {this.state.listing.current} of {this.state.listing.total}</p>
                 </div>
@@ -42,60 +43,12 @@ class Dashboard extends React.Component {
                     <ActionsDropdown />
                 </div>
 
-                <Table>
-                    <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Type</th>
-                        <th>Tags</th>
-                        <th>Last update</th>
-                        <th width="9%"></th>
-                    </tr>
-                    </thead>
-                    <tbody>
+                {
+                    this.state.data.length === 0 ?
+                        (<p>No results were found.</p>) :
+                        ( this.state.data.map((item) => <NotteList key={item.id} item={item} /> ) )
+                }
 
-                    {
-                        this.state.data.length === 0 ? (
-                                <tr>
-                                    <td colSpan="5">No results were found.</td>
-                                </tr>
-                            ) :
-                            (
-                                this.state.data.map((item) =>
-                                    <tr key={item.id}>
-                                        <td>
-                                            <NotteName item={item} />
-                                        </td>
-                                        <td>
-                                            <NotteType item={item} />
-                                        </td>
-                                        <td>{item.tags}</td>
-                                        <td>
-                                            <Moment fromNow>{item.updated_at}</Moment>
-                                        </td>
-                                        <td>
-                                            <Link to="/" className="d-inline-block mr-2">
-                                                <Tooltip placement="top" content="Show" id={this.getItemIdAlias(item.id, '_show')}>
-                                                    <FontAwesomeIcon icon={faPlusCircle} />
-                                                </Tooltip>
-                                            </Link>
-                                            <Link to="/" className="d-inline-block mr-2">
-                                                <Tooltip placement="top" content="Edit" id={this.getItemIdAlias(item.id, '_edit')}>
-                                                    <FontAwesomeIcon icon={faEdit} />
-                                                </Tooltip>
-                                            </Link>
-                                            <Link to="/" className="d-inline-block mr-1">
-                                                <Tooltip placement="top" content="Trash" id={this.getItemIdAlias(item.id, '_delete')}>
-                                                    <FontAwesomeIcon icon={faTrash} />
-                                                </Tooltip>
-                                            </Link>
-                                        </td>
-                                    </tr>
-                                )
-                            )
-                    }
-                    </tbody>
-                </Table>
             </section>
         );
     }
