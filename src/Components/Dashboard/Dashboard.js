@@ -6,6 +6,11 @@ import ActionsDropdown from 'Components/Dashboard/ActionsDropdown';
 import ListingCountText from 'Components/Common/ListingCountText';
 import Moment from 'react-moment';
 import { Table } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import Tooltip from 'Components/Common/Tooltip';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlusCircle, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 class Dashboard extends React.Component {
 
@@ -27,8 +32,7 @@ class Dashboard extends React.Component {
     render() {
 
         // TODO: https://www.robinwieruch.de/react-warning-cant-call-setstate-on-an-unmounted-component
-        // <ListingCountText list={this.state.listing} itemsCount={this.state.data.length} />
-
+        // <ListingCountText list={this.state.listing} itemsCount={this.state.data} />
         return (
             <section className="row">
                 <div className="col-12 col-xl-10 col-lg-10 col-md-10">
@@ -45,7 +49,7 @@ class Dashboard extends React.Component {
                         <th>Type</th>
                         <th>Tags</th>
                         <th>Last update</th>
-                        <th></th>
+                        <th width="9%"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -70,7 +74,21 @@ class Dashboard extends React.Component {
                                             <Moment fromNow>{item.updated_at}</Moment>
                                         </td>
                                         <td>
-                                            -
+                                            <Link to="/" className="d-inline-block mr-2">
+                                                <Tooltip placement="top" content="Show" id={this.getItemIdAlias(item.id, '_show')}>
+                                                    <FontAwesomeIcon icon={faPlusCircle} />
+                                                </Tooltip>
+                                            </Link>
+                                            <Link to="/" className="d-inline-block mr-2">
+                                                <Tooltip placement="top" content="Edit" id={this.getItemIdAlias(item.id, '_edit')}>
+                                                    <FontAwesomeIcon icon={faEdit} />
+                                                </Tooltip>
+                                            </Link>
+                                            <Link to="/" className="d-inline-block mr-1">
+                                                <Tooltip placement="top" content="Trash" id={this.getItemIdAlias(item.id, '_delete')}>
+                                                    <FontAwesomeIcon icon={faTrash} />
+                                                </Tooltip>
+                                            </Link>
                                         </td>
                                     </tr>
                                 )
@@ -81,6 +99,16 @@ class Dashboard extends React.Component {
             </section>
         );
     }
+
+    /**
+     * Get item id with alias
+     * @param itemId
+     * @param alias
+     * @returns {string}
+     */
+    getItemIdAlias = (itemId, alias) => {
+        return alias + '_' + itemId;
+    };
 
     /**
      * Get list data
