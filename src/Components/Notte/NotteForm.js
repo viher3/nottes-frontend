@@ -44,7 +44,7 @@ class NotteForm extends React.Component {
                 </FormGroup>
                 <FormGroup>
                     <Label for="Content">Content</Label>
-                    <Editor/>
+                    <Editor onEditorChange={this.onEditorChange} />
                 </FormGroup>
                 <FormGroup>
                     <Label for="tags">Tags</Label>
@@ -66,14 +66,20 @@ class NotteForm extends React.Component {
         );
     }
 
+    onEditorChange(editorContent){
+        console.log(editorContent);
+    }
+
     handleChange(event) {
         this.setState({[event.target.name]: event.target.value});
     }
 
     handleSubmit(event, errors, values) {
-        console.log('submit');
-        console.log(errors);
-        console.log(values);
+
+        if(errors.length === 0){
+            console.log('ok');
+            console.log(values);
+        }
     }
 
 }

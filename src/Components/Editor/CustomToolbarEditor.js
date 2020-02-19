@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
+import {stateToHTML} from 'draft-js-export-html';
 
 import createToolbarPlugin, { Separator } from 'draft-js-static-toolbar-plugin';
 import {
@@ -77,6 +78,11 @@ export default class CustomToolbarEditor extends Component {
         this.setState({
             editorState,
         });
+
+        // Send editor Html content on change
+        let content = editorState.getCurrentContent();
+        let htmlContent = stateToHTML(content);
+        this.props.onEditorChange(htmlContent);
     };
 
     focus = () => {
