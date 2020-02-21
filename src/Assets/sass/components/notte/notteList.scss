@@ -101,4 +101,15 @@
   .meta a:hover {
     color: rgba(0, 0, 0, .87);
   }
+
+  .masonry{
+    &{
+      margin-bottom: 40px;
+    }
+
+    div.card.item{
+      width: 24%;
+      margin: 0.5%;
+    }
+  }
 }

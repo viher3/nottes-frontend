@@ -1,17 +1,12 @@
 import React from 'react';
 import NotteManager from 'Managers/NotteManager';
-import NotteName from 'Components/Notte/NotteName';
-import NotteType from 'Components/Notte/NotteType';
 import ActionsDropdown from 'Components/Dashboard/ActionsDropdown';
-import ListingCountText from 'Components/Common/ListingCountText';
-import Moment from 'react-moment';
-import { Table } from 'reactstrap';
-import { Link } from 'react-router-dom';
-import Tooltip from 'Components/Common/Tooltip';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlusCircle, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 import NotteList from "Components/Notte/NotteList";
+import Masonry from 'react-masonry-component';
+
+const masonryOptions = {
+    transitionDUration: 0
+};
 
 class Dashboard extends React.Component {
 
@@ -43,11 +38,15 @@ class Dashboard extends React.Component {
                     <ActionsDropdown />
                 </div>
 
+                <div className="col-12">
+                    <Masonry className="masonry" elementType="div" options={masonryOptions}>
                 {
                     this.state.data.length === 0 ?
                         (<p>No results were found.</p>) :
-                        ( this.state.data.map((item) => <NotteList key={item.id} item={item} /> ) )
+                        ( this.state.data.map((item) => <NotteList key={item.id} item={item} /> ))
                 }
+                    </Masonry>
+                </div>
 
             </section>
         );
