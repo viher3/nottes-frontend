@@ -53,16 +53,6 @@ class Dashboard extends React.Component {
     }
 
     /**
-     * Get item id with alias
-     * @param itemId
-     * @param alias
-     * @returns {string}
-     */
-    getItemIdAlias = (itemId, alias) => {
-        return alias + '_' + itemId;
-    };
-
-    /**
      * Get list data
      * @returns {Promise<void>}
      */

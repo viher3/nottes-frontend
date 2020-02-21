@@ -11,16 +11,28 @@ section.main-section{
       &{
         font-size: 13px;
         font-weight: 600;
+        border-right: 1px solid #CECECE;
+        margin: 0 10px 0 20px;
       }
 
-      a.list-group-item{
-        border-top-left-radius: 0;
-        border-top-right-radius: .25rem;
-        border-bottom-right-radius: .25rem;
-        border-bottom-left-radius: 0;
-        border: 0;
-      }
+      .list-group-item{
+        &{
+          color: #007bff;
+          border-top-right-radius: 0;
+          border-top-left-radius: .25rem;
+          border-bottom-left-radius: .25rem;
+          border-bottom-right-radius: 0;
+          border: 0;
+        }
 
+        &:hover{
+          cursor: pointer;
+        }
+
+        &.active{
+          color: #FFF;
+        }
+      }
     }
 
   }
