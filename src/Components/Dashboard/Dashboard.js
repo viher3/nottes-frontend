@@ -3,6 +3,7 @@ import NotteManager from 'Managers/NotteManager';
 import ActionsDropdown from 'Components/Dashboard/ActionsDropdown';
 import NotteList from "Components/Notte/NotteList";
 import Masonry from 'react-masonry-component';
+import NotteListItemContextMenu from 'Components/Menu/NotteListItemContextMenu';
 
 const masonryOptions = {
     transitionDUration: 0
@@ -43,11 +44,12 @@ class Dashboard extends React.Component {
                 {
                     this.state.data.length === 0 ?
                         (<p>No results were found.</p>) :
-                        ( this.state.data.map((item) => <NotteList key={item.id} item={item} /> ))
+                        ( this.state.data.map((item) => <NotteList key={item.id} item={item} />
+                        ))
                 }
                     </Masonry>
                 </div>
-
+                <NotteListItemContextMenu />
             </section>
         );
     }
