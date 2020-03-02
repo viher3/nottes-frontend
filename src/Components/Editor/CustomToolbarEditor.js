@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Editor, { createEditorStateWithText } from 'draft-js-plugins-editor';
+import {stateToHTML} from 'draft-js-export-html';
 
 import createToolbarPlugin, { Separator } from 'draft-js-static-toolbar-plugin';
 import {
@@ -64,7 +65,7 @@ class HeadlinesButton extends Component {
 const toolbarPlugin = createToolbarPlugin();
 const { Toolbar } = toolbarPlugin;
 const plugins = [toolbarPlugin];
-const text = 'In this editor a toolbar shows up once you select part of the text …';
+const text = '\n';
 
 export default class CustomToolbarEditor extends Component {
 
@@ -76,6 +77,11 @@ export default class CustomToolbarEditor extends Component {
         this.setState({
             editorState,
         });
+
+        // Send editor Html content on change
+        let content = editorState.getCurrentContent();
+        let htmlContent = stateToHTML(content);
+        this.props.onEditorChange(htmlContent);
     };
 
     focus = () => {

@@ -54,7 +54,7 @@ instance.interceptors.response.use((response) => {
 
         if(removeToken) {
             AuthHelper.removeToken();
-            window.location.reload(false);
+            //window.location.reload(false);
         }
     }
 
