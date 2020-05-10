@@ -5,7 +5,7 @@ class CreateDocument extends React.Component {
 
     render() {
         return (
-            <AddData title="Create new document" type="doc" />
+            <AddData title="Create new document" type="doc" history={this.props.history} />
         );
     }
 

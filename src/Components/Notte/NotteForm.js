@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Form, FormGroup, Label, Input} from 'reactstrap';
+import {Button, FormGroup, Label} from 'reactstrap';
 import Editor from 'Components/Editor/CustomToolbarEditor';
 
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -7,6 +7,8 @@ import {faSave} from '@fortawesome/free-solid-svg-icons';
 import {AvForm, AvField} from 'availity-reactstrap-validation';
 import axios from 'Services/Http/Axios'
 import notification from 'Services/Common/NotificationService'
+
+import {RoutesPath} from "Constants/Routes"
 
 class NotteForm extends React.Component {
 
@@ -24,7 +26,9 @@ class NotteForm extends React.Component {
                 content: ''
             },
             submitted: false
-        };
+        }
+
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     render() {
@@ -89,9 +93,8 @@ class NotteForm extends React.Component {
             axios.post('/api/notte', formData).then((response) => {
                 if (response.status === 200) {
                     notification.add('success', null, 'Notte created successfully!')
-                    // TODO: REDIRECT TO INDEX
+                    this.props.history.push(RoutesPath.dashboard)
                 }
-                console.log(response)
             }).catch((error) => {
                 notification.catchServerErrors(error)
             })

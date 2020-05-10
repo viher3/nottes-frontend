@@ -51,9 +51,14 @@ class NotificationService
      */
     static catchServerErrors(error)
     {
+        if(!error.response) {
+            console.log(error)
+            return
+        }
+
         let response = error.response
-        let errorCode = response.status
-        let responseErrors = response.data.errors
+        let errorCode = response.status ?? null
+        let responseErrors = response.data.errors ?? null
 
         if(responseErrors) {
             let errors = ''
