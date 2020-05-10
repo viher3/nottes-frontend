@@ -44,12 +44,12 @@ class Dashboard extends React.Component {
                 {
                     this.state.data.length === 0 ?
                         (<p>No results were found.</p>) :
-                        ( this.state.data.map((item) => <NotteList key={item.id} item={item} />
+                        ( this.state.data.map((item) => <NotteList history={this.props.history} key={item.id} item={item} />
                         ))
                 }
                     </Masonry>
                 </div>
-                <NotteListItemContextMenu />
+                <NotteListItemContextMenu history={this.props.history} />
             </section>
         );
     }

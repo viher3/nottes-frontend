@@ -6,7 +6,7 @@ import ShowDocument from "Views/Notte/ShowDocument";
 
 export const RoutesPath = {
     'dashboard' : '/',
-    'showDocument' : '/show/:id',
+    'showDocument' : '/show/',
     'createDocument' : '/add',
     'login' : '/login',
     'logout' : '/logout'
@@ -19,7 +19,7 @@ export const PrivateRoutes = [
         component: Dashboard
     },
     {
-        path: RoutesPath.showDocument,
+        path: RoutesPath.showDocument + ':id',
         exact: true,
         component: ShowDocument
     },

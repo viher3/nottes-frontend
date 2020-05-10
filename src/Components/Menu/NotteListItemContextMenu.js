@@ -6,6 +6,11 @@ import {RoutesPath} from 'Constants/Routes';
 
 class NotteListItemContextMenu extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.handleClick = this.handleClick.bind(this)
+    }
+
     render() {
         return (
             <ContextMenu id="notteListItemMenu">
@@ -27,7 +32,9 @@ class NotteListItemContextMenu extends React.Component {
     }
 
     handleClick(e, data) {
-        console.log(data);
+        if(data.route === RoutesPath.showDocument) {
+            this.props.history.push(data.route + data.id)
+        }
     }
 
 }

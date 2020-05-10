@@ -2,6 +2,7 @@ import React from 'react';
 import Moment from "react-moment";
 import NotteName from "Components/Notte/NotteName";
 import { ContextMenuTrigger } from "react-contextmenu";
+import {RoutesPath} from "Constants/Routes";
 
 class NotteList extends React.Component {
 
@@ -11,8 +12,8 @@ class NotteList extends React.Component {
 
     render() {
         return (
-            <div className="card item">
-                <ContextMenuTrigger id="notteListItemMenu">
+            <div className="card item" onDoubleClick={() => this.props.history.push(RoutesPath.showDocument + this.props.item.id) }>
+                <ContextMenuTrigger id="notteListItemMenu" collect={() => this.props.item}>
                     <div className="card-block">
                         <h4 className="card-title mt-3">
                             <NotteName item={this.props.item}/>
