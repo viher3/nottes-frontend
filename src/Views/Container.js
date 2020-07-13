@@ -13,10 +13,10 @@ class Container extends React.Component
                             <div className="col-12">
                                 <Navbar/>
                                 <section className="main-section row">
-                                    <div className="col-2 sidebar-wrapper">
+                                    <div className="col-12 col-xl-2 col-lg-2 col-md-2 col-sm-2 sidebar-wrapper">
                                         <Sidebar/>
                                     </div>
-                                    <div className="col-10">
+                                    <div className="col-12 col-xl-10 col-lg-10 col-md-10 col-sm-10">
                                         {this.props.children}
                                     </div>
                                 </section>

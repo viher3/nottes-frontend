@@ -31,14 +31,14 @@ class Dashboard extends React.Component {
         // <ListingCountText list={this.state.listing} itemsCount={this.state.data} />
         return (
             <section id="dashboard_content" className="row notteList">
-                <div className="col-12 col-xl-10 col-lg-10 col-md-10 pl-0">
+                <div className="col-12 col-xl-10 col-lg-10 col-md-10 col-sm-10">
                     <p>Listing {this.state.listing.current} of {this.state.listing.total}</p>
                 </div>
-                <div className="col-12 col-xl-2 col-lg-2 col-md-2 text-center">
+                <div className="col-12 col-xl-2 col-lg-2 col-md-2 col-sm-2 text-xl-right mb-xl-0 mb-2">
                     <ActionsDropdown />
                 </div>
 
-                <div className="col-12 pl-0">
+                <div className="col-12">
                 {
                     this.state.data.length === 0 ?
                         (<p>No results were found.</p>) :

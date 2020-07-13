@@ -1,14 +1,10 @@
 import React from 'react';
 import Moment from "react-moment";
 import NotteName from "Components/Notte/NotteName";
+import NotteType from "Components/Notte/NotteType";
 import { ContextMenuTrigger } from "react-contextmenu";
 import {RoutesPath} from "Constants/Routes";
-import Card from "reactstrap/es/Card";
-import CardBody from "reactstrap/es/CardBody";
-import CardTitle from "reactstrap/es/CardTitle";
-import CardSubtitle from "reactstrap/es/CardSubtitle";
-import CardText from "reactstrap/es/CardText";
-import Button from "reactstrap/es/Button";
+
 
 class NotteList extends React.Component {
 
@@ -21,9 +17,18 @@ class NotteList extends React.Component {
             <div className="card item mb-3" onClick={() => this.props.history.push(RoutesPath.showDocument + this.props.item.id) }>
                 <ContextMenuTrigger id="notteListItemMenu" collect={() => this.props.item}>
                     <div className="card-block">
-                        <h4 className="card-title">
-                            <NotteName item={this.props.item}/>
-                        </h4>
+                        <div className="row">
+                            <div className="col-12 col-xl-10 col-lg-10 col-md-10 col-sm-10">
+                                <h4 className="card-title">
+                                    <NotteName item={this.props.item}/>
+                                </h4>
+                            </div>
+                            <div className="col-12 col-xl-2 col-lg-2 col-md-2 col-sm-2">
+                                <h6 className="card-subtitle mb-2 text-muted text-xl-right">
+                                    <NotteType item={this.props.item} />
+                                </h6>
+                            </div>
+                        </div>
                         <div>
                             {this.props.item.tags}
                         </div>

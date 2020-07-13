@@ -1,6 +1,6 @@
 import React from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faFileAlt, faLink} from '@fortawesome/free-solid-svg-icons';
+import { faFileAlt, faLink} from '@fortawesome/free-solid-svg-icons';
 import { NOTTE } from 'Constants/Notte';
 import Tooltip from 'Components/Common/Tooltip';
 
@@ -22,7 +22,7 @@ class NotteType extends React.Component {
                     ) :
                     (
                         <span>
-                            {this.getIcon('mr-2')}
+                            {this.getIcon('mr-1')}
                             {this.getTranslation()}
                         </span>
                     )
