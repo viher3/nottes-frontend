@@ -10,18 +10,21 @@ section.main-section{
 
       &{
         font-size: 13px;
-        font-weight: 600;
-        border-right: 1px solid #CECECE;
         margin: 0 10px 0 20px;
+      }
+
+      li.list-group-item.active{
+        color: white;
+      }
+
+      li.list-group-item{
+        color: #000;
       }
 
       .list-group-item{
         &{
           color: #007bff;
-          border-top-right-radius: 0;
-          border-top-left-radius: .25rem;
-          border-bottom-left-radius: .25rem;
-          border-bottom-right-radius: 0;
+          border-radius: .25rem;
           border: 0;
         }
 

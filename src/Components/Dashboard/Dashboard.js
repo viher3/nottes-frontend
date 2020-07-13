@@ -2,7 +2,6 @@ import React from 'react';
 import NotteManager from 'Managers/NotteManager';
 import ActionsDropdown from 'Components/Dashboard/ActionsDropdown';
 import NotteList from "Components/Notte/NotteList";
-import Masonry from 'react-masonry-component';
 import NotteListItemContextMenu from 'Components/Menu/NotteListItemContextMenu';
 
 const masonryOptions = {
@@ -39,15 +38,13 @@ class Dashboard extends React.Component {
                     <ActionsDropdown />
                 </div>
 
-                <div className="col-12">
-                    <Masonry className="masonry" elementType="div" options={masonryOptions}>
+                <div className="col-12 pl-0">
                 {
                     this.state.data.length === 0 ?
                         (<p>No results were found.</p>) :
                         ( this.state.data.map((item) => <NotteList history={this.props.history} key={item.id} item={item} />
                         ))
                 }
-                    </Masonry>
                 </div>
                 <NotteListItemContextMenu history={this.props.history} />
             </section>

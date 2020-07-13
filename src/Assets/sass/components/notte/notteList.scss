@@ -1,11 +1,18 @@
+$card-color: #000;
+
 .notteList{
   .card {
-    font-size: 1em;
-    overflow: hidden;
-    padding: 0;
-    border: none;
-    border-radius: .28571429rem;
-    box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+    &{
+      font-size: 1em;
+      overflow: hidden;
+      padding: 0;
+      border: none;
+      border-radius: .28571429rem;
+      box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+    }
+    &:hover{
+      cursor: pointer;
+    }
   }
 
   .card-block {
@@ -37,13 +44,13 @@
   }
 
   .card-footer {
-    font-size: 1em;
+    font-size: .75em;
     position: static;
     top: 0;
     left: 0;
     max-width: 100%;
     padding: .75em 1em;
-    color: rgba(0, 0, 0, .4);
+    color: $card-color;
     border-top: 1px solid rgba(0, 0, 0, .05) !important;
     background: #fff;
   }
@@ -90,12 +97,12 @@
 
   .meta {
     font-size: .75em;
-    color: rgba(0, 0, 0, .4);
+    color: $card-color;
   }
 
   .meta a {
     text-decoration: none;
-    color: rgba(0, 0, 0, .4);
+    color: $card-color;
   }
 
   .meta a:hover {
