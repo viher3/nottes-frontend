@@ -1,7 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShieldAlt } from '@fortawesome/free-solid-svg-icons'
-import NotteType from "Components/Notte/NotteList";
 
 class NotteName extends React.Component {
 

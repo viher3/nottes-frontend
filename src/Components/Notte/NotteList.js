@@ -4,6 +4,8 @@ import NotteName from "Components/Notte/NotteName";
 import NotteType from "Components/Notte/NotteType";
 import { ContextMenuTrigger } from "react-contextmenu";
 import {RoutesPath} from "Constants/Routes";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faUserCircle} from "@fortawesome/free-solid-svg-icons";
 
 
 class NotteList extends React.Component {
@@ -24,7 +26,7 @@ class NotteList extends React.Component {
                                 </h4>
                             </div>
                             <div className="col-12 col-xl-2 col-lg-2 col-md-2 col-sm-2">
-                                <h6 className="card-subtitle mb-2 text-muted text-xl-right">
+                                <h6 className="card-subtitle mb-2 text-muted text-lg-right text-xl-right text-md-right text-sm-right">
                                     <NotteType item={this.props.item} />
                                 </h6>
                             </div>
@@ -36,6 +38,7 @@ class NotteList extends React.Component {
                     <div className="card-footer">
                         <div className="row">
                             <div className="col-12 col-xl-6 col-lg-6 col-md-6 col-sm-6">
+                                <FontAwesomeIcon icon={faUserCircle} className="mr-2" />
                                 {this.props.item.creator_user.username}
                             </div>
                             <div className="col-12 col-xl-6 col-lg-6 col-md-6 col-sm-6 text-right">
