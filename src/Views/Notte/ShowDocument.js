@@ -24,7 +24,7 @@ class ShowDocument extends React.Component {
     render() {
         return (
             <Container>
-                <div className="card">
+                <div className="card notte-show">
                     <div className="card-body">
                         <div className="row">
                             <div className="col-12 col-xl-10 col-lg-10 col-md-10 col-sm-10">
