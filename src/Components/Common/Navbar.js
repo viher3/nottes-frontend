@@ -39,7 +39,7 @@ class Navbar extends React.Component
                     <NavbarToggler onClick={this.toggle} >
                         <FontAwesomeIcon icon={faBars} />
                     </NavbarToggler>
-                    <Collapse isOpen={this.state.isOpen} navbar className="">
+                    <Collapse isOpen={this.state.isOpen} navbar className="user-navbar">
                         <Nav className="mr-auto nav ml-3" navbar>
                             <Input placeholder="Search" />
                         </Nav>

@@ -32,4 +32,15 @@ div#navbar_container {
     }
   }
 
+  .user-navbar{
+    a{
+      &{
+        color: #000;
+      }
+      &:hover{
+        text-decoration: none;
+      }
+    }
+  }
+
 }

@@ -4,6 +4,7 @@ import { RoutesPath } from 'Constants/Routes';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
+    faPlusCircle,
     faPlus,
     faFileUpload,
     faLink,
@@ -35,8 +36,8 @@ class ActionsDropdown extends React.Component {
                 size="sm"
                 className="text-center"
             >
-                <DropdownToggle caret>
-                    <FontAwesomeIcon icon={faPlus} className="mr-2" />
+                <DropdownToggle color="primary" caret>
+                    <FontAwesomeIcon icon={faPlusCircle} className="mr-2" />
                     <span className="mr-2">New</span>
                 </DropdownToggle>
                 <DropdownMenu right>
