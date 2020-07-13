@@ -1,5 +1,5 @@
 import React from 'react';
-import {Switch, Route, BrowserRouter as Router} from 'react-router-dom'
+import {Switch, Route, HashRouter as Router} from 'react-router-dom'
 import {PrivateRoutes, Routes} from 'Constants/Routes';
 import PrivateRoute from 'Components/Routing/PrivateRoute';
 import History from "Utils/History";

@@ -7,7 +7,7 @@ class Dashboard extends React.Component
     render(){
         return(
             <Container>
-                <DashboardComponent />
+                <DashboardComponent history={this.props.history} />
             </Container>
         );
     }

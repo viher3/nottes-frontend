@@ -24,16 +24,16 @@ class Sidebar extends React.Component
     render(){
         return(
             <ListGroup className="sidebar">
-                <ListGroupItem color="info" onClick={() => this.props.history.push(RoutesPath.dashboard)}>
+                <ListGroupItem onClick={() => this.props.history.push(RoutesPath.dashboard)} className="active">
                     <FontAwesomeIcon icon={ faHome } className="mr-3" />Home
                 </ListGroupItem>
-                <ListGroupItem tag="a" href="#">
+                <ListGroupItem>
                     <FontAwesomeIcon icon={ faShareAlt } className="mr-3" />Shared
                 </ListGroupItem>
-                <ListGroupItem tag="a" href="#">
+                <ListGroupItem>
                     <FontAwesomeIcon icon={ faClock } className="mr-3" />Recently seen
                 </ListGroupItem>
-                <ListGroupItem tag="a" href="#">
+                <ListGroupItem>
                     <FontAwesomeIcon icon={ faTrash } className="mr-3" />Trash
                 </ListGroupItem>
             </ListGroup>

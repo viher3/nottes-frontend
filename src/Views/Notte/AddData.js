@@ -20,7 +20,7 @@ class AddData extends React.Component {
                         <FontAwesomeIcon icon={faPlusCircle} className="mr-2" />{this.props.title}
                     </CardHeader>
                     <CardBody>
-                        <NotteForm type={this.props.type} />
+                        <NotteForm type={this.props.type} history={this.props.history} />
                     </CardBody>
                 </Card>
             </Container>

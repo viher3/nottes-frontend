@@ -1,7 +1,7 @@
 import axios from 'axios';
 import AuthHelper from 'Helpers/AuthHelper';
 import NotificationService from 'Services/Common/NotificationService';
-import History from "Utils/History";
+import { useHistory } from "react-router-dom";
 import { RoutesPath } from 'Constants/Routes';
 
 const EXPIRED_TOKEN_MESSAGE = 'Expired JWT Token';
@@ -54,7 +54,9 @@ instance.interceptors.response.use((response) => {
 
         if(removeToken) {
             AuthHelper.removeToken();
-            //window.location.reload(false);
+
+            let history = useHistory()
+            history.push(RoutesPath.login)
         }
     }
 
