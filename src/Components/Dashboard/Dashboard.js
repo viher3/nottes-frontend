@@ -4,10 +4,6 @@ import ActionsDropdown from 'Components/Dashboard/ActionsDropdown';
 import NotteList from "Components/Notte/NotteList";
 import NotteListItemContextMenu from 'Components/Menu/NotteListItemContextMenu';
 
-const masonryOptions = {
-    transitionDUration: 0
-};
-
 class Dashboard extends React.Component {
 
     constructor(props) {

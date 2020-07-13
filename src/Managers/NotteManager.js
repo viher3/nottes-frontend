@@ -33,6 +33,14 @@ class NotteManager {
             return error;
         });
     }
+
+    /**
+     * Create new notte
+     * @returns {Promise<void>}
+     */
+    async create() {
+
+    }
 }
 
 export default NotteManager;
