@@ -7,6 +7,7 @@ import {faSave} from '@fortawesome/free-solid-svg-icons';
 import {AvForm, AvField} from 'availity-reactstrap-validation';
 import axios from 'Services/Http/Axios'
 import notification from 'Services/Common/NotificationService'
+import EncryptionInput from 'Components/Notte/EncryptionInput'
 
 import {RoutesPath} from "Constants/Routes"
 
@@ -63,7 +64,7 @@ class NotteForm extends React.Component {
                     />
                 </FormGroup>
                 <FormGroup>
-                    TODO: encrypt component
+                    <EncryptionInput />
                 </FormGroup>
                 <Button>
                     <FontAwesomeIcon icon={faSave} className="mr-2"/>Save
@@ -82,8 +83,8 @@ class NotteForm extends React.Component {
     }
 
     handleSubmit(event, errors, values) {
-
         if (errors.length === 0) {
+
             let formData = {
                 name: values.title,
                 tags: values.tags,
