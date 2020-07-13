@@ -28,13 +28,13 @@ class Sidebar extends React.Component
                     <FontAwesomeIcon icon={ faHome } className="mr-3" />Home
                 </ListGroupItem>
                 <ListGroupItem>
-                    <FontAwesomeIcon icon={ faShareAlt } className="mr-3" />Shared
+                    <FontAwesomeIcon icon={ faShareAlt } className="mr-3" /><del>Shared</del>
                 </ListGroupItem>
                 <ListGroupItem>
-                    <FontAwesomeIcon icon={ faClock } className="mr-3" />Recently seen
+                    <FontAwesomeIcon icon={ faClock } className="mr-3" /><del>Recently seen</del>
                 </ListGroupItem>
                 <ListGroupItem>
-                    <FontAwesomeIcon icon={ faTrash } className="mr-3" />Trash
+                    <FontAwesomeIcon icon={ faTrash } className="mr-3" /><del>Trash</del>
                 </ListGroupItem>
             </ListGroup>
         );
