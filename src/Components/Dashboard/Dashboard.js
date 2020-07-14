@@ -31,7 +31,7 @@ class Dashboard extends React.Component {
                     <p>Listing {this.state.listing.current} of {this.state.listing.total}</p>
                 </div>
                 <div className="col-12 col-xl-3 col-lg-3 col-md-3 col-sm-3 text-xl-right text-lg-right text-md-right text-sm-right mb-xl-0 mb-2">
-                    <ActionsDropdown refreshCallback={this.refreshCallback} />
+                    <ActionsDropdown refreshCallback={this.list} />
                 </div>
                 <div className="col-12">
                 {
@@ -41,7 +41,7 @@ class Dashboard extends React.Component {
                         ))
                 }
                 </div>
-                <NotteListItemContextMenu history={this.props.history} />
+                <NotteListItemContextMenu refreshMethod={this.list} history={this.props.history} />
             </section>
         );
     }
@@ -65,14 +65,6 @@ class Dashboard extends React.Component {
         }).catch(error => {
             console.log(error)
         })
-    }
-
-    /**
-     * Refresh callback
-     * @param childData
-     */
-    refreshCallback = (childData) => {
-        this.setState(childData)
     }
 
     componentDidMount() {

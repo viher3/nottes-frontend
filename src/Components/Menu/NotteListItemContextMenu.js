@@ -4,6 +4,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faEye, faEdit, faTrash} from '@fortawesome/free-solid-svg-icons'
 import {RoutesPath} from 'Constants/Routes'
 import NotteManager from 'Managers/NotteManager'
+import Notification from 'Services/Common/NotificationService'
 
 class NotteListItemContextMenu extends React.Component {
 
@@ -43,7 +44,8 @@ class NotteListItemContextMenu extends React.Component {
     removeNotte = async(id) => {
         let notteManager = new NotteManager()
         await notteManager.remove(id).then(response => {
-            console.log(response)
+            this.props.refreshMethod()
+            Notification.add('success', 'Remove', 'Item was removed successfully!')
         }).catch(error => {
             console.log(error)
         })

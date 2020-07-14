@@ -18,7 +18,6 @@ import {
     DropdownMenu,
     DropdownItem
 } from 'reactstrap';
-import NotteManager from "Managers/NotteManager";
 
 class ActionsDropdown extends React.Component {
 
@@ -86,19 +85,11 @@ class ActionsDropdown extends React.Component {
     refreshList = async () => {
         this.setState({ isRefreshing : true })
 
-        let notteManager = new NotteManager()
-        await notteManager.list().then(response => {
-            this.props.refreshCallback({
-                loading: false,
-                listing: {
-                    current: response.data.current_page_number * response.data.num_items_per_page,
-                    total: response.data.total_count
-                },
-                data: response.data.items
-            })
-        }).catch(error => {
-            console.log(error)
-        }).finally(() => {
+        await this.props.refreshCallback().then(e => {
+            console.log(e)
+        }).catch(e => {
+            console.log(e)
+        }).finally(e => {
             this.setState({ isRefreshing : false })
         })
     }
