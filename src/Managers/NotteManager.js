@@ -41,6 +41,20 @@ class NotteManager {
     async create() {
 
     }
+
+    /**
+     * Remove notte
+     * @returns {Promise<void>}
+     */
+    async remove(id) {
+        let url = `/api/notte/${id}`
+
+        return axios.delete(url).then(response => {
+            return response;
+        }).catch(error => {
+            return error;
+        });
+    }
 }
 
 export default NotteManager;

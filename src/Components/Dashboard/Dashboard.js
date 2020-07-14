@@ -27,13 +27,12 @@ class Dashboard extends React.Component {
         // <ListingCountText list={this.state.listing} itemsCount={this.state.data} />
         return (
             <section id="dashboard_content" className="row notteList">
-                <div className="col-12 col-xl-10 col-lg-10 col-md-10 col-sm-10">
+                <div className="col-12 col-xl-9 col-lg-9 col-md-9 col-sm-9">
                     <p>Listing {this.state.listing.current} of {this.state.listing.total}</p>
                 </div>
-                <div className="col-12 col-xl-2 col-lg-2 col-md-2 col-sm-2 text-xl-right text-lg-right text-md-right text-sm-right mb-xl-0 mb-2">
-                    <ActionsDropdown />
+                <div className="col-12 col-xl-3 col-lg-3 col-md-3 col-sm-3 text-xl-right text-lg-right text-md-right text-sm-right mb-xl-0 mb-2">
+                    <ActionsDropdown refreshCallback={this.refreshCallback} />
                 </div>
-
                 <div className="col-12">
                 {
                     this.state.data.length === 0 ?
@@ -52,11 +51,9 @@ class Dashboard extends React.Component {
      * @returns {Promise<void>}
      */
     list = async () => {
-
         this.setState({loading: true});
 
         await this.notteManager.list().then(response => {
-
             this.setState({
                 loading: false,
                 listing: {
@@ -65,12 +62,17 @@ class Dashboard extends React.Component {
                 },
                 data: response.data.items
             });
-
-            console.log(response);
-
         }).catch(error => {
+            console.log(error)
+        })
+    }
 
-        });
+    /**
+     * Refresh callback
+     * @param childData
+     */
+    refreshCallback = (childData) => {
+        this.setState(childData)
     }
 
     componentDidMount() {

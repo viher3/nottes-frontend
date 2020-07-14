@@ -1,8 +1,9 @@
-import React from "react";
-import {ContextMenu, MenuItem} from "react-contextmenu";
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faEye, faEdit, faShare, faTrash} from '@fortawesome/free-solid-svg-icons';
-import {RoutesPath} from 'Constants/Routes';
+import React from "react"
+import {ContextMenu, MenuItem} from "react-contextmenu"
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {faEye, faEdit, faTrash} from '@fortawesome/free-solid-svg-icons'
+import {RoutesPath} from 'Constants/Routes'
+import NotteManager from 'Managers/NotteManager'
 
 class NotteListItemContextMenu extends React.Component {
 
@@ -20,11 +21,8 @@ class NotteListItemContextMenu extends React.Component {
                 <MenuItem data={{route: '_'}} onClick={this.handleClick}>
                     <FontAwesomeIcon className="mr-1" icon={faEdit}/> Edit
                 </MenuItem>
-                <MenuItem data={{route: '_'}} onClick={this.handleClick}>
-                    <FontAwesomeIcon className="mr-1" icon={faShare}/> Share
-                </MenuItem>
                 <MenuItem divider/>
-                <MenuItem data={{route: '_'}} onClick={this.handleClick}>
+                <MenuItem data={{action: 'remove'}} onClick={this.handleClick}>
                     <FontAwesomeIcon className="mr-1" icon={faTrash}/> Remove
                 </MenuItem>
             </ContextMenu>
@@ -32,11 +30,24 @@ class NotteListItemContextMenu extends React.Component {
     }
 
     handleClick(e, data) {
+        console.log(data)
         if(data.route === RoutesPath.showDocument) {
             this.props.history.push(data.route + data.id)
         }
+
+        if(typeof data.action !== 'undefined' && data.action === 'remove') {
+            this.removeNotte(data.id)
+        }
     }
 
+    removeNotte = async(id) => {
+        let notteManager = new NotteManager()
+        await notteManager.remove(id).then(response => {
+            console.log(response)
+        }).catch(error => {
+            console.log(error)
+        })
+    }
 }
 
 export default NotteListItemContextMenu;
