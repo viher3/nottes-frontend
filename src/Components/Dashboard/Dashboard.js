@@ -54,11 +54,17 @@ class Dashboard extends React.Component {
         this.setState({loading: true});
 
         await this.notteManager.list().then(response => {
+
+            let currentPageNum = response.data.current_page_number
+            let itemsPerPage = response.data.num_items_per_page
+            let total = response.data.total_count
+            let current = (total > itemsPerPage) ? currentPageNum * itemsPerPage : total
+
             this.setState({
                 loading: false,
                 listing: {
-                    current: response.data.current_page_number * response.data.num_items_per_page,
-                    total: response.data.total_count
+                    current: current,
+                    total: total
                 },
                 data: response.data.items
             });
