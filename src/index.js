@@ -1,21 +1,35 @@
+// =========================================================
+// * Volt React Dashboard
+// =========================================================
+
+// * Product Page: https://themesberg.com/product/dashboard/volt-react
+// * Copyright 2021 Themesberg (https://www.themesberg.com)
+// * Official Repository: https://github.com/themesberg/volt-react-dashboard
+// * License: MIT License (https://themesberg.com/licensing)
+
+// * Designed and coded by https://themesberg.com
+
+// =========================================================
+
+// * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. Please contact us to request a removal.
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from '@/App';
-import * as serviceWorker from '@/serviceWorker';
+import { HashRouter } from "react-router-dom";
 
-import ReactNotification from 'react-notifications-component'
-import { Provider } from 'react-redux';
-import Store from 'Store/Store';
+// core styles
+import "./scss/volt.scss";
+
+// vendor styles
+import "react-datetime/css/react-datetime.css";
+
+import HomePage from "./pages/HomePage";
+import ScrollToTop from "./components/ScrollToTop";
 
 ReactDOM.render(
-    <Provider store={Store}>
-        <ReactNotification />
-        <App />
-    </Provider>,
-    document.getElementById('wrapper')
+  <HashRouter>
+    <ScrollToTop />
+    <HomePage />
+  </HashRouter>,
+  document.getElementById("root")
 );
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
