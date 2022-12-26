@@ -1,5 +1,5 @@
 import React from "react"
-import {FolderView} from "../Folder/FolderView"
+import {FolderDetail} from "../../Components/FolderContent/FolderDetail"
 
 export const Dashboard: React.FC = () => {
 
@@ -7,7 +7,7 @@ export const Dashboard: React.FC = () => {
         <>
             <h2>Dashboard</h2>
             <hr/>
-            <FolderView folderId={"0"}/>
+            <FolderDetail folderId={"0"}/>
         </>
     )
 }
