@@ -11,7 +11,16 @@ import {QueryClient, QueryClientProvider} from "react-query"
 
 export const App: React.FC = () => {
 
-    const queryClient = new QueryClient()
+    const queryClient = new QueryClient({
+        defaultOptions: {
+            queries: {
+                refetchOnWindowFocus: false,
+                refetchOnReconnect: false,
+                retry: false,
+                staleTime: 5*60*1000,
+            },
+        },
+    })
 
     return (
         <Router>
