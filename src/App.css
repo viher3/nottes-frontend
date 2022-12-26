@@ -48,3 +48,7 @@ nav#mobileNavbar button.navbar-toggler{
     padding: 0;
     border: 0 !important;
 }
+
+th.text-right{
+    text-align:right;
+}

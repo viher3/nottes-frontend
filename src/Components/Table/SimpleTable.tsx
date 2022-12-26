@@ -1,32 +1,38 @@
-import React from "react";
-import {Table} from "react-bootstrap";
-import {TotalRecordsText} from "./TotalRecordsText";
-import {LoadingSpinner} from "../Loading/LoadingSpinner";
+import React from "react"
+import {Table} from "react-bootstrap"
+import {TotalRecordsText} from "./TotalRecordsText"
+import {LoadingSpinner} from "../Loading/LoadingSpinner"
 
 interface Props {
-    headers: string[],
-    children: any,
+    headers: JSX.Element,
+    children: JSX.Element[],
     loading: boolean,
-    totalItems: number,
-    totalRecords: number
+    totalItems?: number,
+    totalRecords?: number,
+
+    attrs?: object,
+
+    totalColumns?: number
 }
 
 export const SimpleTable: React.FC<Props> = (props) => {
 
     return (
         <>
-            <Table striped bordered hover>
+            <Table {...props.attrs}>
                 <thead>
-                    <tr>
-                        {props.headers.map((header: string, key: number) => <th key={key}>{header}</th>)}
-                    </tr>
+                <tr>
+                    {props.headers}
+                </tr>
                 </thead>
                 <tbody className={"simpleTable"}>
-
                 {
                     (!props.children || !props.children.length) &&
                     <tr key={"0"}>
-                        <td colSpan={props.headers.length} className={"text-center my-4 py-4"}>
+                        <td
+                            className={"text-center my-4 py-4"}
+                            colSpan={props.totalColumns ? props.totalColumns : 0}
+                        >
                             {props.loading && <LoadingSpinner/>}
                             {!props.loading && "No results found"}
                         </td>
@@ -38,7 +44,9 @@ export const SimpleTable: React.FC<Props> = (props) => {
                 </tbody>
             </Table>
 
-            <TotalRecordsText totalItems={props.totalItems} totalRecords={props.totalRecords} />
+            {props.totalItems && props.totalRecords &&
+                <TotalRecordsText totalItems={props.totalItems} totalRecords={props.totalRecords}/>
+            }
         </>
     )
 }
