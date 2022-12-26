@@ -17,11 +17,7 @@ interface Props {
 export const FolderDetail: React.FC<Props> = (props) => {
 
     const navigate = useNavigate()
-    const [folderContent, setFolderContent] = useState<FolderContent[]>([])
-    const {isLoading, refetch} = useQuery(['folderContent'], () => getFoldersQuery(props.folderId), {
-        onSuccess: (res) => setFolderContent(res.data),
-        onError: (err) => {}
-    })
+    const {isLoading, isError, data, error, refetch} = useQuery(['folderContent'], () => getFoldersQuery(props.folderId))
 
     useEffect(() => {
         refetch()
@@ -47,28 +43,31 @@ export const FolderDetail: React.FC<Props> = (props) => {
             <ActionDropdown/>
             <Row className={"mt-4"}>
                 <Col>
-                    <SimpleTable
-                        attrs={{hover: true}}
-                        headers={tableHeaders()}
-                        loading={isLoading}
-                        totalColumns={2}
-                    >
-                        {
-                            folderContent.map((content: FolderContent, key: number) => {
-                                return (
-                                    <tr
-                                        key={key}
-                                        onClick={() => open(content, navigate)}
-                                    >
-                                        <td width={"80%"}>
-                                            <FolderContentIconName folderContent={content}/>
-                                        </td>
-                                        <td align={"right"}>{content.updatedAt}</td>
-                                    </tr>
-                                )
-                            })
-                        }
-                    </SimpleTable>
+                    {!isError &&
+                        <SimpleTable
+                            attrs={{hover: true}}
+                            headers={tableHeaders()}
+                            loading={isLoading}
+                            totalColumns={2}
+                        >
+                            {
+                                data?.data.map((content: FolderContent, key: number) => {
+                                    return (
+                                        <tr
+                                            key={key}
+                                            onClick={() => open(content, navigate)}
+                                        >
+                                            <td width={"80%"}>
+                                                <FolderContentIconName folderContent={content}/>
+                                            </td>
+                                            <td align={"right"}>{content.updatedAt}</td>
+                                        </tr>
+                                    )
+                                })
+                            }
+                        </SimpleTable>
+                    }
+                    <>{isError && error}</>
                 </Col>
             </Row>
         </>

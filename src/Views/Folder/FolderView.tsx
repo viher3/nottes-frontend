@@ -8,7 +8,7 @@ export const FolderView: React.FC = () => {
 
     return (
         <>
-            id: {id}
+            <hr />
             <FolderDetail
                 folderId={id ? id.toString() : '0'}
             />
