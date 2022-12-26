@@ -10,12 +10,12 @@ import {Col, Row} from "react-bootstrap";
 export const App: React.FC = () => {
     return (
         <Router>
-            <Container fluid={true} className={"mx-0"}>
+            <Container fluid className={"mx-0"}>
                 <Row>
-                    <Col sm={2} className={"px-0"}>
+                    <Col xs={12} sm={12} md={3} xl={2} className={"px-0"}>
                         <AppNavbar/>
                     </Col>
-                    <Col xs={12}  sm={10} className={"right-wrapper"}>
+                    <Col xs={12}  sm={12} md={9} xl={10} className={"right-wrapper"}>
                         <AppRoutes/>
                     </Col>
                 </Row>

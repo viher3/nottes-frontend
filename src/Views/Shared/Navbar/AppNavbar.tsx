@@ -34,7 +34,7 @@ export const AppNavbar: React.FC = () => {
                 </Nav.Item>
             </Nav>
 
-            <Navbar bg="dark" expand="lg">
+            <Navbar id={"mobileNavbar"} bg="dark" expand="xl">
                 <Container>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse

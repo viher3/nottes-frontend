@@ -30,5 +30,21 @@ table tbody.simpleTable tr:hover{
 }
 
 .right-wrapper{
-    padding-top:48px;
+    padding:50px;
+}
+
+.button-icon{
+    padding-right:10px;
+}
+
+.navbar-light .navbar-toggler-icon{
+    background-image: url('../public/menu.svg');
+    background-size: inherit;
+    content: inherit;
+    width:30px;
+}
+nav#mobileNavbar button.navbar-toggler{
+    width: 30px;
+    padding: 0;
+    border: 0 !important;
 }
