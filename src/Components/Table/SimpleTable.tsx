@@ -18,15 +18,17 @@ export const SimpleTable: React.FC<Props> = (props) => {
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        {props.headers.map(header => <th>{header}</th>)}
+                        {props.headers.map((header: string, key: number) => <th key={key}>{header}</th>)}
                     </tr>
                 </thead>
                 <tbody className={"simpleTable"}>
 
-                {!props.children &&
+                {
+                    (!props.children || !props.children.length) &&
                     <tr key={"0"}>
                         <td colSpan={props.headers.length} className={"text-center my-4 py-4"}>
                             {props.loading && <LoadingSpinner/>}
+                            {!props.loading && "No results found"}
                         </td>
                     </tr>
                 }
