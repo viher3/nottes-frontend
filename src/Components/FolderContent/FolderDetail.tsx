@@ -8,6 +8,7 @@ import {open} from "../../Services/Folder/FolderService"
 import {getFoldersQuery} from "../../Api/Query/FolderQuery"
 import {FolderContentIconName} from "./FolderContentIconName"
 import {FolderContent} from "../../Model/FolderContent/FolderContent"
+import {FolderBreadcrumb} from "./FolderBreadcrumb";
 
 interface Props {
     folderId: string,
@@ -40,6 +41,8 @@ export const FolderDetail: React.FC<Props> = (props) => {
                 <h2>{props.folderName}</h2>
             }
 
+            <FolderBreadcrumb breadcrumb={data?.data.breadcrumb ?? []} />
+            <hr />
             <ActionDropdown/>
             <Row className={"mt-4"}>
                 <Col>
@@ -51,7 +54,7 @@ export const FolderDetail: React.FC<Props> = (props) => {
                             totalColumns={2}
                         >
                             {
-                                data?.data.map((content: FolderContent, key: number) => {
+                                data?.data.content.map((content: FolderContent, key: number) => {
                                     return (
                                         <tr
                                             key={key}
