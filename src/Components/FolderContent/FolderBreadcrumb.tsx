@@ -9,19 +9,20 @@ interface BreadcrumbItem {
 }
 
 interface Props {
-    breadcrumb: BreadcrumbItem[]
+    breadcrumb: BreadcrumbItem[],
+    allLinks: boolean
 }
 
 export const FolderBreadcrumb: React.FC<Props> = (props) => {
 
     const navigate = useNavigate()
 
-    const folderNameConverter = (item : BreadcrumbItem) => {
-        if(item.name === '/') return 'Home'
+    const folderNameConverter = (item: BreadcrumbItem) => {
+        if (item.name === '/') return 'Home'
         return item.name
     }
 
-    const totalItems = () : number => {
+    const totalItems = (): number => {
         return props.breadcrumb.length
     }
 
@@ -29,11 +30,17 @@ export const FolderBreadcrumb: React.FC<Props> = (props) => {
         <>
             <Breadcrumb>
                 {props.breadcrumb.map((item: BreadcrumbItem, key: number) => {
-                    const isActive = key === (totalItems()-1)
+                    const isLastItem = key === (totalItems() - 1)
+                    const isActive = !props.allLinks && isLastItem
                     return (
                         <BreadcrumbItem
                             key={key}
-                            onClick={() => navigate(ROUTE_PATHS.VIEW_FOLDER.replace(':id', item.id))}
+                            onClick={() => {
+                                return (!isActive) ?
+                                    navigate(ROUTE_PATHS.VIEW_FOLDER.replace(':id', item.id))
+                                    : null
+                            }
+                            }
                             title={item.name}
                             active={isActive}
                         >

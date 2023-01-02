@@ -9,6 +9,7 @@ import {getFoldersQuery} from "../../Api/Query/FolderQuery"
 import {FolderContentIconName} from "./FolderContentIconName"
 import {FolderContent} from "../../Model/FolderContent/FolderContent"
 import {FolderBreadcrumb} from "./FolderBreadcrumb";
+import {LocalStorage} from "../../Services/LocalStorage/LocalStorage";
 
 interface Props {
     folderId: string,
@@ -17,12 +18,18 @@ interface Props {
 
 export const FolderDetail: React.FC<Props> = (props) => {
 
+    const localStorage = new LocalStorage()
     const navigate = useNavigate()
     const {isLoading, isError, data, error, refetch} = useQuery(['folderContent'], () => getFoldersQuery(props.folderId))
 
     useEffect(() => {
         refetch()
     }, [props.folderId])
+
+    useEffect(() => {
+        const breadcrumb = data?.data.breadcrumb ?? []
+        localStorage.set('folderBreadcrumb', JSON.stringify(breadcrumb))
+    }, [data])
 
     const tableHeaders = () => {
         return (
@@ -40,10 +47,14 @@ export const FolderDetail: React.FC<Props> = (props) => {
             {props.folderName &&
                 <h2>{props.folderName}</h2>
             }
-
-            <FolderBreadcrumb breadcrumb={data?.data.breadcrumb ?? []} />
+            <FolderBreadcrumb
+                breadcrumb={data?.data.breadcrumb ?? []}
+                allLinks={false}
+            />
             <hr />
-            <ActionDropdown/>
+            <ActionDropdown
+                folderId={props.folderId}
+            />
             <Row className={"mt-4"}>
                 <Col>
                     {!isError &&
