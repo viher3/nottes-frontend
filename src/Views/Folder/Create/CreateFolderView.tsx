@@ -30,7 +30,8 @@ export const CreateFolderView: React.FC = () => {
             navigate(ROUTE_PATHS.VIEW_FOLDER.replace(":id", parentId ? parentId.toString() : ''))
         },
         onError: (error: any) => {
-            Notificator.error(error.error.message)
+            console.log(error, 'err')
+            Notificator.error(error.response.data.error, error.message)
         }
     })
 

@@ -15,8 +15,12 @@ import {
     Separator,
     useContextMenu
 } from "react-contexify"
-import "react-contexify/dist/ReactContexify.css"
+// import "react-contexify/dist/ReactContexify.css"
 import {ContextMenu} from "./ContextMenu";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faTrash} from "@fortawesome/free-solid-svg-icons/faTrash";
+import {faEdit} from "@fortawesome/free-solid-svg-icons/faEdit";
+import {faPlusSquare} from "@fortawesome/free-solid-svg-icons/faPlusSquare";
 
 interface Props {
     folderId: string,
@@ -146,13 +150,16 @@ export const FolderDetail: React.FC<Props> = (props) => {
                 onVisibilityChange={onContextMenuVisibilityChange}
             >
                 <Item onClick={() => selectedItem ? open(selectedItem, navigate) : null}>
+                    <FontAwesomeIcon icon={faPlusSquare} className={"button-icon"} />
                     Open
                 </Item>
                 <Item>
+                    <FontAwesomeIcon icon={faEdit} className={"button-icon"} />
                     Edit
                 </Item>
                 <Separator/>
                 <Item>
+                    <FontAwesomeIcon icon={faTrash} className={"button-icon"} />
                     Remove
                 </Item>
             </ContextMenu>

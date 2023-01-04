@@ -14,7 +14,6 @@ export const ContextMenu: React.FC<Props> = React.forwardRef((props, ref) => {
 
     useImperativeHandle(ref, () => ({
         open(e : any){
-            console.log('ref show')
             show({event: e})
         }
     }))

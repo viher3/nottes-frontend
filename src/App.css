@@ -1,5 +1,6 @@
 @import 'toastr';
 @import 'bootstrap/dist/css/bootstrap.min.css';
+@import "react-contexify/dist/ReactContexify.css";
 
 div.container-row{
     min-height: 100vh;
