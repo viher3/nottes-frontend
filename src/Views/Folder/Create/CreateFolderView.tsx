@@ -3,22 +3,38 @@ import {useNavigate, useParams} from "react-router-dom"
 import {LocalStorage} from "../../../Services/LocalStorage/LocalStorage"
 import {RefreshSpinIcon} from "../../../Components/Icons/RefreshSpinIcon"
 import {FolderBreadcrumb} from "../../../Components/FolderContent/FolderBreadcrumb"
-import {BreadcrumbItemProps, Button, Col, Form, FormGroup, Row} from "react-bootstrap"
+import {Button, Col, Form,  Row} from "react-bootstrap"
+import {useMutation} from "react-query";
+import {
+    createFolderMutation,
+    CreateFolderMutationBody
+} from "../../../Api/Mutation/FolderMutation"
+import {Notificator} from "../../../Services/Notificator/Notificator"
+import {ROUTE_PATHS} from "../../../Config/Router/Routes";
 
-interface Props {
-    parentFolder?: string
-}
-
-export const CreateFolderView: React.FC<Props> = (props) => {
+export const CreateFolderView: React.FC = () => {
     const {parentId} = useParams()
     const localStorage = new LocalStorage()
+    const navigate = useNavigate()
 
     const [saving, setSaving] = useState<boolean>(false)
     const [validated, setValidated] = useState<boolean>(false)
     const [name, setName] = useState<string>('')
     const [description, setDescription] = useState<string>('')
 
-    const handleSubmit = (event : React.ChangeEvent<HTMLFormElement>) => {
+    const mutation = useMutation({
+        mutationFn: (body: CreateFolderMutationBody) => createFolderMutation(body),
+        onSettled: () => setSaving(false),
+        onSuccess: () => {
+            Notificator.success(`Folder <strong>${name}</strong> has been created correctly.`)
+            navigate(ROUTE_PATHS.VIEW_FOLDER.replace(":id", parentId ? parentId.toString() : ''))
+        },
+        onError: (error: any) => {
+            Notificator.error(error.error.message)
+        }
+    })
+
+    const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
         const form = event.currentTarget
 
         if (!form.checkValidity()) {
@@ -28,7 +44,7 @@ export const CreateFolderView: React.FC<Props> = (props) => {
 
         setValidated(true)
 
-        if(name.length){
+        if (name.length) {
             createFolder()
         }
 
@@ -36,8 +52,13 @@ export const CreateFolderView: React.FC<Props> = (props) => {
         event.stopPropagation()
     }
 
-    const createFolder = () : void => {
+    const createFolder = (): void => {
         setSaving(true)
+        mutation.mutate({
+            name: name,
+            parentId: parentId ?? '',
+            description: description
+        })
     }
 
     return (
@@ -63,6 +84,7 @@ export const CreateFolderView: React.FC<Props> = (props) => {
                                 id={"name"}
                                 placeholder="Enter a name"
                                 onChange={(e) => setName(e.target.value)}
+                                autoFocus
                             />
                             <Form.Control.Feedback type="invalid">
                                 Please choose a name.
@@ -86,14 +108,12 @@ export const CreateFolderView: React.FC<Props> = (props) => {
                                     className={"mt-4"}
                                     disabled={saving}
                                 >
-                                    {saving && <RefreshSpinIcon /> }
-                                    {!saving && 'Create' }
+                                    {saving && <RefreshSpinIcon/>}
+                                    {!saving && 'Create'}
                                 </Button>
                             </Col>
                         </Row>
                     </Form>
-
-                    {parentId}
                 </Col>
             </Row>
         </>
