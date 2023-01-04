@@ -1,6 +1,5 @@
-@import 'bootstrap/dist/css/bootstrap.min.css';
 @import 'toastr';
-
+@import 'bootstrap/dist/css/bootstrap.min.css';
 
 div.container-row{
     min-height: 100vh;
@@ -53,4 +52,7 @@ nav#mobileNavbar button.navbar-toggler{
 
 th.text-right{
     text-align:right;
+}
+tr.bg-grey{
+    background-color: #ececec;
 }
