@@ -10,7 +10,7 @@ import {
     CreateFolderMutationBody
 } from "../../../Api/Mutation/FolderMutation"
 import {Notificator} from "../../../Services/Notificator/Notificator"
-import {ROUTE_PATHS} from "../../../Config/Router/Routes";
+import {ROUTE_PATHS} from "../../../Config/Router/Routes"
 
 export const CreateFolderView: React.FC = () => {
     const {parentId} = useParams()

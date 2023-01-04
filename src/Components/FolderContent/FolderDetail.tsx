@@ -11,12 +11,12 @@ import {FolderContent} from "../../Model/FolderContent/FolderContent"
 import {FolderBreadcrumb} from "./FolderBreadcrumb";
 import {LocalStorage} from "../../Services/LocalStorage/LocalStorage";
 import {
-    Menu,
     Item,
     Separator,
     useContextMenu
 } from "react-contexify"
 import "react-contexify/dist/ReactContexify.css"
+import {ContextMenu} from "./ContextMenu";
 
 interface Props {
     folderId: string,
@@ -46,7 +46,9 @@ export const FolderDetail: React.FC<Props> = (props) => {
 
     const MENU_ID = 'testMenu'
 
-    const {show, hideAll} = useContextMenu({id: MENU_ID});
+    const contextMenuRef = React.useRef<any>(null)
+
+    const {show} = useContextMenu({id: MENU_ID});
     const [isMenuVisible, setMenuVisible] = useState<boolean>(false)
     const [selectedItem, setSelectedItem] = useState<FolderContent | null>(null)
 
@@ -81,7 +83,15 @@ export const FolderDetail: React.FC<Props> = (props) => {
             setSelectedItem(folderContent[0])
 
             // Show context menu
-            show({event: e})
+            contextMenuRef.current.open(e)
+        }
+    }
+
+    const onContextMenuVisibilityChange = (isVisible : boolean) => {
+        setMenuVisible(isVisible)
+
+        if (!isVisible) {
+            setSelectedItem(null)
         }
     }
 
@@ -131,18 +141,11 @@ export const FolderDetail: React.FC<Props> = (props) => {
                 </Col>
             </Row>
 
-            <Menu
-                id={MENU_ID}
-                theme={"dark"}
-                onVisibilityChange={(isVisible: boolean) => {
-                    setMenuVisible(isVisible)
-
-                    if (!isVisible) {
-                        setSelectedItem(null)
-                    }
-                }}
+            <ContextMenu
+                ref={contextMenuRef}
+                onVisibilityChange={onContextMenuVisibilityChange}
             >
-                <Item onClick={() => console.log(selectedItem)}>
+                <Item onClick={() => selectedItem ? open(selectedItem, navigate) : null}>
                     Open
                 </Item>
                 <Item>
@@ -152,7 +155,7 @@ export const FolderDetail: React.FC<Props> = (props) => {
                 <Item>
                     Remove
                 </Item>
-            </Menu>
+            </ContextMenu>
         </>
     )
 }
