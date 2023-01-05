@@ -1,5 +1,15 @@
 @media only screen and (max-width: 768px) {
-    .right-wrapper{
-        padding-left:0;
+    .right-wrapper {
+        padding: 25px !important;
+    }
+
+    nav#mobileNavbar {
+        display: block !important;
+    }
+
+    nav#mobileNavbar button.navbar-toggler {
+        width: 30px;
+        padding: 0;
+        border: 0 !important;
     }
 }

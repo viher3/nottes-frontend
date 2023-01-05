@@ -1,6 +1,7 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 @import "react-contexify/dist/ReactContexify.css";
 @import 'toastr';
+@import 'AppResponsive.css';
 
 div.container-row{
     min-height: 100vh;
@@ -45,15 +46,14 @@ table tbody.simpleTable tr:hover{
     content: inherit;
     width:30px;
 }
-nav#mobileNavbar button.navbar-toggler{
-    width: 30px;
-    padding: 0;
-    border: 0 !important;
-}
 
 th.text-right{
     text-align:right;
 }
 tr.bg-grey{
     background-color: #ececec;
+}
+
+nav#mobileNavbar{
+    display:none;
 }
