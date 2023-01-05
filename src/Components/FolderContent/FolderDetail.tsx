@@ -22,6 +22,7 @@ import {faEdit} from "@fortawesome/free-solid-svg-icons/faEdit";
 import {faPlusSquare} from "@fortawesome/free-solid-svg-icons/faPlusSquare";
 import {removeFolderMutation} from "../../Api/Mutation/FolderMutation";
 import {Notificator} from "../../Services/Notificator/Notificator";
+import {ROUTE_PATHS} from "../../Config/Router/Routes";
 
 interface Props {
     folderId: string,
@@ -167,7 +168,7 @@ export const FolderDetail: React.FC<Props> = (props) => {
                     <FontAwesomeIcon icon={faPlusSquare} className={"button-icon"} />
                     Open
                 </Item>
-                <Item>
+                <Item onClick={() => selectedItem ? navigate(ROUTE_PATHS.UPDATE_FOLDER.replace(":id", selectedItem.id)) : null}>
                     <FontAwesomeIcon icon={faEdit} className={"button-icon"} />
                     Edit
                 </Item>
