@@ -1,4 +1,4 @@
-import {useQuery} from "react-query"
+import {useMutation, useQuery} from "react-query"
 import React, {useEffect, useState} from "react"
 import {Col, Row} from "react-bootstrap"
 import {useNavigate} from "react-router-dom"
@@ -15,12 +15,13 @@ import {
     Separator,
     useContextMenu
 } from "react-contexify"
-// import "react-contexify/dist/ReactContexify.css"
 import {ContextMenu} from "./ContextMenu";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTrash} from "@fortawesome/free-solid-svg-icons/faTrash";
 import {faEdit} from "@fortawesome/free-solid-svg-icons/faEdit";
 import {faPlusSquare} from "@fortawesome/free-solid-svg-icons/faPlusSquare";
+import {removeFolderMutation} from "../../Api/Mutation/FolderMutation";
+import {Notificator} from "../../Services/Notificator/Notificator";
 
 interface Props {
     folderId: string,
@@ -38,6 +39,19 @@ export const FolderDetail: React.FC<Props> = (props) => {
         error,
         refetch
     } = useQuery(['folderContent'], () => getFoldersQuery(props.folderId))
+
+    const removeMutation = useMutation({
+        mutationFn: (folderId: string) => removeFolderMutation(folderId),
+        onSuccess: () => {
+            Notificator.success(`Folder <strong>${selectedItem?.name}</strong> has been removed correctly.`)
+            refetch()
+        },
+        onError: (error: any) => {
+            Notificator.error(error.response.data.error, error.message)
+        }
+    })
+
+    const removeFolder = (folderContent: FolderContent) => removeMutation.mutate(folderContent.id)
 
     useEffect(() => {
         refetch()
@@ -158,7 +172,7 @@ export const FolderDetail: React.FC<Props> = (props) => {
                     Edit
                 </Item>
                 <Separator/>
-                <Item>
+                <Item onClick={() => selectedItem ?  removeFolder(selectedItem) : null}>
                     <FontAwesomeIcon icon={faTrash} className={"button-icon"} />
                     Remove
                 </Item>

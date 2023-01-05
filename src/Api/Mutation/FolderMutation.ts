@@ -20,3 +20,7 @@ export const createFolderMutation = async (
 
     return await http.post(`/folder`, data)
 }
+
+export const removeFolderMutation = async (folderId : string) => {
+    return await http.delete(`/folder/${folderId}`)
+}
